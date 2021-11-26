@@ -10,7 +10,6 @@
     <?php include("inc/navbar.php") ?>
 </header>
 <body>
-    <br><br>
-    <?php include("inc/default.php") ?>
+    About Us
 </body>
 </html>
