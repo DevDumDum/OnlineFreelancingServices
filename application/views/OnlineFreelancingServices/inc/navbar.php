@@ -13,11 +13,11 @@
         FAQ
     </button>
 
-    <button onclick="window.location.href='Login';">
+    <button onclick="window.location.href='Loginpage';">
         Login
     </button>
     /
-    <button onclick="window.location.href='SignUp';">
+    <button onclick="window.location.href='Registerpage';">
         SignUp
     </button>
 </nav>
@@ -27,7 +27,7 @@
     <button onclick="window.location.href='Newsfeed';">
         NewsFeed
     </button>
-    <a style="cursor:pointer;color:blue;" onclick="window.location.href='Profile';">
+    <a style="cursor:pointer;color:blue;" onclick="window.location.href='Profilepage';">
         Profile
     </a>
 </nav>
