@@ -8,6 +8,8 @@
 </head>
 <body>
     <form action="register.php" method="get">
+
+    
         <div class="form-group">
             <label for="first-name " class="">First name</label>
             <input type="text" class="form-control" placeholder="Ex. Maku">
