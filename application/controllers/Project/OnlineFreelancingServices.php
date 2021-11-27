@@ -16,4 +16,13 @@ class OnlineFreelancingServices extends CI_Controller{
     public function FAQpage(){
         $this -> load -> view ('OnlineFreelancingServices/FAQ');
     }
+    public function Profilepage(){
+        $this -> load -> view ('OnlineFreelancingServices/Profile');
+    }
+    public function Loginpage(){
+        $this -> load -> view ('OnlineFreelancingServices/inc/Login');
+    }
+    public function Registerpage(){
+        $this -> load -> view ('OnlineFreelancingServices/inc/Register');
+    }
 }
