@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <button>To newsfeed</button>
     <p>Name: </p>
     <p>Location: </p>
     <p>Status: </p>
