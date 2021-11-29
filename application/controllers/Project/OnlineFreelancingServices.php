@@ -20,9 +20,9 @@ class OnlineFreelancingServices extends CI_Controller{
         $this -> load -> view ('OnlineFreelancingServices/Profile');
     }
     public function Loginpage(){
-        $this -> load -> view ('OnlineFreelancingServices/inc/Login');
+        $this -> load -> view ('OnlineFreelancingServices/Login');
     }
     public function Registerpage(){
-        $this -> load -> view ('OnlineFreelancingServices/inc/Register');
+        $this -> load -> view ('OnlineFreelancingServices/Register');
     }
 }
