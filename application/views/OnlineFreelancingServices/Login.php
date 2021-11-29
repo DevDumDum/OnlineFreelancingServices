@@ -11,7 +11,7 @@
 
 
 <header>
-        <?php include("navbar.php") ?>
+        <?php include("inc/navbar.php") ?>
 </header>
 
 <body>
