@@ -54,6 +54,11 @@
 
             <label for="id" class="">id</label>
             <input type="button" value="Browse">
+          
+
+            <label for="nickname" class="">Nickname</label>
+            <input type="button" value="Browse">
+
 
         </div>
 
