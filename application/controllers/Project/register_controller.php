@@ -19,18 +19,28 @@ class Register extends CI_Controller {
     }
 
     public function add() {
-        if ($this->input->post('submit')) {
-            $arrData['first-name'] = $this->input->post('first-name');
-            $arrData['last-name'] = $this->input->post('last-name');
-            $arrData['address'] = $this->input->post('middle-name');
-            $arrData['contact'] = $this->input->post('contact');
-            $arrData['email'] = $this->input->post('email-address');
-            $arrData['pasword'] = $this->input->post('email-address');
+        //if ($this->input->post('submit')) {
+            //$arrData['first-name'] = $this->input->post('first-name');
+            //$arrData['last-name'] = $this->input->post('last-name');
+            //$arrData['address'] = $this->input->post('middle-name');
+            //$arrData['contact'] = $this->input->post('contact');
+            //$arrData['email'] = $this->input->post('email-address');
+            //$arrData['pasword'] = $this->input->post('email-address');
+            
+            $fn = $this->input->post('first-name');
+            $sn = $this->input->post('last-name');
+            $mn = $this->input->post('middle-name')
+            $data = array (
+                'name' => $fn." ".$mn." ".$sn
+                'contact' => $this->input->post('contact'),
+                'email' => $this->input->post('email-address'),
+                'pasword' => $this->input->post('password')
+            )
 
-            $insert = $this->register_model->addUser($arrData);
+            $insert = $this->register_model->addUser($data);
 
             if ($insert) {
                 
             }
-        }
+        //}
     }

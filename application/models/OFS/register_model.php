@@ -1,6 +1,6 @@
 <?php 
 
-class Register extends CI_Model {
+class register_model extends CI_Model {
 
     public function __construct(){
         $this->load->database('default');
@@ -10,7 +10,7 @@ class Register extends CI_Model {
     }
 
     public function addUser ($arrData){
-        if($this->db->insert('register_controller', $arrData))
+        if($this->db->insert('register', $arrData))
             return true;
         else return false;
     }
