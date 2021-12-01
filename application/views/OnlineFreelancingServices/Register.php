@@ -13,42 +13,42 @@
 
 <body>
 
-    <form action="register.php" method="get">
+    <form action="register_controller.php" method="post">
 
     
         <div class="form-group">
             <label for="first-name " class="">First name</label>
-            <input type="text" class="form-control" placeholder="Ex. Maku">
+            <input name="first-name" type="text" class="form-control" placeholder="Ex. Maku">
 
             <br>
 
             <label for="last-name " class="">Last name</label>
-            <input type="text" class="form-control" placeholder="Ex. Aren">
+            <input name="last-name" type="text" class="form-control" placeholder="Ex. Aren">
 
             <br>
 
             <label for="middle-name " class="">Middle name</label>
-            <input type="text" class="form-control" placeholder="Ex. V.">
+            <input name="middle-name" type="text" class="form-control" placeholder="Ex. V.">
 
             <br>
 
             <label for="contact" class="">Contact Number</label>
-            <input type="number" class="form-control" placeholder="09xxxxxxxxx">
+            <input name="contact" type="number" class="form-control" placeholder="09xxxxxxxxx">
 
             <br>
             
             <label for="email-address" class="">Email Address</label>
-            <input type="email" class="form-control" placeholder="you@example.com">
+            <input name="email-address" type="email" class="form-control" placeholder="you@example.com">
 
             <br>
 
             <label for="password" class="">Password</label>
-            <input type="password" class="form-control">
+            <input name="password" type="password" class="form-control">
 
             <br>
 
             <label for="password" class="">Confirm Password</label>
-            <input type="password" class="form-control">
+            <input name="password" type="password" class="form-control">
 
             <br>
 
@@ -61,9 +61,7 @@
 
 
         </div>
-
-    </form>
-
+        
         <div>
             <select name="Work">
                 <option value="null">----</option>
@@ -73,5 +71,9 @@
             </select>
             <button name="addWorkPost">+</button>
         </div>
+
+        <input type="submit" class="submit" value="Submit">
+    </form>
+
 </body>
 </html>
