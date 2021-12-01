@@ -13,7 +13,7 @@
 
 <body>
 
-    <form action="register_controller.php" method="post">
+    <form action="" method="post">
 
     
         <div class="form-group">
@@ -72,7 +72,7 @@
             <button name="addWorkPost">+</button>
         </div>
 
-        <input type="submit" class="submit" value="Submit">
+        <input type="submit" class="submit" value="Submit" onclick="window.location.href='Loginpage';">
     </form>
 
 </body>
