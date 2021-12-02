@@ -13,7 +13,7 @@
 
 <body>
 
-    <form method="post" autocomplete="off" action="<?=base_url('Register_controller/add')?>">
+    <form method="post" autocomplete="off" action="<?=base_url('Register_controller/addUser')?>">
 
     
         <div class="form-group">

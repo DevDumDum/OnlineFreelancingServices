@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Register_controller extends CI_Controller {
 
+
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
@@ -11,27 +12,33 @@ class Register_controller extends CI_Controller {
     }
 
     public function addUser() {
-            
+        
             $fn = $this->input->post('first-name');
             $sn = $this->input->post('last-name');
             $mn = $this->input->post('middle-name');
             $contact = $this->input->post('contact');
             $email = $this->input->post('email-address');
             $password = $this->input->post('password');
+            $status = true;
 
             $data = array (
+                'first_name' => $fn,
+                'last_name' => $sn,
+                'middle_name' => $mn,
                 'name' => $fn." ".$mn." ".$sn,
                 'contact' => $contact,
                 'email' => $email,
-                'password' => $password
+                'password' => $password,
+                'status' => $status
             );
             
-            $this->load->model('register_model');
-            $insert = $this->register_model->addUser($data);
+            $insert = $this->Register_model->addUser($data);
 
-            if ($insert) {
-                
+            if ($insert) 
                 redirect(base_url('OnlineFreelancingServices/Loginpage'));
-            }
+            else   
+                redirect(base_url('OnlineFreelancingServices/Registerpage'));
+
+
     }
 }
