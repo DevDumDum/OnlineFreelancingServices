@@ -120,6 +120,7 @@
 
             </div>    
 
+
             <br>
             <input type="submit" name ="create" value="Register">
 
@@ -127,7 +128,7 @@
     </div>
     
 
-        <button type="submit" value="Submit" onclick="window.location.href='Loginpage';">Submit</button>
-
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
