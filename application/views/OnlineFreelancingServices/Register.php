@@ -8,7 +8,7 @@
 </head>
 
 <header>
-    <?php include("navbar.php") ?>
+    <?php include("inc/navbar.php") ?>
 </header>
 
 <body>
@@ -54,6 +54,11 @@
 
             <label for="id" class="">id</label>
             <input type="button" value="Browse">
+          
+
+            <label for="nickname" class="">Nickname</label>
+            <input type="button" value="Browse">
+
 
         </div>
 
