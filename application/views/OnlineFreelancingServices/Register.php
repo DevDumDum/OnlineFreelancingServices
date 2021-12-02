@@ -13,7 +13,7 @@
 
 <body>
 
-    <form action="" method="post">
+    <form method="post" autocomplete="off" action="<?=base_url('Register_controller/add')?>">
 
     
         <div class="form-group">
@@ -72,7 +72,7 @@
             <button name="addWorkPost">+</button>
         </div>
 
-        <input type="submit" class="submit" value="Submit" onclick="window.location.href='Loginpage';">
+        <button type="submit" value="Submit" onclick="window.location.href='Loginpage';">Submit</button>
     </form>
 
 </body>

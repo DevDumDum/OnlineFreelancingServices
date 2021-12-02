@@ -1,16 +1,15 @@
 <?php 
 
-class register_model extends CI_Model {
+class Register_model extends CI_Model {
 
     public function __construct(){
         $this->load->database('default');
-        $this->load->library('session');
 
         parent::__construct();
     }
 
-    public function addUser ($arrData){
-        if($this->db->insert('register', $arrData))
+    public function addUser ($data){
+        if($this->db->insert('users', $data))
             return true;
         else return false;
     }
