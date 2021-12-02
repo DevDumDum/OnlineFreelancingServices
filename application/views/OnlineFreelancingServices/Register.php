@@ -1,7 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 
-=======
 <body>
     
     <form method="post" autocomplete="off" action="<?=base_url('index.php/Register_controller/adduser')?>"> 
@@ -38,31 +37,31 @@
                         <br>
 
                         <label for="contact" class="">Contact Number</label>
->>>>>>> Development
+
                         <input name="contact" type="number" class="form-control" placeholder="09xxxxxxxxx">
 
                         <br>
                         
 
-=======
+
                         <label for="email-address" class="">Email Address</label>
->>>>>>> Development
+
                         <input name="email-address" type="email" class="form-control" placeholder="you@example.com">
 
                         <br>
 
 
-=======
+
                         <label for="password" class="">Password</label>
->>>>>>> Development
+
                         <input name="password" type="password" class="form-control">
 
                         <br>
 
 
-=======
+
                         <label for="password" class="">Confirm Password</label>
->>>>>>> Development
+
                         <input name="password" type="password" class="form-control">
 
                         <br>
@@ -76,7 +75,7 @@
 
                     </div>                    
 
-=======
+
                 </div>
         
                 <div class="col-md-6">
@@ -147,10 +146,9 @@
             </div>
         </div>
     </form>
->>>>>>> Development
 
     <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
 </div>
+</body>
 </html>
