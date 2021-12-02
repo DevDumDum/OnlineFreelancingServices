@@ -3,7 +3,7 @@
 <body>
 	<p class="h1">User login</p>
 
-	<form method="post" autocomplete="off" action="<?=base_url('Project/OnlineFreelancingServices/loginnow')?>">
+	<form method="post" autocomplete="off" action="<?=base_url('index.php/OnlineFreelancingServices/loginnow')?>">
 					 
 		<div class="mb-3">
 			<label for="username" class="form-label">Username</label>

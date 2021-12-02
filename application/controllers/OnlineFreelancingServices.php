@@ -74,19 +74,26 @@ class OnlineFreelancingServices extends CI_Controller{
 
 					$this->session->set_userdata('UserLoginSession',$session_data);
 
-					redirect(base_url('OnlineFreelancingServices/NewsFeed'));
+					$this->load->helper('url');
+                    $this -> load -> view ('OnlineFreelancingServices/inc/header');
+                    $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
+                    $this -> load -> view ('OnlineFreelancingServices/NewsFeed');
 				}
 				else
 				{
 					$this->session->set_flashdata('error','Username or Password is Wrong');
-					redirect(base_url('OnlineFreelancingServices/Login'));
+                    $this->load->helper('url');
+                    $this -> load -> view ('OnlineFreelancingServices/inc/header');
+                    $this -> load -> view ('OnlineFreelancingServices/Login');
 				}
 
 			}
 			else
 			{
 				$this->session->set_flashdata('error','Fill all the required fields');
-				redirect(base_url('OnlineFreelancingServices/Login'));
+				$this->load->helper('url');
+                $this -> load -> view ('OnlineFreelancingServices/inc/header');
+                $this -> load -> view ('OnlineFreelancingServices/Login');
 			}
 		}
 	}
