@@ -3,11 +3,11 @@
 <body>
 	<p class="h1">User login</p>
 	<a href="Homepage">< BACK </a>
-	<form method="post" autocomplete="off" action="<?=base_url('index.php/OnlineFreelancingServices/loginnow')?>">
+	<form method="post" autocomplete="off" action="<?=base_url('index.php/Loginpage')?>">
 					 
 		<div class="mb-3">
-			<label for="username" class="form-label">Username</label>
-				<input type="username"  placeholder="Username" name="username" class="form-control" id="username">
+			<label for="email" class="form-label">Email</label>
+				<input type="email"  placeholder="Email" name="email" class="form-control" id="email">
 		</div>
 		<div class="mb-3">
 			<label for="password" class="form-label">Password</label>

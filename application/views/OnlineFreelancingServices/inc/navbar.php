@@ -1,4 +1,25 @@
 <header>
+<?php 
+if($this->session->userdata('UserLoginSession')){
+?>
+    <nav>
+        <img src="">
+        <button onclick="window.location.href='NewsFeed';">
+            NewsFeed
+        </button>
+
+        <a style="cursor:pointer;color:blue;" href="Profilepage">
+            Profile
+        </a>
+        
+        <button onclick="window.location.href='Logout';">
+            Logout
+        </button>
+    </nav>    
+<?php
+}else{
+?>
+    =====================================================================
     <nav>
         <img src="">
         <button onclick="window.location.href='Homepage';">
@@ -22,16 +43,6 @@
             SignUp
         </button>
     </nav>
-    =====================================================================
-    <nav>
-        <img src="">
-        <button onclick="window.location.href='NewsFeed';">
-            NewsFeed
-        </button>
-        <a style="cursor:pointer;color:blue;" href="Profilepage">
-            Profile
-        </a>
-    </nav>
-
+<?php };?>
     =====================================================================
 </header>

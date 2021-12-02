@@ -4,11 +4,11 @@
 if($this->session->userdata('UserLoginSession'))
 {
     $udata = $this->session->userdata('UserLoginSession');
-    echo 'Welcome'.' '.$udata['username'];
+    echo 'Welcome'.' '.$udata['email'];
 }
 else
 {
-    redirect(base_url('index.php/OnlineFreelancingServices/Loginpage'));
+    redirect(base_url('index.php/Loginpage'));
 }
 ?>
 
