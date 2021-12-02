@@ -49,6 +49,54 @@ class OnlineFreelancingServices extends CI_Controller{
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/Login');
     }
+    function loginnow()
+	{
+		if($_SERVER['REQUEST_METHOD']=='POST')
+		{
+			$this->form_validation->set_rules('username','Username','required');
+			$this->form_validation->set_rules('password','Password','required');
+
+			if($this->form_validation->run()==TRUE)
+			{
+				$username = $this->input->post('username');
+				$password = $this->input->post('password');
+				
+
+				$this->load->model('OFS/OFS_model');
+				$status = $this->OFS_model->checkPassword($password,$username);
+				if($status!=false)
+				{
+					$username = $status->username;
+
+					$session_data = array(
+						'username'=>$username,
+					);
+
+					$this->session->set_userdata('UserLoginSession',$session_data);
+
+					$this->load->helper('url');
+                    $this -> load -> view ('OnlineFreelancingServices/inc/header');
+                    $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
+                    $this -> load -> view ('OnlineFreelancingServices/NewsFeed');
+				}
+				else
+				{
+					$this->session->set_flashdata('error','Username or Password is Wrong');
+                    $this->load->helper('url');
+                    $this -> load -> view ('OnlineFreelancingServices/inc/header');
+                    $this -> load -> view ('OnlineFreelancingServices/Login');
+				}
+
+			}
+			else
+			{
+				$this->session->set_flashdata('error','Fill all the required fields');
+				$this->load->helper('url');
+                $this -> load -> view ('OnlineFreelancingServices/inc/header');
+                $this -> load -> view ('OnlineFreelancingServices/Login');
+			}
+		}
+	}
     public function Registerpage(){
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
