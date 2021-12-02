@@ -27,7 +27,7 @@
         <div class="row justify-content-evenly">
             <div class="col-md-6">
             <h1 class="display-3 fw-bold text-center">WELCOME</h1>
-                <div class="logo"><img src="./images/logo.png" alt="" width="100" height="60"></div>
+                <div class="logo"><img src="./images/Screenshot 2021-09-30 222053.jpg" width="200" height="200"></div>
                 <h2 class="text-center">Create a New Account</h2>
                 <p class="fst-italic fs-5 text-center">Already have an account? <span>Log in </span></p>
                 <form action="register.php" method="get">
