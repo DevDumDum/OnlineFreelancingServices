@@ -99,11 +99,9 @@ class OnlineFreelancingServices extends CI_Controller{
     }
 
     public function Logout(){
-        while($this->session->userdata('UserLoginSession')){
-            $array_items = array('id' => '', 'email' => '');
-            $this->session->unset_userdata($array_items);
-            $this->session->sess_destroy();
-        }
+        $array_items = array('id' => '', 'email' => '');
+        $this->session->unset_userdata($array_items);
+        $this->session->sess_destroy();
         redirect(base_url('index.php/Homepage'));
     }
 }
