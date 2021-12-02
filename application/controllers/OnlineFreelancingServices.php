@@ -48,43 +48,38 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/Login');
-    }
-    function loginnow()
-	{
-		if($_SERVER['REQUEST_METHOD']=='POST')
+        if($_SERVER['REQUEST_METHOD']=='POST')
 		{
-			$this->form_validation->set_rules('username','Username','required');
+			$this->form_validation->set_rules('email','Email','required');
 			$this->form_validation->set_rules('password','Password','required');
 
 			if($this->form_validation->run()==TRUE)
 			{
-				$username = $this->input->post('username');
+				$email = $this->input->post('email');
 				$password = $this->input->post('password');
 				
 
 				$this->load->model('OFS/OFS_model');
-				$status = $this->OFS_model->checkPassword($password,$username);
+				$status = $this->OFS_model->checkPassword($password,$email);
 				if($status!=false)
 				{
-					$username = $status->username;
+					$email = $status->email;
 
 					$session_data = array(
-						'username'=>$username,
+						'email'=>$email,
+                        'id'=>$id,
 					);
 
 					$this->session->set_userdata('UserLoginSession',$session_data);
 
 					$this->load->helper('url');
-                    $this -> load -> view ('OnlineFreelancingServices/inc/header');
-                    $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
-                    $this -> load -> view ('OnlineFreelancingServices/NewsFeed');
+                    redirect(base_url('index.php/NewsFeed'));
 				}
 				else
 				{
-					$this->session->set_flashdata('error','Username or Password is Wrong');
+					$this->session->set_flashdata('error','Email or Password is Wrong');
                     $this->load->helper('url');
-                    $this -> load -> view ('OnlineFreelancingServices/inc/header');
-                    $this -> load -> view ('OnlineFreelancingServices/Login');
+                    redirect(base_url('index.php/Loginpage'));
 				}
 
 			}
@@ -92,14 +87,23 @@ class OnlineFreelancingServices extends CI_Controller{
 			{
 				$this->session->set_flashdata('error','Fill all the required fields');
 				$this->load->helper('url');
-                $this -> load -> view ('OnlineFreelancingServices/inc/header');
-                $this -> load -> view ('OnlineFreelancingServices/Login');
+                redirect(base_url('index.php/Loginpage'));
 			}
 		}
-	}
+    }
+
     public function Registerpage(){
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/Register');
+    }
+
+    public function Logout(){
+        while($this->session->userdata('UserLoginSession')){
+            $array_items = array('id' => '', 'email' => '');
+            $this->session->unset_userdata($array_items);
+            $this->session->sess_destroy();
+        }
+        redirect(base_url('index.php/Homepage'));
     }
 }
