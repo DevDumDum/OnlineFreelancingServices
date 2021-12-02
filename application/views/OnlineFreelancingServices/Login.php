@@ -2,22 +2,27 @@
 
 <body>
 	<p class="h1">User login</p>
-
-	<form action="login.php" method="get">
-		<div class="form-group">
-			<label for="email" class="">Email address</label>
-			<input type="email" class="form-control" placeholder="Enter email">
-
-			<br>
-
-			<label for="password">Password</label>
-			<input type="password" name="password" placeholder="Password">
-
-			<br>
-			
-			<input onclick="" type="button" value="Login">
+	<a href="Homepage">< BACK </a>
+	<form method="post" autocomplete="off" action="<?=base_url('index.php/OnlineFreelancingServices/loginnow')?>">
+					 
+		<div class="mb-3">
+			<label for="username" class="form-label">Username</label>
+				<input type="username"  placeholder="Username" name="username" class="form-control" id="username">
 		</div>
+		<div class="mb-3">
+			<label for="password" class="form-label">Password</label>
+			<input type="password" name="password"  placeholder="User Password"  class="form-control" id="password">
+		 </div>
+
+		<div class="text-center">
+			<button type="submit" class="btn btn-primary">Login Now</button>
+		</div>
+
+		<?php
+			if($this->session->flashdata('error')) {	?>
+			<p class="text-danger text-center" style="margin-top: 10px;"> <?=$this->session->flashdata('error')?></p>
+		<?php } ?>
+						
 	</form>
 	
 </body>
-</html>
