@@ -1,7 +1,5 @@
-body{
+.mybody{
     width: 100%;
     padding: 50px;
-    background: #1F4E70;
+    background:linear-gradient(90deg,#1F4E70 50%, #E5E5E5 50%);
 }
-
-/*ayaw malink sa .php*/
