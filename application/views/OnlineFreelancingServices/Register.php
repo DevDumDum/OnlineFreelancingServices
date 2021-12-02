@@ -1,33 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type ="text/css" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/register.css"/>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>GOMEZ-PERPETUA</title>
-    <style>
-        body{
-            width: 100%;
-            padding: 50px;
-            background: #fff;
-        }
-    </style>
-</head>
-
-<!--<header>
-    <?php include("inc/navbar.php") ?>
-</header>-->
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <body>
     <div class="container">
+        <a href="Homepage">< BACK </a>
         <div class="row justify-content-evenly">
             <div class="col-md-6">
             <h1 class="display-3 fw-bold text-center">WELCOME</h1>
-                <div class="logo"><img src="./images/logo.png" alt="" width="100" height="60"></div>
+                <div class="logo">
+                    <img src="<?php echo base_url();?>public/images/logo.png" alt="" width="100" height="60">
+                </div>
                 <h2 class="text-center">Create a New Account</h2>
                 <p class="fst-italic fs-5 text-center">Already have an account? <span>Log in </span></p>
                 <form action="register.php" method="get">
