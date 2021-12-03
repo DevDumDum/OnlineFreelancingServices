@@ -1,13 +1,12 @@
 .container_custom{
     height: 100%;
     width: 100%;
-    position: fixed;
+    position: absolute;
 }
 
 .row_custom{
     height: 100%;
     position: inherit;
-    width: 100%;
 }
 
 .left-column{

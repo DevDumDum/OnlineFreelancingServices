@@ -1,14 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<form method="post" autocomplete="off" action="<?=base_url('index.php/Loginpage')?>">	
-
-	<body>
-		<div class="container-fluid container_custom">
+<body>
+	<div class="container-fluid container_custom">
+		<form method="post" autocomplete="off" action="<?=base_url('index.php/Loginpage')?>" style="height:100%;">
 			<div class="row align-items-start row_custom">
-					<div class="col left-column">
-						<h1 class="fw-bolder display-3">WELCOME</h1>
-						<img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" alt="" height="90" class="d-inline-block align-text-top">
-						<br><i>Does not have an account? <a href="Registerpage"><u>Sign Up</u></a></i>
-					</div>
+				<div class="col left-column">
+					<h1 class="fw-bolder display-3">WELCOME</h1>
+					<img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" alt="" height="90" class="d-inline-block align-text-top">
+					<br><i>Does not have an account? <a href="Registerpage"><u>Sign Up</u></a></i>
+				</div>
 				<div class="col right-column">
 					<div class="mb-3 mb-3_custom">
 						<div class="form-text-email-padding">
@@ -35,15 +34,16 @@
 						<button type="button" class="btn btn-light border border-primary back-custom-color"><a href="Homepage">BACK</a></button>
 						<button type="submit" class="btn btn-primary button-custom-color">Login Now</button>
 					</div>
-					<?php
-						 if($this->session->flashdata('error')) {	?>
-					<p class="text-danger text-center" style="margin-top: 10px;">
-						<?=$this->session->flashdata('error')?></p>
+					<?php if($this->session->flashdata('error')) {	?>
+						<p class="text-danger text-center" style="margin-top: 10px;">
+							<?=$this->session->flashdata('error')?>
+						</p>
 					<?php } ?>
 				</div>
 			</div>
-		</div>
-
+		</form>
+	</div>
+</body>
 
 
 
