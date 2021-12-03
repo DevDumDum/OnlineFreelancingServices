@@ -1,10 +1,12 @@
 .custom-navbar{
-    background-color: #1F4E70
+    background-color: #1F4E70;
 }
 .custom-navbar a{
     color: #ffffff;
 }
 
-a:hover{
-    color: #535492;
+.nav-link:hover{
+    color:#928aa1 !important; 
+    font-size: 1.3em;
+    transition: ease-in .2s; 
 }
