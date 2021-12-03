@@ -15,13 +15,13 @@
     <center> <div class="work-location">
         <form action="#">
             <select name="Work">
-                <option value="null">----</option>
-                <option value="Work1">Work1</option>
-                <option value="Work2">Work2</option>
-                <option value="Work3">Work3</option>
+                <option value="null">-----</option>
+                <option value="Work1">Work 1</option>
+                <option value="Work2">Work 2</option>
+                <option value="Work3">Work 3</option>
             </select>
         </form>
-    
+    <br>
         <form class="search-container">
             <input type="text" id="search-bar" name="location" placeholder="Search...">
             <button class="search-icon" type="submit" name="submit"><i class="fas fa-search"></i></button>        
