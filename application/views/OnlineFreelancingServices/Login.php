@@ -8,7 +8,7 @@
 					<div class="col left-column">
 						<h1 class="fw-bolder display-3">WELCOME</h1>
 						<img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" alt="" height="90" class="d-inline-block align-text-top">
-						<br><i>Does not have an account? <a href=""><u>Sign Up</u></a></i>
+						<br><i>Does not have an account? <a href="Registerpage"><u>Sign Up</u></a></i>
 					</div>
 				<div class="col right-column">
 					<div class="mb-3">
