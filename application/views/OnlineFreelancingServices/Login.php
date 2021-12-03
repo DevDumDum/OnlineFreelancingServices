@@ -1,28 +1,37 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+
+<header>
+        <?php include("inc/navbar.php") ?>
+</header>
 
 <body>
 	<p class="h1">User login</p>
-	<a href="Homepage">< BACK </a>
-	<form method="post" autocomplete="off" action="<?=base_url('index.php/Loginpage')?>">
-					 
-		<div class="mb-3">
-			<label for="email" class="form-label">Email</label>
-				<input type="email"  placeholder="Email" name="email" class="form-control" id="email">
-		</div>
-		<div class="mb-3">
-			<label for="password" class="form-label">Password</label>
-			<input type="password" name="password"  placeholder="User Password"  class="form-control" id="password">
-		 </div>
 
-		<div class="text-center">
-			<button type="submit" class="btn btn-primary">Login Now</button>
-		</div>
+	<form action="login.php" method="get">
+		<div class="form-group">
+			<label for="email" class="">Email address</label>
+			<input type="email" class="form-control" placeholder="Enter email">
 
-		<?php
-			if($this->session->flashdata('error')) {	?>
-			<p class="text-danger text-center" style="margin-top: 10px;"> <?=$this->session->flashdata('error')?></p>
-		<?php } ?>
-						
+			<br>
+
+			<label for="password">Password</label>
+			<input type="password" name="password" placeholder="Password">
+
+			<br>
+			
+			<input onclick="" type="button" value="Login">
+		</div>
 	</form>
 	
 </body>
+</html>
