@@ -1,0 +1,43 @@
+.left-column{
+    background-color: #1F4E70;
+    text-align: center;
+    color: #ffffff;
+    padding-top: 340px;
+    padding-bottom: 440px;
+}
+
+.left-column a{
+    color: #ffffff;
+}
+
+.right-column{
+    background-color: #E5e5e5;
+    text-align: center;
+    color: #000000;
+    padding-top: 370px;
+    padding-bottom: 421px;
+}
+
+.form-width{
+    width: 50%;
+}
+
+.form-padding{
+    padding-left: 30%;
+}
+
+.form-text-email-padding{
+    padding-right: 35%;
+}
+
+.form-text-password-padding{
+    padding-right: 32%;
+}
+
+.text-button a{
+    text-decoration: none;
+}
+
+.forgot-password-text a{
+    color: #000000;
+}
