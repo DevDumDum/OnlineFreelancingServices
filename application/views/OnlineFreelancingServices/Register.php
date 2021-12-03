@@ -1,151 +1,153 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<body style= "background:linear-gradient(90deg,#1F4E70 50%, #E5E5E5 50%);">
+<body class="regbody">
 
-    <form method="post" autocomplete="off" action="<?=base_url('index.php/Register_controller/adduser')?>"> 
-            <div class="container" >
+    <form method="post" autocomplete="off" action="<?=base_url('index.php/Register_controller/adduser')?>">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 no-gutters">
+                        <div class="justify-content-center align-items-center">
+                            <h1 class ="welcome">WELCOME </h1>
 
-                <a href="Homepage">< BACK </a>
-                <div class="row justify-content-evenly">
+                            <div class="logo">  
+                                <img src="<?php echo base_url();?>public/images/logo.png" class ="mx-auto d-block" alt="" height="50">
+                            </div>
 
-                    <div class="col-md-6">
-                    <h1 class="display-3 fw-bolder text-center" style="color: #ffff">WELCOME</h1>
+                            <h5 class="create">Create a New Account</h5>
+                            <p class="already">Already have an account? 
+                            <span><a href="Loginpage" class="link-light">Log in</a></span></p>
+                                <br class = "mb-3">
+                         
+                                <div class="form-group" id = "insertform" >
+                                    <div class = "textCont">
+                                        <label for="first-name" class="customlabel" > <span>First Name</span></label> <br>
+                                        <input name="first-name" type="text" placeholder="Ex. Juan" class="fn"> 
+                                    </div>  
 
-                        <div class="logo">
-                            <img src="<?php echo base_url();?>public/images/logo.png" class ="mx-auto d-block" alt="" height="90"> <br>
+                                    <div class = "textCont">
+                                        <label for="last-name" class="customlabel" ><span>Last Name</span></label> <br>
+                                        <input name="last-name" type="text" placeholder="Ex. DelaCruz" class="ln">
+                                    </div>
+
+                                    <div class = "textCont">
+                                        <label for="middle-name" class="customlabel" ><span>Middle Name</span></label><br>
+                                        <input name="middle-name" type="text" placeholder="Ex. Conje"class="mn">
+                                    </div>
+
+                                    <div class = "textCont">
+                                        <label for="contact" class="customlabel" ><span>Contact Number</span></label><br>
+                                        <input name="contact" type="number"  placeholder="09xxxxxxxxx" class="cn">
+                                    </div>
+
+                                    <div class = "textCont">
+                                        <label for="email-address" class="customlabel" ><span>Email Address</span></label><br>
+                                        <input name="email-address" type="email" placeholder="you@example.com" class="ea">
+                                    </div>
+
+                                    <div class = "textCont">
+                                        <label for="password" class="customlabel" ><span>Password</span></label><br>
+                                        <input name="password" type="password" class="ps">
+                                    </div>
+
+                                    <div class = "textCont">
+                                        <label for="password" class="customlabel" ><span>Confirm Password</span></label><br>
+                                        <input name="password" type="password" class="Cps" >
+                                    </div>
+
+                                </div>
+                            
                         </div>
+                    </div>
 
-                        <h2 class="text-center fs-4" style="color: #ffff">Create a New Account</h2>
-                        <p class="fst-italic fs-5 text-center" style="color: #ffff">Already have an account? <span>Log in </span></p> <br>
-                                                                                    <!---dito rin sa span ng Log in, add mo yung onclick para mag direct sa log in page-->
-                        <div class="col-md-11 text-left">
-                        <label for="first-name" class="" style="color: #ffff">First Name</label>
-                        <input name="first-name" type="text" class="form-control" placeholder="Ex. Juan">
-
-                        <br>
-
-                        <label for="last-name" class="" style="color: #ffff">Last Name</label>
-                        <input name="last-name" type="text" class="form-control" placeholder="Ex. DelaCruz">
-
-                        <br>
-
-                        <label for="middle-name" class="" style="color: #ffff">Middle Name</label>
-                        <input name="middle-name" type="text" class="form-control" placeholder="Ex. Conje">
-
-                        <br>
-
-                        <label for="contact" class="" style="color: #ffff">Contact Number</label>
-                        <input name="contact" type="number" class="form-control" placeholder="09xxxxxxxxx">
-
-                        <br>
-                        
-                        <label for="email-address" class="" style="color: #ffff">Email Address</label>
-                        <input name="email-address" type="email" class="form-control" placeholder="you@example.com">
-
-                        <br>
-
-                        <label for="password" class=""style="color: #ffff">Password</label>
-                        <input name="password" type="password" class="form-control">
-
-                        <br>
-
-                        <label for="password" class=""style="color: #ffff">Confirm Password</label>
-                        <input name="password" type="password" class="form-control">
-
-                        <br>
-
-                    <!--  <label for="id" class="">id</label>
-                        <input type="button" value="Browse">-->
                     
-                        
-                        <label for="id" class="fst-italic" style="color: #ffff">KINDLY PROVIDE A PHOTO OF YOUR ID</label> <br>
-                        <input type="button" value="Browse">
+                    <div class="col-md-6" id="left">
 
-                    </div>                    
-                </div> 
-        <div class="col-md-6">
-            <div class="row d-inline">
-                <form>
-                    <span>
-                        <label for="day">Day:</label>
-                        <select name="day" id="day"></select>
-                    </span>
-                    <span>
-                        <label for="month">Month:</label>
-                        <select name="month" id="month"></select>
-                    </span>
-                    <span>
-                        <label for="year">Year:</label>
-                        <select name="year" id="year"></select>
-                    </span>
-                </form>  <!--itong form tag consult kay ian kase baka need neto ng name kase attribute ma-record sa database-->
+                        <div class = "rightside">
+                            <label for="prof"><br><span >Birth Date</span></label> </br>
+                            <form>
+                                <span>
+                                    <label for="day"><span >Day:</span></label>
+                                    <select name="day" id="day" class="fs-19"></select>
+                                </span>
+                                <span>
+                                    <label for="month"><span>Month:</span></label>
+                                    <select name="month" id="month" class="fs-10"></select>
+                                </span>
+                                <span>
+                                    <label for="year"><span>Year:</span></label>
+                                    <select name="year" id="year" class="fs-10"></select>
+                                </span>
+                            </form>
 
-                <script src="<?php echo base_url();?>public/css/register.js"></script>
+                            <script src="<?php echo base_url();?>public/css/register.js"></script>
+                            <br>
+        
+                            <label for="prof" class=""><br><span class="fs-10" >Profession</span></br></label>
+                            <div>
+                                <select id="Work" class="fs-10">
+                                    <option value="null" >Select</option>
+                                    <option value="Work1">Carpenter</option>
+                                    <option value="Work2">Accountant</option>
+                                    <option value="Work3">Architect</option>
+                                    <option value="Work4">Cashier</option>
+                                    <option value="Work5">Web Developer</option>
+                                    <option value="Work6">Cleaner</option>
+                                    <option value="Work7">Data Encoder</option>
+                                    <option value="Work8">Electrician</option>
+                                    <option value="Work9">Engineer</option>
+                                    <option value="Work10">Teacher</option>
+                                </select>
+
+                                <button name="addWorkPost">+</button> 
+                                <form action="register.php" method="get" name = "FormForOthers"> 
+                                    <label for="Others" class="" style="color:#33333"><span class="fs-10 ">Other</span></label>
+                                    <input type="text" class="fs-10" placeholder="Ex. Lawyer">
+                                    <button name="addWorkPost">+</button> <!--nag add po ako ng form IAN PA CHECK-->
+                                </form>
+
+                            </div>
+                   
+                            <label for="id" class=""><br><span class="fs-10" style="color:#33333">Type of ID</span></br></label>
+                            <div>
+                                <select id="id" class="fs-10">
+                                    <option value="null">Select</option>
+                                    <option value="id1">Student ID</option>
+                                    <option value="id2">Driver's License</option>
+                                    <option value="id3">Philippine Passport</option>
+                                    <option value="id4">PhilHealth ID</option>
+                                    <option value="id5">UMID ID</option>
+                                    <option value="id6">Postal ID</option>
+                                    <option value="id7">Tin ID</option>
+                                    <option value="id8">Voter's ID</option>
+                                </select>
+                                
+                                <button name="addWorkPost">+</button>
+                                <form action="register.php" method="get" name = "FormForOthers"> 
+                                    <label for="Others" class=""><span>Other</span></label>
+                                    <input type="text" class="" placeholder="Ex. National ID"> <!--nag add po ako ng form IAN PA CHECK-->
+                                    <button name="addWorkPost">+</button>
+                                </form>
+
+                                <br>
+                                <label for="id" class="fs-5 text-uppercase fst-italic fw-bold text-center" style="color: #333333">kindly provide a photo of your id</label>
+                                <br>
+                                <input type="file" class="btn btn-basic btn-sm btn-block" value="Browse" >
+                                <br>
+
+                            </div>
+                            <br>
+                            <br>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a class="btn btn-outline-primary btn-lg" href="Homepage" role="button">BACK</a>
+                                <button type="button" class="btn btn-outline-dark btn-lg " style = "background-color:#1e4e70"><span class ="fw-bold" style="color: #ffff ">REGISTER</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <br>
-
-                <label for="prof" class=""><br>Profession</br></label>
-                    <div>
-                        <select name="Work">
-                        <option value="null">Select</option>
-                            <option value="Work1">Carpenter</option>
-                            <option value="Work2">Accountant</option>
-                            <option value="Work3">Architect</option>
-                            <option value="Work4">Cashier</option>
-                            <option value="Work5">Web Developer</option>
-                            <option value="Work6">Cleaner</option>
-                            <option value="Work7">Data Encoder</option>
-                            <option value="Work8">Electrician</option>
-                            <option value="Work9">Engineer</option>
-                            <option value="Work10">Teacher</option>
-                        </select>
-                        <button name="addWorkPost">+</button>
-
-                        <form action="register.php" method="get" name = "FormForOthers"> 
-                        <label for="Others" class="" style="color:#000000">Other</label>
-                        <input type="text" class="" placeholder="Ex. Lawyer">
-                        <button name="addWorkPost">+</button>  <!--nag add po ako ng form IAN PA CHECK-->
-
-                        </form>
-
-                    </div>
-
-                <label for="id" class=""><br>Type of ID</br></label>
-                    <div>
-                        <select name="id">
-                            <option value="null">Select</option>
-                            <option value="id1">Student ID</option>
-                            <option value="id2">Driver's License</option>
-                            <option value="id3">Philippine Passport</option>
-                            <option value="id4">PhilHealth ID</option>
-                            <option value="id5">UMID ID</option>
-                            <option value="id6">Postal ID</option>
-                            <option value="id7">Tin ID</option>
-                            <option value="id8">Voter's ID</option>
-                        </select>
-                        <button name="addWorkPost">+</button>
-
-
-                        <form action="register.php" method="get" name = "FormForOthers"> 
-                        <label for="Others" class="" style="color:#000000">Other</label>
-                        <input type="text" class="" placeholder="Ex. National ID"> <!--nag add po ako ng form IAN PA CHECK-->
-                        <button name="addWorkPost">+</button>
-                        </form>
-                    </div>
-                    <br> <br>
-                    <div class="col-md-12 text-center">
-                    <button type="button" class="btn btn-primary btn-lg btn-block">REGISTER</button>
-                    </div>          
-
-            </div>    
-            <br>                                          
-        </div>
-    </div>
-</form>
-    
-
-    <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
-</html>
+
+
+    
