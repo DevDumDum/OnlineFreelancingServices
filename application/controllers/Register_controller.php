@@ -25,7 +25,6 @@ class Register_controller extends CI_Controller {
                 'first_name' => $fn,
                 'last_name' => $sn,
                 'middle_name' => $mn,
-                'name' => $fn." ".$mn." ".$sn,
                 'contact' => $contact,
                 'email' => $email,
                 'password' => $password,
@@ -33,12 +32,12 @@ class Register_controller extends CI_Controller {
             );
             
             $insert = $this->Register_model->addUser($data);
-            redirect(base_url('index.php/OnlineFreelancingServices/Loginpage'));
+            redirect(base_url('index.php/Loginpage'));
 
             if ($insert) {
                 
             }
             else   
-                redirect(base_url('OnlineFreelancingServices/Registerpage'));
+                redirect(base_url('index.php/Registerpage'));
     }
 }

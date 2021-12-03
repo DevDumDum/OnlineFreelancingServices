@@ -139,7 +139,7 @@
                             <br>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <a class="btn btn-outline-primary btn-lg" href="Homepage" role="button">BACK</a>
-                                <button type="button" class="btn btn-outline-dark btn-lg " style = "background-color:#1e4e70"><span class ="fw-bold" style="color: #ffff ">REGISTER</span></button>
+                                <button type="submit" class="btn btn-outline-dark btn-lg " style = "background-color:#1e4e70"><span class ="fw-bold" style="color: #ffff ">REGISTER</span></button>
                             </div>
                         </div>
                     </div>
