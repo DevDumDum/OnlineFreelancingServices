@@ -1,9 +1,21 @@
+.container_custom{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+.row_custom{
+    height: 100%;
+    position: inherit;
+    width: 100%;
+}
+
 .left-column{
     background-color: #1F4E70;
     text-align: center;
     color: #ffffff;
-    padding-top: 340px;
-    padding-bottom: 440px;
+    padding-top:10%;
+    height: inherit;
 }
 
 .left-column a{
@@ -14,8 +26,12 @@
     background-color: #E5e5e5;
     text-align: center;
     color: #000000;
-    padding-top: 370px;
-    padding-bottom: 421px;
+    padding-top:15%;
+    height: inherit;
+}
+
+.mb-3_custom{
+    width: 80%;
 }
 
 .form-width{
@@ -52,5 +68,15 @@
 }
 
 .button-custom-color{
-    background-color: #1F4E70;
+    background-color: #1F4E70 !important;
+}
+.button-custom-color:hover{
+    background-color: #0d6efd !important;
+}
+.back-custom-color:hover,.back-custom-color:hover a{
+    color: #ffffff !important;
+}
+.back-custom-color:hover{
+    background-color: #89b8ff !important;
+    border-color: #89b8ff !important;
 }
