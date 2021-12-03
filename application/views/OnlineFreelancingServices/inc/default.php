@@ -11,23 +11,24 @@
 
 </head>
 <body>
-
-    <center> <div class="work-location">
-        <form action="#">
-            <select name="Work">
-                <option value="null">-----</option>
-                <option value="Work1">Work 1</option>
-                <option value="Work2">Work 2</option>
-                <option value="Work3">Work 3</option>
-            </select>
-        </form>
-    <br>
+  
+        <center>
         <form class="search-container">
             <input type="text" id="search-bar" name="location" placeholder="Search...">
             <button class="search-icon" type="submit" name="submit"><i class="fas fa-search"></i></button>        
         </form>
-    </div>
-    </div> </center>
+        </center>
+
+        <center>
+            <form action="#">
+            <select name="Work" style="background-color: #FFFFFF; height: 45px; width: 25% ;border-radius: 15px">
+                <option value="null" style="display: none;">-----</option>
+                <option value="Work1">Work 1</option>
+                <option value="Work2">Work 2</option>
+                <option value="Work3">Work 3</option>
+            </select>
+        </form>  
+        </center>
 
 </body>
 </html>

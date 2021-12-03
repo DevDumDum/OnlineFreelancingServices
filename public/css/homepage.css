@@ -11,13 +11,11 @@ body{
     flex-direction: column;
 }
 
-.work-location{
-    padding-top: 9%;
-}
 .search-container{
     width: 490px;
     display: block;
     margin: 0 auto;
+    padding-top: 9%;
 }
   
 input#search-bar{
@@ -38,14 +36,6 @@ input#search-bar{
     position: relative;
     float: right;
     width: 75px;
-    height: 75px;
-    top: -67px;
-    right: -5px;
+    top: -48px;
+    border-left: 1px solid black;
 }
-
-
-
-
-  
-  
-  
