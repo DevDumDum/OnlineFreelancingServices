@@ -34,7 +34,7 @@
 					</div>
 					<div class="text-center text-button">
 						<button type="button" class="btn btn-light border border-primary"><a href="Homepage">BACK</a></button>
-						<button type="submit" class="btn btn-primary">Login Now</button>
+						<button type="submit" class="btn btn-primary button-custom-color">Login Now</button>
 					</div>
 					<?php
 						 if($this->session->flashdata('error')) {	?>

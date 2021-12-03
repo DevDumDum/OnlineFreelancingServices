@@ -34,10 +34,23 @@
     padding-right: 32%;
 }
 
+.text-button {
+    padding-right: 4%;
+}
+
 .text-button a{
     text-decoration: none;
 }
 
+.forgot-password-text{
+    padding-right: 4%;
+}
+
 .forgot-password-text a{
     color: #000000;
+
+}
+
+.button-custom-color{
+    background-color: #1F4E70;
 }
