@@ -6,7 +6,8 @@
 }
 
 .nav-link:hover{
-    color:#928aa1 !important; 
-    font-size: 1.3em;
-    transition: ease-in .2s; 
+    color:#ffffff !important; 
+    font-size: 1.2em;
+    background-color: #1d4764;
+    text-transform: uppercase;
 }
