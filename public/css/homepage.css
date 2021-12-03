@@ -1,26 +1,14 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box; 
-}
-body{
+.body-homepage{
     min-height: 100vh;
     background: linear-gradient( rgba(0,0,0,0.4), rgba(0,0,0,0.5)),
     url(https://geraidienai.lt/wp-content/uploads/2021/04/Darbas-Siauliuose-1024x576.jpg) center/cover no-repeat fixed;
     display: flex;
     flex-direction: column;
 }
-
-.search-container{
-    width: 490px;
-    display: block;
-    margin: 0 auto;
-    padding-top: 9%;
-}
   
 input#search-bar{
     margin: 0 auto;
-    width: 100%;
+    width: 99%;
     height: 55px;
     padding: 0 20px;
     font-size: 1rem;
@@ -38,4 +26,27 @@ input#search-bar{
     width: 75px;
     top: -48px;
     border-left: 1px solid black;
+}
+
+.h-d-down{
+    background-color: #FFFFFF;
+    height: 55px;
+    width: 65px;
+    border-radius: 15px
+}
+
+.h-search_container{
+    padding-top: 15%;
+    max-width: 565px;
+    width: 99%;
+    margin: 0 auto;
+}
+
+.Home-custom_dropdown{
+    width: 8%;
+}
+.search-container{
+    float: right;
+    width: 88%;
+    z-index: 1;
 }
