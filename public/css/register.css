@@ -1,18 +1,5 @@
 .regbody{
-    background:linear-gradient(90deg,#1F4E70 50%, #E5E5E5 50%);
-    position:  fixed;
-    height: 100%;
-    width: 100%;
-    left:0;
-    top:0;
-    z-index: 1;
     font-family: 'Poppins', sans-serif;
-
-}
-html{
-    width:100%;
-    height:100%
-
 }
 
 .create{
@@ -32,12 +19,6 @@ html{
     text-align: center;
     color: #ffff;
     font-style: italic;
-}
-
-#left{
-    position: relative;
-    top: 160px;
-    padding-left: 50px;
 }
 
 .fn, .ln, .mn, .cn, .ea, .ps, .Cps {
@@ -71,4 +52,20 @@ html{
 .rightside {
     color:#000000;
     font-size: 18px;
+    padding-left: 50px;
+    margin-top: 15%;
+}
+
+.h-leftSide{
+    background-color: #1F4E70;
+    padding-bottom: 20px;
+}
+
+.h-rightSide{
+    background-color: #E5E5E5;
+    padding-bottom: 20px;
+}
+
+.h-row_custom{
+    height: 100%;
 }
