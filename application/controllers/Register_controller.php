@@ -8,23 +8,24 @@ class Register_controller extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
-        $this->load->model('OFS/Register_model');     
+        $this->load->model('OFS/Register_model');    
+        $this->load->library('form');  
         $this->load->library('form_validation');
     }
 
     public function addUser() {    
+        var_dump($this->session->flashdata('error'));
+        var_dump($this->session->flashdata('success'));
 
         if($_SERVER['REQUEST_METHOD']=='POST'){
-            echo 'asd';
             
-            $this->form_validation->set_rules('first_name','First name','alpha|trim|required');
-            $this->form_validation->set_rules('last_name','Last name','alpha|trim|required');
-            $this->form_validation->set_rules('middle_name','Middle name','alpha|trim');
-            $this->form_validation->set_rules('contact','Contact Number','trim|required|integer');
-            $this->form_validation->set_rules('password','Password','trim|min_length[5]|max_length[20]|required');
-            $this->form_validation->set_rules('confirm-pw','Password','trim|matches[password]|required');
-
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|is_unique[users.email]');
+            $this->form_validation->set_rules('first-name','First name','alpha|trim|required');
+            $this->form_validation->set_rules('last-name','Last name','alpha|trim|required');
+            $this->form_validation->set_rules('middle-name','Middle name','alpha|trim|required');
+            $this->form_validation->set_rules('contact','Contact Number','integer|trim|required');
+            $this->form_validation->set_rules('password','Password','trim|required');
+            $this->form_validation->set_rules('confirm-pw','Password','trim|required|matches[password]');
+            $this->form_validation->set_rules('email-address','Email','trim|required|valid_email');
 
             if($this->form_validation->run()==TRUE){
 
@@ -47,19 +48,17 @@ class Register_controller extends CI_Controller {
                 );
                 
                 $insert = $this->Register_model->addUser($data);            
-                
-                
-                echo 'adfs';
 
                 if ($insert) {
-                    $this->session->set_flashdata('success', '');
+                    $this->load->helper('url');
+                    $this->session->set_flashdata('success', 'Buti naman natuto ka na');
                     redirect(base_url('index.php/OnlineFreelancingServices/Loginpage'));
 
                 }
                     
-            }else {
-                $this->session->set_flashdata('error','Please fill the fields correctly.');
+            }else {                
                 $this->load->helper('url');
+                $this->session->set_flashdata('error','Please fill the fields correctly.');
                 redirect(base_url('index.php/Registerpage'));
             }
         
