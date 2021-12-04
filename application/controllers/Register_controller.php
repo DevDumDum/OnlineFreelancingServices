@@ -16,17 +16,15 @@ class Register_controller extends CI_Controller {
         var_dump($this->session->flashdata('success'));
 
         if($_SERVER['REQUEST_METHOD']=='POST'){
-
-            $this->form_validation->set_rules('email-address','Email','trim|required|valid_email|is_unique[users.email],');
-        
+            $this->form_validation->set_rules('first-name','First name','alpha|trim|required');
+            $this->form_validation->set_rules('last-name','Last name','alpha|trim|required');
+            $this->form_validation->set_rules('middle-name','Middle name','alpha|trim|required');
+            $this->form_validation->set_rules('contact','Contact Number','integer|trim|required');
+            $this->form_validation->set_rules('password','Password','trim|required');
+            $this->form_validation->set_rules('confirm-pw','Password','trim|required|matches[password]');
+            $this->form_validation->set_rules('email-address','Email','trim|required');
             if($this->form_validation->run()==TRUE)  {
-                $this->form_validation->set_rules('first-name','First name','alpha|trim|required');
-                $this->form_validation->set_rules('last-name','Last name','alpha|trim|required');
-                $this->form_validation->set_rules('middle-name','Middle name','alpha|trim|required');
-                $this->form_validation->set_rules('contact','Contact Number','integer|trim|required');
-                $this->form_validation->set_rules('password','Password','trim|required');
-                $this->form_validation->set_rules('confirm-pw','Password','trim|required|matches[password]');
-
+                $this->form_validation->set_rules('email-address','Email','trim|required|valid_email|is_unique[users.email],');
                 if($this->form_validation->run()==TRUE){
                     $fn = $this->input->post('first-name');
                     $sn = $this->input->post('last-name');
@@ -43,7 +41,8 @@ class Register_controller extends CI_Controller {
                         'contact' => $contact,
                         'email' => $email,
                         'password' => $password,
-                        'status' => $status
+                        'status' => $status,
+                        'user_type' => 'user'
                     );
 
                     if ($this->Register_model->addUser($data)) {
@@ -64,11 +63,11 @@ class Register_controller extends CI_Controller {
                     }
                 }else {                
                     $this->load->helper('url');
-                    $this->session->set_flashdata('error','Please fill the fields correctly.');
+                    $this->session->set_flashdata('error','Existing email.');
                 }
             }else {
                 $this->load->helper('url');
-                $this->session->set_flashdata('error','Existing email.');
+                $this->session->set_flashdata('error','Please fill the fields correctly.');
             }
             redirect(base_url('index.php/Registerpage'));
         }
