@@ -8,7 +8,9 @@ class Register_controller extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
-        $this->load->model('OFS/Register_model');     
+        $this->load->model('OFS/Register_model');    
+        $this->load->library('form');  
+        $this->load->library('form_validation');
     }
 
     public function addUser() {
@@ -26,7 +28,6 @@ class Register_controller extends CI_Controller {
             $this->form_validation->set_rules('email-address','Email','trim|required|valid_email');
 
             if($this->form_validation->run()==TRUE){
-
                 $fn = $this->input->post('first-name');
                 $sn = $this->input->post('last-name');
                 $mn = $this->input->post('middle-name');
@@ -44,7 +45,7 @@ class Register_controller extends CI_Controller {
                     'password' => $password,
                     'status' => $status
                 );
-                
+
                 if ($this->Register_model->addUser($data)) {
                     $this->load->helper('url');
                     $this->load->model('OFS/OFS_model');
