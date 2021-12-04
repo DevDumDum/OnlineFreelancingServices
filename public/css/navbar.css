@@ -1,0 +1,13 @@
+.custom-navbar{
+    background-color: #1F4E70;
+}
+.custom-navbar a{
+    color: #ffffff;
+}
+
+.nav-link:hover{
+    color:#ffffff !important; 
+    font-size: 1.1em;
+    background-color: #1d4764;
+    text-transform: uppercase;
+}

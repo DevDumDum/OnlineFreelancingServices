@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,4 +14,11 @@
     <br><br>
     <?php include("inc/default.php") ?>
 </body>
+=======
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+<?php include("inc/default.php") ?>
+
+
+>>>>>>> Development
 </html>
