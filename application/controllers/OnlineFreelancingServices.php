@@ -95,6 +95,9 @@ class OnlineFreelancingServices extends CI_Controller{
         $this -> load -> view ('OnlineFreelancingServices/Register');
         $this->session->set_flashdata('error',NULL);
         $this->session->set_flashdata('success',NULL);
+        if($this->session->userdata('UserLoginSession')){
+            redirect(base_url('index.php/Homepage'));
+        }
     }
 
     public function Logout(){

@@ -64,7 +64,6 @@
                 <div class="col-md-6 h-rightSide">
                     <div class = "rightside">
                         <label for="prof"><br><span >Birth Date</span></label> </br>
-                        <form>
                             <span>
                                 <label for="day"><span >Day:</span></label>
                                 <select name="day" id="day" class="fs-19"></select>
@@ -77,7 +76,6 @@
                                 <label for="year"><span>Year:</span></label>
                                 <select name="year" id="year" class="fs-10"></select>
                             </span>
-                        </form>
 
                         <script src="<?php echo base_url();?>public/css/register.js"></script>
                         <br>
@@ -98,12 +96,12 @@
                                 <option value="Work10">Teacher</option>
                             </select>
 
-                            <button name="addWorkPost">+</button> 
-                            <form action="register.php" method="get" name = "FormForOthers"> 
+                            <button type="button" name="addWorkPost">+</button> 
+                            <br>
                                 <label for="Others" class="" style="color:#33333"><span class="fs-10 ">Other</span></label>
                                 <input type="text" class="fs-10" placeholder="Ex. Lawyer">
-                                <button name="addWorkPost">+</button> <!--nag add po ako ng form IAN PA CHECK-->
-                            </form>
+                                <button type="button" name="addWorkPost">+</button> <!--nag add po ako ng form IAN PA CHECK-->
+                           
 
                         </div>
                 
@@ -121,12 +119,11 @@
                                 <option value="id8">Voter's ID</option>
                             </select>
                             
-                            <button name="addWorkPost">+</button>
-                            <form action="register.php" method="get" name = "FormForOthers"> 
+                            <button type="button" name="addWorkPost">+</button>
+                            <br>
                                 <label for="Others" class=""><span>Other</span></label>
                                 <input type="text" class="" placeholder="Ex. National ID"> <!--nag add po ako ng form IAN PA CHECK-->
-                                <button name="addWorkPost">+</button>
-                            </form>
+                                <button type="button" name="addWorkPost">+</button>
 
                             <br>
                             <label for="id" class="fs-5 text-uppercase fst-italic fw-bold text-center" style="color: #333333">kindly provide a photo of your id</label>
@@ -144,7 +141,7 @@
                         <?php } ?>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a class="btn btn-outline-primary btn-lg" href="Homepage" role="button">BACK</a>
-                            <button type="submit" class="btn btn-outline-dark btn-lg " style = "background-color:#1e4e70"><span class ="fw-bold" style="color: #ffff ">REGISTER</span></button>
+                            <button value="submit" type="submit" class="btn btn-outline-dark btn-lg " style = "background-color:#1e4e70"><span class ="fw-bold" style="color: #ffff ">REGISTER</span></button>
                         </div>
                     </div>
                 </div>
