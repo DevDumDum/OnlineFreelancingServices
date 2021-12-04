@@ -7,12 +7,18 @@ class OnlineFreelancingServices extends CI_Controller{
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
 		$this -> load -> view ('OnlineFreelancingServices/Homepage');
+        if($this->session->userdata('UserLoginSession')){
+            redirect(base_url('index.php/NewsFeed'));
+        }
 	}
     public function Homepage(){
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
         $this -> load -> view ('OnlineFreelancingServices/Homepage');
+        if($this->session->userdata('UserLoginSession')){
+            redirect(base_url('index.php/NewsFeed'));
+        }
     }
     public function NewsFeed(){
         $this->load->helper('url');
@@ -25,18 +31,27 @@ class OnlineFreelancingServices extends CI_Controller{
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
         $this -> load -> view ('OnlineFreelancingServices/AboutUs');
+        if($this->session->userdata('UserLoginSession')){
+            redirect(base_url('index.php/NewsFeed'));
+        }
     }
     public function Contactpage(){
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
         $this -> load -> view ('OnlineFreelancingServices/ContactUs');
+        if($this->session->userdata('UserLoginSession')){
+            redirect(base_url('index.php/NewsFeed'));
+        }
     }
     public function FAQpage(){
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
         $this -> load -> view ('OnlineFreelancingServices/FAQ');
+        if($this->session->userdata('UserLoginSession')){
+            redirect(base_url('index.php/NewsFeed'));
+        }
     }
     public function Profilepage(){
         $this->load->helper('url');
@@ -45,6 +60,9 @@ class OnlineFreelancingServices extends CI_Controller{
         $this -> load -> view ('OnlineFreelancingServices/Profile');
     }
     public function Loginpage(){
+        if($this->session->userdata('UserLoginSession')){
+            redirect(base_url('index.php/NewsFeed'));
+        }
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/Login');
@@ -96,7 +114,7 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->session->set_flashdata('error',NULL);
         $this->session->set_flashdata('success',NULL);
         if($this->session->userdata('UserLoginSession')){
-            redirect(base_url('index.php/Homepage'));
+            redirect(base_url('index.php/NewsFeed'));
         }
     }
 
