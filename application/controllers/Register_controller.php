@@ -9,8 +9,6 @@ class Register_controller extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('OFS/Register_model');    
-        $this->load->library('form');  
-        $this->load->library('form_validation');
     }
 
     public function addUser() {
