@@ -48,6 +48,9 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/Login');
+        $this->session->set_flashdata('error',NULL);
+        $this->session->set_flashdata('success',NULL);
+
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $array_items = array('id' => '', 'email' => '');
             $this->session->unset_userdata($array_items);
@@ -90,6 +93,8 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/Register');
+        $this->session->set_flashdata('error',NULL);
+        $this->session->set_flashdata('success',NULL);
     }
 
     public function Logout(){

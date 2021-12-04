@@ -13,7 +13,7 @@ class Register_controller extends CI_Controller {
         $this->load->library('form_validation');
     }
 
-    public function addUser() {    
+    public function addUser() {
         var_dump($this->session->flashdata('error'));
         var_dump($this->session->flashdata('success'));
 
@@ -28,8 +28,6 @@ class Register_controller extends CI_Controller {
             $this->form_validation->set_rules('email-address','Email','trim|required|valid_email');
 
             if($this->form_validation->run()==TRUE){
-
-
                 $fn = $this->input->post('first-name');
                 $sn = $this->input->post('last-name');
                 $mn = $this->input->post('middle-name');
@@ -47,21 +45,28 @@ class Register_controller extends CI_Controller {
                     'password' => $password,
                     'status' => $status
                 );
-                
-                $insert = $this->Register_model->addUser($data);            
 
-                if ($insert) {
+                if ($this->Register_model->addUser($data)) {
                     $this->load->helper('url');
-                    $this->session->set_flashdata('success', 'Buti naman natuto ka na');
-                    redirect(base_url('index.php/OnlineFreelancingServices/Loginpage'));
-
+                    $this->load->model('OFS/OFS_model');
+                    $status = $this->OFS_model->checkPassword($password,$email);
+                    if($status!=false){
+                        $session_data = array(
+                            'email'=>$email,
+                            'id'=>$id,
+                        );
+                        $this->session->set_userdata('UserLoginSession',$session_data);
+                    }
+                    redirect(base_url('index.php/NewsFeed'));
+                }else{
+                    $this->load->helper('url');
+                    $this->session->set_flashdata('error','Error query.');
                 }
-                    
             }else {                
                 $this->load->helper('url');
                 $this->session->set_flashdata('error','Please fill the fields correctly.');
-                redirect(base_url('index.php/Registerpage'));
             }
+            redirect(base_url('index.php/Registerpage'));
         }
     }
 }
