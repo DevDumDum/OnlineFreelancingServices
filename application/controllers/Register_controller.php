@@ -12,7 +12,6 @@ class Register_controller extends CI_Controller {
     }
 
     public function addUser() {
-        
             $fn = $this->input->post('first-name');
             $sn = $this->input->post('last-name');
             $mn = $this->input->post('middle-name');
