@@ -11,6 +11,7 @@ class AdminAuth extends CI_Controller{
     }
 
     public function Register(){
+        $this->load->helper('url');
 
         //load AdminRegister views
         $this -> load -> view ('Admin/Register');
