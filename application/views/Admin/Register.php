@@ -6,41 +6,35 @@
     <title>Moderator Register</title>
   </head>
   <body>
-    <h1>Moderator Register</h1>
+  <h1>Moderator Register</h1>  
 
-    <form method="post" autocomplete="off" action="<?=base_url('index.php/Register_controller/addMod')?>" autocomplete=>
+  <form method="post" autocomplete="off" action="<?=base_url('index.php/Register_controller/addMod')?>">
 
-      <div class = "form-group">
-          <label for="companyid" class="label-default">Company ID:</label>
-          <input class="form-control" name="companyid" id="companyid" type="text">
-      </div>
 
-      <div class = "form-group">
-          <label for="" class="label-default">Password:</label>
-          <input class="form-control" name="password" id="password" type="password">
-      </div>
+    <div class = "form-group">
+        <label for="companyid" class="label-default">Company ID:</label>
+        <input class="form-control" name="companyid" id="companyid" type="text" value="<?php echo set_value('companyid');?>">
+    </div>
 
-      <div class = "form-group">
-          <label for="" class="label-default">Confirm Password:</label>
-          <input class="form-control" name="password2" id="password" type="password">
-      </div>
+    <div class = "form-group">
+        <label for="" class="label-default">Password:</label>
+        <input class="form-control" name="password" id="password" type="password" value="<?php echo set_value('password');?>">
+    </div>
 
-      <div class = "form-group">
-          <button type="submit" class="btn btn-primary" name="register">Register</button>    
-      </div>
+    <div class = "form-group">
+        <label for="" class="label-default">Confirm Password:</label>
+        <input class="form-control" name="password2" id="password" type="password" value="<?php echo set_value('password2');?>">
+    </div>
 
-      <button onclick="window.location.href='Login';">
-        Back
-      </button>
+    <div class = "form-group">
+        <button type="submit" class="btn btn-primary" name="register">Register</button>    
+    </div>
 
-      <?php if($this->session->flashdata('error')) {	?>
-        <p class="text-danger text-center" style="margin-top: 10px;">
-            <?=$this->session->flashdata('error')?>
-        </p>
-        <?php }else{ ?>
-        <br><br>
-        <?php } ?>
+    <button type="submit" onclick="window.location.href='Login';">
+      Back
+    </button>
 
+    <?php echo validation_errors(); ?>    
 
   </form>
 
