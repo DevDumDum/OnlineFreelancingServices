@@ -32,14 +32,17 @@
       <button onclick="window.location.href='Login';">
         Back
       </button>
-  </form>
-  <?php if($this->session->flashdata('error')) {	?>
+
+      <?php if($this->session->flashdata('error')) {	?>
         <p class="text-danger text-center" style="margin-top: 10px;">
             <?=$this->session->flashdata('error')?>
         </p>
         <?php }else{ ?>
         <br><br>
         <?php } ?>
+
+
+  </form>
 
 
   </body>
