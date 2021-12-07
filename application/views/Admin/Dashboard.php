@@ -3,9 +3,7 @@
 if($this->session->userdata('UserLoginSession'))
 {
     $udata = $this->session->userdata('UserLoginSession');
-    $name = $this->session->userdata('user_type');
-    echo $name;
-    echo "<script>alert('".$name."');</script>";
+
 }
 else
 {

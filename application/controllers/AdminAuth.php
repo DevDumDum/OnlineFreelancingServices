@@ -29,23 +29,35 @@ class AdminAuth extends CI_Controller{
 				$status = $this->AdminAuth_model->verifyUser($password,$email);
 				if($status!=false){
 					$email = $status->email;
+                    $id = $status->id;
+                    $user_type = $status->user_type;
 
 					$session_data = array(
 						'email'=>$email,
                         'id'=>$id,
                         'user_type'=>$user_type,
 					);
-                    
-                    
-                        $this->session->set_userdata('UserLoginSession',$session_data);
-                        $this->load->helper('url');
+					$this->session->set_userdata('UserLoginSession',$session_data);
+                    $this->load->helper('url');
+                    $udata = $this->session->userdata('UserLoginSession');
+                    if($udata['user_type']==='admin'){
                         redirect(base_url('index.php/Dashboard'));
-
+             
+                    }elseif($udata['user_type']==='moderator'){
+                        redirect(base_url('index.php/Dashboard'));
+             
+                    }else{
+                        $this->session->unset_userdata($array_items);
+                        $this->session->sess_destroy();
+                        $this->session->set_flashdata('error','User does not exist!');
+                    }
 				}else{
 					$this->session->set_flashdata('error','Email or Password is Wrong');
-                    
 				}
+                redirect(base_url('index.php/AdminLogin'));
 			}else{
+                $this->session->unset_userdata($array_items);
+                $this->session->sess_destroy();
 				$this->session->set_flashdata('error','Fill all the required fields');
 				$this->load->helper('url');
                 redirect(base_url('index.php/AdminLogin'));
