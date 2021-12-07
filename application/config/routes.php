@@ -58,8 +58,15 @@ $route['FAQpage'] = 'OnlineFreelancingServices/FAQpage';
 $route['Profilepage'] = 'OnlineFreelancingServices/Profilepage';
 $route['Loginpage'] = 'OnlineFreelancingServices/Loginpage';
 $route['Registerpage'] = 'OnlineFreelancingServices/Registerpage';
-
 $route['Logout'] = 'OnlineFreelancingServices/Logout';
+
+$route['Dashboard'] = 'AdminAuth/Dashboard';
+$route['AdminLogin'] = 'AdminAuth/AdminLogin';
+$route['AdminRegister'] = 'AdminAuth/AdminRegister';
+$route['ManageUser'] = 'AdminAuth/ManageUser';
+$route['Verifications'] = 'AdminAuth/Verifications';
+$route['ViewLogs'] = 'AdminAuth/ViewLogs';
+$route['AdminLogout'] = 'AdminAuth/AdminLogout';
 
 
 $route['404_override'] = '';
