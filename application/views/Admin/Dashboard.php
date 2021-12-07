@@ -18,6 +18,9 @@ else
     <title>Dashboard</title>
   </head>
   <body>
+    <?php echo $udata['user_type'];?>
+    <br>
+    <br>
     <button onclick="window.location.href='';">
     Change Password
     </button>

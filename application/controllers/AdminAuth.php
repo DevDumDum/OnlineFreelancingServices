@@ -15,7 +15,7 @@ class AdminAuth extends CI_Controller{
         $this->session->set_flashdata('success',NULL);
 
         if($_SERVER['REQUEST_METHOD']=='POST'){
-            $array_items = array('id' => '', 'email' => '');
+            $array_items = array('id' => '', 'email' => '','user_type'=>'');
             $this->session->unset_userdata($array_items);
 			$this->form_validation->set_rules('email','Email','required');
 			$this->form_validation->set_rules('password','Password','required');
@@ -38,26 +38,13 @@ class AdminAuth extends CI_Controller{
                         'user_type'=>$user_type,
 					);
 					$this->session->set_userdata('UserLoginSession',$session_data);
-                    $this->load->helper('url');
-                    $udata = $this->session->userdata('UserLoginSession');
-                    if($udata['user_type']==='admin'){
-                        redirect(base_url('index.php/Dashboard'));
-             
-                    }elseif($udata['user_type']==='moderator'){
-                        redirect(base_url('index.php/Dashboard'));
-             
-                    }else{
-                        $this->session->unset_userdata($array_items);
-                        $this->session->sess_destroy();
-                        $this->session->set_flashdata('error','User does not exist!');
-                    }
+                    redirect(base_url('index.php/Dashboard'));
 				}else{
 					$this->session->set_flashdata('error','Email or Password is Wrong');
+                    $this->load->helper('url');
+                    redirect(base_url('index.php/AdminLogin'));
 				}
-                redirect(base_url('index.php/AdminLogin'));
 			}else{
-                $this->session->unset_userdata($array_items);
-                $this->session->sess_destroy();
 				$this->session->set_flashdata('error','Fill all the required fields');
 				$this->load->helper('url');
                 redirect(base_url('index.php/AdminLogin'));
