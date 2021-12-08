@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <body>
-		<form method="post" autocomplete="off" action="<?=base_url('index.php/AdminLogin')?>" style="height:100%;">
+		<form method="post" autocomplete="off" action="<?=base_url('AdminAuth/AdminLogin')?>" style="height:100%;">
 						<div class="form-text-email-padding">
 							<label for="email" class="form-label ">Email</label>
 						</div>

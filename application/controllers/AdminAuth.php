@@ -7,7 +7,7 @@ class AdminAuth extends CI_Controller{
     public function AdminLogin(){
         
         if($this->session->userdata('UserLoginSession')){
-            redirect(base_url('index.php/Dashboard'));
+            redirect(base_url('AdminAuth/Dashboard'));
         }
         $this->load->helper('url');
         $this -> load -> view ('Admin/Login');
@@ -38,16 +38,16 @@ class AdminAuth extends CI_Controller{
                         'user_type'=>$user_type,
 					);
 					$this->session->set_userdata('UserLoginSession',$session_data);
-                    redirect(base_url('index.php/Dashboard'));
+                    redirect(base_url('AdminAuth/Dashboard'));
 				}else{
 					$this->session->set_flashdata('error','Email or Password is Wrong');
                     $this->load->helper('url');
-                    redirect(base_url('index.php/AdminLogin'));
+                    redirect(base_url('AdminAuth/AdminLogin'));
 				}
 			}else{
 				$this->session->set_flashdata('error','Fill all the required fields');
 				$this->load->helper('url');
-                redirect(base_url('index.php/AdminLogin'));
+                redirect(base_url('AdminAuth/AdminLogin'));
 			}
 		}
     }
@@ -56,7 +56,7 @@ class AdminAuth extends CI_Controller{
         $array_items = array('id' => '', 'email' => '');
         $this->session->unset_userdata($array_items);
         $this->session->sess_destroy();
-        redirect(base_url('index.php/AdminLogin'));
+        redirect(base_url('AdminAuth/AdminLogin'));
     }
 
     public function AdminRegister(){

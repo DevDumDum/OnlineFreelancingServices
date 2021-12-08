@@ -7,7 +7,7 @@ if($this->session->userdata('UserLoginSession'))
 }
 else
 {
-    redirect(base_url('index.php/AdminLogin'));
+    redirect(base_url('AdminAuth/AdminLogin'));
 }
 ?>
 <html lang="en">
