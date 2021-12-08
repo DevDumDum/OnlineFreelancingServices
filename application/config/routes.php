@@ -69,5 +69,6 @@ $route['ViewLogs'] = 'AdminAuth/ViewLogs';
 $route['AdminLogout'] = 'AdminAuth/AdminLogout';
 
 
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
