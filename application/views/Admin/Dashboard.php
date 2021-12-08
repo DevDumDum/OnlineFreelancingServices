@@ -21,10 +21,7 @@ else
     <?php echo $udata['user_type'];?>
     <br>
     <br>
-    <button onclick="window.location.href='';">
-    Change Password
-    </button>
-
+    
     <button onclick="window.location.href='ManageUser';">
     Manage User Status
     </button>
@@ -36,9 +33,5 @@ else
     <button onclick="window.location.href='ViewLogs';">
     Logs
     </button>
-
-    <button type="button" class="btn btn-primary button-custom-color"><a href="AdminLogout">Logout</a>
-
-
   </body>
 </html>
