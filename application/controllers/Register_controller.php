@@ -99,7 +99,7 @@ class Register_controller extends CI_Controller {
                         $this->session->set_userdata('UserLoginSession',$session_data);
                     }//end login
 
-                    redirect(base_url('index.php/AdminAuth/Dashboard'));
+                    redirect(base_url('AdminAuth/Dashboard'));
 
                 }else{
                     $this->load->helper('url');
