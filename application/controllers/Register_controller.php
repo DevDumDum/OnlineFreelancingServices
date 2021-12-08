@@ -39,7 +39,8 @@ class Register_controller extends CI_Controller {
                     'contact' => $contact,
                     'email' => $email,
                     'password' => $password,
-                    'status' => $status
+                    'status' => $status,
+                    'user_type' => 'user'
                 );
                 
                 if ($this->Register_model->addUser($data)) {
@@ -61,7 +62,6 @@ class Register_controller extends CI_Controller {
             }else {
                 $this->load->view('OnlineFreelancingServices/Register.php');
             }
-
         }        
     }
 
@@ -81,7 +81,8 @@ class Register_controller extends CI_Controller {
                 $data = array (
                     'email' => $email,
                     'password' => $password,
-                    'status' => $status
+                    'status' => $status,
+                    'user_type' => 'mod'
                 );
 
                 // insert to db
