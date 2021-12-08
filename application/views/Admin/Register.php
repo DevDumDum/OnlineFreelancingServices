@@ -8,7 +8,7 @@
   <body>
   <h1>Moderator Register</h1>  
 
-  <form method="post" autocomplete="off" action="<?=base_url('index.php/Register_controller/addMod')?>">
+  <form method="post" autocomplete="off" action="<?=base_url('Register_controller/addMod')?>">
 
 
     <div class = "form-group">
