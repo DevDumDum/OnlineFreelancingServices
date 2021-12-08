@@ -58,8 +58,8 @@ $route['FAQpage'] = 'OnlineFreelancingServices/FAQpage';
 $route['Profilepage'] = 'OnlineFreelancingServices/Profilepage';
 $route['Loginpage'] = 'OnlineFreelancingServices/Loginpage';
 $route['Registerpage'] = 'OnlineFreelancingServices/Registerpage';
-
 $route['Logout'] = 'OnlineFreelancingServices/Logout';
+
 
 
 $route['404_override'] = '';
