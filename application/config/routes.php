@@ -49,8 +49,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-
-// USER AVAIABLE PAGES
 $route['default_controller'] = 'OnlineFreelancingServices';
 $route['Homepage'] = 'OnlineFreelancingServices/Homepage';
 $route['NewsFeed'] = 'OnlineFreelancingServices/NewsFeed';
@@ -60,19 +58,15 @@ $route['FAQpage'] = 'OnlineFreelancingServices/FAQpage';
 $route['Profilepage'] = 'OnlineFreelancingServices/Profilepage';
 $route['Loginpage'] = 'OnlineFreelancingServices/Loginpage';
 $route['Registerpage'] = 'OnlineFreelancingServices/Registerpage';
-
 $route['Logout'] = 'OnlineFreelancingServices/Logout';
 
-// MOD AVAILABLE PAGES
-$route['Registerpage_mod'] = 'AdminAuth/Registerpage';
-$route['Loginpage_mod'] = 'AdminAuth/Registerpage';
-$route['Dashboardpage_mod'] = 'AdminAuth/Registerpage';
-$route['Manageuserpage_mod'] = 'AdminAuth/Registerpage';
-$route['Verificationspage_mod'] = 'AdminAuth/Registerpage';
-$route['Viewlogs_mod'] = 'AdminAuth/Registerpage';
-$route['Logout_mod'] = 'AdminAuth/Logout';
-
-
+$route['Dashboard'] = 'AdminAuth/Dashboard';
+$route['AdminLogin'] = 'AdminAuth/AdminLogin';
+$route['AdminRegister'] = 'AdminAuth/AdminRegister';
+$route['ManageUser'] = 'AdminAuth/ManageUser';
+$route['Verifications'] = 'AdminAuth/Verifications';
+$route['ViewLogs'] = 'AdminAuth/ViewLogs';
+$route['AdminLogout'] = 'AdminAuth/AdminLogout';
 
 
 $route['404_override'] = '';

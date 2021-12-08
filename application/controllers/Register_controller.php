@@ -41,7 +41,7 @@ class Register_controller extends CI_Controller {
                     'password' => $password,
                     'status' => $status
                 );
-
+                
                 if ($this->Register_model->addUser($data)) {
                     $this->load->helper('url');
                     $this->load->model('OFS/OFS_model');
@@ -84,8 +84,11 @@ class Register_controller extends CI_Controller {
                     'status' => $status
                 );
 
+                // insert to db
                 if ($this->Register_model->addUser($data)) {
                     $this->load->helper('url');
+
+                    //login
                     $this->load->model('OFS/OFS_model');
                     $status = $this->OFS_model->checkPassword($password,$email);
                     if($status!=false){
@@ -94,8 +97,9 @@ class Register_controller extends CI_Controller {
                             'id'=>$id,
                         );
                         $this->session->set_userdata('UserLoginSession',$session_data);
-                    }
-                    redirect(base_url('Dashboardpage_mod'));
+                    }//end login
+
+                    redirect(base_url('index.php/AdminAuth/Dashboard'));
 
                 }else{
                     $this->load->helper('url');
