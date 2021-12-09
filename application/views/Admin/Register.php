@@ -26,9 +26,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Moderator Register</title>
 </head>
-<body>
-  <h1 class="text-center">Moderator Register</h1>
-  <div class="container">
+<body class="modregisterpage">
+  <div class="container container-custom">
+  <h1>Moderator Register</h1>
       <div class="mb-3 mb-3_custom">
 						<div class="form-text-company-id-padding">
 							<label for="companyid" class="form-label ">Company ID:</label>
@@ -46,7 +46,7 @@
 						</div>
 		  </div>
       <div class="mb-3 mb-3_custom">
-						<div class="form-text-password-padding">
+						<div class="form-text-confirm-password-padding">
 							<label for="" class="form-label">Confirm Password:</label>
 						</div>
 						<div class="form-padding">

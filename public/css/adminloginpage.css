@@ -1,4 +1,4 @@
-.modregisterpage{
+.adminloginpage{
     background-color: #E5e5e5
 }
 .container-custom{
@@ -12,6 +12,10 @@
     width: 80%;
 }
 
+.mb-3_custom i{
+    padding-left: 25%;
+}
+
 .form-width{
     width: 50%;
 }
@@ -21,16 +25,12 @@
     padding-right: 15%;
 }
 
-.form-text-company-id-padding{
-   padding-right: 11%; 
+.form-text-email-padding{
+   padding-right: 15%; 
 }
 
 .form-text-password-padding{
     padding-right: 13%; 
-}
-
-.form-text-confirm-password-padding{
-    padding-right: 7%; 
 }
 
 .text-button {
