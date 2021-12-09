@@ -26,7 +26,7 @@ else
     Change Password
     </button>
 
-    <button type="button" class="btn btn-primary button-custom-color"><a href="AdminLogout">Logout</a>
+    <button type="button" class="btn btn-primary button-custom-color"><a href="AdminLogout">Logout</a></button>
 
     <div class="AdminLP">
         <img src="<?php echo base_url();?>public/images/logo.png" width="100%">
@@ -44,7 +44,7 @@ else
         Logs
         </button></li>
       </ul>
-    </div>    
+    </div>
 
   </body>
 </html>
