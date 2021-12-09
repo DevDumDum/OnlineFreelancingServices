@@ -106,7 +106,7 @@ class Register_controller extends CI_Controller {
                     $this->session->set_flashdata('error','Error query.');
                 }
             }else {
-                $this->load->view('Admin/Register');
+                redirect(base_url('AdminAuth/Register'));
             }
         }
     }

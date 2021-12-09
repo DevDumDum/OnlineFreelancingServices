@@ -17,48 +17,49 @@
                         <h5 class="create">Create a New Account</h5>
                         <p class="already">Already have an account? 
                         <span><a href="Loginpage" class="link-light">Log in</a></span></p>
-                            <br class = "mb-3">
-                        
-                            <div class="form-group" id = "insertform" >
-                                <div class = "textCont">
-                                    <label for="first-name" class="customlabel" > <span>First Name</span></label> <br>
-                                    <input name="first-name" type="text" placeholder="Ex. Juan" class="fn" required>
-                                </div>
-
-                                <div class = "textCont">
-                                    <label for="last-name" class="customlabel" ><span>Last Name</span></label> <br>
-                                    <input name="last-name" type="text" placeholder="Ex. DelaCruz" class="ln" required>
-                                </div>
-
-                                <div class = "textCont">
-                                    <label for="middle-name" class="customlabel" ><span>Middle Name</span></label><br>
-                                    <input name="middle-name" type="text" placeholder="Ex. Conje"class="mn" required>
-                                </div>
-
-                                <div class = "textCont">
-                                    <label for="contact" class="customlabel" ><span>Contact Number</span></label><br>
-                                    <input name="contact" type="number"  placeholder="09xxxxxxxxx" class="cn" required>
-                                </div>
-
-                                <div class = "textCont">
-                                    <label for="email-address" class="customlabel" ><span>Email Address</span></label><br>
-                                    <input id="email" onfocusout="check()" name="email" type="email" placeholder="you@example.com" class="ea" required>
-                                    <br>
-                                    <span id="errorEmail" style="display:none;color:red;">Email Already exist!</span>
-                                </div>
-
-                                <div class = "textCont">
-                                    <label for="password" class="customlabel" ><span>Password</span></label><br>
-                                    <input name="password" type="password" class="ps" required>
-                                </div>
-
-                                <div class = "textCont">
-                                    <label for="password" class="customlabel" ><span>Confirm Password</span></label><br>
-                                    <input name="confirm-pw" type="password" class="Cps"  required>
-                                </div>
-
+                        <br class = "mb-3">
+                    
+                        <div class="form-group" id = "insertform" >
+                            <div class = "textCont">
+                                <label for="first-name" class="customlabel" > <span>First Name</span></label> <br>
+                                <input name="first-name" type="text" placeholder="Ex. Juan" class="fn" required>
                             </div>
-                        
+
+                            <div class = "textCont">
+                                <label for="last-name" class="customlabel" ><span>Last Name</span></label> <br>
+                                <input name="last-name" type="text" placeholder="Ex. DelaCruz" class="ln" required>
+                            </div>
+
+                            <div class = "textCont">
+                                <label for="middle-name" class="customlabel" ><span>Middle Name</span></label><br>
+                                <input name="middle-name" type="text" placeholder="Ex. Conje"class="mn" required>
+                            </div>
+
+                            <div class = "textCont">
+                                <label for="contact" class="customlabel" ><span>Contact Number</span></label><br>
+                                <input name="contact" type="number"  placeholder="09xxxxxxxxx" class="cn" required>
+                            </div>
+
+                            <div class = "textCont">
+                                <label for="email-address" class="customlabel" ><span>Email Address</span></label><br>
+                                <input id="email" onfocusout="check()" name="email" type="email" placeholder="you@example.com" class="ea" required>
+                                <br>
+                                <span id="errorEmail" style="display:none;color:red;">Email Already exist!</span>
+                            </div>
+
+                            <div class = "textCont">
+                                <label for="password" class="customlabel" ><span>Password</span></label><br>
+                                <input value="" name="password" onkeyup="confirm_pass()" id="pw1" type="password" class="ps" required>
+                            </div>
+
+                            <div class = "textCont">
+                                <label for="password" class="customlabel" ><span>Confirm Password</span></label><br>
+                                <input value="" name="confirm-pw" onkeyup="confirm_pass()" id="pw2" type="password" class="Cps"  required>
+                                <br>
+                            </div>
+                            <span id="errorPW" style="display:none;color:red;">Password does not match!</span>
+
+                        </div>
                     </div>
                 </div>
 
@@ -143,7 +144,9 @@
                         <?php } ?>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a class="btn btn-outline-primary btn-lg" href="Homepage" role="button">BACK</a>
-                            <button value="submit" type="submit" class="btn btn-outline-dark btn-lg " style = "background-color:#1e4e70"><span class ="fw-bold" style="color: #ffff ">REGISTER</span></button>
+                            <button id="form-pass" value="submit" type="submit" class="btn btn-outline-dark btn-lg " style = "background-color:#1e4e70">
+                                <span class ="fw-bold" style="color: #ffff ">REGISTER</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -162,6 +165,22 @@
                 }
             }, 'JSON');
         }
+
+
+        function confirm_pass(){
+
+            const pswrd_1 = document.getElementById("pw1").value;
+            const pswrd_2 = document.getElementById("pw2").value;
+
+            if(pswrd_1 != pswrd_2){
+                document.getElementById("errorPW").style.display="";
+                document.getElementById("form-pass").disabled=true;
+            }else {
+                document.getElementById("errorPW").style.display="none";
+                document.getElementById("form-pass").disabled="";
+            }
+        }
+        
     </script>
 </body>
 
