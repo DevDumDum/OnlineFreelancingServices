@@ -3,14 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 class AdminAuth extends CI_Controller{
+    public function index(){
+        redirect(base_url('AdminAuth/Dashboard'));
+    }
 
     public function AdminLogin(){
         
         if($this->session->userdata('UserLoginSession')){
-            redirect(base_url('index.php/Dashboard'));
+            redirect(base_url('AdminAuth/Dashboard'));
         }
         $this->load->helper('url');
+        
+        $this -> load -> view ('Admin/inc/header');
         $this -> load -> view ('Admin/Login');
+
         $this->session->set_flashdata('error',NULL);
         $this->session->set_flashdata('success',NULL);
 
@@ -38,16 +44,16 @@ class AdminAuth extends CI_Controller{
                         'user_type'=>$user_type,
 					);
 					$this->session->set_userdata('UserLoginSession',$session_data);
-                    redirect(base_url('index.php/Dashboard'));
+                    redirect(base_url('AdminAuth/Dashboard'));
 				}else{
 					$this->session->set_flashdata('error','Email or Password is Wrong');
                     $this->load->helper('url');
-                    redirect(base_url('index.php/AdminLogin'));
+                    redirect(base_url('AdminAuth/AdminLogin'));
 				}
 			}else{
 				$this->session->set_flashdata('error','Fill all the required fields');
 				$this->load->helper('url');
-                redirect(base_url('index.php/AdminLogin'));
+                redirect(base_url('AdminAuth/AdminLogin'));
 			}
 		}
     }
@@ -56,37 +62,49 @@ class AdminAuth extends CI_Controller{
         $array_items = array('id' => '', 'email' => '');
         $this->session->unset_userdata($array_items);
         $this->session->sess_destroy();
-        redirect(base_url('index.php/AdminLogin'));
+        redirect(base_url('AdminAuth/AdminLogin'));
     }
 
     public function AdminRegister(){
 
-        //load AdminRegister views
+        //load AdminRegister views     
+        $this -> load -> view ('Admin/inc/header');  
+        if($this->session->userdata('UserLoginSession')){
+            redirect(base_url('Dashboard'));
+        }
         $this -> load -> view ('Admin/Register');
     }
 
     public function Dashboard(){
         
         //load AdminDashboard views
+        $this -> load -> view ('Admin/inc/header');
+        $this -> load -> view ('Admin/inc/navbar');
         $this -> load -> view ('Admin/Dashboard');
     }
 
     public function ManageUser(){
         
         //load AdminManageUser views
-        $this -> load -> view ('Admin/Dashboard/ManageUser');
+        $this -> load -> view ('Admin/inc/header');
+        $this -> load -> view ('Admin/inc/navbar');
+        $this -> load -> view ('Admin/ManageUser');
     }
 
     public function Verifications(){
         
         //load AdminVerifications views
-        $this -> load -> view ('Admin/Dashboard/Verifications');
+        $this -> load -> view ('Admin/inc/header');
+        $this -> load -> view ('Admin/inc/navbar');
+        $this -> load -> view ('Admin/Verifications');
     }
 
     public function ViewLogs(){
         
         //load AdminViewLogs views
-        $this -> load -> view ('Admin/Dashboard/ViewLogs');
+        $this -> load -> view ('Admin/inc/header');
+        $this -> load -> view ('Admin/inc/navbar');
+        $this -> load -> view ('Admin/ViewLogs');
     }
 
 
