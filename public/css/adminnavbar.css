@@ -1,0 +1,20 @@
+.custom-navbar{
+    background-color: #1F4E70;
+}
+.custom-navbar a{
+    color: #ffffff;
+    
+}
+
+.nav-link-custom{
+    display: block;
+    padding: 3% 4%;
+    text-decoration: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+.nav-link-custom:hover{
+    color:#ffffff !important; 
+    font-size: 1.1em;
+    background-color: #1d4764;
+}
