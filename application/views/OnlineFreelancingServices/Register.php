@@ -39,14 +39,18 @@
                                     <input name="contact" type="number"  placeholder="09xxxxxxxxx" class="cn" required>
                                 </div>
 
+
                                 <div class = "textCont">
                                     <label for="email-address" class="customlabel" ><span>Email Address</span></label><br>
                                     <input id="email" onfocusout="check()" name="email" type="email" placeholder="you@example.com" class="ea" required>
                                 </div>
 
                                 <div class="textCont" style="display:none;" id="errorEmail">
-                                    <br>
-                                    <span style="color:red;">Email Already exist!</span>
+                                    <span title="Email already exists!" style="color:red;font-size:24px" class="glyphicon glyphicon-exclamation-sign "></span>
+                                </div>
+
+                                <div class="textCont" style="display:none;" id="successEmail">
+                                    <span title="Looks good!" style="color:#32CD32;font-size:24px" class="glyphicon glyphicon-ok"></span>
                                 </div>
 
                                 <div class = "textCont">
@@ -163,11 +167,19 @@
     <script>
         function check(){
             $.post('<?=base_url('validation/check');?>', {email: $('#email').val()}, function(data){
-                if(data.exists){
-                    document.getElementById("errorEmail").style.display="";
+
+                if(document.getElementById("email").value!=""){
+                    if(data.exists){
+                        document.getElementById("errorEmail").style.display="";
+                        document.getElementById("successEmail").style.display="none";
+                    }else{
+                        document.getElementById("errorEmail").style.display="none";
+                        document.getElementById("successEmail").style.display="";
+                    }
                 }else{
-                    document.getElementById("errorEmail").style.display="none";
+                    document.getElementById("successEmail").style.display="none";
                 }
+
             }, 'JSON');
         }
 

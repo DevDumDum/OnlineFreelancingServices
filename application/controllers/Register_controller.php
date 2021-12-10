@@ -81,7 +81,7 @@ class Register_controller extends CI_Controller {
                     'email' => $email,
                     'password' => $password,
                     'status' => $status,
-                    'user_type' => 'mod'
+                    'user_type' => 'moderator'
                 );
 
                 // insert to db
@@ -109,8 +109,6 @@ class Register_controller extends CI_Controller {
                         $this->load->helper('url');
                         redirect(base_url('AdminAuth/AdminRegister'));
                     }//login
-
-                    redirect(base_url('AdminAuth/Dashboard'));
 
                 }else{
                     $this->load->helper('url');

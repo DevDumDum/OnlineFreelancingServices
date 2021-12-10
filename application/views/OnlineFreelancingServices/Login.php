@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <body>
 	<div class="container-fluid container_custom">
-		<form method="post" autocomplete="off" action="<?=base_url('index.php/Loginpage')?>" style="height:100%;">
+		<form method="post" autocomplete="off" action="<?=base_url('Loginpage')?>" style="height:100%;">
 			<div class="row align-items-start row_custom">
 				<div class="col left-column">
 					<h1 class="fw-bolder display-3">WELCOME</h1>
