@@ -17,110 +17,45 @@
                         <h5 class="create">Create a New Account</h5>
                         <p class="already">Already have an account? 
                         <span><a href="Loginpage" class="link-light">Log in</a></span></p>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <br class = "mb-3">
-                    
-                        <div class="form-group" id = "insertform" >
-                            <div class = "textCont">
-                                <label for="first-name" class="customlabel" > <span>First Name</span></label> <br>
-                                <input name="first-name" type="text" placeholder="Ex. Juan" class="fn" required>
-                            </div>
-
-                            <div class = "textCont">
-                                <label for="last-name" class="customlabel" ><span>Last Name</span></label> <br>
-                                <input name="last-name" type="text" placeholder="Ex. DelaCruz" class="ln" required>
-                            </div>
-
-                            <div class = "textCont">
-                                <label for="middle-name" class="customlabel" ><span>Middle Name</span></label><br>
-                                <input name="middle-name" type="text" placeholder="Ex. Conje"class="mn" required>
-                            </div>
-
-                            <div class = "textCont">
-                                <label for="contact" class="customlabel" ><span>Contact Number</span></label><br>
-                                <input name="contact" type="number"  placeholder="09xxxxxxxxx" class="cn" required>
-                            </div>
-
-                            <div class = "textCont">
-                                <label for="email-address" class="customlabel" ><span>Email Address</span></label><br>
-                                <input id="email" onfocusout="check()" name="email" type="email" placeholder="you@example.com" class="ea" required>
-                                <br>
-                                <span id="errorEmail" style="display:none;color:red;">Email Already exist!</span>
-                            </div>
-=======
-=======
->>>>>>> parent of 5214899 (fixed confirm password)
                             <br class = "mb-3">
                         
                             <div class="form-group" id = "insertform" >
                                 <div class = "textCont">
                                     <label for="first-name" class="customlabel" > <span>First Name</span></label> <br>
-<<<<<<< HEAD
-                                    <input name="first-name" type="text" placeholder="Ex. Juan" class="fn"> 
-                                </div>  
-
-                                <div class = "textCont">
-                                    <label for="last-name" class="customlabel" ><span>Last Name</span></label> <br>
-                                    <input name="last-name" type="text" placeholder="Ex. DelaCruz" class="ln">
-=======
                                     <input name="first-name" type="text" placeholder="Ex. Juan" class="fn" required>
                                 </div>
 
                                 <div class = "textCont">
                                     <label for="last-name" class="customlabel" ><span>Last Name</span></label> <br>
                                     <input name="last-name" type="text" placeholder="Ex. DelaCruz" class="ln" required>
->>>>>>> parent of 5214899 (fixed confirm password)
                                 </div>
 
                                 <div class = "textCont">
                                     <label for="middle-name" class="customlabel" ><span>Middle Name</span></label><br>
-<<<<<<< HEAD
                                     <input name="middle-name" type="text" placeholder="Ex. Conje"class="mn">
-=======
-                                    <input name="middle-name" type="text" placeholder="Ex. Conje"class="mn" required>
->>>>>>> parent of 5214899 (fixed confirm password)
                                 </div>
 
                                 <div class = "textCont">
                                     <label for="contact" class="customlabel" ><span>Contact Number</span></label><br>
-<<<<<<< HEAD
-                                    <input name="contact" type="number"  placeholder="09xxxxxxxxx" class="cn">
-=======
                                     <input name="contact" type="number"  placeholder="09xxxxxxxxx" class="cn" required>
->>>>>>> parent of 5214899 (fixed confirm password)
                                 </div>
 
                                 <div class = "textCont">
                                     <label for="email-address" class="customlabel" ><span>Email Address</span></label><br>
-<<<<<<< HEAD
-                                    <input name="email-address" type="email" placeholder="you@example.com" class="ea">
-=======
                                     <input id="email" onfocusout="check()" name="email" type="email" placeholder="you@example.com" class="ea" required>
                                     <br>
                                     <span id="errorEmail" style="display:none;color:red;">Email Already exist!</span>
->>>>>>> parent of 5214899 (fixed confirm password)
                                 </div>
 
                                 <div class = "textCont">
                                     <label for="password" class="customlabel" ><span>Password</span></label><br>
-<<<<<<< HEAD
-                                    <input name="password" type="password" class="ps">
-=======
                                     <input name="password" type="password" class="ps" required>
->>>>>>> parent of 5214899 (fixed confirm password)
                                 </div>
 
                                 <div class = "textCont">
                                     <label for="password" class="customlabel" ><span>Confirm Password</span></label><br>
-<<<<<<< HEAD
-                                    <input name="confirm-pw" type="password" class="Cps" >
-                                </div>
->>>>>>> parent of 63c3379 (register parameters and ajax check for existing email)
-=======
                                     <input name="confirm-pw" type="password" class="Cps"  required>
                                 </div>
->>>>>>> parent of 5214899 (fixed confirm password)
 
                             </div>
                         
@@ -216,7 +151,6 @@
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<<<<<<< HEAD
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function check(){
@@ -229,8 +163,6 @@
             }, 'JSON');
         }
     </script>
-=======
->>>>>>> parent of 63c3379 (register parameters and ajax check for existing email)
 </body>
 
     

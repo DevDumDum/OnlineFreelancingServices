@@ -60,7 +60,7 @@ class Register_controller extends CI_Controller {
                     $this->session->set_flashdata('error','Error query.');
                 }
             }else {
-                $this->load->view('OnlineFreelancingServices/Register.php');
+                redirect(base_url('OnlineFreelancingServices/Registerpage'));
             }
         }        
     }
@@ -107,15 +107,7 @@ class Register_controller extends CI_Controller {
                     $this->session->set_flashdata('error','Error query.');
                 }
             }else {
-<<<<<<< HEAD
-<<<<<<< HEAD
                 redirect(base_url('AdminAuth/Register'));
-=======
-                $this->load->view('Admin/Register.php');
->>>>>>> parent of 63c3379 (register parameters and ajax check for existing email)
-=======
-                $this->load->view('Admin/Register');
->>>>>>> parent of 5214899 (fixed confirm password)
             }
         }
     }
