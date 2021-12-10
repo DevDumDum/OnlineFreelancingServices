@@ -88,7 +88,7 @@ class AdminAuth extends CI_Controller{
         //load AdminManageUser views
         $this -> load -> view ('Admin/inc/header');
         $this -> load -> view ('Admin/inc/navbar');
-        $this -> load -> view ('Admin/Dashboard/ManageUser');
+        $this -> load -> view ('Admin/ManageUser');
     }
 
     public function Verifications(){
@@ -96,7 +96,7 @@ class AdminAuth extends CI_Controller{
         //load AdminVerifications views
         $this -> load -> view ('Admin/inc/header');
         $this -> load -> view ('Admin/inc/navbar');
-        $this -> load -> view ('Admin/Dashboard/Verifications');
+        $this -> load -> view ('Admin/Verifications');
     }
 
     public function ViewLogs(){
@@ -104,7 +104,7 @@ class AdminAuth extends CI_Controller{
         //load AdminViewLogs views
         $this -> load -> view ('Admin/inc/header');
         $this -> load -> view ('Admin/inc/navbar');
-        $this -> load -> view ('Admin/Dashboard/ViewLogs');
+        $this -> load -> view ('Admin/ViewLogs');
     }
 
 
