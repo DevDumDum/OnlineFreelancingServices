@@ -3,6 +3,10 @@ class Verifications extends CI_Controller{
     public function index(){
         redirect(base_url('Verifications/VerifyUser'));
     }
+    public function Dashboard(){
+        redirect(base_url('AdminAuth/Dashboard'));
+    }
+
     public function VerifyUser(){
         //load AdminVerifications views
         $this -> load -> view ('Admin/inc/header');
