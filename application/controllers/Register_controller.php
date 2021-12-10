@@ -59,7 +59,7 @@ class Register_controller extends CI_Controller {
                     $this->session->set_flashdata('error','Error query.');
                 }
             }else {
-                $this->session->set_flashdata('error','WTF');
+                $this->session->set_flashdata('error','Error Input data');
                 redirect(base_url('Registerpage'));
             }
         }        
@@ -116,6 +116,7 @@ class Register_controller extends CI_Controller {
                     $this->session->set_flashdata('error','Error query.');
                 }
             }else {
+                $this->session->set_flashdata('error','Error Input data');
                 redirect(base_url('AdminAuth/AdminRegister'));
             }
         }
