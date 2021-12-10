@@ -2,7 +2,7 @@
 <header>
 	<nav class="navbar custom-navbar navbar-expand-md navbar-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="Homepage">
+			<a class="navbar-brand" href="AdminLogin">
 				<img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" alt="" width="120"
 					class="d-inline-block align-text-top">
 			</a>
@@ -20,7 +20,7 @@
 		<h1>Admin Login</h1>
 			<div class="mb-3 mb-3_custom">
 				<div class="form-text-email-padding">
-					<label for="email" class="form-label ">Email:</label>
+					<label for="email" class="form-label">Email:</label>
 				</div>
 				<div class="form-padding">
 					<input type="email" placeholder="Email" name="email" class="form-control form-width" id="email" required>

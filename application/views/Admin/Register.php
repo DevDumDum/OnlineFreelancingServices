@@ -31,7 +31,7 @@
         <div class="form-text-company-id-padding">
           <label for="companyid" class="form-label">Company ID:</label>
         </div>
-        <div class="form-padding">
+        <div class="form-padding-register">
           <input  type="form-control" id="companyid" name="companyid" class="form-control form-width" type="text" onfocusout="check()" required>
         </div>
       </div>
@@ -48,7 +48,7 @@
         <div class="form-text-password-padding">
           <label for="password" class="form-label">Password</label>
         </div>
-        <div class="form-padding">
+        <div class="form-padding-register">
           <input id="pw1" onkeyup="confirm_pass()" type="password" name="password" class="form-control form-width" required>
         </div>
       </div>
@@ -57,7 +57,7 @@
         <div class="form-text-confirm-password-padding">
           <label for="" class="form-label">Confirm Password:</label>
         </div>
-        <div class="form-padding">
+        <div class="form-padding-register">
           <input id="pw2" onkeyup="confirm_pass()" type="password" name="password2" class="form-control form-width" required>
         </div>
       </div>
