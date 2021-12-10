@@ -55,12 +55,12 @@
 
                                 <div class = "textCont">
                                     <label for="password" class="customlabel" ><span>Password</span></label><br>
-                                    <input name="password" type="password" class="ps" required>
+                                    <input name="password" id="pw1" onfocusout="confirm_pass()" type="password" class="ps" required>
                                 </div>
 
                                 <div class = "textCont">
                                     <label for="password" class="customlabel" ><span>Confirm Password</span></label><br>
-                                    <input name="confirm-pw" type="password" class="Cps" required>
+                                    <input name="confirm-pw" id="pw2" onfocusout="confirm_pass()" type="password" class="Cps" required>
                                 </div>
 
                                 <div id="errorPW" style="display:none">
@@ -153,7 +153,7 @@
                         <?php } ?>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a class="btn btn-outline-primary btn-lg" href="Homepage" role="button">BACK</a>
-                            <button value="submit" type="submit" class="btn btn-outline-dark btn-lg " style = "background-color:#1e4e70" disabled>
+                            <button value="submit" id="form-pass" type="submit" class="btn btn-outline-dark btn-lg " style = "background-color:#1e4e70" disabled>
                                 <span class ="fw-bold" style="color: #ffff ">REGISTER</span>
                             </button>
                         </div>
@@ -187,14 +187,17 @@
             
         const pswrd_1 = document.getElementById("pw1").value;
         const pswrd_2 = document.getElementById("pw2").value;
-        
-        if(pswrd_1 != pswrd_2){
-          
-          document.getElementById("errorPW").style.display="";
-          document.getElementById("form-pass").disabled=true;
-        }else {
-          document.getElementById("errorPW").style.display="none";
-          document.getElementById("form-pass").disabled="";
+        if(pswrd_1!="" && pswrd_2!=""){
+            if(pswrd_1 != pswrd_2){
+            
+            document.getElementById("errorPW").style.display="";
+            document.getElementById("form-pass").disabled=true;
+            }else {
+            document.getElementById("errorPW").style.display="none";
+            document.getElementById("form-pass").disabled=false;
+            }
+        }else{
+            document.getElementById("errorPW").style.display="none";
         }
       }
     </script>
