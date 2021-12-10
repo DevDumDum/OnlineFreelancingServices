@@ -14,7 +14,7 @@ class Register_controller extends CI_Controller {
     public function addUser() {
         if($_SERVER['REQUEST_METHOD']=='POST'){
 
-            $this->form_validation->set_rules('email-address','Email','trim|required|valid_email|is_unique[users.email],');
+            $this->form_validation->set_rules('email','Email','trim|required|valid_email|is_unique[users.email],');
             $this->form_validation->set_rules('first-name','First name','alpha|trim|required');
             $this->form_validation->set_rules('last-name','Last name','alpha|trim|required');
             $this->form_validation->set_rules('middle-name','Middle name','alpha|trim|required');
@@ -27,7 +27,7 @@ class Register_controller extends CI_Controller {
                 $sn = $this->input->post('last-name');
                 $mn = $this->input->post('middle-name');
                 $contact = $this->input->post('contact');
-                $email = $this->input->post('email-address');
+                $email = $this->input->post('email');
                 $password = $this->input->post('password');
                 $status = true;
 
@@ -59,6 +59,7 @@ class Register_controller extends CI_Controller {
                     $this->session->set_flashdata('error','Error query.');
                 }
             }else {
+                $this->session->set_flashdata('error','Error Input data');
                 redirect(base_url('Registerpage'));
             }
         }        
@@ -116,7 +117,7 @@ class Register_controller extends CI_Controller {
                     $this->session->set_flashdata('error','Error query.');
                 }
             }else {
-                $this->session->set_flashdata('error','Error Company ID');
+                $this->session->set_flashdata('error','Error Input data');
                 redirect(base_url('AdminAuth/AdminRegister'));
             }
         }
