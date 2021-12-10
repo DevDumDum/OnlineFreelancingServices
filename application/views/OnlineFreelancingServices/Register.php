@@ -13,7 +13,6 @@
                             <img src="<?php echo base_url();?>public/images/logo.png" class ="mx-auto d-block" alt="" height="50">
                         </div>
                          
-
                         <h5 class="create">Create a New Account</h5>
                         <p class="already">Already have an account? 
                         <span><a href="Loginpage" class="link-light">Log in</a></span></p>
@@ -32,7 +31,7 @@
 
                                 <div class = "textCont">
                                     <label for="middle-name" class="customlabel" ><span>Middle Name</span></label><br>
-                                    <input name="middle-name" type="text" placeholder="Ex. Conje"class="mn" required>
+                                    <input name="middle-name" type="text" placeholder="Ex. Conje"class="mn">
                                 </div>
 
                                 <div class = "textCont">
@@ -43,8 +42,11 @@
                                 <div class = "textCont">
                                     <label for="email-address" class="customlabel" ><span>Email Address</span></label><br>
                                     <input id="email" onfocusout="check()" name="email" type="email" placeholder="you@example.com" class="ea" required>
+                                </div>
+
+                                <div class="textCont" style="display:none;" id="errorEmail">
                                     <br>
-                                    <span id="errorEmail" style="display:none;color:red;">Email Already exist!</span>
+                                    <span style="color:red;">Email Already exist!</span>
                                 </div>
 
                                 <div class = "textCont">
@@ -54,11 +56,15 @@
 
                                 <div class = "textCont">
                                     <label for="password" class="customlabel" ><span>Confirm Password</span></label><br>
-                                    <input name="confirm-pw" type="password" class="Cps"  required>
+                                    <input name="confirm-pw" type="password" class="Cps" required>
+                                </div>
+
+                                <div id="errorPW" style="display:none">
+                                    <span  style="color:red;">Password does not match!</span><br><br>
                                 </div>
 
                             </div>
-                        
+                        </span>
                     </div>
                 </div>
 
@@ -143,7 +149,9 @@
                         <?php } ?>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a class="btn btn-outline-primary btn-lg" href="Homepage" role="button">BACK</a>
-                            <button value="submit" type="submit" class="btn btn-outline-dark btn-lg " style = "background-color:#1e4e70"><span class ="fw-bold" style="color: #ffff ">REGISTER</span></button>
+                            <button value="submit" type="submit" class="btn btn-outline-dark btn-lg " style = "background-color:#1e4e70" disabled>
+                                <span class ="fw-bold" style="color: #ffff ">REGISTER</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -162,6 +170,21 @@
                 }
             }, 'JSON');
         }
+
+        function confirm_pass(){
+            
+        const pswrd_1 = document.getElementById("pw1").value;
+        const pswrd_2 = document.getElementById("pw2").value;
+        
+        if(pswrd_1 != pswrd_2){
+          
+          document.getElementById("errorPW").style.display="";
+          document.getElementById("form-pass").disabled=true;
+        }else {
+          document.getElementById("errorPW").style.display="none";
+          document.getElementById("form-pass").disabled="";
+        }
+      }
     </script>
 </body>
 

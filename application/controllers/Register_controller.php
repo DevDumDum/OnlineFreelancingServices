@@ -106,7 +106,6 @@ class Register_controller extends CI_Controller {
                         redirect(base_url('AdminAuth/Dashboard'));
 
                     }else{
-                        $this->session->set_flashdata('error','Email or Password is Wrong');
                         $this->load->helper('url');
                         redirect(base_url('AdminAuth/AdminRegister'));
                     }//login
@@ -118,7 +117,7 @@ class Register_controller extends CI_Controller {
                     $this->session->set_flashdata('error','Error query.');
                 }
             }else {
-                $this->load->view('Admin/Register');
+                redirect(base_url('AdminAuth/AdminRegister'));
             }
         }
     }
