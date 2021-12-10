@@ -1,0 +1,33 @@
+.AdminLP {
+    position: absolute;
+    top: 40%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+}
+
+.menu {
+    display: flex;
+    max-width: 720px;
+    margin: 0 auto;
+    padding-top: 100px;
+    height: 10vh;
+    list-style: none;
+    padding-left: 100px;
+}
+
+.menu li {
+    width: 220px;
+    transition: background-position-x 0.9s linear;
+    text-align: center;
+}
+
+.menu button {
+    border: none; 
+    background: none;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.menu button:hover {
+    color:#289cc1;
+}

@@ -3,7 +3,7 @@
 <body class="regbody">
 
     <div class="container-fluid container_custom">    
-        <form method="post" autocomplete="off" action="<?=base_url('index.php/Register_controller/adduser')?>" style="height:100%;">
+        <form method="post" autocomplete="off" action="<?=base_url('Register_controller/adduser')?>" style="height:100%;">
             <div class="row h-row_custom">
                 <div class="col-md-6 no-gutters h-leftSide">
                     <div class="justify-content-center align-items-center">
@@ -13,7 +13,6 @@
                             <img src="<?php echo base_url();?>public/images/logo.png" class ="mx-auto d-block" alt="" height="50">
                         </div>
                          
-
                         <h5 class="create">Create a New Account</h5>
                         <p class="already">Already have an account? 
                         <span><a href="Loginpage" class="link-light">Log in</a></span></p>
@@ -22,12 +21,12 @@
                             <div class="form-group" id = "insertform" >
                                 <div class = "textCont">
                                     <label for="first-name" class="customlabel" > <span>First Name</span></label> <br>
-                                    <input name="first-name" type="text" placeholder="Ex. Juan" class="fn"> 
-                                </div>  
+                                    <input name="first-name" type="text" placeholder="Ex. Juan" class="fn" required>
+                                </div>
 
                                 <div class = "textCont">
                                     <label for="last-name" class="customlabel" ><span>Last Name</span></label> <br>
-                                    <input name="last-name" type="text" placeholder="Ex. DelaCruz" class="ln">
+                                    <input name="last-name" type="text" placeholder="Ex. DelaCruz" class="ln" required>
                                 </div>
 
                                 <div class = "textCont">
@@ -37,26 +36,39 @@
 
                                 <div class = "textCont">
                                     <label for="contact" class="customlabel" ><span>Contact Number</span></label><br>
-                                    <input name="contact" type="number"  placeholder="09xxxxxxxxx" class="cn">
+                                    <input name="contact" type="number"  placeholder="09xxxxxxxxx" class="cn" required>
                                 </div>
+
 
                                 <div class = "textCont">
                                     <label for="email-address" class="customlabel" ><span>Email Address</span></label><br>
-                                    <input name="email-address" type="email" placeholder="you@example.com" class="ea">
+                                    <input id="email" onfocusout="check()" name="email" type="email" placeholder="you@example.com" class="ea" required>
+                                </div>
+
+                                <div class="textCont" style="display:none;" id="errorEmail">
+                                    <span title="Email already exists!" style="color:red;font-size:24px" class="glyphicon glyphicon-exclamation-sign "></span>
+                                </div>
+
+                                <div class="textCont" style="display:none;" id="successEmail">
+                                    <span title="Looks good!" style="color:#32CD32;font-size:24px" class="glyphicon glyphicon-ok"></span>
                                 </div>
 
                                 <div class = "textCont">
                                     <label for="password" class="customlabel" ><span>Password</span></label><br>
-                                    <input name="password" type="password" class="ps">
+                                    <input name="password" id="pw1" onfocusout="confirm_pass()" type="password" class="ps" required>
                                 </div>
 
                                 <div class = "textCont">
                                     <label for="password" class="customlabel" ><span>Confirm Password</span></label><br>
-                                    <input name="confirm-pw" type="password" class="Cps" >
+                                    <input name="confirm-pw" id="pw2" onfocusout="confirm_pass()" type="password" class="Cps" required>
+                                </div>
+
+                                <div id="errorPW" style="display:none">
+                                    <span  style="color:red;">Password does not match!</span><br><br>
                                 </div>
 
                             </div>
-                        
+                        </span>
                     </div>
                 </div>
 
@@ -141,7 +153,9 @@
                         <?php } ?>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a class="btn btn-outline-primary btn-lg" href="Homepage" role="button">BACK</a>
-                            <button value="submit" type="submit" class="btn btn-outline-dark btn-lg " style = "background-color:#1e4e70"><span class ="fw-bold" style="color: #ffff ">REGISTER</span></button>
+                            <button value="submit" id="form-pass" type="submit" class="btn btn-outline-dark btn-lg " style = "background-color:#1e4e70" disabled>
+                                <span class ="fw-bold" style="color: #ffff ">REGISTER</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -149,6 +163,44 @@
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function check(){
+            $.post('<?=base_url('validation/check');?>', {email: $('#email').val()}, function(data){
+
+                if(document.getElementById("email").value!=""){
+                    if(data.exists){
+                        document.getElementById("errorEmail").style.display="";
+                        document.getElementById("successEmail").style.display="none";
+                    }else{
+                        document.getElementById("errorEmail").style.display="none";
+                        document.getElementById("successEmail").style.display="";
+                    }
+                }else{
+                    document.getElementById("successEmail").style.display="none";
+                }
+
+            }, 'JSON');
+        }
+
+        function confirm_pass(){
+            
+        const pswrd_1 = document.getElementById("pw1").value;
+        const pswrd_2 = document.getElementById("pw2").value;
+        if(pswrd_1!="" && pswrd_2!=""){
+            if(pswrd_1 != pswrd_2){
+            
+            document.getElementById("errorPW").style.display="";
+            document.getElementById("form-pass").disabled=true;
+            }else {
+            document.getElementById("errorPW").style.display="none";
+            document.getElementById("form-pass").disabled=false;
+            }
+        }else{
+            document.getElementById("errorPW").style.display="none";
+        }
+      }
+    </script>
 </body>
 
     

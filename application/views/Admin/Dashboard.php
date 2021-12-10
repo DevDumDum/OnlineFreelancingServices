@@ -1,31 +1,30 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
-  </head>
-  <body>
+<?php 
+if($this->session->userdata('UserLoginSession')){
+    $udata = $this->session->userdata('UserLoginSession');
+}else{
+    redirect(base_url('AdminAuth/AdminLogin'));
+}
+?>
+<body>
+  <?php echo $udata['user_type'];?>
 
-    <button onclick="window.location.href='';">
-    Change Password
-    </button>
+  <div class="AdminLP">
+      <img src="<?php echo base_url();?>public/images/logo.png" width="100%">
 
-    <button onclick="window.location.href='ManageUser';">
-    Manage User Status
-    </button>
+    <ul class="menu">
+      <li><button onclick="window.location.href='ManageUser';">
+      Manage User Status
+      </button></li>
 
-    <button onclick="window.location.href='Verifications';">
-    Verification
-    </button>
+      <li><button onclick="window.location.href='<?php echo base_url('Verifications');?>';">
+      Verification
+      </button></li>
 
-    <button onclick="window.location.href='ViewLogs';">
-    Logs
-    </button>
+      <li><button onclick="window.location.href='ViewLogs';">
+      Logs
+      </button></li>
+    </ul>
+  </div>
 
-    <button onclick="window.location.href='Login';">
-    Log out
-    </button>
-
-  </body>
+</body>
 </html>
