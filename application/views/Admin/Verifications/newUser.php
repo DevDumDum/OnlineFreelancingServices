@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>New User</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;1,300&display=swap" rel="stylesheet">
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="verification.css"/>
-</head>
 <body>
     <!--NAVBAR-->
     <header>
@@ -27,18 +16,18 @@
     </div>
     <!--BACK BUTTON-->
     <div class="container">
-        <button class="btn" onclick="window.location.href='Dashboard';">Back</button>
+    <button class="btn" onclick="window.location.href='<?php echo base_url('AdminAuth/Dashboard');?>';">Back</button>
         <!---DASHBOARD BUTTONS-->
         <div class="dashboardButtons">
             <h1>VERIFICATION</h1>
-            <p>(Deactivate Requests)</p>
+            <p>(New User)</p>
         </div>
         <!--VERIFICATION BUTTONS-->
         <div class="btn_category">
-            <button class="btn" onclick="window.location.href='newUser.html';">New User</button>
-            <button class="btn" onclick="window.location.href='deactivateRequest.html';">Deactivate Requests</button>
-            <button class="btn" onclick="window.location.href='reports.html';">Reports</button>
-            <button class="btn" onclick="window.location.href='jobCategory.html';">Job Category</button>
+            <button class="btn" onclick="window.location.href='VerifyUser';" disabled>New User</button>
+            <button class="btn" onclick="window.location.href='VerifyRequest';">Deactivate Requests</button>
+            <button class="btn" onclick="window.location.href='VerifyReports';">Reports</button>
+            <button class="btn" onclick="window.location.href='VerifyJobCategory';">Job Category</button>
         </div>
         <!---NEW USER TABLE-->
         <div class="tables">
@@ -49,7 +38,7 @@
                 </tr>
                 
                 <div>
-                <tr>
+                    <tr>
                 <td onclick="newDetails()">
                     <span>Alfreds Futterskie</span>
                 </td>
@@ -62,7 +51,7 @@
                 <tr>
                 <td onclick="newDetails()">
                     <span>Centro comercial</span>
-                </td>                
+                </td>
                 <td class="status">
                     <button class="editbtn1" style="cursor: pointer;">Activate</button>
                     <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
@@ -80,7 +69,7 @@
                 <tr>
                 <td onclick="newDetails()">
                     <span>Island Trading</span>
-                </td>                
+                </td>
                 <td class="status">
                     <button class="editbtn1" style="cursor: pointer;" >Activate</button>
                     <button class="editbtn2" style="cursor: pointer;">Deactivate</button>

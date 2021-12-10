@@ -16,7 +16,7 @@ if($this->session->userdata('UserLoginSession')){
       Manage User Status
       </button></li>
 
-      <li><button onclick="window.location.href='Verifications';">
+      <li><button onclick="window.location.href='<?php echo base_url('Verifications');?>';">
       Verification
       </button></li>
 

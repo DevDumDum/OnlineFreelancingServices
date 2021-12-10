@@ -91,14 +91,6 @@ class AdminAuth extends CI_Controller{
         $this -> load -> view ('Admin/ManageUser');
     }
 
-    public function Verifications(){
-        
-        //load AdminVerifications views
-        $this -> load -> view ('Admin/inc/header');
-        $this -> load -> view ('Admin/inc/navbar');
-        $this -> load -> view ('Admin/Verifications');
-    }
-
     public function ViewLogs(){
         
         //load AdminViewLogs views

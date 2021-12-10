@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>New User</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;1,300&display=swap" rel="stylesheet">
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="verification.css"/>
-</head>
 <body>
-    <!--NAVBAR-->
-    <header>
-        <!--INSERT NAVBAR LINK HERE-->
-    </header>
     <!---POP UP-->
     <div id="hiddenbox">
         <div id="bg_box">
@@ -27,18 +12,18 @@
     </div>
     <!--BACK BUTTON-->
     <div class="container">
-        <button class="btn" onclick="window.location.href='Dashboard';">Back</button>
+    <button class="btn" onclick="window.location.href='<?php echo base_url('AdminAuth/Dashboard');?>';">Back</button>
         <!---DASHBOARD BUTTONS-->
         <div class="dashboardButtons">
             <h1>VERIFICATION</h1>
-            <p>(Reports)</p>
+            <p>(Deactivate Requests)</p>
         </div>
         <!--VERIFICATION BUTTONS-->
         <div class="btn_category">
-            <button class="btn" onclick="window.location.href='newUser.html';">New User</button>
-            <button class="btn" onclick="window.location.href='deactivateRequest.html';">Deactivate Requests</button>
-            <button class="btn" onclick="window.location.href='reports.html';">Reports</button>
-            <button class="btn" onclick="window.location.href='jobCategory.html';">Job Category</button>
+            <button class="btn" onclick="window.location.href='VerifyUser';">New User</button>
+            <button class="btn" onclick="window.location.href='VerifyRequest';" disabled>Deactivate Requests</button>
+            <button class="btn" onclick="window.location.href='VerifyReports';">Reports</button>
+            <button class="btn" onclick="window.location.href='VerifyJobCategory';">Job Category</button>
         </div>
         <!---NEW USER TABLE-->
         <div class="tables">
@@ -47,24 +32,25 @@
                 <th>User</th>
                 <th> </th>
                 </tr>
-            
-                <tr>
                 
+                <div>
+                <tr>
                 <td onclick="newDetails()">
                     <span>Alfreds Futterskie</span>
                 </td>
+                </div>
                 <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;">Ban</button>
-                    <button class="editbtn2" style="cursor: pointer;">Ignore</button>
+                    <button class="editbtn1" style="cursor: pointer;" >Activate</button>
+                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
                 </td></tr>
-                
+            
                 <tr>
                 <td onclick="newDetails()">
                     <span>Centro comercial</span>
-                </td>
+                </td>                
                 <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;">Ban</button>
-                    <button class="editbtn2" style="cursor: pointer;">Ignore</button>
+                    <button class="editbtn1" style="cursor: pointer;">Activate</button>
+                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
                 </td></tr>
             
                 <tr>
@@ -72,17 +58,17 @@
                     <span>Ernst Handel</span>
                 </td>
                 <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;">Ban</button>
-                    <button class="editbtn2" style="cursor: pointer;">Ignore</button>
+                    <button class="editbtn1" style="cursor: pointer;">Activate</button>
+                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
                 </td></tr>
             
                 <tr>
                 <td onclick="newDetails()">
                     <span>Island Trading</span>
-                </td>
+                </td>                
                 <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;">Ban</button>
-                    <button class="editbtn2" style="cursor: pointer;">Ignore</button>
+                    <button class="editbtn1" style="cursor: pointer;" >Activate</button>
+                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
                 </td></tr>
              
             </table>
