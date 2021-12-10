@@ -1,6 +1,9 @@
 .adminloginpage{
     background-color: #E5e5e5
 }
+.modregisterpage{
+    background-color: #E5e5e5
+}
 .container-custom{
     text-align: center;
     height: 100%;
@@ -22,6 +25,11 @@
 
 .form-padding{
     padding-left: 40%;
+    padding-right: 10%;
+}
+
+.form-padding-register{
+    padding-left: 40%;
     padding-right: 15%;
 }
 
@@ -29,12 +37,20 @@
    padding-right: 15%; 
 }
 
+.form-text-company-id-padding{
+    padding-right: 11%; 
+ }
+
 .form-text-password-padding{
     padding-right: 13%; 
 }
 
+.form-text-confirm-password-padding{
+    padding-right: 7%; 
+}
+
 .text-button {
-    padding-left 5%%;
+    padding-left 5%;
 }
 
 .text-button a{

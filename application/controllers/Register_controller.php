@@ -108,6 +108,7 @@ class Register_controller extends CI_Controller {
 
                     }else{
                         $this->load->helper('url');
+                        $this->session->set_flashdata('error','Session Error.');
                         redirect(base_url('AdminAuth/AdminRegister'));
                     }//login
 
