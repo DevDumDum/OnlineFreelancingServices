@@ -150,6 +150,7 @@ td span:hover{
     height: 100%;
     width: 100%;
     display: none;
+    z-index: 1;
 }
 @keyframes fadebox{
     0%{opacity: 100%;}
