@@ -13,24 +13,33 @@
 
     <div class = "form-group">
       <label for="companyid" class="label-default">Company ID:</label>
-      <input class="form-control" name="email" id="email" type="email" required> 
-      <br>
-      <span id="errorEmail" style="display:none;color:red;">Email Already exist!</span>  
+      <input class="form-control" name="companyid" id="companyid" type="text" value="<?php echo set_value('companyid');?>">
+      <?php echo form_error('companyid'); ?>    
     </div>
 
     <div class = "form-group">
       <label for="" class="label-default">Password:</label>
+<<<<<<< HEAD
       <input class="form-control" onkeyup="confirm_pass()" name="password" id="pw1" type="password" required>
+=======
+      <input class="form-control" name="password" id="password" type="password" value="<?php echo set_value('password');?>">
+      <?php echo form_error('password'); ?>   
+>>>>>>> parent of 5214899 (fixed confirm password)
     </div>
 
     <div class = "form-group">
       <label for="" class="label-default">Confirm Password:</label>
+<<<<<<< HEAD
       <input class="form-control" onkeyup="confirm_pass()" name="password2" id="pw2" type="password" required>
     </div>
 
     <div id="errorPW" style="display:none">
       <br>
       <span  style="color:red;">Password does not match!</span>
+=======
+      <input class="form-control" name="password2" id="password" type="password" value="<?php echo set_value('password2');?>">
+      <?php echo form_error('password2'); ?>   
+>>>>>>> parent of 5214899 (fixed confirm password)
     </div>
 
     <div class = "form-group">
@@ -42,6 +51,7 @@
     </button>
     
   </form>
+<<<<<<< HEAD
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -73,6 +83,9 @@
         }
       }
     </script>
+=======
+
+>>>>>>> parent of 5214899 (fixed confirm password)
 
   </body>
 </html>

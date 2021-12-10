@@ -108,10 +108,14 @@ class Register_controller extends CI_Controller {
                 }
             }else {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 redirect(base_url('AdminAuth/Register'));
 =======
                 $this->load->view('Admin/Register.php');
 >>>>>>> parent of 63c3379 (register parameters and ajax check for existing email)
+=======
+                $this->load->view('Admin/Register');
+>>>>>>> parent of 5214899 (fixed confirm password)
             }
         }
     }
