@@ -107,6 +107,7 @@ class Register_controller extends CI_Controller {
 
                     }else{
                         $this->load->helper('url');
+                        $this->session->set_flashdata('error','Session Error.');
                         redirect(base_url('AdminAuth/AdminRegister'));
                     }//login
 
@@ -115,6 +116,7 @@ class Register_controller extends CI_Controller {
                     $this->session->set_flashdata('error','Error query.');
                 }
             }else {
+                $this->session->set_flashdata('error','Error Company ID');
                 redirect(base_url('AdminAuth/AdminRegister'));
             }
         }
