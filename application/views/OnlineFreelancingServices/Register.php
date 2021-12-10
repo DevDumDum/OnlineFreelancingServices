@@ -3,7 +3,7 @@
 <body class="regbody">
 
     <div class="container-fluid container_custom">    
-        <form method="post" autocomplete="off" action="<?=base_url('Register_controller/adduser')?>" style="height:100%;">
+        <form method="post" autocomplete="off" action="<?=base_url('index.php/Register_controller/adduser')?>" style="height:100%;">
             <div class="row h-row_custom">
                 <div class="col-md-6 no-gutters h-leftSide">
                     <div class="justify-content-center align-items-center">
@@ -17,6 +17,7 @@
                         <h5 class="create">Create a New Account</h5>
                         <p class="already">Already have an account? 
                         <span><a href="Loginpage" class="link-light">Log in</a></span></p>
+<<<<<<< HEAD
                         <br class = "mb-3">
                     
                         <div class="form-group" id = "insertform" >
@@ -46,6 +47,45 @@
                                 <br>
                                 <span id="errorEmail" style="display:none;color:red;">Email Already exist!</span>
                             </div>
+=======
+                            <br class = "mb-3">
+                        
+                            <div class="form-group" id = "insertform" >
+                                <div class = "textCont">
+                                    <label for="first-name" class="customlabel" > <span>First Name</span></label> <br>
+                                    <input name="first-name" type="text" placeholder="Ex. Juan" class="fn"> 
+                                </div>  
+
+                                <div class = "textCont">
+                                    <label for="last-name" class="customlabel" ><span>Last Name</span></label> <br>
+                                    <input name="last-name" type="text" placeholder="Ex. DelaCruz" class="ln">
+                                </div>
+
+                                <div class = "textCont">
+                                    <label for="middle-name" class="customlabel" ><span>Middle Name</span></label><br>
+                                    <input name="middle-name" type="text" placeholder="Ex. Conje"class="mn">
+                                </div>
+
+                                <div class = "textCont">
+                                    <label for="contact" class="customlabel" ><span>Contact Number</span></label><br>
+                                    <input name="contact" type="number"  placeholder="09xxxxxxxxx" class="cn">
+                                </div>
+
+                                <div class = "textCont">
+                                    <label for="email-address" class="customlabel" ><span>Email Address</span></label><br>
+                                    <input name="email-address" type="email" placeholder="you@example.com" class="ea">
+                                </div>
+
+                                <div class = "textCont">
+                                    <label for="password" class="customlabel" ><span>Password</span></label><br>
+                                    <input name="password" type="password" class="ps">
+                                </div>
+
+                                <div class = "textCont">
+                                    <label for="password" class="customlabel" ><span>Confirm Password</span></label><br>
+                                    <input name="confirm-pw" type="password" class="Cps" >
+                                </div>
+>>>>>>> parent of 63c3379 (register parameters and ajax check for existing email)
 
                             <div class = "textCont">
                                 <label for="password" class="customlabel" ><span>Password</span></label><br>
@@ -154,6 +194,7 @@
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<<<<<<< HEAD
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function check(){
@@ -182,6 +223,8 @@
         }
         
     </script>
+=======
+>>>>>>> parent of 63c3379 (register parameters and ajax check for existing email)
 </body>
 
     

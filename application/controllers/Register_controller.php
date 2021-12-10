@@ -12,6 +12,7 @@ class Register_controller extends CI_Controller {
     }
 
     public function addUser() {
+
         if($_SERVER['REQUEST_METHOD']=='POST'){
 
             $this->form_validation->set_rules('email-address','Email','trim|required|valid_email|is_unique[users.email],');
@@ -21,7 +22,7 @@ class Register_controller extends CI_Controller {
             $this->form_validation->set_rules('contact','Contact Number','integer|trim|required');
             $this->form_validation->set_rules('password','Password','trim|required');
             $this->form_validation->set_rules('confirm-pw','Password','trim|required|matches[password]');
-            
+
             if($this->form_validation->run()==TRUE){
                 $fn = $this->input->post('first-name');
                 $sn = $this->input->post('last-name');
@@ -53,13 +54,13 @@ class Register_controller extends CI_Controller {
                         );
                         $this->session->set_userdata('UserLoginSession',$session_data);
                     }
-                    redirect(base_url('NewsFeed'));
+                    redirect(base_url('index.php/NewsFeed'));
                 }else{
                     $this->load->helper('url');
                     $this->session->set_flashdata('error','Error query.');
                 }
             }else {
-                redirect(base_url('Registerpage'));
+                $this->load->view('OnlineFreelancingServices/Register.php');
             }
         }        
     }
@@ -106,7 +107,11 @@ class Register_controller extends CI_Controller {
                     $this->session->set_flashdata('error','Error query.');
                 }
             }else {
+<<<<<<< HEAD
                 redirect(base_url('AdminAuth/Register'));
+=======
+                $this->load->view('Admin/Register.php');
+>>>>>>> parent of 63c3379 (register parameters and ajax check for existing email)
             }
         }
     }
