@@ -61,6 +61,5 @@ $route['Registerpage'] = 'OnlineFreelancingServices/Registerpage';
 $route['Logout'] = 'OnlineFreelancingServices/Logout';
 
 
-
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

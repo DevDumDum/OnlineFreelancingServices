@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Manage User</title>
-<style>
-
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-
-</style>
-</head>
-<body>
-
+<body>   
 <h2>Manage User</h2>
 
 <table>

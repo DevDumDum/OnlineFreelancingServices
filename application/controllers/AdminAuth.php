@@ -13,7 +13,10 @@ class AdminAuth extends CI_Controller{
             redirect(base_url('AdminAuth/Dashboard'));
         }
         $this->load->helper('url');
+        
+        $this -> load -> view ('Admin/inc/header');
         $this -> load -> view ('Admin/Login');
+
         $this->session->set_flashdata('error',NULL);
         $this->session->set_flashdata('success',NULL);
 
@@ -64,31 +67,43 @@ class AdminAuth extends CI_Controller{
 
     public function AdminRegister(){
 
-        //load AdminRegister views
+        //load AdminRegister views     
+        $this -> load -> view ('Admin/inc/header');  
+        if($this->session->userdata('UserLoginSession')){
+            redirect(base_url('Dashboard'));
+        }
         $this -> load -> view ('Admin/Register');
     }
 
     public function Dashboard(){
         
         //load AdminDashboard views
+        $this -> load -> view ('Admin/inc/header');
+        $this -> load -> view ('Admin/inc/navbar');
         $this -> load -> view ('Admin/Dashboard');
     }
 
     public function ManageUser(){
         
         //load AdminManageUser views
+        $this -> load -> view ('Admin/inc/header');
+        $this -> load -> view ('Admin/inc/navbar');
         $this -> load -> view ('Admin/Dashboard/ManageUser');
     }
 
     public function Verifications(){
         
         //load AdminVerifications views
+        $this -> load -> view ('Admin/inc/header');
+        $this -> load -> view ('Admin/inc/navbar');
         $this -> load -> view ('Admin/Dashboard/Verifications');
     }
 
     public function ViewLogs(){
         
         //load AdminViewLogs views
+        $this -> load -> view ('Admin/inc/header');
+        $this -> load -> view ('Admin/inc/navbar');
         $this -> load -> view ('Admin/Dashboard/ViewLogs');
     }
 
