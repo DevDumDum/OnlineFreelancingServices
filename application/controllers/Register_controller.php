@@ -69,7 +69,7 @@ class Register_controller extends CI_Controller {
 
         if($_SERVER['REQUEST_METHOD']=='POST'){
 
-            $this->form_validation->set_rules('companyid','CompanyID','trim|required|valid_email|is_unique[users.email],');
+            $this->form_validation->set_rules('companyid','CompanyID','trim|required|is_unique[users.email],');
             $this->form_validation->set_rules('password','Password','trim|required');
             $this->form_validation->set_rules('password2','Confirm Password','trim|required|matches[password]');
 

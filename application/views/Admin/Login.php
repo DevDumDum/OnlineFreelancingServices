@@ -20,10 +20,10 @@
 		<h1>Admin Login</h1>
 			<div class="mb-3 mb-3_custom">
 				<div class="form-text-email-padding">
-					<label for="email" class="form-label">Email:</label>
+					<label for="CompanyID" class="form-label">Company ID:</label>
 				</div>
 				<div class="form-padding">
-					<input type="email" placeholder="Email" name="email" class="form-control form-width" id="email" required>
+					<input type="text" placeholder="CompanyID" name="email" class="form-control form-width" id="email" required>
 				</div>
 			</div>
 				<div class="mb-3 mb-3_custom">

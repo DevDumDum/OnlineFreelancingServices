@@ -14,12 +14,6 @@
 		</nav>
 </header>
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Moderator Register</title>
-</head>
-
 <body class="modregisterpage">
 
   <div class="container container-custom">
@@ -32,16 +26,15 @@
           <label for="companyid" class="form-label">Company ID:</label>
         </div>
         <div class="form-padding-register">
-          <input  type="form-control" id="companyid" name="companyid" class="form-control form-width" type="text" onfocusout="check()" required>
+          <input id="companyid" name="companyid" class="form-control form-width" type="text" onfocusout="check()" required>
         </div>
-      </div>
+        <div id="errorEmail" class="textCont" style="display:none;">
+          <span title="ID already exists!" style="color:red;font-size:24px" class="icon-warning-sign">❗ ID already exists</span>
+        </div>
 
-      <div class="textCont" style="display:none;" id="errorEmail">
-        <span title="ID already exists!" style="color:red;font-size:24px" class="glyphicon glyphicon-exclamation-sign "></span>
-      </div>
-
-      <div class="textCont" style="display:none;" id="successEmail">
-        <span title="Looks good!" style="color:#32CD32;font-size:24px" class="glyphicon glyphicon-ok"></span>
+        <div id="successEmail" class="textCont" style="display:none;">
+          <span title="Looks good!" style="color:#32CD32;font-size:24px" class="fa-check">✔️</span>
+        </div>
       </div>
 
       <div class="mb-3 mb-3_custom">
@@ -83,7 +76,6 @@
 <script>
   function check(){
     $.post('<?=base_url('validation/check');?>', {email: $('#companyid').val()}, function(data){
-
     if(document.getElementById("companyid").value!=""){
       if(data.exists){
         document.getElementById("errorEmail").style.display="";
