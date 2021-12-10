@@ -89,15 +89,27 @@ class Register_controller extends CI_Controller {
                     $this->load->helper('url');
 
                     //login
-                    $this->load->model('OFS/OFS_model');
-                    $status = $this->OFS_model->checkPassword($password,$email);
-                    if($status!=false){
+                    $this->load->model('Admin/AdminAuth_model');
+                    $ver = $this->AdminAuth_model->verifyUser($password,$email);
+
+                    if($ver!=false){
+                        $email = $ver->email;
+                        $id = $ver->id;
+                        $user_type = $ver->user_type;
+    
                         $session_data = array(
                             'email'=>$email,
                             'id'=>$id,
+                            'user_type'=>$user_type,
                         );
                         $this->session->set_userdata('UserLoginSession',$session_data);
-                    }//end login
+                        redirect(base_url('AdminAuth/Dashboard'));
+
+                    }else{
+                        $this->session->set_flashdata('error','Email or Password is Wrong');
+                        $this->load->helper('url');
+                        redirect(base_url('AdminAuth/AdminRegister'));
+                    }//login
 
                     redirect(base_url('AdminAuth/Dashboard'));
 
