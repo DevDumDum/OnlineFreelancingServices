@@ -41,8 +41,15 @@ class Register_controller extends CI_Controller {
                     'status' => $status,
                     'user_type' => 'user'
                 );
+
+
                 
                 if ($this->Register_model->addUser($data)) {
+
+                    //save to verification database
+                    $this->Verification_controller->setVerification($data);
+
+                    //login
                     $this->load->helper('url');
                     $this->load->model('OFS/OFS_model');
                     $status = $this->OFS_model->checkPassword($password,$email);
@@ -57,7 +64,8 @@ class Register_controller extends CI_Controller {
                 }else{
                     $this->load->helper('url');
                     $this->session->set_flashdata('error','Error query.');
-                }
+                }//end login 
+                
             }else {
                 $this->session->set_flashdata('error','Error Input data');
                 redirect(base_url('Registerpage'));
