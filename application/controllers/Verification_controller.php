@@ -8,19 +8,14 @@ class Verification_controller extends CI_Controller{
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('Admin/Verification_model');
+        $this->load->model('OFS/OFS_model');
     }
 
-    // verifyee ID = {userID,postID,workID};
-    public function setVerification($verType, $verifyeeID){
-        if($this->db->insert()){}
+    public function respond(){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $uid = 'id';
 
-
-    }
-
-    public function getVerification($id){
-        
-        
-        return true;
+        }
     }
 
 }

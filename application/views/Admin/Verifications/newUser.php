@@ -15,8 +15,9 @@
         </div>
     </div>
     <!--BACK BUTTON-->
+
     <div class="container">
-    <button class="btn" onclick="window.location.href='<?php echo base_url('AdminAuth/Dashboard');?>';">Back</button>
+        <button class="btn" onclick="window.location.href='<?php echo base_url('AdminAuth/Dashboard');?>';">Back</button>
         <!---DASHBOARD BUTTONS-->
         <div class="dashboardButtons">
             <h1>VERIFICATION</h1>
@@ -29,54 +30,57 @@
             <button class="btn" onclick="window.location.href='VerifyReports';">Reports</button>
             <button class="btn" onclick="window.location.href='VerifyJobCategory';">Job Category</button>
         </div>
+
+        <form action="post"></form>
         <!---NEW USER TABLE-->
-        <div class="tables">
-            <table class = "table table-dark table-hover center">
-                <tr>
-                <th>User</th>
-                <th> </th>
-                </tr>
-                
-                <div>
+            <div class="tables">
+                <table class = "table table-dark table-hover center">
                     <tr>
-                <td onclick="newDetails()">
-                    <span>Alfreds Futterskie</span>
-                </td>
-                </div>
-                <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;" >Activate</button>
-                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
-                </td></tr>
-            
-                <tr>
-                <td onclick="newDetails()">
-                    <span>Centro comercial</span>
-                </td>
-                <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;">Activate</button>
-                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
-                </td></tr>
-            
-                <tr>
-                <td onclick="newDetails()">
-                    <span>Ernst Handel</span>
-                </td>
-                <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;">Activate</button>
-                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
-                </td></tr>
-            
-                <tr>
-                <td onclick="newDetails()">
-                    <span>Island Trading</span>
-                </td>
-                <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;" >Activate</button>
-                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
-                </td></tr>
-             
-            </table>
-        </div>
+                    <th>User</th>
+                    <th> </th>
+                    </tr>
+                    
+                    <div>
+                        <tr>
+                    <td onclick="newDetails()">
+                        <span name>Alfreds Futterskie</span>
+                    </td>
+                    </div>
+                    <td class="status">
+                        <button class="editbtn1" style="cursor: pointer;" >Activate</button>
+                        <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
+                    </td></tr>
+                
+                    <tr>
+                    <td onclick="newDetails()">
+                        <span>Centro comercial</span>
+                    </td>
+                    <td class="status">
+                        <button class="editbtn1" style="cursor: pointer;">Activate</button>
+                        <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
+                    </td></tr>
+                
+                    <tr>
+                    <td onclick="newDetails()">
+                        <span>Ernst Handel</span>
+                    </td>
+                    <td class="status">
+                        <button class="editbtn1" style="cursor: pointer;">Activate</button>
+                        <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
+                    </td></tr>
+                
+                    <tr>
+                    <td onclick="newDetails()">
+                        <span>Island Trading</span>
+                    </td>
+                    <td class="status">
+                        <button class="editbtn1" style="cursor: pointer;" >Activate</button>
+                        <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
+                    </td></tr>
+                
+                </table>
+            </div>
+        </form>    
     </div>
     <script>
         function newDetails(){

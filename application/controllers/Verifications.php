@@ -11,7 +11,12 @@ class Verifications extends CI_Controller{
         //load AdminVerifications views
         $this -> load -> view ('Admin/inc/header');
         $this -> load -> view ('Admin/inc/navbar');
-        $this -> load -> view ('Admin/Verifications/newUser');
+
+        $this->load->model('Admin/Verification_model');
+
+        $data['ver'] =  $this->Verification_model->get_table();
+
+        $this -> load -> view ('Admin/Verifications/newUser', $data);
     }
     public function VerifyRequest(){
         //load AdminVerifications views
