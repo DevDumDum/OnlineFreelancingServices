@@ -1,29 +1,52 @@
-.regbody{
+.registerBody{
     font-family: 'Poppins', sans-serif;
+    margin: 0; 
+    height: 100%;
+    overflow: hidden; /*eto yung scroll*/
 }
 
-.create{
-    text-align: center;
-    color: #ffff;
+.register-row_custom{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+/* left side */
+.registerLeftSide{
+    background-color: #1F4E70;
+    padding-bottom: 20px;
 }
 
-
-.welcome {
+.registerCreate{
     text-align: center;
     color: #ffff;
-    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.registerWelcome{
+    text-align: center;
+    color: #ffff;
+    padding-top: 40px;
     bottom: 0%;
+    font-weight: bold;
+    font-size: 4rem;
+    letter-spacing: 3px;
 }
 
-.already {
+.registerAlready, .loginLink{
     text-align: center;
     color: #ffff;
     font-style: italic;
+    font-size: 1.3rem;
+}
+
+.loginLink:hover{
+    color: rgb(185, 208, 241);
 }
 
 .fn, .ln, .mn, .cn, .ea, .ps, .Cps {
     width: 25rem;
     height: 30px;
+    font-size: 13px;
 }
 
 #id, #Work{
@@ -31,41 +54,49 @@
     height: 30px;
 }
 
-
 #insertform{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
 }  
 
-.textCont{
+.registerTextCont{
     text-align: left;
+    margin-bottom: 5px;
 }
 
 .customlabel{
-    font-size: 18px;
-    color: #ffff
-    
+    font-size: 14px;
+    color: #ffff;
+    margin-bottom: 0;
 }
 
-.rightside {
-    color:#000000;
-    font-size: 18px;
-    padding-left: 50px;
-    margin-top: 15%;
-}
-
-.h-leftSide{
-    background-color: #1F4E70;
-    padding-bottom: 20px;
-}
-
-.h-rightSide{
+/* right side */
+.registerRightSide{
     background-color: #E5E5E5;
     padding-bottom: 20px;
 }
 
-.h-row_custom{
-    height: 100%;
+.registerOtherForms{
+    text-align: center;
+    color:#1F4E70;
+    margin-top: 15%;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.registerOtherCustomLabel{
+    font-size: 14px;
+}
+
+.registerOtherCustomLabelSelection{
+    font-size: 13px;
+}
+
+.registerfilebtn{
+    width: 38%;
+    height: 30px;
+    margin-left: 35%;
 }
