@@ -16,6 +16,19 @@ class OFS_model extends CI_Model{
 
 	}
 	
+	public function get_user_details($id){
+		$this->db->select('last_name, 
+				first_name, middle_name, 
+				contact, email, profession_id, 
+				location, summary, calendarlist_id,
+				status');
+		$this->db->where('id', $id);
+		
+		return $this->db->get('users')->result_array();
+
+	}
+
+	//sira ka muna
 	public function get_username($id){
 		$this->db->select('first_name, middle_name, last_name');
 		$this->db->where('id', $id);

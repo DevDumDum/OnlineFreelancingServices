@@ -13,25 +13,25 @@ class Verifications extends CI_Controller{
         $this -> load -> view ('Admin/inc/navbar');
 
         $this->load->model('Admin/Verification_model');
-        $verification = $this->Verification_model->get_table();
-        $data = array();
-        $data['verification'] = $verification;
-
-        //print_r($data);
-        // TESTING //  TESTING //  TESTING //  TESTING //  TESTING //  TESTING //  TESTING // 
+        $table = $this->Verification_model->get_table();
+        $ver_table = array();
+        $ver_table['key_table'] = $table;
         
         $this->load->model('OFS/OFS_model');
-        $data2 = array();
-        $name = $this->OFS_model->get_username(3);
-        $data2['name'] = $name;
-    
-      
-        print_r($name);
+                
+        $v_list= array();
+        $x = 0;
+        foreach($table as $t){
+
+            $user_details = $this->OFS_model->get_user_details($t['content_ID']);
+            
+            $v_list[$x]['name'] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
+            $v_list[$x]['id'] = $t['content_ID'];
+            $x++;
+        }
+        $v_list_x['key_v_list'] = $v_list;
         
-
-        // TESTING //  TESTING //  TESTING //  TESTING //  TESTING //  TESTING //  TESTING // 
-
-        $this -> load -> view ('Admin/Verifications/newUser', $data);
+        $this -> load -> view ('Admin/Verifications/newUser',$v_list_x);
     }
 
     public function VerifyRequest(){

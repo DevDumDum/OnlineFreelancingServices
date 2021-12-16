@@ -47,12 +47,17 @@ class Register_controller extends CI_Controller {
                 if ($this->Register_model->addUser($data)) {
 
                     //save to verification database
-                    $this->Verification_controller->setVerification($data);
-
-                    //login
+                    //$this->Verification_controller->setVerification($data);
                     $this->load->helper('url');
                     $this->load->model('OFS/OFS_model');
+                    $this->load->model('Admin/Verification_model');
                     $status = $this->OFS_model->checkPassword($password,$email);
+
+                    if($this->Verification_model->new_user($status->$id)){
+                        //echo 'yes';
+                    }
+
+                    //login
                     if($status!=false){
                         $session_data = array(
                             'email'=>$email,
@@ -74,6 +79,7 @@ class Register_controller extends CI_Controller {
     }
 
     public function addMod() {
+    
 
         if($_SERVER['REQUEST_METHOD']=='POST'){
 

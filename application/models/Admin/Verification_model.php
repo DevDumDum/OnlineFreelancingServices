@@ -11,18 +11,16 @@ class Verification_model extends CI_Model{
     public function get_table(){
         return $table = $this->db->get('verification')->result_array();
     }
+    
+    public function new_user($id){
+        $data = array(
+            'verification_type' => $user,
+            'content_id' => $cid
+        );
 
-    // status sa users table
-	public function get_user_status($uid){
-		$this->db->select('status');
-		$this->db->from('users');
-		$this->db->where('id', $uid);
+        return ins_ver($data);
+    }
 
-		$q = $this->db->get();
-
-		if(isset($q)) return $q;
-		else return false;
-	}
 
     //pending = 0
     //accept = 1 
@@ -46,12 +44,7 @@ class Verification_model extends CI_Model{
     // sa verification table
     // verifyee ID = {userID,postID,workID};
     public function new_ver($verType, $cid){
-        $data = array(
-            'verification_type' => $verType,
-            'content_id' => $cid
-        );
 
-        return ins_ver($data);
     }
 
     public function get_ver($id){

@@ -41,34 +41,12 @@
                         <th>User</th>
                         <th> </th>
                     </tr>
-                    
-                    <tr>
-                        <td onclick="newDetails()">
-                            <span name>Alfreds Futterskie</span>
-                        </td>
 
-                        <td class="status">
-                            <button class="editbtn1" style="cursor: pointer;" >Activate</button>
-                            <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td onclick="newDetails()">
-                            <span><?php print_r($verification)?></span>
-                        </td>
-                        
-                        <td class="status">
-                            <button class="editbtn1" style="cursor: pointer;" >Activate</button>
-                            <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
-                        </td>                        
-                    </tr>
-
-                    <?php if(!empty($verification)) { foreach($verification as $v){?>
+                    <?php if(!empty($key_v_list)) { foreach($key_v_list as $v){?>
 
                         <tr>
                             <td onclick="newDetails()">
-                                <span><?php echo $v['content_ID']?></span>
+                                <span><?php echo $v['name']?></span>
                             </td>
                             
                             <td class="status">

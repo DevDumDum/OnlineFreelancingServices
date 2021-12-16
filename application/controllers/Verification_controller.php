@@ -11,11 +11,6 @@ class Verification_controller extends CI_Controller{
         $this->load->model('OFS/OFS_model');
     }
 
-    public function respond(){
-        if($_SERVER['REQUEST_METHOD']=='POST'){
-            $uid = 'id';
-
-        }
     }
 
 }
