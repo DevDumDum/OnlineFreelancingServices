@@ -13,11 +13,27 @@ class Verifications extends CI_Controller{
         $this -> load -> view ('Admin/inc/navbar');
 
         $this->load->model('Admin/Verification_model');
+        $verification = $this->Verification_model->get_table();
+        $data = array();
+        $data['verification'] = $verification;
 
-        $data['ver'] =  $this->Verification_model->get_table();
+        //print_r($data);
+        // TESTING //  TESTING //  TESTING //  TESTING //  TESTING //  TESTING //  TESTING // 
+        
+        $this->load->model('OFS/OFS_model');
+        $data2 = array();
+        $name = $this->OFS_model->get_username(3);
+        $data2['name'] = $name;
+    
+      
+        print_r($name);
+        
+
+        // TESTING //  TESTING //  TESTING //  TESTING //  TESTING //  TESTING //  TESTING // 
 
         $this -> load -> view ('Admin/Verifications/newUser', $data);
     }
+
     public function VerifyRequest(){
         //load AdminVerifications views
         $this -> load -> view ('Admin/inc/header');

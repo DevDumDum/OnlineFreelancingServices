@@ -18,11 +18,13 @@
 
     <div class="container">
         <button class="btn" onclick="window.location.href='<?php echo base_url('AdminAuth/Dashboard');?>';">Back</button>
+        
         <!---DASHBOARD BUTTONS-->
         <div class="dashboardButtons">
             <h1>VERIFICATION</h1>
             <p>(New User)</p>
         </div>
+
         <!--VERIFICATION BUTTONS-->
         <div class="btn_category">
             <button class="btn" onclick="window.location.href='VerifyUser';" disabled>New User</button>
@@ -32,55 +34,55 @@
         </div>
 
         <form action="post"></form>
-        <!---NEW USER TABLE-->
+            <!---NEW USER TABLE-->
             <div class="tables">
                 <table class = "table table-dark table-hover center">
                     <tr>
-                    <th>User</th>
-                    <th> </th>
+                        <th>User</th>
+                        <th> </th>
                     </tr>
                     
-                    <div>
+                    <tr>
+                        <td onclick="newDetails()">
+                            <span name>Alfreds Futterskie</span>
+                        </td>
+
+                        <td class="status">
+                            <button class="editbtn1" style="cursor: pointer;" >Activate</button>
+                            <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td onclick="newDetails()">
+                            <span><?php print_r($verification)?></span>
+                        </td>
+                        
+                        <td class="status">
+                            <button class="editbtn1" style="cursor: pointer;" >Activate</button>
+                            <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
+                        </td>                        
+                    </tr>
+
+                    <?php if(!empty($verification)) { foreach($verification as $v){?>
+
                         <tr>
-                    <td onclick="newDetails()">
-                        <span name>Alfreds Futterskie</span>
-                    </td>
-                    </div>
-                    <td class="status">
-                        <button class="editbtn1" style="cursor: pointer;" >Activate</button>
-                        <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
-                    </td></tr>
-                
-                    <tr>
-                    <td onclick="newDetails()">
-                        <span>Centro comercial</span>
-                    </td>
-                    <td class="status">
-                        <button class="editbtn1" style="cursor: pointer;">Activate</button>
-                        <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
-                    </td></tr>
-                
-                    <tr>
-                    <td onclick="newDetails()">
-                        <span>Ernst Handel</span>
-                    </td>
-                    <td class="status">
-                        <button class="editbtn1" style="cursor: pointer;">Activate</button>
-                        <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
-                    </td></tr>
-                
-                    <tr>
-                    <td onclick="newDetails()">
-                        <span>Island Trading</span>
-                    </td>
-                    <td class="status">
-                        <button class="editbtn1" style="cursor: pointer;" >Activate</button>
-                        <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
-                    </td></tr>
+                            <td onclick="newDetails()">
+                                <span><?php echo $v['content_ID']?></span>
+                            </td>
+                            
+                            <td class="status">
+                                <button class="editbtn1" style="cursor: pointer;" >Activate</button>
+                                <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
+                            </td>                        
+                        </tr>
+                    <?php }} else {}?>
+
                 
                 </table>
             </div>
         </form>    
+        
     </div>
     <script>
         function newDetails(){

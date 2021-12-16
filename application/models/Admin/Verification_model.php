@@ -9,7 +9,7 @@ class Verification_model extends CI_Model{
     }
 
     public function get_table(){
-        return ['verification_type'=>'user', 'content_ID'=>1];
+        return $table = $this->db->get('verification')->result_array();
     }
 
     // status sa users table
