@@ -2,7 +2,7 @@
 
 <body class="registerBody">
 
-    <div class="container-fluid container_custom">    
+    <div class="registerContainer container-fluid">    
         <form method="post" autocomplete="off" action="<?=base_url('Register_controller/adduser')?>" style="height:100%;">
             <div class="row register-row_custom">
                 <div class="col-md-6 no-gutters registerLeftSide">
