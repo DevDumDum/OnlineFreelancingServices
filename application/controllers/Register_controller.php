@@ -30,6 +30,7 @@ class Register_controller extends CI_Controller {
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
                 $status = true;
+                $user_type = 'user';
 
                 $data = array (
                     'first_name' => $fn,
@@ -39,37 +40,39 @@ class Register_controller extends CI_Controller {
                     'email' => $email,
                     'password' => $password,
                     'status' => $status,
-                    'user_type' => 'user'
+                    'user_type' => $user_type
                 );
 
-
-                
                 if ($this->Register_model->addUser($data)) {
 
-                    //save to verification database
-                    //$this->Verification_controller->setVerification($data);
                     $this->load->helper('url');
                     $this->load->model('OFS/OFS_model');
                     $this->load->model('Admin/Verification_model');
+                    
                     $status = $this->OFS_model->checkPassword($password,$email);
-
-                    if($this->Verification_model->new_user($status->$id)){
-                        //echo 'yes';
-                    }
-
+                    
                     //login
                     if($status!=false){
                         $session_data = array(
                             'email'=>$email,
-                            'id'=>$id,
+                            'id'=>$status->$id,
+                            'user_type'=>$user_type
                         );
+                        
+                        $this->Verification_model->new_ver($status->id, $user_type);
                         $this->session->set_userdata('UserLoginSession',$session_data);
+                        redirect(base_url('NewsFeed'));
+
+                    }else{
+                        $this->load->helper('url');
+                        $this->session->set_flashdata('error','Session Error.');
+                        redirect(base_url('Registerpage'));
                     }
-                    redirect(base_url('NewsFeed'));
+
                 }else{
                     $this->load->helper('url');
                     $this->session->set_flashdata('error','Error query.');
-                }//end login 
+                }
                 
             }else {
                 $this->session->set_flashdata('error','Error Input data');
@@ -101,22 +104,27 @@ class Register_controller extends CI_Controller {
 
                 // insert to db
                 if ($this->Register_model->addUser($data)) {
-                    $this->load->helper('url');
 
-                    //login
+                    $this->load->helper('url');                
                     $this->load->model('Admin/AdminAuth_model');
-                    $ver = $this->AdminAuth_model->verifyUser($password,$email);
+                    $this->load->model('Admin/Verification_model');
 
+                    $ver = $this->AdminAuth_model->verifyUser($password,$email);
                     if($ver!=false){
                         $email = $ver->email;
                         $id = $ver->id;
-                        $user_type = $ver->user_type;
-    
+                        $user_type = $ver->user_type;                        
+                        
                         $session_data = array(
                             'email'=>$email,
                             'id'=>$id,
-                            'user_type'=>$user_type,
+                            'user_type'=>$user_type
                         );
+
+                        // move data to verify
+                        $this->Verification_model->new_ver($id, $user_type);
+                        
+                        // set as login session
                         $this->session->set_userdata('UserLoginSession',$session_data);
                         redirect(base_url('AdminAuth/Dashboard'));
 
@@ -124,7 +132,7 @@ class Register_controller extends CI_Controller {
                         $this->load->helper('url');
                         $this->session->set_flashdata('error','Session Error.');
                         redirect(base_url('AdminAuth/AdminRegister'));
-                    }//login
+                    }
 
                 }else{
                     $this->load->helper('url');

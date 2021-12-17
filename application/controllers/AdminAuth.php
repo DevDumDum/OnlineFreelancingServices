@@ -70,7 +70,7 @@ class AdminAuth extends CI_Controller{
         //load AdminRegister views     
         $this -> load -> view ('Admin/inc/header');  
         if($this->session->userdata('UserLoginSession')){
-            redirect(base_url('Dashboard'));
+            redirect(base_url('AdminAuth/Dashboard'));
         }
         $this -> load -> view ('Admin/Register');
     }

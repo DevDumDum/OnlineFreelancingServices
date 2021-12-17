@@ -15,17 +15,28 @@ class OFS_model extends CI_Model{
 		}
 
 	}
+
+	public function get_user_details_from_email($email){
+		$this->db->select('id, last_name, 
+				first_name, middle_name, 
+				contact, profession_id, 
+				location, summary, 
+				calendarlist_id, status');
+				
+		$this->db->where('email', $email);
+		
+		return $this->db->get('users')->result_array();
+	}
 	
 	public function get_user_details($id){
-		$this->db->select('last_name, 
-				first_name, middle_name, 
-				contact, email, profession_id, 
-				location, summary, calendarlist_id,
-				status');
+		$this->db->select('last_name, first_name, 
+				middle_name, contact, email, 
+				profession_id, location, summary, 
+				calendarlist_id,status');
+
 		$this->db->where('id', $id);
 		
 		return $this->db->get('users')->result_array();
-
 	}
 
 	//sira ka muna
@@ -34,9 +45,7 @@ class OFS_model extends CI_Model{
 		$this->db->where('id', $id);
 		$name = $this->db->get('users');
 		
-		print_r($name->result_array());
 		return $name->result_array();
-		//return $name['first_name']." ".$name['middle_name']." ".$name['last_name'];
 	}
 }
 
