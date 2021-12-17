@@ -25,8 +25,22 @@ class Verification_model extends CI_Model{
     public function get_ver($id){
         $ver = $this->db->where('content_id', $id);
         
-        if(isset($ver)) return $ver->row();
+        if($ver) return $ver->result();
         else return false;
+    }
+
+    public function accept_row($id){
+        $this->db->set('status', 1);
+        $this->db->where('ID', $id);
+
+        if($this->db->update('verification')) return true;
+        else return false;
+    }
+
+    public function reject_row($id){
+        $this->db->set('status', -1);
+        $this->db->where('ID', $id);
+        $this->db->update('verification');
     }
 
     

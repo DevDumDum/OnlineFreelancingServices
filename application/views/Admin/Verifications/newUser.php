@@ -33,7 +33,7 @@
             <button class="btn" onclick="window.location.href='VerifyJobCategory';">Job Category</button>
         </div>
 
-        <form action="post"></form>
+        <form method="post">
             <!---NEW USER TABLE-->
             <div class="tables">
                 <table class = "table table-dark table-hover center">
@@ -46,23 +46,35 @@
 
                         <tr>
                             <td onclick="newDetails()">
-                                <span><?php echo $v['name']?></span>
+                                <span class="user_details"><?php echo $v['name']?></span>
                             </td>
                             
                             <td class="status">
-                                <button class="editbtn1" style="cursor: pointer;" >Activate</button>
-                                <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
+                                <button class="editbtn1" style="cursor: pointer;" id="activate" onclick="accept_ver(<?php echo $v['v_id'];?>)">Activate</button>
+                                <button class="editbtn2" style="cursor: pointer;" id="deactivate"onclick="alert(<?php echo $v['v_id'];?> )">Deactivate</button>
                             </td>                        
                         </tr>
-                    <?php }} else {}?>
+                    <?php }} else {
+                        echo "<tr><p>Other categories might have verifications left!</p></tr>";
+                    }?>
 
                 
                 </table>
             </div>
+            
         </form>    
+
         
     </div>
     <script>
+        function accept_ver(verify_id){
+            $.post('<?=base_url('Verification_controller/accept_ver');?>', {v_id: $(verify_id)}, function(){
+                
+            }, 'JSON');
+        }
+        function deny_ver(id){
+            
+        }
         function newDetails(){
             document.getElementById("hiddenbox").style.display="block";
             document.getElementById("hiddenbox").style.animation="fadebox .3s reverse linear";

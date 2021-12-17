@@ -61,7 +61,7 @@
 
       <div class="text-center text-button">
         <button type="button" class="btn btn-light border border-primary back-custom-color"><a href="AdminLogin">BACK</a></button>
-        <button type="submit" id="form-pass" class="btn btn-primary button-custom-color" onclick="add_to_verify()" disabled>Register</button>
+        <button type="submit" id="form-pass" class="btn btn-primary button-custom-color" disabled>Register</button>
       </div>
 
     </form>
@@ -74,10 +74,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-  function add_to_verify(){
-
-  }
-
   function check(){
     $.post('<?=base_url('validation/check');?>', {email: $('#companyid').val()}, function(data){
     if(document.getElementById("companyid").value!=""){
