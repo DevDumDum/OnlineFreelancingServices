@@ -13,46 +13,30 @@ class Verification_controller extends CI_Controller{
 
     public function accept_ver(){
         header('content-type: text/json');
-        if (!isset($_POST['v_id'])) {
+        if (!isset($_POST['v_id']) && !isset($_POST['u_id']) ) {
             exit;
         }
         $db = new PDO('mysql:host=localhost;dbname=loginsystem;charset=utf8mb4', 'root', '');
-        $query = $db->prepare('UPDATE verification SET status = 1 WHERE ID = :name');
-        $query->bindParam(':name', $_POST['v_id']);
+        $query = $db->prepare('UPDATE users SET status = 1 WHERE ID = :lala');
+        $query2 = $db->prepare('UPDATE verification SET viewer_id = 0 WHERE ID = :name');
+        $query2->bindParam(':name', $_POST['v_id']);
+        $query->bindParam(':lala', $_POST['u_id']);
         $query->execute();
+        $query2->execute();
     }
     
     public function reject_ver(){
         header('content-type: text/json');
-        if (!isset($_POST['v_id'])) {
+        if (!isset($_POST['v_id']) && !isset($_POST['u_id']) ) {
             exit;
         }
         $db = new PDO('mysql:host=localhost;dbname=loginsystem;charset=utf8mb4', 'root', '');
-        $query = $db->prepare('UPDATE verification SET status = -1 WHERE ID = :name');
-        $query->bindParam(':name', $_POST['v_id']);
+        $query = $db->prepare('UPDATE users SET status = -1 WHERE ID = :lala');
+        $query2 = $db->prepare('UPDATE verification SET viewer_id = 0 WHERE ID = :name');
+        $query2->bindParam(':name', $_POST['v_id']);
+        $query->bindParam(':lala', $_POST['u_id']);
         $query->execute();
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function aaaccept_ver(){
-        $v_id = $_POST['v_id'];
-        
-        if($this->Verification_model->accept_row($v_id)){
-
-        }else{
-            redirect(base_url('Verifications'));
-        }
+        $query2->execute();
     }
 
 }

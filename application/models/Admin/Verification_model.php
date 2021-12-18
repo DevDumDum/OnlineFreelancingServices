@@ -12,6 +12,39 @@ class Verification_model extends CI_Model{
         return $table = $this->db->get('verification')->result_array();
     }
     
+    public function get_existing_row($id){
+
+        $this->db->select('ID, verification_type, content_ID');
+        $this->db->where('viewer_id', $id);
+        $q = $this->db->get('verification');
+
+        return $q->result_array();
+    }
+
+    public function get_existing_count($id){
+        $this->db->select('ID, verification_type, content_ID');
+        $this->db->where('viewer_id', $id);
+        $q = $this->db->get('verification');
+
+        return $q->num_rows();
+    }
+
+    public function set_mod_id($id, $count){        
+        $this->db->set('viewer_id', $id);
+        $this->db->where('viewer_id', NULL);
+        $this->db->where('verification_type', 'user');
+        $this->db->limit($count);
+        $this->db->update('verification');
+    }
+    
+    public function set_admin_id($id, $count){        
+        $this->db->set('viewer_id', $id);
+        $this->db->where('viewer_id', NULL);
+        $this->db->where('verification_type', 'moderator');
+        $this->db->limit($count);
+        $this->db->update('verification');
+    }
+    
     public function new_ver($id, $user_type){
         $data = array(
             'verification_type' => $user_type,
@@ -28,21 +61,4 @@ class Verification_model extends CI_Model{
         if($ver) return $ver->result();
         else return false;
     }
-
-    public function accept_row($id){
-        $this->db->set('status', 1);
-        $this->db->where('ID', $id);
-
-        if($this->db->update('verification')) return true;
-        else return false;
-    }
-
-    public function reject_row($id){
-        $this->db->set('status', -1);
-        $this->db->where('ID', $id);
-        $this->db->update('verification');
-    }
-
-    
-
 }

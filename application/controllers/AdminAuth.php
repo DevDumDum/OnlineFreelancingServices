@@ -42,7 +42,9 @@ class AdminAuth extends CI_Controller{
 						'email'=>$email,
                         'id'=>$id,
                         'user_type'=>$user_type,
+                        'page'=>'Dashboard'
 					);
+                    
 					$this->session->set_userdata('UserLoginSession',$session_data);
                     redirect(base_url('AdminAuth/Dashboard'));
 				}else{

@@ -17,7 +17,7 @@ class Register_controller extends CI_Controller {
             $this->form_validation->set_rules('email','Email','trim|required|valid_email|is_unique[users.email],');
             $this->form_validation->set_rules('first-name','First name','alpha|trim|required');
             $this->form_validation->set_rules('last-name','Last name','alpha|trim|required');
-            $this->form_validation->set_rules('middle-name','Middle name','alpha|trim|required');
+            $this->form_validation->set_rules('middle-name','Middle name','alpha|trim');
             $this->form_validation->set_rules('contact','Contact Number','integer|trim|required');
             $this->form_validation->set_rules('password','Password','trim|required');
             $this->form_validation->set_rules('confirm-pw','Password','trim|required|matches[password]');
@@ -29,7 +29,7 @@ class Register_controller extends CI_Controller {
                 $contact = $this->input->post('contact');
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
-                $status = true;
+                $status = 0;
                 $user_type = 'user';
 
                 $data = array (
@@ -93,7 +93,7 @@ class Register_controller extends CI_Controller {
             if($this->form_validation->run()==TRUE){
                 $email = $this->input->post('companyid');
                 $password = $this->input->post('password');
-                $status = true;
+                $status = 0;
 
                 $data = array (
                     'email' => $email,

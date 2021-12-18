@@ -1,3 +1,11 @@
+<?php 
+if($this->session->userdata('UserLoginSession')){
+    $udata = $this->session->userdata('UserLoginSession');
+}else{
+    redirect(base_url('AdminAuth/AdminLogin'));
+}
+?>
+
 <body>
     <!--NAVBAR-->
     <header>
@@ -23,6 +31,7 @@
         <div class="dashboardButtons">
             <h1>VERIFICATION</h1>
             <p>(New User)</p>
+            <p><?php echo $udata['user_type'];?></p>
         </div>
 
         <!--VERIFICATION BUTTONS-->
@@ -36,6 +45,22 @@
         <form method="post">
             <!---NEW USER TABLE-->
             <div class="tables">
+                
+                <?php if($udata['user_type']=='admin'){?>
+
+                <select id="comboA" onchange="getComboA(this);">
+                    <?php if($udata['page'] == 'Verifaction-Moderator') {?>
+                        <option value="mod">Mod</option>
+                        <option value="user">User</option>
+                    <?php } else { ?>
+                        <option value="user">User</option>
+                        <option value="mod">Mod</option>
+                    <?php } ?>
+
+
+                </select>
+
+                <?php } ?>
                 <table class = "table table-dark table-hover center">
                     <tr>
                         <th>User</th>
@@ -44,14 +69,17 @@
 
                     <?php if(!empty($key_v_list)) { foreach($key_v_list as $v){?>
 
-                        <tr>
+                        <tr id="theTr_<?php echo $v['v_id'];?>">
                             <td onclick="newDetails()">
                                 <span class="user_details"><?php echo $v['name']?></span>
                             </td>
                             
                             <td class="status">
-                                <button class="editbtn1" style="cursor: pointer;" id="activate" onclick="accept_ver(<?php echo $v['v_id'];?>)">Activate</button>
-                                <button class="editbtn2" style="cursor: pointer;" id="deactivate"onclick="alert(<?php echo $v['v_id'];?> )">Deactivate</button>
+                                <button class="editbtn1" style="cursor: pointer;" id="activate" onclick="accept_ver(<?php echo $v['v_id'];?>,<?php echo $v['u_id'];?>)">Activate</button>
+                                <button class="editbtn2" style="cursor: pointer;" id="deactivate" onclick="deny_ver(<?php echo $v['v_id'];?>,<?php echo $v['u_id'];?>)">Deactivate</button>
+
+                                <input type="number" id="verify_id" value="<?php echo $v['v_id'];?>">
+                                <input type="number" id="user_id" value="<?php echo $v['u_id'];?>">
                             </td>                        
                         </tr>
                     <?php }} else {
@@ -61,20 +89,49 @@
                 
                 </table>
             </div>
-            
         </form>    
 
         
     </div>
     <script>
-        function accept_ver(verify_id){
-            $.post('<?=base_url('Verification_controller/accept_ver');?>', {v_id: $(verify_id)}, function(){
-                
+        function accept_ver(verify_id, user_id){
+            $.post('<?=base_url('Verification_controller/accept_ver');?>', {v_id: $('#verify_id').val(), u_id: $('#user_id').val()}, function(){
+                var id = "theTr_" + verify_id.toString();
+                var id2 = "theTr_" + user_id.toString();
+                document.getElementById(id).style.display="none";
+                document.getElementById(id2).style.display="none";
             }, 'JSON');
         }
-        function deny_ver(id){
-            
+        
+        function deny_ver(verify_id, user_id){
+            $.post('<?=base_url('Verification_controller/reject_ver');?>', {v_id: $('#verify_id').val(), u_id: $('#user_id').val()}, function(){
+                var id = "theTr_" + verify_id.toString();
+                var id2 = "theTr_" + user_id.toString();
+                document.getElementById(id).style.display="none";
+                document.getElementById(id2).style.display="none";
+            }, 'JSON');
         }
+
+        // ADMIN BUTTON
+
+        <?php
+            if($udata['user_type'] == 'admin'){
+        ?>
+
+        function getComboA(sel) {
+            
+            alert(<?php echo $udata['page'];?>);
+            var value = sel.value;
+
+            if(value == 'mod') $udata['page']='Verificaton-Moderator';
+            else $udata['page']='Verificaton-User';
+            
+
+            location.reload();
+        }
+                
+        <?php }?>
+
         function newDetails(){
             document.getElementById("hiddenbox").style.display="block";
             document.getElementById("hiddenbox").style.animation="fadebox .3s reverse linear";
