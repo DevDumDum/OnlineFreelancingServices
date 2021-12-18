@@ -4,7 +4,7 @@ class OFS_model extends CI_Model{
 
     function checkPassword($password,$email)
 	{
-		$query = $this->db->query("SELECT * FROM users WHERE password='$password' AND email='$email'");
+		$query = $this->db->query("SELECT * FROM users WHERE password='$password' AND email='$email' AND status='1'");
 		if($query->num_rows()==1)
 		{
 			return $query->row();

@@ -1,10 +1,26 @@
 <?php
 class Verifications extends CI_Controller{
     public function index(){
+        //$udata = $this->session->userdata('UserLoginSession');
+        //$newUdata = $udata;
+        //$newUdata['page']="Verificaton-User";
+        //$this->session->set_userdata('UserLoginSession', $newUdata);
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Verification-User');
         redirect(base_url('Verifications/VerifyUser'));
     }
     public function Dashboard(){
         redirect(base_url('AdminAuth/Dashboard'));
+    }
+
+    public function Mod(){
+        //$udata = $this->session->userdata('UserLoginSession');
+        //$newUdata = $udata;
+        //$newUdata['page']="Verification-Moderator";
+        //$this->session->set_userdata('UserLoginSession', $newUdata);
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Verification-Moderator');
+        redirect(base_url('Verifications/VerifyUser'));
     }
 
     public function VerifyUser(){
@@ -13,24 +29,29 @@ class Verifications extends CI_Controller{
         $this -> load -> view ('Admin/inc/navbar');
         
         $udata = $this->session->userdata('UserLoginSession');
-
+        $page = $this->session->userdata('page');
         $this->load->model('Admin/Verification_model');
         
         /*
             MAX NUMBER OF ROWS TO ASSIGN BASED ON UID OF THE CURRENT VIEWER TYPE
         */
         $max_count = 3;
-        $current = $this->Verification_model->get_existing_count($udata['id']);
 
-        if($current < $max_count){
-            if($udata['page'] == 'Verification-Moderator')
+        
+        if($page === 'Verification-Moderator'){
+            $current = $this->Verification_model->mod_get_existing_count($udata['id']);
+            if($current < $max_count){
                 $this->Verification_model->set_admin_id($udata['id'], $max_count-$current);
-            else
+            }
+            $table = $this->Verification_model->mod_get_existing_row($udata['id']);
+        }else{
+            $current = $this->Verification_model->get_existing_count($udata['id']);
+            if($current < $max_count){
                 $this->Verification_model->set_mod_id($udata['id'], $max_count-$current);
-
+            }
+            $table = $this->Verification_model->get_existing_row($udata['id']);
         }
 
-        $table = $this->Verification_model->get_existing_row($udata['id']);
         $ver_table = array();
         $ver_table['key_table'] = $table;
         

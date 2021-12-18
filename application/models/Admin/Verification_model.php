@@ -13,19 +13,35 @@ class Verification_model extends CI_Model{
     }
     
     public function get_existing_row($id){
-
         $this->db->select('ID, verification_type, content_ID');
         $this->db->where('viewer_id', $id);
+        $this->db->where('verification_type', 'user');
         $q = $this->db->get('verification');
+        return $q->result_array();
+    }
 
+    public function mod_get_existing_row($id){
+        $this->db->select('ID, verification_type, content_ID');
+        $this->db->where('viewer_id', $id);
+        $this->db->where('verification_type', 'moderator');
+        $q = $this->db->get('verification');
         return $q->result_array();
     }
 
     public function get_existing_count($id){
         $this->db->select('ID, verification_type, content_ID');
         $this->db->where('viewer_id', $id);
+        $this->db->where('verification_type', 'user');
         $q = $this->db->get('verification');
 
+        return $q->num_rows();
+    }
+
+    public function mod_get_existing_count($id){
+        $this->db->select('ID, verification_type, content_ID');
+        $this->db->where('verification_type', 'moderator');
+        $this->db->where('viewer_id', $id);
+        $q = $this->db->get('verification');
         return $q->num_rows();
     }
 

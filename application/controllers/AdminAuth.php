@@ -4,11 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class AdminAuth extends CI_Controller{
     public function index(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Dashboard');
         redirect(base_url('AdminAuth/Dashboard'));
     }
 
     public function AdminLogin(){
-        
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Login Page');
         if($this->session->userdata('UserLoginSession')){
             redirect(base_url('AdminAuth/Dashboard'));
         }
@@ -48,7 +51,7 @@ class AdminAuth extends CI_Controller{
 					$this->session->set_userdata('UserLoginSession',$session_data);
                     redirect(base_url('AdminAuth/Dashboard'));
 				}else{
-					$this->session->set_flashdata('error','Email or Password is Wrong');
+					$this->session->set_flashdata('error','Unverified Account or Email / Password is Wrong');
                     $this->load->helper('url');
                     redirect(base_url('AdminAuth/AdminLogin'));
 				}
@@ -68,7 +71,8 @@ class AdminAuth extends CI_Controller{
     }
 
     public function AdminRegister(){
-
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Register Page');
         //load AdminRegister views     
         $this -> load -> view ('Admin/inc/header');  
         if($this->session->userdata('UserLoginSession')){
@@ -78,7 +82,8 @@ class AdminAuth extends CI_Controller{
     }
 
     public function Dashboard(){
-        
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Dashboard');
         //load AdminDashboard views
         $this -> load -> view ('Admin/inc/header');
         $this -> load -> view ('Admin/inc/navbar');
@@ -86,7 +91,8 @@ class AdminAuth extends CI_Controller{
     }
 
     public function ManageUser(){
-        
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','ManageUser');
         //load AdminManageUser views
         $this -> load -> view ('Admin/inc/header');
         $this -> load -> view ('Admin/inc/navbar');
@@ -94,7 +100,8 @@ class AdminAuth extends CI_Controller{
     }
 
     public function ViewLogs(){
-        
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','ViewLogs');
         //load AdminViewLogs views
         $this -> load -> view ('Admin/inc/header');
         $this -> load -> view ('Admin/inc/navbar');
