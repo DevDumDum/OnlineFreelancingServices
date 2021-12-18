@@ -3,15 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class OnlineFreelancingServices extends CI_Controller{
     public function index(){
-        $this->load->helper('url');
-        $this -> load -> view ('OnlineFreelancingServices/inc/header');
-        $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
-		$this -> load -> view ('OnlineFreelancingServices/Homepage');
         if($this->session->userdata('UserLoginSession')){
             redirect(base_url('NewsFeed'));
         }
+        redirect(base_url('Homepage'));
 	}
     public function Homepage(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','HomePage');
+
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
@@ -21,12 +21,16 @@ class OnlineFreelancingServices extends CI_Controller{
         }
     }
     public function NewsFeed(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','NewsFeed');
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
         $this -> load -> view ('OnlineFreelancingServices/NewsFeed');
     }
     public function Aboutpage(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','About Page');
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
@@ -36,6 +40,8 @@ class OnlineFreelancingServices extends CI_Controller{
         }
     }
     public function Contactpage(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Contact Page');
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
@@ -45,6 +51,8 @@ class OnlineFreelancingServices extends CI_Controller{
         }
     }
     public function FAQpage(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','FAQ Page');
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
@@ -54,6 +62,8 @@ class OnlineFreelancingServices extends CI_Controller{
         }
     }
     public function Profilepage(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Profile Page');
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
@@ -63,6 +73,8 @@ class OnlineFreelancingServices extends CI_Controller{
         if($this->session->userdata('UserLoginSession')){
             redirect(base_url('NewsFeed'));
         }
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Login Page');
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/Login');
@@ -95,7 +107,7 @@ class OnlineFreelancingServices extends CI_Controller{
 					$this->load->helper('url');
                     redirect(base_url('NewsFeed'));
 				}else{
-					$this->session->set_flashdata('error','Email or Password is Wrong');
+					$this->session->set_flashdata('error','Unverified Account or Email / Password is Wrong');
                     $this->load->helper('url');
                     redirect(base_url('Loginpage'));
 				}
@@ -108,6 +120,8 @@ class OnlineFreelancingServices extends CI_Controller{
     }
 
     public function Registerpage(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Register Page');
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/Register');
