@@ -1,3 +1,9 @@
+<?php 
+if($this->session->userdata('page')){
+    $page = $this->session->userdata('page');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,5 +26,5 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;1,300&display=swap" rel="stylesheet">
 
-    <title>title</title>
+    <title><?php echo $page?></title>
 </head>

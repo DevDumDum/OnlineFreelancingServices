@@ -40,7 +40,7 @@
 						<button type="submit" class="btn button-custom-color btn-lg" id ="login-now">LOG IN</button>
 					</div>
 					<?php if($this->session->flashdata('error')) {	?>
-						<p class="text-danger text-center" style="margin-top: 10px;">
+						<p class="text-danger text-center">
 							<?=$this->session->flashdata('error')?>
 						</p>
 					<?php } ?>
@@ -51,7 +51,7 @@
 </body>
 		<?php
 			if($this->session->flashdata('error')) {	?>
-			<p class="text-danger text-center" style="margin-top: 10px;"> <?=$this->session->flashdata('error')?></p>
+			<p class="text-danger text-center"> <?=$this->session->flashdata('error')?></p>
 		<?php } ?>
 						
 	</form> -->

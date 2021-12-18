@@ -1,3 +1,9 @@
+<?php 
+if($this->session->userdata('page')){
+    $page = $this->session->userdata('page');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +11,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin Login</title>
+	<title><?php echo $page?></title>
 	<link rel="stylesheet" href="<?php echo base_url();?>public/css/adminloginpage.css"/>
 	<link rel="stylesheet" href="<?php echo base_url();?>public/css/adminnavbar.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>public/css/dashboard.css">
@@ -31,5 +37,4 @@
             padding: 8px;
         }
     </style>
-
 </head>

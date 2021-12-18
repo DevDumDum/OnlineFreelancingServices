@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class validation extends CI_Controller {
-    public function check(){
+    
+    public function accept_ver(){
         header('content-type: text/json');
         if (!isset($_POST['email'])) {
             exit;
