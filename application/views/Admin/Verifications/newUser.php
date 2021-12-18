@@ -100,7 +100,8 @@ if($this->session->userdata('UserLoginSession')){
         }
         
         function deny_ver(verify_id, user_id){
-            $.post('<?=base_url('Verification_controller/accept_ver');?>', {v_id: verify_id, u_id: user_id}, function(data){
+            var id = "theTr_" + verify_id.toString();
+            $.post('<?=base_url('Verification_controller/reject_ver');?>', {v_id: verify_id, u_id: user_id}, function(data){
                 alert(data.msg);
                 document.getElementById(id).style.display="none";
             }, 'JSON');

@@ -40,7 +40,11 @@ class Verification_controller extends CI_Controller{
         $query2->bindParam(':name', $_POST['v_id']);
         $query->execute();
         $query2->execute();
-        echo json_encode(array('exists' => $query->fetchColumn() > 0));
+        if($query->execute() && $query2->execute()){
+            echo json_encode(array('msg' => "Success"));
+        }else{
+            echo json_encode(array('msg' => "Error"));
+        }
     }
 
 }
