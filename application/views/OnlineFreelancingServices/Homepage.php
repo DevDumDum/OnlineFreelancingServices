@@ -2,5 +2,4 @@
 
 <?php include("inc/default.php") ?>
 
-
 </html>

@@ -12,7 +12,7 @@ input#search-bar{
     height: 55px;
     padding: 0 20px;
     font-size: 1rem;
-    border: 2px solid #363535;
+    border: 1px solid #363535;
     border-radius: 15px 15px 15px 15px;
     outline: none;
 }
@@ -30,6 +30,7 @@ input#search-bar{
 
 .h-d-down{
     background-color: #FFFFFF;
+    border: 1px solid #363535;
     height: 55px;
     width: 65px;
     border-radius: 15px

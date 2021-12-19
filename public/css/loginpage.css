@@ -1,69 +1,85 @@
-.container_custom{
+.loginBody{
+    font-family: 'Poppins', sans-serif;
+    margin: 0; 
+    height: 100%;
+    overflow: hidden; /*eto yung scroll*/
+}
+
+.login-row_custom{
     height: 100%;
     width: 100%;
     position: absolute;
 }
 
-.row_custom{
-    height: 100%;
-    position: inherit;
-}
-
-.left-column{
+/*leftside*/
+.loginLeftSide{
     background-color: #1F4E70;
     text-align: center;
     color: #ffffff;
-    padding-top:10%;
+    padding-top:15%;
     height: inherit;
 }
 
-.left-column a{
-    color: #ffffff;
+.loginH1{
+    font-weight: bold;
+    font-size: 6rem;
+    letter-spacing: 1px;
 }
 
+.loginDonothave, .registerLink{
+    text-align: center;
+    color: #ffff;
+    font-style: italic;
+    font-size: 1.3rem;
+}
+
+.registerLink:hover{
+    color: rgb(185, 208, 241);
+}
+
+/*right side*/
 .right-column{
     background-color: #E5e5e5;
     text-align: center;
     color: #000000;
     padding-top:15%;
     height: inherit;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginFormPassword{
+    color: #1F4E70;
+    font-size: 16px;
+}
+
+.loginFormEmail{
+    color: #1F4E70;
+    font-size: 16px;
+}
+
+#loginInsertFormID{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
 .mb-3_custom{
-    width: 80%;
+    width: 38%;
+    text-align: left;
 }
 
-.form-width{
-    width: 50%;
+.loginforgotPass{
+    color: #1F4E70;
+    font-style: italic;
+    font-size: 1.3rem;
 }
 
-.form-padding{
-    padding-left: 30%;
-}
-
-.form-text-email-padding{
-    padding-right: 35%;
-}
-
-.form-text-password-padding{
-    padding-right: 32%;
-}
-
-.text-button {
-    padding-right: 4%;
-}
-
-.text-button a{
-    text-decoration: none;
-}
-
-.forgot-password-text{
-    padding-right: 4%;
-}
-
-.forgot-password-text a{
-    color: #000000;
-
+.loginforgotPass:hover{
+    color: rgb(138, 180, 238);
 }
 
 .button-custom-color{
@@ -78,4 +94,13 @@
 .back-custom-color:hover{
     background-color: #89b8ff !important;
     border-color: #89b8ff !important;
+}
+
+#loginBack{
+    text-decoration: none;
+}
+
+#login-now{
+    outline-color: black;
+    color: #ffff;
 }

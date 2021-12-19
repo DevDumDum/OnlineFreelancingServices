@@ -1,41 +1,46 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<body>
-	<div class="container-fluid container_custom">
+<body class = "loginBody">
+	<div class="container-fluid containerLogin">
 		<form method="post" autocomplete="off" action="<?=base_url('Loginpage')?>" style="height:100%;">
-			<div class="row align-items-start row_custom">
-				<div class="col left-column">
-					<h1 class="fw-bolder display-3">WELCOME</h1>
-					<img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" alt="" height="90" class="d-inline-block align-text-top">
-					<br><i>Does not have an account? <a href="Registerpage"><u>Sign Up</u></a></i>
+			<div class="row login-row_custom align-items-start">
+				<div class="col-md-6 loginLeftSide">
+					<h1 class= "loginH1">WELCOME</h1>
+					<img class="loginLogoimg" src="<?php echo base_url();?>public/images/logo.png" alt="" height="95" class="d-inline-block align-text-top">
+					<br><br><i class = "loginDonothave">Do not have an account yet? <a href="Registerpage" class="registerLink"><u>Sign Up</u></a></i>
 				</div>
 				<div class="col right-column">
-					<div class="mb-3 mb-3_custom">
-						<div class="form-text-email-padding">
-							<label for="email" class="form-label ">Email</label>
+					<div id="loginInsertFormID">
+						<div class="mb-3 mb-3_custom">
+							<div class="form-text-email-padding">
+								<label for="email" class="loginFormEmail form-label">Email</label>
+							</div>
+							<div class="form-padding">
+								<input type="email" placeholder="Email" name="email" class="loginInsertForm form-control"
+									id="email">
+							</div>
 						</div>
-						<div class="form-padding">
-							<input type="email" placeholder="Email" name="email" class="form-control form-width"
-								id="email">
+						<div class="mb-3 mb-3_custom">
+							<div class="form-text-password-padding">
+								<label for="password" class="loginFormPassword form-label">Password</label>
+							</div>
+							<div class="form-padding">
+								<input type="password" name="password" placeholder="Password"
+									class="loginInsertForm form-control" id="password">
+							</div>
 						</div>
 					</div>
-					<div class="mb-3 mb-3_custom">
-						<div class="form-text-password-padding">
-							<label for="password" class="form-label">Password</label>
-						</div>
-						<div class="form-padding">
-							<input type="password" name="password" placeholder="Password"
-								class="form-control form-width" id="password">
-						</div>
-					</div>
-					<div class="forgot-password-text mb-3">
-						<a href="#">Forgot Password or Email?</a>
-					</div>
+
+					<div>
+						<a href="#" class="loginforgotPass">Forgot Password or Email?</a> 
+					</div> 
+					<br>
+					<br>
 					<div class="text-center text-button">
-						<button type="button" class="btn btn-light border border-primary back-custom-color"><a href="Homepage">BACK</a></button>
-						<button type="submit" class="btn btn-primary button-custom-color">Login Now</button>
+						<button type="button" class="btn btn-light border border-primary back-custom-color btn-lg"><a href="Homepage" id ="loginBack">BACK</a></button>
+						<button type="submit" class="btn button-custom-color btn-lg" id ="login-now">LOG IN</button>
 					</div>
 					<?php if($this->session->flashdata('error')) {	?>
-						<p class="text-danger text-center" style="margin-top: 10px;">
+						<p class="text-danger text-center">
 							<?=$this->session->flashdata('error')?>
 						</p>
 					<?php } ?>
@@ -46,7 +51,7 @@
 </body>
 		<?php
 			if($this->session->flashdata('error')) {	?>
-			<p class="text-danger text-center" style="margin-top: 10px;"> <?=$this->session->flashdata('error')?></p>
+			<p class="text-danger text-center"> <?=$this->session->flashdata('error')?></p>
 		<?php } ?>
 						
 	</form> -->

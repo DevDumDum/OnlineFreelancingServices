@@ -10,7 +10,7 @@ if($this->session->userdata('UserLoginSession')){
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <ul class="nav justify-content-left collapse navbar-collapse" id="navbarCollapse">
+                <ul class="nav justify-content-center collapse navbar-collapse" id="navbarCollapse">
                     <li class="nav-item">
                         <a href="NewsFeed" class="nav-item active nav-link">NewsFeed</a></li>
                     </li>
@@ -37,7 +37,7 @@ if($this->session->userdata('UserLoginSession')){
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <ul class="nav justify-content-left collapse navbar-collapse" id="navbarCollapse">
+                <ul class="nav justify-content-center collapse navbar-collapse" id="navbarCollapse">
                     <li class="nav-item">
                         <a href="Homepage" class="nav-item active nav-link">Home</a></li>
                     </li>
@@ -53,15 +53,16 @@ if($this->session->userdata('UserLoginSession')){
                 </ul>
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                        <a href="Loginpage" class="nav-item nav-link">Login</a></li>
+                        <a href="Loginpage" class="nav-item nav-link">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a href="Registerpage" class="nav-item nav-link">SignUp</a></li>
+                        <a href="Registerpage" class="nav-item nav-link">SignUp</a>
                     </li>
                 </ul>
             </div>
     </nav>
 <?php };?>
    <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </header>

@@ -40,8 +40,8 @@
                 </td>
                 </div>
                 <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;" >Activate</button>
-                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
+                    <button class="editbtn1" style="cursor: pointer;" id="activate">Activate</button>
+                    <button class="editbtn2" style="cursor: pointer;" id="deactivate">Deactivate</button>
                 </td></tr>
             
                 <tr>
