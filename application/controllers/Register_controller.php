@@ -9,6 +9,10 @@ class Register_controller extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('OFS/Register_model');
+        $this->load->model('OFS/OFS_model');
+
+        //get all users
+        $this->data['users'] = $this->OFS_model->getAllUsers();
     }
 
     public function addUser() {
@@ -29,8 +33,10 @@ class Register_controller extends CI_Controller {
                 $contact = $this->input->post('contact');
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
-                $status = 0;
+                $status = NULL;
                 $user_type = 'user';
+                $set = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $code = substr(str_shuffle($set), 0, 12);
 
                 $data = array (
                     'first_name' => $fn,
@@ -40,13 +46,52 @@ class Register_controller extends CI_Controller {
                     'email' => $email,
                     'password' => $password,
                     'status' => $status,
+                    'code' => $code,
                     'user_type' => $user_type
                 );
+
+                //set up email
+                $config = Array(
+                    'protocol' => 'smtp',
+                    'smtp_host' => 'ssl://smtp.googlemail.com',
+                    'smtp_port' => 465,
+                    'smtp_user' => 'kobelames21@gmail.com', // change it to yours
+                    'smtp_pass' => 'awcwsivurwadfdem', // change it to yours
+                    'mailtype' => 'html',
+                    'charset' => 'iso-8859-1',
+                    'wordwrap' => TRUE
+                  );
+                  
+                  $message = 	"
+                  <html>
+                  <head>
+                      <title>Verification Code</title>
+                  </head>
+                  <body>
+                      <h2>Thank you for Registering.</h2>
+                      <p>Please click the link below to activate your account.</p>
+                      <h4><a href='".base_url()."Register_controller/activate/".$code."'>Activate My Account</a></h4>
+                  </body>
+                  </html>
+                  ";
+                        $this->load->library('email', $config);
+                        $this->email->set_newline("\r\n");
+                        $this->email->from($config['smtp_user']); // change it to yours
+                        $this->email->to($email);// change it to yours
+                        $this->email->subject('Testing');
+                        $this->email->message($message);
+                        if($this->email->send())
+                        {
+                            $this->session->set_flashdata('message', 'Email sent.');
+                        }
+                        else
+                       {
+                        $this->session->set_flashdata('message', 'Email not sent');
+                       }
 
                 if ($this->Register_model->addUser($data)) {
 
                     $this->load->helper('url');
-                    $this->load->model('OFS/OFS_model');
                     $this->load->model('Admin/Verification_model');
                     
                     $status = $this->OFS_model->checkPassword($password,$email);
@@ -80,6 +125,34 @@ class Register_controller extends CI_Controller {
             }
         }        
     }
+
+    public function activate(){
+        $code =  $this->uri->segment(3);
+	
+
+		//fetch user details
+		$user = $this->OFS_model->getUser($code);
+
+		//if code matches
+		if($user['code'] == $code){
+			//update user active status
+			$data['status'] = 0;
+			$query = $this->OFS_model->activate($data, $code);
+
+			if($query){
+				$this->session->set_flashdata('message', 'User activated successfully');
+			}
+			else{
+				$this->session->set_flashdata('message', 'Something went wrong in activating account');
+			}
+		}
+		else{
+			$this->session->set_flashdata('message', 'Cannot activate account. Code didnt match');
+		}
+
+		redirect(base_url('Loginpage'));
+
+	}
 
     public function addMod() {
     
