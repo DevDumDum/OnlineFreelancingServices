@@ -1,3 +1,13 @@
+<?php 
+if($this->session->userdata('UserLoginSession')){
+    $udata = $this->session->userdata('UserLoginSession');
+    if(!($udata['user_type']==='admin' || $udata['user_type']==='moderator')){
+      redirect(base_url('AdminAuth/AdminLogout'));
+    }
+}else{
+    redirect(base_url('AdminAuth/AdminLogin'));
+}
+?>
 <header>
     <nav class="navbar custom-navbar navbar-expand-md navbar-dark">
             <div class="container-fluid">
@@ -20,4 +30,3 @@
             </div>
     </nav>
 </header>
-
