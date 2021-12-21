@@ -24,9 +24,18 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->session->userdata('page');
         $this->session->set_userdata('page','NewsFeed');
         $this->load->helper('url');
+
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
-        $this -> load -> view ('OnlineFreelancingServices/NewsFeed');
+
+        // get posts data
+        $this->load->model('OFS/Post_model');
+        $posts = $this->Post_model->get_table();
+        $table = array();
+    
+        $table['key_posts'] = $posts;
+
+        $this -> load -> view ('OnlineFreelancingServices/NewsFeed', $table);
     }
     public function Aboutpage(){
         $this->session->userdata('page');
