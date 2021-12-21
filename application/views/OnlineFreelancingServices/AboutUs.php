@@ -1,40 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<link rel="stylesheet" href="<?php echo base_url();?>public/css/aboutuspage.css">
 
 <body>
-
-<style>
-    .AUheading {
-        font-family: 'Poppins', sans-serif; 
-        color: #1F4E70; 
-        font-weight: bolder;
-        font-size: 4rem;
-    }
-    .text-info {
-        font-size: 2rem;
-    }
-    p{
-        font-size: 1.7rem;
-        font-family: 'Poppins', sans-serif;
-    }
-    .card {
-        margin-top: 5%;
-        margin-bottom: 5%;
-        transition: all 0.2s ease;
-        cursor: pointer
-    }
-    .card-text {
-        text-align: center;
-    }
-    .card:hover {
-    box-shadow: 5px 6px 6px 2px #e9ecef;
-    transform: scale(1.1)
-    }
-    @media (min-width: 992px) {
-        .AUheading {
-            font-size: 6rem;
-        }
-    }
-</style>
 
 <div class="main text-center mt-5">
     <h1 class="AUheading">ABOUT US</h1>
@@ -81,6 +48,5 @@
     </div>
 </div>
     
-
 </body>
 </html>
