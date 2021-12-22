@@ -109,6 +109,7 @@ class OnlineFreelancingServices extends CI_Controller{
 					$session_data = array(
 						'email'=>$email,
                         'id'=>$id,
+                        
 					);
 
 					$this->session->set_userdata('UserLoginSession',$session_data);
