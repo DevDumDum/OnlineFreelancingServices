@@ -13,7 +13,11 @@ if($this->session->userdata('page')){
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php echo $page?></title>
 	<link rel="stylesheet" href="<?php echo base_url();?>public/css/adminloginpage.css"/>
+    
+    <!--
 	<link rel="stylesheet" href="<?php echo base_url();?>public/css/adminnavbar.css" />
+    -->
+
     <link rel="stylesheet" href="<?php echo base_url();?>public/css/dashboard.css">
 	<!-- CSS only -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"

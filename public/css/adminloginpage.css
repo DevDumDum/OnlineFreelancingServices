@@ -1,4 +1,5 @@
 .adminloginpage{
+    font-family: 'Poppins', sans-serif;
     background-color: #E5e5e5
 }
 .modregisterpage{
@@ -78,4 +79,19 @@
 .back-custom-color:hover{
     background-color: #89b8ff !important;
     border-color: #89b8ff !important;
+}
+
+.form-label {
+    font-size: 1rem;
+    padding-left: 2rem;
+}
+
+.admin-signup{
+    color: #1F4E70; 
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.admin-signup:hover{
+    color: rgb(109, 161, 235);
 }

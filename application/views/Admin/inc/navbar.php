@@ -18,7 +18,7 @@ if($this->session->userdata('UserLoginSession')){
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <ul class="nav justify-content-end collapse navbar-collapse " id="navbarCollapse">
-                    <li class="nav-item d-flex justify-content-left ">
+                    <li class="nav-item d-flex justify-content-left "  id = "try">
                         <img class="img-fluid" src="<?php echo base_url();?>public/images/changepassword.png" alt="" width="13%">
                         <a href="#" class="nav-link-custom">Change Password</a>
                     </li>
