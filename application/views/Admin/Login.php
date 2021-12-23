@@ -17,7 +17,8 @@
 <body class="adminloginpage">
 	<form method="post" autocomplete="off" action="<?=base_url('AdminAuth/AdminLogin')?>" style="height:100%;">
 		<div class="container container-custom">
-		<h1>Admin Login</h1>
+		<h1 class = "admin-login-h1">Admin Login</h1>
+		<br>
 			<div class="mb-3 mb-3_custom">
 				<div class="form-text-email-padding">
 					<label for="CompanyID" class="form-label">Company ID:</label>
@@ -33,7 +34,7 @@
 					<div class="form-padding">
 					<input type="password" name="password" placeholder="Password" class="form-control form-width" id="password" required>
 					</div>
-					<br><i>Does not have an account? <a href="AdminRegister"><u>Sign Up</u></a></i>
+					<br><i>Does not have an account? <a href="AdminRegister" class = "admin-signup"><u>Sign Up</u></a></i>
 				</div>
 				<div class="text-center text-button">
 					<button type="submit" class="btn btn-primary button-custom-color">Login Now</button>
