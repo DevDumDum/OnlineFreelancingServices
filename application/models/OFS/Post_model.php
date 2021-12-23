@@ -10,8 +10,8 @@ class Post_model extends CI_Model{
 
    public function get_table(){
         $this->db->select('ID, poster_ID, profession_ID, 
-        worker_count, requirements, location, timestamp, status');
-        $this->db->where('status', 1);
+        worker_count, requirements, location, timestamp,
+        min_pay, max_pay, status');
 
         return $table = $this->db->get('post')->result_array();
    }

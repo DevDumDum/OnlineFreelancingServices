@@ -62,16 +62,19 @@ else
             </div>
 
             <label for="">Description</label>
-            <input type="text" name="description" id="desc"><br>
+            <input type="text" name="description" id="desc" placeholder="Requirements"><br>
 
             <label for="">Worker(s) needed</label>
             <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null"><br>
             
             <label for="">Location</label>
-            <input type="text" name="location" id="location"><br>
+            <input type="text" name="location" id="location" placeholder="Work location"><br>
 
             <label for="">Minimum Payment</label>
-            <input type="number" name="min-pay" id="min_pay" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null"><br>
+            <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
+            
+            <label for="">Fixed</label>
+            <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"><br>
             
             <label for="">Maximum Payment</label>
             <input type="number" name="max-pay" id="max_pay" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null"><br>
@@ -92,4 +95,15 @@ else
     <br>
     <?php include("inc/workResult.php"); ?>
 </body>
+<script>
+    function set_min_pay(c){
+        if(c.checked){
+            document.getElementById("min_pay").disabled=true;
+            document.getElementById("min_pay").value="";
+        }else {
+            document.getElementById('min_pay').value=1;
+            document.getElementById('min_pay').disabled=false;
+        }
+    }
+</script>
 </html>

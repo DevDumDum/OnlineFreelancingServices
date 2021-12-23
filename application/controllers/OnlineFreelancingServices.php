@@ -33,11 +33,26 @@ class OnlineFreelancingServices extends CI_Controller{
 
         $this->load->model('OFS/Work_model');
         $works = $this->Work_model->get_table();
+
+        $this->load->model('OFS/OFS_model');
         
         $table = array();
-    
-        $table['key_posts'] = $posts;
         $table['key_works'] = $works;
+
+        $this->load->model('OFS/OFS_model');
+        $users = array();
+        $x = 0;
+        foreach($posts as $p){
+            $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
+            $posts[$x]['post_owner'] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
+            $x++;
+        }        
+        $table['key_posts'] = $posts;
+
+        // DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! 
+        //echo "<pre>";
+        //print_r($table);
+
 
         $this -> load -> view ('OnlineFreelancingServices/NewsFeed', $table);
     }

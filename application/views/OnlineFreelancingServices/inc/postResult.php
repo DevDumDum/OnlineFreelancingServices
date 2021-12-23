@@ -9,7 +9,7 @@
             <div>
                 <img src="">
                 <div>
-                <p>Description: <?php echo $p['requirements'] ?> </p>
+                    <p><?php echo $p['post_owner']." needs ".$key_works[$p['profession_ID']-1]['profession_type']."<b>!</b>"; ?></p>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
                 <!--Load skill needed-->
             </div>
             <div>
-                Description~~
+                    <p>Description: <?php echo $p['requirements'] ?> </p>
             </div>
             <div>
                 <img src=""><br>
@@ -40,7 +40,13 @@
                 <p>Numbers of Workers: <?php echo $p['worker_count'] ?> </p>
             </div>
 
-            <div>Expected Fee:</div>
+            <div>Expected Fee:
+                <?php 
+                    if(!empty($p['min_pay'])){ echo " &#8369 ".$p['min_pay']." up to ";}
+                    echo "&#8369 ".$p['max_pay'];
+
+                ?>
+            </div>
             <div><p>Location: <?php echo $p['location'] ?> </p></div>
             <div><p><?php echo date("M j Y", $p['timestamp'])." ".date("h:iA", $p['timestamp']) ?> </p></div>
         </div>
