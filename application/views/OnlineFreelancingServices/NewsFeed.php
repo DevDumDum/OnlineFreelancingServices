@@ -21,9 +21,11 @@ else
         Type of Work:
         <select name="Work">
             <option value="null">----</option>
-            <option value="Work1">Work1</option>
-            <option value="Work2">Work2</option>
-            <option value="Work3">Work3</option>
+                <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
+                    <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
+
+
+                <?php }} ?>
         </select><br><br>
 
         <!--Location:-->
@@ -40,28 +42,40 @@ else
     ==========================================
     <!--PopUp createPost-->
     <div>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="<?=base_url('Post_controller/addPost')?>" method="post" enctype="multipart/form-data">
             Create Post<br>
             <div>
-                <!-- ajax to fetch work id upong line 37 event -->
-                <select name="Work">
-                    <option value="null">----</option>
+
+            <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
+                
+                <select name="work" id="works">
                     <option value="null" >Select</option>
-                    <option value="Work1">Carpenter</option>
-                    <option value="Work2">Accountant</option>
-                    <option value="Work3">Architect</option>
-                    <option value="Work4">Cashier</option>
-                    <option value="Work5">Web Developer</option>
-                    <option value="Work6">Cleaner</option>
-                    <option value="Work7">Data Encoder</option>
-                    <option value="Work8">Electrician</option>
-                    <option value="Work9">Engineer</option>
-                    <option value="Work10">Teacher</option>
+
+                    <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
+                        <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
+
+
+                    <?php }} ?>
+
                 </select>
                 <button name="addWorkPost">+</button>
             </div>
-            <textarea name="description"></textarea><br>
-            <textarea name="location" value="<?php echo $ ?>"></textarea><br>
+
+            <label for="">Description</label>
+            <input type="text" name="description" id="desc"><br>
+
+            <label for="">Worker(s) needed</label>
+            <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null"><br>
+            
+            <label for="">Location</label>
+            <input type="text" name="location" id="location"><br>
+
+            <label for="">Minimum Payment</label>
+            <input type="number" name="min-pay" id="min_pay" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null"><br>
+            
+            <label for="">Maximum Payment</label>
+            <input type="number" name="max-pay" id="max_pay" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null"><br>
+            
             <input type="file" name="fileToUpload" id="fileToUpload"><br>
             <input type="submit" value="submit" name="submit">
         </form>

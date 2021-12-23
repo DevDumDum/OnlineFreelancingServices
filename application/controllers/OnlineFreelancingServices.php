@@ -28,12 +28,16 @@ class OnlineFreelancingServices extends CI_Controller{
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
 
-        // get posts data
         $this->load->model('OFS/Post_model');
         $posts = $this->Post_model->get_table();
+
+        $this->load->model('OFS/Work_model');
+        $works = $this->Work_model->get_table();
+        
         $table = array();
     
         $table['key_posts'] = $posts;
+        $table['key_works'] = $works;
 
         $this -> load -> view ('OnlineFreelancingServices/NewsFeed', $table);
     }
@@ -109,6 +113,7 @@ class OnlineFreelancingServices extends CI_Controller{
 					$session_data = array(
 						'email'=>$email,
                         'id'=>$id,
+                        'location'=>$status->location
                         
 					);
 

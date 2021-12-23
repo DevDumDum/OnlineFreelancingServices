@@ -42,9 +42,11 @@
 
             <div>Expected Fee:</div>
             <div><p>Location: <?php echo $p['location'] ?> </p></div>
-            <div><p><?php echo $p['date']." ".$p['time'] ?> </p></div>
+            <div><p><?php echo date("M j Y", $p['timestamp'])." ".date("h:iA", $p['timestamp']) ?> </p></div>
         </div>
     </div>
+
+    <?php // id, requirements, worker count, location, date, time, name  ?>
     
 
 <?php }} else { ?>
