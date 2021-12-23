@@ -1,101 +1,67 @@
-.adminloginpageBody{
+/*REGISTER PAGE*/
+.modregisterpageBody{
     font-family: 'Poppins', sans-serif;
     margin: 0; 
     height: 100%;
-    overflow: hidden; /*eto yung scroll*/
-    background-color: #E5e5e5
+  /*  overflow: hidden; eto yung scroll*/
 }
 
-.modregisterpage{
-    background-color: #E5e5e5
-}
-.container-custom{
-    text-align: center;
+.modregister-row_custom{
     height: 100%;
     width: 100%;
-    margin-top: 9%;
+    position: absolute;
 }
 
-.mb-3_custom{
-    width: 80%;
+/* left side */
+.modregisterLeftSide{
+    background-color: #1F4E70;
+    text-align: center;
+    padding-top: 15%;
 }
 
-.mb-3_custom i{
-    padding-left: 25%;
-}
-
-.form-width{
-    width: 50%;
-}
-
-.form-padding{
-    padding-left: 40%;
-    padding-right: 10%;
-}
-
-.form-padding-register{
-    padding-left: 40%;
-    padding-right: 15%;
-}
-
-.form-text-email-padding{
-   padding-right: 11%;
-}
-
-.form-text-company-id-padding{
-    padding-right: 11%; 
- }
-
-.form-text-password-padding{
-    padding-right: 13%; 
-}
-
-.form-text-confirm-password-padding{
-    padding-right: 7%; 
-}
-
-.text-button {
-    padding-left: 5%;
-}
-
-.text-button a{
-    text-decoration: none;
-}
-
-.forgot-password-text{
-    padding-right: 4%;
-}
-
-.forgot-password-text a{
-    color: #000000;
-
-}
-
-.button-custom-color{
-    background-color: #1F4E70 !important;
-}
-.button-custom-color:hover{
-    background-color: #0d6efd !important;
-}
-.back-custom-color:hover,.back-custom-color:hover a{
-    color: #ffffff !important;
-}
-.back-custom-color:hover{
-    background-color: #89b8ff !important;
-    border-color: #89b8ff !important;
-}
-
-.form-label {
-    font-size: 1rem;
-    padding-left: 2rem;
-}
-
-.admin-signup{
-    color: #1F4E70; 
+.modloginLink, .modregisterAlready{
+    text-align: center;
+    color: #ffff;
     font-style: italic;
-    font-size: 1rem;
+    font-size: 16px;
 }
 
-.admin-signup:hover{
-    color: rgb(109, 161, 235);
+/* right side */
+.modregisterRightSide{
+    background-color: #E5E5E5;
+    padding-top: 10%;
 }
+
+.modregH1{
+    color:#1F4E70;
+    font-size: 1.7rem;
+    margin-bottom: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-control{
+    display: block !important;
+    padding: 0.375rem 0.75rem !important;
+    width: 100% !important;
+}
+
+.form-label{
+    margin-bottom: 0 !important;
+    color: #1F4E70;
+}
+
+.modForms{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*LOGIN PAGE
+
+INSERT KA NA LANG DITO, BINURA KO LAHAT. SEND KO YUNG ORIG FILE SAYO
+
+*/
+

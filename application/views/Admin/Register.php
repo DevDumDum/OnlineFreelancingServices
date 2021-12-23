@@ -1,68 +1,86 @@
-<header>
+<!---<header>
 		<nav class="navbar custom-navbar navbar-expand-md navbar-dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="Homepage">
-					<img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" alt="" width="120"
+					<img class="img-fluid" src="<?php echo base_url();?>public/images/logogif-unscreen.gif" alt="" width="120"
 						class="d-inline-block align-text-top">
 				</a>
 				<ul class="nav justify-content-end">
 					<li class="nav-item">
-						<img class="img-fluid" src="<?php echo base_url();?>public/images/help.png" alt="" width="50">
+						<img class="imgIcon img-fluid" src="<?php echo base_url();?>public/images/help.png" alt="" width="40">
 					</li>
 				</ul>
 			</div>
 		</nav>
-</header>
+</header>--->
 
-<body class="modregisterpage">
-
-  <div class="container container-custom">
-    <h1>Moderator Register</h1>
-
+<body class="modregisterpageBody">
+  <div class="modcontainer container-fluid">
     <form method="post" autocomplete="off" action="<?=base_url('Register_controller/addMod')?>">
 
-      <div class="mb-3 mb-3_custom">
-        <div class="form-text-company-id-padding">
-          <label for="companyid" class="form-label">Company ID:</label>
-        </div>
-        <div class="form-padding-register">
-          <input id="companyid" name="companyid" class="form-control form-width" type="text" onfocusout="check()" required>
-        </div>
-        <div id="errorEmail" class="textCont" style="display:none;">
-          <span title="ID already exists!" style="color:red;font-size:24px" class="icon-warning-sign">❗ ID already exists</span>
+      <div class="row modregister-row_custom">
+        <div class="col-md-6 no-gutters modregisterLeftSide">
+            <div class="justify-content-center align-items-center">
+              <img class="img-fluid" src="<?php echo base_url();?>public/images/logogif-unscreen.gif" 
+              class ="modlogo mx-auto d-block" alt="" height="70">
+
+              <p class="modregisterAlready">Already have an account? 
+              <span><a href="#" class="modloginLink link-light">Log in</a></span></p>
+
+            </div>
         </div>
 
-        <div id="successEmail" class="textCont" style="display:none;">
-          <span title="Looks good!" style="color:#32CD32;font-size:24px" class="fa-check">✔️</span>
-        </div>
-      </div>
+        <div class="col-md-6 no-gutters modregisterRightSide">
+            <h1 class="modregH1">Moderator Register</h1>
+                <div class="modForms">
+                  <div class="mb-3 mb-3_custom">
+                    <div class="form-text-company-id-padding">
+                      <label for="companyid" class="form-label">Company ID:</label>
+                    </div>
+                    <div class="form-padding-register">
+                      <input id="companyid" name="companyid" class="form-control form-width" type="text" onfocusout="check()" required>
+                    </div>
+                    <div id="errorEmail" class="textCont" style="display:none;">
+                      <span title="ID already exists!" style="color:red;font-size:24px" class="icon-warning-sign">❗ ID already exists</span>
+                    </div>
 
-      <div class="mb-3 mb-3_custom">
-        <div class="form-text-password-padding">
-          <label for="password" class="form-label">Password</label>
-        </div>
-        <div class="form-padding-register">
-          <input id="pw1" onkeyup="confirm_pass()" type="password" name="password" class="form-control form-width" required>
-        </div>
-      </div>
+                    <div id="successEmail" class="textCont" style="display:none;">
+                      <span title="Looks good!" style="color:#32CD32;font-size:24px" class="fa-check">✔️</span>
+                    </div>
+                  </div>
 
-      <div class="mb-3 mb-3_custom">
-        <div class="form-text-confirm-password-padding">
-          <label for="" class="form-label">Confirm Password:</label>
-        </div>
-        <div class="form-padding-register">
-          <input id="pw2" onkeyup="confirm_pass()" type="password" name="password2" class="form-control form-width" required>
-        </div>
-      </div>
+                  <div class="mb-3 mb-3_custom">
+                    <div class="form-text-password-padding">
+                      <label for="password" class="form-label">Password</label>
+                    </div>
+                    <div class="form-padding-register">
+                      <input id="pw1" onkeyup="confirm_pass()" type="password" name="password" class="form-control form-width" required>
+                    </div>
+                  </div>
 
-      <div id="errorPW" style="display:none">
-      <span  style="color:red;">Password does not match!</span><br><br>
+                  <div class="mb-3 mb-3_custom">
+                    <div class="form-text-confirm-password-padding">
+                      <label for="" class="form-label">Confirm Password</label>
+                    </div>
+                    <div class="form-padding-register">
+                      <input id="pw2" onkeyup="confirm_pass()" type="password" name="password2" class="form-control form-width" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="errorPW" style="display:none">
+                  <span  style="color:red;">Password does not match!</span><br><br>
+                </div>
+
+                <div class="text-center text-button">
+                  <button type="button" class="btn btn-light border border-primary back-custom-color"><a href="AdminLogin">BACK</a></button>
+                  <button type="submit" id="form-pass" class="btn btn-primary button-custom-color" disabled>Register</button>
+                </div>
+
+      
+        </div>
     </div>
 
-      <div class="text-center text-button">
-        <button type="button" class="btn btn-light border border-primary back-custom-color"><a href="AdminLogin">BACK</a></button>
-        <button type="submit" id="form-pass" class="btn btn-primary button-custom-color" disabled>Register</button>
-      </div>
 
     </form>
   </div>
