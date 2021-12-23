@@ -5,26 +5,33 @@ if($this->session->userdata('UserLoginSession')){
     redirect(base_url('AdminAuth/AdminLogin'));
 }
 ?>
-<body>
-  <?php echo $udata['user_type'];?>
+<body class="AdminBody">
+    <div class="AdminContainer">
+        <div class="AdminGlass">
 
-  <div class="AdminLP">
-      <img src="<?php echo base_url();?>public/images/logo.png" width="100%">
+            <div class="AdminID">
+              <?php echo $udata['user_type'];?>
+            </div>
+            
+            <img class="AdminLogo" src="<?php echo base_url();?>public/images/logo.png">
 
-    <ul class="menu">
-      <li><button onclick="window.location.href='ManageUser';">
-      Manage User Status
-      </button></li>
+            <div class="AdminLP">
+              <ul class="Adminmenu">
+                <li><button onclick="window.location.href='ManageUser';">
+                Manage User Status
+                </button></li>
 
-      <li><button onclick="window.location.href='<?php echo base_url('Verifications');?>';">
-      Verification
-      </button></li>
+                <li><button onclick="window.location.href='<?php echo base_url('Verifications');?>';">
+                Verification
+                </button></li>
 
-      <li><button onclick="window.location.href='ViewLogs';">
-      Logs
-      </button></li>
-    </ul>
-  </div>
+                <li><button onclick="window.location.href='ViewLogs';">
+                Logs
+                </button></li>
+              </ul>
+            </div>
 
+        </div>   
+    </div>
 </body>
 </html>
