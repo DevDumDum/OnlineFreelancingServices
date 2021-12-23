@@ -1,7 +1,11 @@
-.adminloginpage{
+.adminloginpageBody{
     font-family: 'Poppins', sans-serif;
+    margin: 0; 
+    height: 100%;
+    overflow: hidden; /*eto yung scroll*/
     background-color: #E5e5e5
 }
+
 .modregisterpage{
     background-color: #E5e5e5
 }

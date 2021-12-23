@@ -3,7 +3,7 @@
 	<nav class="navbar custom-navbar navbar-expand-md navbar-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="AdminLogin">
-				<img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" alt="" width="120"
+				<img class="img-fluid" src="<?php echo base_url();?>public/images/logogif-unscreen.gif" alt="" width="120"
 					class="d-inline-block align-text-top">
 			</a>
 			<ul class="nav justify-content-end">
@@ -14,11 +14,11 @@
 		</div>
 	</nav>
 </header>
-<body class="adminloginpage">
+<body class="adminloginpageBody">
 	<form method="post" autocomplete="off" action="<?=base_url('AdminAuth/AdminLogin')?>" style="height:100%;">
 		<div class="container container-custom">
-		<h1 class = "admin-login-h1">Admin Login</h1>
-		<br>
+			<h1 class = "admin-login-h1">Admin Login</h1>
+			<br>
 			<div class="mb-3 mb-3_custom">
 				<div class="form-text-email-padding">
 					<label for="CompanyID" class="form-label">Company ID:</label>
