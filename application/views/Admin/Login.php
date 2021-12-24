@@ -1,4 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+<!--
 <header>
 	<nav class="navbar custom-navbar navbar-expand-md navbar-dark">
 		<div class="container-fluid">
@@ -14,11 +16,27 @@
 		</div>
 	</nav>
 </header>
+-->
+
+
 <body class="adminloginpageBody">
+
 	<form method="post" autocomplete="off" action="<?=base_url('AdminAuth/AdminLogin')?>" style="height:100%;">
+
+	<div class="row modregister-row_custom">
+        <div class="col-md-6 no-gutters modloginLeftSide">
 		<div class="container container-custom">
-			<h1 class = "admin-login-h1">Admin Login</h1>
+		<div class="justify-content-center align-items-center">
+            <img class="img-fluid" src="<?php echo base_url();?>public/images/logogif-unscreen.gif" 
+        	class ="modlogo mx-auto d-block" alt="" height="70">
 			<br>
+			<i class = "admin-doesnot">Does not have an account? <a href="AdminRegister" class = "admin-signup"><u>Sign Up</u></a></i>
+		</div>
+		</div>
+	</div>
+
+		<div class="col-md-6 no-gutters modregisterRightSide">
+			<h1 class = "admin-login-h1">Admin Login</h1>
 			<div class="mb-3 mb-3_custom">
 				<div class="form-text-email-padding">
 					<label for="CompanyID" class="form-label">Company ID:</label>
@@ -34,7 +52,7 @@
 					<div class="form-padding">
 					<input type="password" name="password" placeholder="Password" class="form-control form-width" id="password" required>
 					</div>
-					<br><i>Does not have an account? <a href="AdminRegister" class = "admin-signup"><u>Sign Up</u></a></i>
+					<br>
 				</div>
 				<div class="text-center text-button">
 					<button type="submit" class="btn btn-primary button-custom-color">Login Now</button>
@@ -45,6 +63,7 @@
 						<?=$this->session->flashdata('error')?>
 					</p>
 				<?php } ?>
+		</div>
 		</div>
 	</form>
 		

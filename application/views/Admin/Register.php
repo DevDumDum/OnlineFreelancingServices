@@ -50,7 +50,7 @@
                   </div>
 
                   <div class="mb-3 mb-3_custom">
-                    <div class="form-text-password-padding">
+                    <div class="form-text-passwords-padding">
                       <label for="password" class="form-label">Password</label>
                     </div>
                     <div class="form-padding-register">
@@ -59,7 +59,7 @@
                   </div>
 
                   <div class="mb-3 mb-3_custom">
-                    <div class="form-text-confirm-password-padding">
+                    <div class="form-text-confirm-passwords-padding">
                       <label for="" class="form-label">Confirm Password</label>
                     </div>
                     <div class="form-padding-register">

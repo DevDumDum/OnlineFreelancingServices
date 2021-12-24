@@ -1,0 +1,65 @@
+/*REGISTER PAGE*/
+.modregisterpageBody{
+    font-family: 'Poppins', sans-serif;
+    margin: 0; 
+    height: 100%;
+  /*  overflow: hidden; eto yung scroll*/
+}
+
+.modregister-row_custom{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+/* left side */
+.modregisterLeftSide{
+    background-color: #1F4E70;
+    text-align: center;
+    padding-top: 15%;
+}
+
+.modloginLink, .modregisterAlready{
+    text-align: center;
+    color: #ffff;
+    font-style: italic;
+    font-size: 16px;
+}
+
+/* right side */
+.modregisterRightSide{
+    background-color: #E5E5E5;
+    padding-top: 10%;
+}
+
+.modregH1{
+    color:#1F4E70;
+    font-size: 1.7rem;
+    margin-bottom: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-control{
+
+    padding: 0.375rem 0.75rem !important;
+    width: 100% !important;
+    padding-right: 10rem;
+}
+
+.form-label{
+    margin-bottom: 0 !important;
+    color: #1F4E70;
+}
+
+.modForms{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.form-text-company-id-padding, .form-text-confirm-passwords-padding, .form-text-passwords-padding{
+    padding-left: 8rem;
+}
