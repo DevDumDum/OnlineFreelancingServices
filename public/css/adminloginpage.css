@@ -1,15 +1,16 @@
 .adminloginpageBody{
     font-family: 'Poppins', sans-serif;
     background-color: #E5E5E5;
-    overflow: hidden;
+  
 }
 
-
-.container-custom{
+.logincontainer{
     text-align: center;
     height: 100%;
     width: 100%;
-    margin-top: 1%
+    margin-top: 1%;
+    justify-content: center;
+    align-items: center;
 }
 
 .mb-3_custom{
@@ -21,17 +22,12 @@
 }
 
 .form-width{
-    width: 50%;
+    width: 100%;
 }
 
 .form-padding{
-    padding-left: 40%;
+    padding-left: 35%;
     padding-right: 10%;
-}
-
-.form-padding-register{
-    padding-left: 40%;
-    padding-right: 15%;
 }
 
 .form-text-email-padding{
@@ -67,7 +63,7 @@
 
 }
 
-.button-custom-color{
+/*.button-custom-color{
     background-color: #1F4E70 !important;
 }
 .button-custom-color:hover{
@@ -79,11 +75,15 @@
 .back-custom-color:hover{
     background-color: #89b8ff !important;
     border-color: #89b8ff !important;
-}
+}*/
 
-.form-label {
-    font-size: 1rem;
-    padding-left: 2rem;
+.logadbtn{
+    color: #fff;
+    background-color: #1F4E70;
+    cursor: pointer;
+    padding: 5px 20px;
+    border-radius: 8px;
+    border: 2px solid #e7e7e7;
 }
 
 .admin-signup, .admin-doesnot{
@@ -109,4 +109,8 @@
     background-color: #1F4E70;
     text-align: center;
     padding-top: 12%;
+}
+
+.modadminRightSide{
+    padding-top: 10%;
 }
