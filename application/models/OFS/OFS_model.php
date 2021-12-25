@@ -2,9 +2,34 @@
 
 class OFS_model extends CI_Model{
 
+	function __construct(){
+		parent::__construct();
+		$this->load->database();
+	}
+
+	public function getAllUsers(){
+		$query = $this->db->get('users');
+		return $query->result(); 
+	}
+
+	public function insert($user){
+		$this->db->insert('users', $user);
+		return $this->db->insert_id(); 
+	}
+
+	public function getUser($code){
+		$query = $this->db->get_where('users',array('code'=>$code));
+		return $query->row_array();
+	}
+
+	public function activate($data, $code){
+		$this->db->where('users.code', $code);
+		return $this->db->update('users', $data);
+	}
+
     function checkPassword($password,$email)
 	{
-		$query = $this->db->query("SELECT * FROM users WHERE password='$password' AND email='$email' AND status='1'");
+		$query = $this->db->query("SELECT * FROM users WHERE password='$password' AND email='$email'");
 		if($query->num_rows()==1)
 		{
 			return $query->row();
@@ -21,7 +46,7 @@ class OFS_model extends CI_Model{
 				first_name, middle_name, 
 				contact, profession_id, 
 				location, summary, 
-				calendarlist_id, status');
+				calendarlist_id, code, status');
 				
 		$this->db->where('email', $email);
 		
@@ -32,7 +57,7 @@ class OFS_model extends CI_Model{
 		$this->db->select('last_name, first_name, 
 				middle_name, contact, email, 
 				profession_id, location, summary, 
-				calendarlist_id,status');
+				calendarlist_id,code,status');
 
 		$this->db->where('id', $id);
 		
@@ -48,4 +73,3 @@ class OFS_model extends CI_Model{
 		return $name->result_array();
 	}
 }
-
