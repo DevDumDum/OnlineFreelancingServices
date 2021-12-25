@@ -24,9 +24,37 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->session->userdata('page');
         $this->session->set_userdata('page','NewsFeed');
         $this->load->helper('url');
+
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
-        $this -> load -> view ('OnlineFreelancingServices/NewsFeed');
+
+        $this->load->model('OFS/Post_model');
+        $posts = $this->Post_model->get_table();
+
+        $this->load->model('OFS/Work_model');
+        $works = $this->Work_model->get_table();
+
+        $this->load->model('OFS/OFS_model');
+        
+        $table = array();
+        $table['key_works'] = $works;
+
+        $this->load->model('OFS/OFS_model');
+        $users = array();
+        $x = 0;
+        foreach($posts as $p){
+            $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
+            $posts[$x]['post_owner'] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
+            $x++;
+        }        
+        $table['key_posts'] = $posts;
+
+        // DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! 
+        //echo "<pre>";
+        //print_r($table);
+
+
+        $this -> load -> view ('OnlineFreelancingServices/NewsFeed', $table);
     }
     public function Aboutpage(){
         $this->session->userdata('page');
@@ -95,12 +123,15 @@ class OnlineFreelancingServices extends CI_Controller{
 				$this->load->model('OFS/OFS_model');
 				$status = $this->OFS_model->checkPassword($password,$email);
 				if($status!=false){
-					$email = $status->email;
+                    $email = $status->email;
+                    $id = $status->id;
+                    $user_type = $status->user_type;
 
 					$session_data = array(
 						'email'=>$email,
                         'id'=>$id,
-                        'user_type'=>$user_type
+                        'location'=>$status->location
+                        
 					);
 
 					$this->session->set_userdata('UserLoginSession',$session_data);
