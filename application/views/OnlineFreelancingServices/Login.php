@@ -12,7 +12,7 @@
 					<div id="loginInsertFormID">
 						<div class="mb-3 mb-3_custom">
 							<div class="form-text-email-padding">
-								<label for="email" class="loginFormEmail form-label">Email</label>
+								<labuel for="email" class="loginFormEmail form-label">Email</label>
 							</div>
 							<div class="form-padding">
 								<input type="email" placeholder="Email" name="email" class="loginInsertForm form-control"

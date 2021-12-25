@@ -6,9 +6,6 @@ if($this->session->userdata('UserLoginSession')){
 }
 ?>
 
-<!-- Bakit ayaw ma-link ng css file? AaAaAAaaaaaAa -->
-<link rel="stylesheet" href="<?php echo base_url();?>public/css/dashboard.css">
-
 <body>
   <?php echo $udata['user_type'];?>
 
@@ -46,6 +43,7 @@ if($this->session->userdata('UserLoginSession')){
         </button></div>
       </div>
   </div>
-
+</div>
+</div>
 </body>
 </html>
