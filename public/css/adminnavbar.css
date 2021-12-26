@@ -1,20 +1,21 @@
 .custom-navbar{
     background-color: #1F4E70;
 }
-.custom-navbar a{
+.custom-navbar-admin a{
+    font-size: 2vw;
     color: #ffffff;
-    
 }
 
-.nav-link-custom{
+.nav-link-custom-admin{
     display: block;
     padding: 3% 4%;
     text-decoration: none;
     transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
 
-.nav-link-custom:hover{
+.nav-link-custom-admin:hover{
     color:#ffffff !important; 
-    font-size: 1.1em;
     background-color: #1d4764;
+    transition: .3s;
+    text-transform: uppercase;
 }

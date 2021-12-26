@@ -8,7 +8,7 @@
 }
 
 .custom-navbar a{
-    font-size: 16px;
+    font-size: 2vw;
     color: #ffffff;
 }
 
@@ -19,6 +19,5 @@
 .nav-item:hover{
     background-color: #1b3e58 !important;
     color: #ffffff;
-    transition: .3s;
     text-transform: uppercase;
 }
