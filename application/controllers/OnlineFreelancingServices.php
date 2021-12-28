@@ -44,6 +44,9 @@ class OnlineFreelancingServices extends CI_Controller{
         $x = 0;
         foreach($posts as $p){
             $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
+            
+            if($posts[$x]['requirements'] == "") $posts[$x]['requirements'] = "No requirements.";
+
             $posts[$x]['post_owner'] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
             $x++;
         }        

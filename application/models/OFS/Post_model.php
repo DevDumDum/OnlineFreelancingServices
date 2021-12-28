@@ -21,5 +21,9 @@ class Post_model extends CI_Model{
           return true;
       else return false;
    }
+
+   public function deact_post($id){
+
+   }
 }
 

@@ -17,7 +17,7 @@ class Post_controller extends CI_Controller {
         $loc = $this->input->post('location');
         $min_p = $this->input->post('min-pay');
         $max_p = $this->input->post('max-pay');
-        //echo date("M j Y", $timestamp)." ".date("h:iA", $timestamp);
+        
         
         $data = array(
             'poster_ID' => $poster_id,
@@ -35,7 +35,17 @@ class Post_controller extends CI_Controller {
         }else {
 
         }
-
     }
 
+    public function deact_post(){
+
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+
+            $post = $this->input->post("post_ID");
+
+            $this->load->model('Admin/Verification_model');
+            $this->Verification_model->new_ver($post, 'post');
+        }
+
+    }
 }
