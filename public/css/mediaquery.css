@@ -1,0 +1,53 @@
+@media (min-width: 1920px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+}
+
+@media (min-width: 1858px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+}
+
+@media (min-width: 1536px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .homepageH1{
+        font-size: 2vw;
+    }
+}
+
+@media (min-width: 1366px) {
+    .custom-navbar a{
+        font-size: 1.1vw;
+    }
+}
+
+@media (min-width: 1304px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+}
