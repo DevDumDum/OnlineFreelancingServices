@@ -3,10 +3,12 @@
     border-radius: 0;
     font-family: 'Poppins', sans-serif;
     margin-bottom: 0;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
 }
 
 .custom-navbar a{
-    font-size: 16px;
+    font-size: 2vw;
     color: #ffffff;
 }
 
@@ -17,6 +19,5 @@
 .nav-item:hover{
     background-color: #1b3e58 !important;
     color: #ffffff;
-    transition: .3s;
     text-transform: uppercase;
 }

@@ -1,33 +1,67 @@
-.AdminLP {
-    position: absolute;
-    top: 40%;
-    left: 48%;
-    transform: translate(-50%, -50%);
+.AdminBody{
+    font-family: 'Poppins';
+    margin: 0;
+    padding: 0;
+    overflow: hidden;    
 }
 
-.menu {
+.AdminContainer{
+    background: linear-gradient( rgba(0,0,0,0.4), rgba(0,0,0,0.5)),
+    url(https://img.freepik.com/free-photo/woman-typing-keyboard-laptop-account-login-screen-working-office-table-background-safety-concepts-about-internet-use_2034-1339.jpg?size=626&ext=jpg) center/cover no-repeat fixed;
     display: flex;
-    max-width: 720px;
-    margin: 0 auto;
-    padding-top: 100px;
-    height: 10vh;
-    list-style: none;
-    padding-left: 100px;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    padding-top: 30px;
+
 }
 
-.menu li {
-    width: 220px;
-    transition: background-position-x 0.9s linear;
+.AdminGlass{
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.AdminID{
+    font-size: 30px;
+    color: #ffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+.AdminLogo{
     text-align: center;
 }
 
-.menu button {
-    border: none; 
-    background: none;
-    font-size: 1.5rem;
-    font-weight: 900;
+.AdminLP {
+    margin-top: 70px;
 }
 
-.menu button:hover {
-    color:#289cc1;
+.Adminmenu{
+    list-style: none;
+    display: flex;
+    margin-bottom: 40px;
+
+}
+
+.Adminmenu li {
+    text-align: center;
+    margin-right: 50px;
+}
+
+.Adminmenu button {
+    border: none; 
+    background: none;
+    font-size: 20px;
+    font-weight: 900;
+    color: #e5e5e5;
+}
+
+.Adminmenu button:hover {
+    color:#275868;
 }
