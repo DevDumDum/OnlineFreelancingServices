@@ -2,7 +2,7 @@
     font-family: 'Poppins', sans-serif;
     margin: 0; 
     height: 100%;
-    overflow: hidden; /*eto yung scroll*/
+    overflow:scroll;
 }
 
 .register-row_custom{
