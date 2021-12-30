@@ -1,4 +1,20 @@
-@media (min-width: 1920px) {
+@media all and (min-width: 500px) {
+    .custom-navbar a{
+        font-size: 2vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 4vw;
+    }
+}
+
+@media all and (min-width: 768px) {
     .custom-navbar a{
         font-size: 1.3vw;
     }
@@ -8,38 +24,13 @@
     .homeFormbox{
         background-color: rgba(0, 0, 0, 0.3);
         padding: 30px 60px;
-    }
-}
-
-@media (min-width: 1858px) {
-    .custom-navbar a{
-        font-size: 1.3vw;
-    }
-    .custom-navbar-admin a{
-        font-size: 1.1vw;
-    }
-    .homeFormbox{
-        background-color: rgba(0, 0, 0, 0.3);
-        padding: 30px 60px;
-    }
-}
-
-@media (min-width: 1536px) {
-    .custom-navbar a{
-        font-size: 1.3vw;
     }
     .homepageH1{
         font-size: 2vw;
     }
 }
 
-@media (min-width: 1366px) {
-    .custom-navbar a{
-        font-size: 1.1vw;
-    }
-}
-
-@media (min-width: 1304px) {
+@media all and (min-width: 1024px) {
     .custom-navbar a{
         font-size: 1.3vw;
     }
@@ -49,5 +40,122 @@
     .homeFormbox{
         background-color: rgba(0, 0, 0, 0.3);
         padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+}
+
+@media all and (min-width: 1280px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+}
+
+@media all and (min-width: 1304px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+}
+
+@media all and (min-width: 1366px) {
+    .custom-navbar a{
+        font-size: 1.1vw;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+}
+
+@media all and (min-width: 1440px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+}
+
+@media all and (min-width: 1536px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+}
+
+@media all and (min-width: 1600px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+}
+
+@media all and (min-width: 1858px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+}
+
+@media all and (min-width: 1920px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 2.5vw;
     }
 }
