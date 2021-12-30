@@ -29,7 +29,7 @@ class OnlineFreelancingServices extends CI_Controller{
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
 
         $this->load->model('OFS/Post_model');
-        $posts = $this->Post_model->get_table();
+        $posts = $this->Post_model->get_posts();
 
         $this->load->model('OFS/Work_model');
         $works = $this->Work_model->get_table();
@@ -54,7 +54,7 @@ class OnlineFreelancingServices extends CI_Controller{
 
         // DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! 
         //echo "<pre>";
-        //print_r($table);
+        //print_r($posts);
 
 
         $this -> load -> view ('OnlineFreelancingServices/NewsFeed', $table);

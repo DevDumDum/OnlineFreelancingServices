@@ -29,7 +29,7 @@ class Verification_model extends CI_Model{
         else return false;
     }
 
-    // user    
+    // user crud for mod
     public function get_existing_row($id){
         $this->db->select('ID, verification_type, content_ID');
         $this->db->where('viewer_id', $id);
@@ -85,6 +85,7 @@ class Verification_model extends CI_Model{
         $this->db->where('viewer_id', $id);
         $this->db->where('verification_type', 'post');
         $q = $this->db->get('verification');
+        
         return $q->result_array();
     }
 

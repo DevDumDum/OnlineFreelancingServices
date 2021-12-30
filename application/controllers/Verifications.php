@@ -79,6 +79,7 @@ class Verifications extends CI_Controller{
         $this -> load -> view ('Admin/Verifications/newUser',$v_list_x);
     }
 
+    // DEACTIVATE SOMETHING
     public function VerifyRequest(){
         //load AdminVerifications views
         $this -> load -> view ('Admin/inc/header');
@@ -111,13 +112,14 @@ class Verifications extends CI_Controller{
             $user_details = $this->OFS_model->get_user_details($t['content_ID']);
 
             $v_list[$x]['name'] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];            
-            $v_list[$x]['u_id'] = $t['content_ID'];
+            $v_list[$x]['p_id'] = $t['content_ID'];
             $v_list[$x]['v_id'] = $t['ID'];
 
             $x++;
         }
-
-        $this -> load -> view ('Admin/Verifications/deactivateRequest');
+        $v_list_x['key_v_list'] = $v_list;
+        
+        $this -> load -> view ('Admin/Verifications/deactivateRequest',$v_list_x);
     }
     public function VerifyReports(){
         //load AdminVerifications views
