@@ -1,5 +1,4 @@
 
-
 <?php if(!empty($key_posts)){ foreach($key_posts as $p){?>
     <div class="bg-primary m-5 p-10 w-50 rounded">
         <form id="post_form" action="" method="POST">
@@ -16,8 +15,9 @@
             </div>
 
             <input type="button" value="edit" onclick="edit_post()"><br>
-            <input type="submit" value="delete" onclick="set_form_action('deact_post')"><br>
-
+            <?php if($udata['id'] == $p['poster_ID']){ ?>
+                <input type="submit" value="delete" onclick="set_form_action('deact_post')"><br>
+            <?php } ?>
             ==========================================
             <!--PopUp Post Details onclick-->
             <div>

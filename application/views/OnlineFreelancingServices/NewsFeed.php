@@ -23,8 +23,6 @@ else
             <option value="null">----</option>
                 <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
                     <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
-
-
                 <?php }} ?>
         </select><br><br>
 
@@ -76,7 +74,9 @@ else
                             <input type="text" name="location" id="location" placeholder="Work location" required><br>
 
                             <label for="">Minimum Payment</label>
-                            <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
+                            <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled 
+                                oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" onfocusout="set_fixed()"
+                            >
                             
                             <label for="">Fixed</label>
                             <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"><br>
@@ -128,6 +128,17 @@ else
     function hidebox(){
         document.getElementById("hiddenbox").style.display="none";
     }
+
+    function set_fixed(){
+        var component = document.getElementById("min_pay");
+
+        if(component.value == ""){
+            document.getElementById("min-checker").checked = true;
+            component.disabled = true;
+            document.getElementById("max_pay_label").textContent="Exact Amount";
+        }
+    }
+    
 </script>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
