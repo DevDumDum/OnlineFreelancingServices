@@ -12,7 +12,7 @@
                             <option value="Work3">Work 3</option>
                         </select>
                     </form>
-
+                    
                         <input type="text" id="search-bar" 
                         name="location" placeholder="Search Location">
                             <button class="homeSearchIcon" type="submit" name="submit">

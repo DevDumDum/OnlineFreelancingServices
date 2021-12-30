@@ -8,9 +8,8 @@
                 <div class="col-md-6 no-gutters registerLeftSide">
                     <div class="justify-content-center align-items-center">
                         <h1 class ="registerWelcome">WELCOME</h1>
-
-                        <div class="logo">  
-                            <img src="<?php echo base_url();?>public/images/logo.png" class ="mx-auto d-block" alt="" height="70">
+                        <div class="logo">
+                            <img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" class="d-inline-block align-text-top" alt="">
                         </div>
                          
                         <h5 class="registerCreate">Create a New Account</h5>
@@ -161,10 +160,8 @@
             </div>
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
         function check(){
             $.post('<?=base_url('validation/check');?>', {email: $('#email').val()}, function(data){
