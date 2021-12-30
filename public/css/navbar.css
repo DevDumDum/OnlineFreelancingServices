@@ -19,6 +19,5 @@
 .nav-item:hover{
     background-color: #1b3e58 !important;
     color: #ffffff;
-    transition: .3s;
     text-transform: uppercase;
 }

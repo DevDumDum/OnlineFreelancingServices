@@ -36,6 +36,8 @@ if($this->session->userdata('page')){
     <link rel="stylesheet" href="<?php echo base_url();?>public/css/adminregisterpage.css">
     <link rel="stylesheet" href="<?php echo base_url();?>public/css/dashboard.css">
     <link rel="stylesheet" href="<?php echo base_url();?>public/css/navbar.css"/>
+    <link rel="stylesheet" href="<?php echo base_url();?>public/css/adminnavbar.css"/>
+    <link rel="stylesheet" href="<?php echo base_url();?>public/css/mediaquery.css"/>
     <!--VERIFICATION-->
     <link rel="stylesheet" href="<?php echo base_url();?>public/css/verification.css"/>
 </head>
