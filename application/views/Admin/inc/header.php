@@ -38,6 +38,7 @@ if($this->session->userdata('page')){
     <link rel="stylesheet" href="<?php echo base_url();?>public/css/navbar.css"/>
     <link rel="stylesheet" href="<?php echo base_url();?>public/css/adminnavbar.css"/>
     <link rel="stylesheet" href="<?php echo base_url();?>public/css/mediaquery.css"/>
+    <script src="https://kit.fontawesome.com/526f4a34dd.js" crossorigin="anonymous"></script>
     <!--VERIFICATION-->
     <link rel="stylesheet" href="<?php echo base_url();?>public/css/verification.css"/>
 </head>

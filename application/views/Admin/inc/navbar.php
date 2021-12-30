@@ -20,12 +20,12 @@ if($this->session->userdata('UserLoginSession')){
                 </button>
                 <ul class="nav justify-content-end collapse navbar-collapse " id="navbarCollapse">
                     <li class="nav-item d-flex justify-content-end">
-                        <img class="img-fluid" src="<?php echo base_url();?>public/images/changepassword.png" alt="" width="13%">
-                        <a href="#" class="nav-link-custom-admin">Change Password</a>
+                    <i class="fas fa-unlock-alt"></i>
+                        <a href="#" class="nav-link-custom-admin" id = "changepass">ChangePassword </a>
                     </li>
                     <li class="nav-item d-flex justify-content-end">
-                        <img class="img-fluid" src="<?php echo base_url();?>public/images/logout.png" alt="" width="17%">
-                        <a href="AdminLogout" class="nav-link-custom-admin">Logout</a>
+                        <i class="fas fa-sign-out-alt"></i>
+                        <a href="AdminLogout" class="nav-link-custom-admin" id = "logout">Logout</a>
                     </li>
                 </ul>
             </div>
