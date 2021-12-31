@@ -36,7 +36,7 @@ else
     ==========================================
     <br>
     <!--AddPost button display create post at line 23 event-->
-    <button onclick="AddPostPopUp('add')">Add Post</button>
+    <button onclick="AddPostPopUp()">Add Post</button>
     ==========================================
     <!--PopUp createPost-->
 
@@ -117,11 +117,7 @@ else
             document.getElementById("max_pay_label").textContent="Maximum Payment";
         }
     }
-    function AddPostPopUp(type){
-        if (type == 'edit'){
-            
-        }
-
+    function AddPostPopUp(){
         document.getElementById("hiddenbox").style.display="block";
         document.getElementById("hiddenbox").style.animation="fadebox .3s reverse linear";
     }

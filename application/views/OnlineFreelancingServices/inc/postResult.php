@@ -14,8 +14,8 @@
                 </div>
             </div>
 
-            <input type="button" value="edit" onclick="edit_post()"><br>
             <?php if($udata['id'] == $p['poster_ID']){ ?>
+                <input type="button" value="edit" onclick="edit_post()"><br>
                 <input type="submit" value="delete" onclick="set_form_action('deact_post')"><br>
             <?php } ?>
             ==========================================
@@ -33,7 +33,10 @@
                         <!--Load starts rating-->
                         <img src="">
                     </div>
-                    <button onclick="set_form_action('apply_post')">Apply</button>
+                    
+                    <?php if($udata['id'] != $p['poster_ID']){ ?>
+                        <button onclick="set_form_action('apply_post')">Apply</button>
+                    <?php } ?>
                     <button onclick="set_form_action('report_post')">Report</button>
                 </div><br>
                 <div>
@@ -71,5 +74,16 @@
         var loc = "<?=base_url('Post_controller/"+action+"')?>";
         document.getElementById("post_form").action = loc;
         alert(loc);
+    }
+    
+    function edit_post(){
+        AddPostPopUp();
+        //$key_works[$p['profession_ID']-1]['profession_type']
+        document.getElementById("works").selected = "<?php echo $key_works[$p['profession_ID']-1]['profession_type'] ?>";
+        document.getElementById("desc").value = "<?php echo $p['requirements'] ?>";
+        document.getElementById("worker_count").value = "<?php echo $p['worker_count'] ?>";
+        document.getElementById("location").value = "<?php echo $p['location'] ?>";
+        document.getElementById("min_pay").value = "<?php echo $p['min_pay'] ?>";
+        document.getElementById("max-pay").value = "<?php echo $p['max_pay'] ?>";
     }
 </script>
