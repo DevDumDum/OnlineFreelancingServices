@@ -10,6 +10,7 @@
                     <img src="">
                     <div>
                         <p><?php echo $p['post_owner']." needs ".$key_works[$p['profession_ID']-1]['profession_type']."<b>!</b>"; ?></p>
+                        <p>php echo $p['profession_ID'] value: <?php echo $p['profession_ID'] ?></p>
                     </div>
                 </div>
             </div>
@@ -78,8 +79,12 @@
     
     function edit_post(){
         AddPostPopUp();
-        //$key_works[$p['profession_ID']-1]['profession_type']
-        document.getElementById("works").selected = "<?php echo $key_works[$p['profession_ID']-1]['profession_type'] ?>";
+        
+        var s_wid = "op_" + <?php echo $p['profession_ID']  ?>;
+
+        alert(s_wid);
+
+        document.getElementById(s_wid).selected = true;
         document.getElementById("desc").value = "<?php echo $p['requirements'] ?>";
         document.getElementById("worker_count").value = "<?php echo $p['worker_count'] ?>";
         document.getElementById("location").value = "<?php echo $p['location'] ?>";
