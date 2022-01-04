@@ -21,11 +21,3 @@
     color: #ffffff;
     text-transform: uppercase;
 }
-
-.fas {
-    font-size: 2rem;
-}
-
-#changepass, #logout{
-    font-size: 1rem;
-}

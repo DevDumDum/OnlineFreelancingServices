@@ -18,15 +18,15 @@ if($this->session->userdata('UserLoginSession')){
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <ul class="nav justify-content-end collapse navbar-collapse " id="navbarCollapse">
-                    <li class="nav-item d-flex justify-content-end">
-                    <i class="fas fa-unlock-alt"></i>
-                        <a href="#" class="nav-link-custom-admin" id = "changepass">ChangePassword </a>
-                    </li>
-                    <li class="nav-item d-flex justify-content-end">
-                        <i class="fas fa-sign-out-alt"></i>
+                <ul class="nav justify-content-end collapse navbar-collapse nav" id="navbarCollapse">
+                    <li class="nav-item">
+                    <i class="fas fa-unlock-alt">
+                        <a href="#" class="nav-link-custom-admin" id = "changepass">Change Password</a>
+                    </li></i>
+                    <li class="nav-item">
+                        <i class="fas fa-sign-out-alt">
                         <a href="AdminLogout" class="nav-link-custom-admin" id = "logout">Logout</a>
-                    </li>
+                    </li></i>
                 </ul>
             </div>
     </nav>
