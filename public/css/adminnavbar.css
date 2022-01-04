@@ -16,11 +16,11 @@
 }
 
 .nav-link-custom-admin{
-    padding-left: 8px;
+    padding-left: 5px;
     text-decoration: none;
 }
 .nav-item{
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .nav-item:hover{
@@ -32,6 +32,7 @@
 
 .nav-link-custom-admin{
     font-family: 'Poppins', sans-serif;
+    font-weight: 500;
 }
 
 .navbar-brand{
