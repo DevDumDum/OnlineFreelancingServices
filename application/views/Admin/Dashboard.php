@@ -13,7 +13,7 @@ if($this->session->userdata('UserLoginSession')){
               <?php echo $udata['user_type'];?>
             </div>
             
-            <img class="AdminLogo" src="<?php echo base_url();?>public/images/logo.png">
+            <img class="AdminLogo" src="<?php echo base_url();?>public/images/logogif-unscreen.gif">
 
             <div class="AdminLP">
               <ul class="Adminmenu">
