@@ -31,7 +31,7 @@
 					</div>
 
 					<div>
-						<a href="#" class="loginforgotPass">Forgot Password or Email?</a> 
+						<a href="ForgotPassword" class="loginforgotPass">Forgot Password or Email?</a> 
 					</div> 
 					<br>
 					<br>

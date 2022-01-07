@@ -58,6 +58,8 @@ $route['FAQpage'] = 'OnlineFreelancingServices/FAQpage';
 $route['Profilepage'] = 'OnlineFreelancingServices/Profilepage';
 $route['Loginpage'] = 'OnlineFreelancingServices/Loginpage';
 $route['Registerpage'] = 'OnlineFreelancingServices/Registerpage';
+$route['ForgotPassword'] = 'OnlineFreelancingServices/ForgotPassword';
+$route['NewPassword'] = 'OnlineFreelancingServices/NewPassword';
 $route['Logout'] = 'OnlineFreelancingServices/Logout';
 
 
