@@ -242,7 +242,7 @@ class OnlineFreelancingServices extends CI_Controller{
         }        
     }
 
-    public function Newpassword(){
+    public function NewPassword(){
         $code =  $this->uri->segment(3);
         $this->session->userdata('page');
         $this->session->set_userdata('page','New Password');
@@ -251,6 +251,10 @@ class OnlineFreelancingServices extends CI_Controller{
         $this -> load -> view ('OnlineFreelancingServices/NewPassword');
         $this->session->set_flashdata('error',NULL);
         $this->session->set_flashdata('success',NULL);
+        if (isset($code)){
+            $this->session->set_userdata('UserCode',$code);
+        }
+
 
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $array_items = array('id' => '', 'email' => '');
@@ -262,17 +266,21 @@ class OnlineFreelancingServices extends CI_Controller{
 				$passwords = $this->input->post('password');
 
 		    //fetch user details
-		    $user = $this->OFS_model->getUser($code);
+            
+            $cData = $this->session->userdata('UserCode');
+
+		    $user = $this->OFS_model->getUser($cData);
 
             //if code matches
-            if($user['code'] == $code){
+            if($user['code'] == $cData){
                 //update user password
                 $data['password'] = $passwords;
-                $query = $this->OFS_model->newPassword($data, $code);
+                $query = $this->OFS_model->newPassword($data, $cData);
 
                 if($query){
                     $this->session->set_flashdata('message', 'Password changed!');
-                    redirect(base_url('Loginpage'));
+                    $this->session->sess_destroy();
+                    redirect(base_url('LoginPage'));
                 }
                 else{
                     $this->session->set_flashdata('message', 'Something went wrong in changing account password');

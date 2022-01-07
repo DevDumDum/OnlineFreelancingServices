@@ -41,7 +41,7 @@ class OFS_model extends CI_Model{
 
 	public function newPassword($data, $code){
 		$this->db->where('users.code', $code);
-		$this->db->update('users', $data);
+		return $this->db->update('users', $data);
 	}
 
     function checkPassword($password,$email)
