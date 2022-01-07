@@ -8,10 +8,6 @@ if($this->session->userdata('UserLoginSession')){
 ?>
 
 <body>
-    <!--NAVBAR-->
-    <header>
-        <!--INSERT NAVBAR LINK HERE-->
-    </header>
     <!---POP UP-->
     <div id="hiddenbox">
         <div id="bg_box">
