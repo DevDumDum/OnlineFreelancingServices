@@ -19,12 +19,12 @@
                             <div class="form-group" id = "insertform" >
                                 <div class = "registerTextCont">
                                     <label for="first-name" class="customlabel" ><span>First Name</span></label> <br>
-                                    <input name="first-name" type="text" placeholder="Ex. Juan" class="fn" required>
+                                    <input name="first-name" type="text" placeholder="Ex. Juan" class="fn" required />
                                 </div>
 
                                 <div class = "registerTextCont">
                                     <label for="last-name" class="customlabel" ><span>Last Name</span></label> <br>
-                                    <input name="last-name" type="text" placeholder="Ex. DelaCruz" class="ln" required>
+                                    <input name="last-name" type="text" placeholder="Ex. DelaCruz" class="ln" required />
                                 </div>
 
                                 <div class = "registerTextCont">
@@ -34,13 +34,13 @@
 
                                 <div class = "registerTextCont">
                                     <label for="contact" class="customlabel" ><span>Contact Number</span></label><br>
-                                    <input name="contact" type="number"  placeholder="09xxxxxxxxx" class="cn" required>
+                                    <input name="contact" type="number" placeholder="09xxxxxxxxx" class="cn" required />
                                 </div>
 
 
                                 <div class = "registerTextCont">
                                     <label for="email-address" class="customlabel" ><span>Email Address</span></label><br>
-                                    <input id="email" onfocusout="check()" name="email" type="email" placeholder="you@example.com" class="ea" required>
+                                    <input id="email" onfocusout="check()" name="email" type="email" placeholder="you@example.com" class="ea" required />
                                 </div>
 
                                 <div class="registerTextCont" style="display:none;" id="errorEmail">
@@ -53,12 +53,12 @@
 
                                 <div class = "registerTextCont">
                                     <label for="password" class="customlabel" ><span>Password</span></label><br>
-                                    <input name="password" id="pw1" onfocusout="confirm_pass()" type="password" class="ps" required>
+                                    <input name="password" id="pw1" onfocusout="confirm_pass()" type="password" class="ps" required />
                                 </div>
 
                                 <div class = "registerTextCont">
                                     <label for="password" class="customlabel" ><span>Confirm Password</span></label><br>
-                                    <input name="confirm-pw" id="pw2" onfocusout="confirm_pass()" type="password" class="Cps" required>
+                                    <input name="confirm-pw" id="pw2" onfocusout="confirm_pass()" type="password" class="Cps" required />
                                 </div>
 
                                 <div id="errorPW" style="display:none">
@@ -160,8 +160,6 @@
             </div>
         </form>
     </div>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
         function check(){
             $.post('<?=base_url('validation/check');?>', {email: $('#email').val()}, function(data){
@@ -177,7 +175,6 @@
                 }else{
                     document.getElementById("successEmail").style.display="none";
                 }
-
             }, 'JSON');
         }
 
@@ -199,6 +196,8 @@
         }
       }
     </script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
     

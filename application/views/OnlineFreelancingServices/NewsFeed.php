@@ -56,7 +56,7 @@ else
 
                                 <label for="">Work Category</label>
                                 <select name="work" id="works">
-                                    <option value="null" >Select</option>
+                                    <option value="0" >Select</option>
 
                                     <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
                                         <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
@@ -67,28 +67,28 @@ else
                                 </select>
                                 <button name="addWorkPost">+</button>
                         </div>
-                            <div>
-                                <label for="">Description</label>
-                                <input type="text" name="description" id="desc" placeholder="Requirements"><br>
+                        <div>
+                            <label for="">Description</label>
+                            <input type="text" name="description" id="desc" placeholder="Requirements" required /><br>
 
-                                <label for="">Worker(s) needed</label>
-                                <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null"><br>
-                                
-                                <label for="">Location</label>
-                                <input type="text" name="location" id="location" placeholder="Work location"><br>
+                            <label for="">Worker(s) needed</label>
+                            <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null"><br>
+                            
+                            <label for="">Location</label>
+                            <input type="text" name="location" id="location" placeholder="Work location" required /><br>
 
-                                <label for="">Minimum Payment</label>
-                                <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
-                                
-                                <label for="">Fixed</label>
-                                <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"><br>
-                                
-                                <label for="">Maximum Payment</label>
-                                <input type="number" name="max-pay" id="max_pay" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null"><br>
-                                
-                                <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                                <input type="submit" value="submit" name="submit">
-                            </div>
+                            <label for="">Minimum Payment</label>
+                            <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
+                            
+                            <label for="">Fixed</label>
+                            <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"><br>
+                            
+                            <label for="">Maximum Payment</label>
+                            <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /><br>
+                            
+                            <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                            <input type="submit" value="submit" name="submit">
+                        </div>
                     </form>
             </div>
     </div>

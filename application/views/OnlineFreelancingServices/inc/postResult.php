@@ -9,7 +9,13 @@
             <div>
                 <img src="">
                 <div>
-                    <p><?php echo $p['post_owner']." needs ".$key_works[$p['profession_ID']-1]['profession_type']."<b>!</b>"; ?></p>
+                    <p><?php 
+                        if($p['profession_ID'] != 0){
+                            echo $p['post_owner']." needs ".$key_works[$p['profession_ID']-1]['profession_type']."<b>!</b>";
+                        }else{
+                            echo $p['post_owner']." needs ".$key_works[0]['profession_type']."<b>!</b>";
+                        }
+                    ?></p>
                 </div>
             </div>
         </div>
