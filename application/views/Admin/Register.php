@@ -1,19 +1,3 @@
-<!---<header>
-		<nav class="navbar custom-navbar navbar-expand-md navbar-dark">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="Homepage">
-					<img class="img-fluid" src="<?php echo base_url();?>public/images/logogif-unscreen.gif" alt="" width="120"
-						class="d-inline-block align-text-top">
-				</a>
-				<ul class="nav justify-content-end">
-					<li class="nav-item">
-						<img class="imgIcon img-fluid" src="<?php echo base_url();?>public/images/help.png" alt="" width="40">
-					</li>
-				</ul>
-			</div>
-		</nav>
-</header>--->
-
 <body class="modregisterpageBody">
   <div class="modcontainer container-fluid">
     <form method="post" autocomplete="off" action="<?=base_url('Register_controller/addMod')?>">
@@ -21,7 +5,7 @@
       <div class="row modregister-row_custom">
         <div class="col-md-6 no-gutters modregisterLeftSide">
             <div class="justify-content-center align-items-center">
-              <img class="img-fluid" src="<?php echo base_url();?>public/images/logogif-unscreen.gif" 
+              <img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" 
               class ="modlogo mx-auto d-block" alt="" height="70">
 
               <p class="modregisterAlready">Already have an account? 
