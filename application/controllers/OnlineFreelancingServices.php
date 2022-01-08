@@ -213,7 +213,7 @@ class OnlineFreelancingServices extends CI_Controller{
                     <body>
                         <h2>Change Password.</h2>
                         <p>Please click the link below to change your account password.</p>
-                        <h4><a href='".base_url()."OnlineFreelancingServices/Newpassword/".$code."'>Activate My Account</a></h4>
+                        <h4><a href='".base_url()."OnlineFreelancingServices/Newpassword/".$code."'>Reset Password</a></h4>
                     </body>
                     </html>
                     ";
@@ -280,7 +280,7 @@ class OnlineFreelancingServices extends CI_Controller{
                 if($query){
                     $this->session->set_flashdata('message', 'Password changed!');
                     $this->session->sess_destroy();
-                    redirect(base_url('LoginPage'));
+                    redirect(base_url('Loginpage'));
                 }
                 else{
                     $this->session->set_flashdata('message', 'Something went wrong in changing account password');
