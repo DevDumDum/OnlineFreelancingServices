@@ -1,0 +1,78 @@
+/*REGISTER PAGE*/
+.modregisterpageBody{
+    font-family: 'Poppins', sans-serif;
+    margin: 0; 
+    height: 100%;
+  /*  overflow: hidden; eto yung scroll*/
+}
+
+.modregister-row_custom{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+/* left side */
+.modregisterLeftSide{
+    background-color: #1F4E70;
+    text-align: center;
+    padding-top: 15%;
+}
+
+.modloginLink, .modregisterAlready{
+    text-align: center;
+    color: #ffff;
+    font-style: italic;
+    font-size: 16px;
+}
+
+/* right side */
+.modregisterRightSide{
+    background-color: #E5E5E5;
+    padding-top: 10%;
+}
+
+.modregH1{
+    color:#1F4E70;
+    font-size: 1.7rem;
+    margin-bottom: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.regadform{
+    margin-bottom: 0 !important;
+    color: #1F4E70;
+    text-align: left;
+}
+
+.regadID, .regadpass, .regadcpass{
+    height: 35px;
+    font-size: 13px;
+    width: 18rem;    
+}
+
+.regadinsertform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.regadbackbtn{
+    border-radius: 0.3rem;
+    color: #0d6efd;
+    background-color: transparent;
+    border-color: #0d6efd;    
+    border-width: thin;
+}
+.regadbackbtn a{
+    text-decoration: none !important;    
+}
+
+.regadbtn{
+    border-width: thin;
+}
+

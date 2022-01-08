@@ -1,20 +1,53 @@
-.custom-navbar{
+.navbar{
     background-color: #1F4E70;
+    border-radius: 0;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
 }
-.custom-navbar a{
-    color: #ffffff;
-    
-}
-
-.nav-link-custom{
+.nav li {
+    position: relative;
     display: block;
-    padding: 3% 4%;
-    text-decoration: none;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+.custom-navbar-admin a{
+    font-size: 2vw;
+    color: #ffffff;
 }
 
-.nav-link-custom:hover{
-    color:#ffffff !important; 
-    font-size: 1.1em;
-    background-color: #1d4764;
+.nav-link-custom-admin{
+    padding-left: 5px;
+    text-decoration: none;
 }
+.nav-item{
+    padding: 0 15px;
+}
+
+.nav-item:hover{
+    background-color: #1b3e58 !important;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 10px 5px;
+}
+
+.nav-link-custom-admin{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.navbar-brand{
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-right: 0;
+    font-size: 1.25rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.fa, .fas {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+

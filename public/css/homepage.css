@@ -1,53 +1,65 @@
-.body-homepage{
-    min-height: 100vh;
+.homepagebody{
+    font-family: 'Poppins';
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /*scroll -- pwede alisin*/
+}
+
+.homepageContainer{
     background: linear-gradient( rgba(0,0,0,0.4), rgba(0,0,0,0.5)),
     url(https://geraidienai.lt/wp-content/uploads/2021/04/Darbas-Siauliuose-1024x576.jpg) center/cover no-repeat fixed;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    padding-top: 150px;
 }
-  
-input#search-bar{
-    margin: 0 auto;
-    width: 99%;
-    height: 55px;
-    padding: 0 20px;
-    font-size: 1rem;
-    border: 1px solid #363535;
-    border-radius: 15px 15px 15px 15px;
-    outline: none;
+
+.homepageH1{
+    color: #ffff;
+    margin-bottom: 20px;
+    font-size: 3vw;
+    letter-spacing: 2px;
+    text-align: center;
 }
-  
-.search-icon{
-    font-size: 25px;
-    background: none;
+
+#search-bar{
+    height: 40px;
+    padding: 10px;
     border: none;
-    position: relative;
-    float: right;
-    width: 75px;
-    top: -48px;
-    border-left: 1px solid black;
+    border-radius: 10px;
+    outline: none;
+    width: 400px;
+}
+
+.homeSearchIcon{
+    width: 40px;
+    height: 40px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.fas{
+    display: inline-block;
 }
 
 .h-d-down{
     background-color: #FFFFFF;
-    border: 1px solid #363535;
-    height: 55px;
-    width: 65px;
-    border-radius: 15px
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }
 
-.h-search_container{
-    padding-top: 15%;
-    max-width: 565px;
-    width: 99%;
-    margin: 0 auto;
+.homeFormbox{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 30px 60px;
 }
 
 .Home-custom_dropdown{
     width: 8%;
-}
-.search-container{
-    float: right;
-    width: 88%;
-    z-index: 1;
 }
