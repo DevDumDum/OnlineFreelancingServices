@@ -29,52 +29,49 @@
         <div class="tables">
             <table class = "table table-dark table-hover center">
                 <tr>
-                <th>User</th>
-                <th> </th>
+                    <th>User</th>
+                    <th> </th>
                 </tr>
-                
-                <div>
-                <tr>
-                <td onclick="newDetails()">
-                    <span>Alfreds Futterskie</span>
-                </td>
-                </div>
-                <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;" id="activate">Activate</button>
-                    <button class="editbtn2" style="cursor: pointer;" id="deactivate">Deactivate</button>
-                </td></tr>
+
+                <?php if(!empty($key_v_list)) { foreach($key_v_list as $v){?>
+
+                    <tr id="theTr_<?php echo $v['v_id'];?>">
+                        <td onclick="newDetails()">
+                            <span class="user_details"><?php echo $v['name']?>'s post ID: <?php echo $v['p_id'];?></span>
+                        </td>
+                        
+                        <td class="status">
+                            <button type="button" class="editbtn1" style="cursor: pointer;" id="activate" onclick="accept_ver(<?php echo $v['v_id'];?>,<?php echo $v['p_id'];?>)">Activate</button>
+                            <button type="button" class="editbtn2" style="cursor: pointer;" id="deactivate" onclick="deny_ver(<?php echo $v['v_id'];?>,<?php echo $v['p_id'];?>)">Deactivate</button>
+
+                            <input hidden type="number" id="verify_id" value="<?php echo $v['v_id'];?>">
+                            <input hidden type="number" id="user_id" value="<?php echo $v['p_id'];?>">
+                        </td>                        
+                    </tr>
+                <?php }} else {
+                    echo "<tr><p>Other categories might have verifications left!</p></tr>";
+                }?>
             
-                <tr>
-                <td onclick="newDetails()">
-                    <span>Centro comercial</span>
-                </td>                
-                <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;">Activate</button>
-                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
-                </td></tr>
-            
-                <tr>
-                <td onclick="newDetails()">
-                    <span>Ernst Handel</span>
-                </td>
-                <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;">Activate</button>
-                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
-                </td></tr>
-            
-                <tr>
-                <td onclick="newDetails()">
-                    <span>Island Trading</span>
-                </td>                
-                <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;" >Activate</button>
-                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
-                </td></tr>
-             
             </table>
         </div>
     </div>
-    <script>
+    <script>        
+        function accept_ver(verify_id, user_id){
+            var id = "theTr_" + verify_id.toString();
+            $.post('<?=base_url('Verification_controller/post_accept_ver');?>', {v_id: verify_id, p_id: user_id}, function(data){
+                alert(data.msg);
+                document.getElementById(id).style.display="none";
+            }, 'JSON');
+        }
+        
+        function deny_ver(verify_id, user_id){
+            var id = "theTr_" + verify_id.toString();
+            $.post('<?=base_url('Verification_controller/post_reject_ver');?>', {v_id: verify_id, p_id: user_id}, function(data){
+                alert(data.msg);
+                document.getElementById(id).style.display="none";
+            }, 'JSON');
+        }
+
         function newDetails(){
             document.getElementById("hiddenbox").style.display="block";
             document.getElementById("hiddenbox").style.animation="fadebox .3s reverse linear";
