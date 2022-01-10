@@ -1,94 +1,67 @@
+<?php
+$udata = $this->session->userdata('UserLoginSession');
 
-<?php if(!empty($key_posts)){ foreach($key_posts as $p){?>
-    <div class="bg-primary m-5 p-10 w-50 rounded">
-        <form id="post_form" action="" method="POST">
-            <div>
-                <input style="display: none" type="text" id="post_ID" name="post_ID" value="<?php echo $p['ID'] ?>">
-                <!--Display post here-->
-                <!--Post example layout-->
-                <div>
-                    <img src="">
-                    <div>
-                        <p><?php echo $p['post_owner']." needs ".$key_works[$p['profession_ID']-1]['profession_type']."<b>!</b>"; ?></p>
-                        <p>php echo $p['profession_ID'] value: <?php echo $p['profession_ID'] ?></p>
-                    </div>
-                </div>
-            </div>
+if(!empty($key_posts)) {
+    foreach($key_posts as $p) {
+        $id = $p['ID'];
+        $name = $p['post_owner'];
+        $p_title = "";
 
-            <?php if($udata['id'] == $p['poster_ID']){ ?>
-                <input type="button" value="edit" onclick="edit_post()"><br>
-                <input type="submit" value="delete" onclick="set_form_action('deact_post')"><br>
-            <?php } ?>
-            ==========================================
-            <!--PopUp Post Details onclick-->
-            <div>
-                <div>
-                    <!--Load skill needed-->
-                </div>
-                <div>
-                        <p>Description: <?php echo $p['requirements'] ?> </p>
-                </div>
-                <div>
-                    <img src=""><br>
-                    <div>Ratings:
-                        <!--Load starts rating-->
-                        <img src="">
-                    </div>
+        if($p['profession_ID'] != 0) {
+            $p_title = $name." needs ".$key_works[$p['profession_ID']-1]['profession_type']."<b>!</b>";
+        } else {
+            $p_title = $name." needs ".$key_works[0]['profession_type']."<b>!</b>";
+        }
+
+        echo'<script>';
+        echo'
+            var post_'.$id.' = document.createElement("div");
+            post_'.$id.'.id = "post_'.$id.'";
+            post_'.$id.'.className = "main_post";
+            post_'.$id.'.style.height ="400px";
+            post_'.$id.'.style.width ="400px";
+            post_'.$id.'.style.marginBottom ="50px";
+            post_'.$id.'.style.backgroundColor ="lightblue";
+            document.getElementById("result").appendChild(post_'.$id.');
+
+                var post_titlebar_'.$id.' = document.createElement("div");
+                post_titlebar_'.$id.'.id = "post_titlebar_'.$id.'";
+                post_titlebar_'.$id.'.style.height ="100px";
+                post_titlebar_'.$id.'.style.width ="100%";
+                post_titlebar_'.$id.'.style.backgroundColor ="grey";
+                document.getElementById("post_'.$id.'").appendChild(post_titlebar_'.$id.');
+
+                var user_image'.$id.' = document.createElement("div");
+                user_image'.$id.'.id = "user_image'.$id.'";
+                user_image'.$id.'.className = "userImage";
+                user_image'.$id.'.style.height ="50px";
+                user_image'.$id.'.style.width ="50px";
+                user_image'.$id.'.style.backgroundColor ="red";
+                document.getElementById("post_titlebar_'.$id.'").appendChild(user_image'.$id.');
+
+                var name_'.$id.' = document.createElement("p");
+                name_'.$id.'.id = "name_'.$id.'";
+                name_'.$id.'.innerHTML = "'.$p_title.'";
+                document.getElementById("post_titlebar_'.$id.'").appendChild(name_'.$id.');
+        ';
+
+        if($udata['id'] == $p['poster_ID']) {
+            echo '
+                var option_'.$id.' = document.createElement("input");
+                option_'.$id.'.id = "option_'.$id.'";
+                option_'.$id.'.setAttribute("type", "button");
+                option_'.$id.'.setAttribute("value", "option");
+                option_'.$id.'.style.float = "right";
+                option_'.$id.'.addEventListener ("click", function() {
+                    document.getElementById("edit_p").value='.$id.';
+                    document.getElementById("del_p").value='.$id.';
+                    document.getElementById("PostOptionMenu").style.display="block";
                     
-                    <?php if($udata['id'] != $p['poster_ID']){ ?>
-                        <button onclick="set_form_action('apply_post')">Apply</button>
-                    <?php } ?>
-                    <button onclick="set_form_action('report_post')">Report</button>
-                </div><br>
-                <div>
-                    <!--Load work images here-->
-                    <img src="">
-                </div><br>
-                <div>
-                    <p>Numbers of Workers: <?php echo $p['worker_count'] ?> </p>
-                </div>
-
-                <div>Expected Fee:
-                    <?php 
-                        if(!empty($p['min_pay'])){ echo "&#8369 ".$p['min_pay']." up to ";}
-                        echo "&#8369 ".$p['max_pay'];
-
-                    ?>
-                </div>
-                <div><p>Location: <?php echo $p['location'] ?> </p></div>
-                <div><p><?php echo date("M j Y", $p['timestamp'])." ".date("h:i A", $p['timestamp']) ?> </p></div>
-            </div>
-        </div>
-
-        </form>
-
-        
-    <?php // id, requirements, worker count, location, date, time, name  ?>
-    
-
-<?php }} else { ?>
-    <p>baka</p>
-<?php } ?>
-
-<script>
-    function set_form_action(action){
-        var loc = "<?=base_url('Post_controller/"+action+"')?>";
-        document.getElementById("post_form").action = loc;
-        alert(loc);
+                });
+                document.getElementById("post_titlebar_'.$id.'").appendChild(option_'.$id.');
+            ';
+        }
+        echo '</script>';
     }
+}
     
-    function edit_post(){
-        AddPostPopUp();
-        
-        var s_wid = "op_" + <?php echo $p['profession_ID']  ?>;
-
-        alert(s_wid);
-
-        document.getElementById(s_wid).selected = true;
-        document.getElementById("desc").value = "<?php echo $p['requirements'] ?>";
-        document.getElementById("worker_count").value = "<?php echo $p['worker_count'] ?>";
-        document.getElementById("location").value = "<?php echo $p['location'] ?>";
-        document.getElementById("min_pay").value = "<?php echo $p['min_pay'] ?>";
-        document.getElementById("max-pay").value = "<?php echo $p['max_pay'] ?>";
-    }
-</script>

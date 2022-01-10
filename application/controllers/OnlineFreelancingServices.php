@@ -58,6 +58,7 @@ class OnlineFreelancingServices extends CI_Controller{
 
 
         $this -> load -> view ('OnlineFreelancingServices/NewsFeed', $table);
+        $this -> load -> view ('OnlineFreelancingServices/inc/postResult', $table);
     }
     public function Aboutpage(){
         $this->session->userdata('page');

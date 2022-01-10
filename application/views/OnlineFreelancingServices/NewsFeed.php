@@ -36,7 +36,13 @@ else
     ==========================================
     <br>
     <!--AddPost button display create post at line 23 event-->
-    <button onclick="AddPostPopUp()">Add Post</button>
+    <button onclick="AddPostPopUp()">Add Post</button><br><br>
+
+    <div id="PostOptionMenu" style="display:none; position: absolute;">
+        <button type="button" id="edit_p" value="" onclick="edit_post(this.value)">Edit</button>
+        <button type="button" id="del_p" value="" onclick="set_form_action('deact_post')">Delete</button>
+    </div>
+    <br>
     ==========================================
     <!--PopUp createPost-->
 
@@ -97,14 +103,10 @@ else
     <br>
     ==========================================
     <br>
-    <?php include("inc/postResult.php"); ?>
+        <div id="result"></div>
     <br>
-    <!-- ====================================================================================================================================<br>
-    >Find Worker button clicked<br>
-    ====================================================================================================================================
-    <br>
-    <?php //include("inc/workResult.php"); ?> -->
 </body>
+
 <script>
     function set_min_pay(c){
         if(c.checked){
@@ -136,6 +138,23 @@ else
     }
     
 </script>
+<script>
+    function set_form_action(action){
+        var loc = "<?=base_url('Post_controller/"+action+"')?>";
+        document.getElementById("post_form").action = loc;
+        alert(loc);
+    }
+    
+    function edit_post(id){
+        document.getElementById("PostOptionMenu").style.display="none";
+        AddPostPopUp();
+        
+        var s_wid = "op_" + id;
+
+        alert(s_wid);
+
+        document.getElementById(s_wid).selected = true;
+    }
+</script>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</html>
