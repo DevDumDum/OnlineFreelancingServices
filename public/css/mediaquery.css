@@ -3,7 +3,7 @@
         font-size: 2vw;
     }
     .custom-navbar-admin a{
-        font-size: 1.1vw;
+        font-size: 1.9vw;
     }
     .homeFormbox{
         background-color: rgba(0, 0, 0, 0.3);
@@ -49,6 +49,12 @@
     #search-bar{
         width: 55%;
     }
+    .editbtn1{
+        font-size: 3.95vw;
+    }
+    .editbtn2{
+        font-size: 3vw;
+    }
 }
 
 @media all and (min-width: 768px) {
@@ -56,7 +62,7 @@
         font-size: 1.3vw;
     }
     .custom-navbar-admin a{
-        font-size: 1.1vw;
+        font-size: 1.5vw;
     }
     .homeFormbox{
         background-color: rgba(0, 0, 0, 0.3);
@@ -104,6 +110,12 @@
     #search-bar{
         width: 55%;
     }
+    .editbtn1{
+        font-size: 2.1vw;
+    }
+    .editbtn2{
+        font-size: 2.1vw;
+    }
 }
 
 @media all and (min-width: 1024px) {
@@ -111,7 +123,7 @@
         font-size: 1.3vw;
     }
     .custom-navbar-admin a{
-        font-size: 1.1vw;
+        font-size: 1.5vw;
     }
     .homeFormbox{
         background-color: rgba(0, 0, 0, 0.3);
@@ -158,6 +170,12 @@
     }
     #search-bar{
         width: 55%;
+    }
+    .editbtn1{
+        font-size: 1.55vw;
+    }
+    .editbtn2{
+        font-size: 1.55vw;
     }
 }
 
@@ -214,6 +232,12 @@
     #search-bar{
         width: 55%;
     }
+    .editbtn1{
+        font-size: 1.23vw;
+    }
+    .editbtn2{
+        font-size: 1.23vw;
+    }
 }
 
 @media all and (min-width: 1304px) {
@@ -269,6 +293,12 @@
     #search-bar{
         width: 55%;
     }
+    .editbtn1{
+        font-size: 1.22vw;
+    }
+    .editbtn2{
+        font-size: 1.22vw;
+    }
 }
 
 @media all and (min-width: 1366px) {
@@ -316,6 +346,9 @@
     }
     #search-bar{
         width: 56%;
+    }
+    .editbtn2{
+        font-size: 1.16vw;
     }
 }
 
@@ -369,6 +402,9 @@
     #search-bar{
         width: 57%;
     }
+    .editbtn2{
+        font-size: 1.1vw;
+    }
 }
 
 @media all and (min-width: 1536px) {
@@ -413,6 +449,12 @@
     }
     #search-bar{
         width: 63%;
+    }
+    .editbtn1{
+        font-size: 1.04vw;
+    }
+    .editbtn2{
+        font-size: 1.04vw;
     }
 }
 
@@ -466,6 +508,12 @@
     #search-bar{
         width: 60%;
     }
+    .editbtn1{
+        font-size: .99vw;
+    }
+    .editbtn2{
+        font-size: .99vw;
+    }
 }
 
 @media all and (min-width: 1858px) {
@@ -501,6 +549,12 @@
     }
     #search-bar{
         width: 70%;
+    }
+    .editbtn1{
+        font-size: .85vw;
+    }
+    .editbtn2{
+        font-size: .85vw;
     }
 }
 
@@ -544,5 +598,11 @@
     }
     #search-bar{
         width: 80%;
+    }
+    .editbtn1{
+        font-size: .86vw;
+    }
+    .editbtn2{
+        font-size: .86vw;
     }
 }
