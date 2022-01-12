@@ -7,11 +7,13 @@
                 <!--Display post here-->
                 <!--Post example layout-->
                 <div>
-                    <img src="">
-                    <div>
-                        <p><?php echo $p['post_owner']." needs ".$key_works[$p['profession_ID']-1]['profession_type']."<b>!</b>"; ?></p>
-                        <p>php echo $p['profession_ID'] value: <?php echo $p['profession_ID'] ?></p>
-                    </div>
+                    <p><?php 
+                        if($p['profession_ID'] != 0){
+                            echo $p['post_owner']." needs ".$key_works[$p['profession_ID']-1]['profession_type']."<b>!</b>";
+                        }else{
+                            echo $p['post_owner']." needs ".$key_works[0]['profession_type']."<b>!</b>";
+                        }
+                    ?></p>
                 </div>
             </div>
 

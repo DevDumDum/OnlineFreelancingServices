@@ -52,8 +52,9 @@ else
 
                         <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
 
-                            <label for="">Work Category</label>
-                            <select name="work" id="works">
+                                <label for="">Work Category</label>
+                                <select name="work" id="works">
+                                    <option value="0" >Select</option>
 
                                 <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
                                     <option id="op_<?php echo $w['ID'];?>" value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
@@ -64,31 +65,27 @@ else
                     </div>
                         <div>
                             <label for="">Description</label>
-                            <input type="text" name="description" id="desc" placeholder="Requirements" required><br>
+                            <input type="text" name="description" id="desc" placeholder="Requirements" required /><br>
 
                             <label for="">Worker(s) needed</label>
-                            <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" 
-                                oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : 1 required"><br>
+                            <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null"><br>
                             
                             <label for="">Location</label>
-                            <input type="text" name="location" id="location" placeholder="Work location" required><br>
+                            <input type="text" name="location" id="location" placeholder="Work location" required /><br>
 
                             <label for="">Minimum Payment</label>
-                            <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled 
-                                oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" onfocusout="set_fixed()"
-                            >
+                            <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
                             
                             <label for="">Fixed</label>
                             <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"><br>
                             
-                            <label for="" id="max_pay_label">Exact Amount</label>
-                            <input type="number" name="max-pay" id="max_pay" value="1" max="100" min="1" 
-                                oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required><br>
+                            <label for="">Maximum Payment</label>
+                            <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /><br>
                             
                             <input type="file" name="fileToUpload" id="fileToUpload"><br>
                             <input type="submit" value="submit" name="submit">
                         </div>
-                </form>
+                    </form>
             </div>
         </div>
         <div id="blackbox" onclick="hidebox()">
