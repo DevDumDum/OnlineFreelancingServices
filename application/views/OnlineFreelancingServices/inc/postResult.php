@@ -60,7 +60,20 @@ if(!empty($key_posts)) {
                 });
                 document.getElementById("post_titlebar_'.$id.'").appendChild(option_'.$id.');
             ';
+        }else{
+            echo '
+                var apply_'.$id.' = document.createElement("input");
+                apply_'.$id.'.id = "apply_'.$id.'";
+                apply_'.$id.'.setAttribute("type", "button");
+                apply_'.$id.'.setAttribute("value", "Apply");
+                apply_'.$id.'.style.float = "right";
+                apply_'.$id.'.addEventListener ("click", function() {
+                    alert('.$id.');
+                });
+                document.getElementById("post_'.$id.'").appendChild(apply_'.$id.');
+            ';
         }
+
         echo '</script>';
     }
 }
