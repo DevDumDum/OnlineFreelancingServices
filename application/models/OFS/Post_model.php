@@ -16,16 +16,6 @@ class Post_model extends CI_Model{
         return $table = $this->db->get('post')->result_array();
    }
 
-   public function get_posts(){
-        $this->db->select('ID, poster_ID, profession_ID, 
-        worker_count, requirements, location, timestamp,
-        min_pay, max_pay, status');
-
-        $this->db->where('status >', 0);
-
-        return $table = $this->db->get('post')->result_array();
-   }
-
    public function add_post($data){
       if($this->db->insert('post', $data))
           return true;

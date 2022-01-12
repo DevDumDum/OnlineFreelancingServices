@@ -23,6 +23,8 @@ else
             <option value="null">----</option>
                 <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
                     <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
+
+
                 <?php }} ?>
         </select><br><br>
 
@@ -40,29 +42,31 @@ else
     ==========================================
     <!--PopUp createPost-->
 
-    <div id="hiddenbox"><br> 
-       <div id="bg_box">
+    <div id="hiddenbox">
+       <br> <div id="bg_box">
             <div class="modal-header-custom">
-                <h1>Create Post</h1>
-                <button class="close-button" onclick="hidebox()">&times;</button>
+                    <h1>Create Post</h1>
+                    <button class="close-button" onclick="hidebox()">&times;</button>
             </div>
             <div  class="create-post">
-                <form action="<?=base_url('Post_controller/addPost')?>" method="post" enctype="multipart/form-data">
-                    <div>
+                    <form action="<?=base_url('Post_controller/addPost')?>" method="post" enctype="multipart/form-data">
+                        <div>
 
-                        <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
+                            <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
 
                                 <label for="">Work Category</label>
                                 <select name="work" id="works">
                                     <option value="0" >Select</option>
 
-                                <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
-                                    <option id="op_<?php echo $w['ID'];?>" value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
-                                <?php }} ?>
+                                    <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
+                                        <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
 
-                            </select>
-                            <button name="addWorkPost">+</button>
-                    </div>
+
+                                    <?php }} ?>
+
+                                </select>
+                                <button name="addWorkPost">+</button>
+                        </div>
                         <div>
                             <label for="">Description</label>
                             <input type="text" name="description" id="desc" placeholder="Requirements" required /><br>
@@ -87,7 +91,7 @@ else
                         </div>
                     </form>
             </div>
-        </div>
+    </div>
         <div id="blackbox" onclick="hidebox()">
         </div>
     </div>
@@ -107,31 +111,18 @@ else
         if(c.checked){
             document.getElementById("min_pay").disabled=true;
             document.getElementById("min_pay").value="";
-            document.getElementById("max_pay_label").textContent="Exact Amount";
         }else {
             document.getElementById('min_pay').value=1;
             document.getElementById('min_pay').disabled=false;
-            document.getElementById("max_pay_label").textContent="Maximum Payment";
         }
     }
     function AddPostPopUp(){
-        document.getElementById("hiddenbox").style.display="block";
-        document.getElementById("hiddenbox").style.animation="fadebox .3s reverse linear";
-    }
-    function hidebox(){
-        document.getElementById("hiddenbox").style.display="none";
-    }
-
-    function set_fixed(){
-        var component = document.getElementById("min_pay");
-
-        if(component.value == ""){
-            document.getElementById("min-checker").checked = true;
-            component.disabled = true;
-            document.getElementById("max_pay_label").textContent="Exact Amount";
+            document.getElementById("hiddenbox").style.display="block";
+            document.getElementById("hiddenbox").style.animation="fadebox .3s reverse linear";
         }
-    }
-    
+    function hidebox(){
+            document.getElementById("hiddenbox").style.display="none";
+        }
 </script>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
