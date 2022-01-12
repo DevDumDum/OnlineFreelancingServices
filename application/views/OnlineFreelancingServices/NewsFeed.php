@@ -108,6 +108,7 @@ else
 </body>
 
 <script>
+
     function set_min_pay(c){
         if(c.checked){
             document.getElementById("min_pay").disabled=true;
@@ -137,6 +138,24 @@ else
         }
     }
     
+    function set_form_action(action){
+        var loc = "<?=base_url('Post_controller/"+action+"')?>";
+        document.getElementById("post_form").action = loc;
+        alert(loc);
+    }
+    
+    function edit_post(id){
+
+        document.getElementById("PostOptionMenu").style.display="none";
+        AddPostPopUp();
+        
+        var s_wid = "op_" + id;
+
+        alert(s_wid);
+
+        document.getElementById(s_wid).selected = true;
+    }
+
 </script>
 <script>
     function set_form_action(action){

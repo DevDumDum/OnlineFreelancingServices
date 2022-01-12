@@ -17,12 +17,29 @@ class OFS_model extends CI_Model{
 		return $this->db->insert_id(); 
 	}
 
+	public function getEmail($email){
+		$query = $this->db->query("SELECT * FROM users WHERE email='$email'");
+		if($query->num_rows()==1)
+		{
+			return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	public function getUser($code){
 		$query = $this->db->get_where('users',array('code'=>$code));
 		return $query->row_array();
 	}
 
 	public function activate($data, $code){
+		$this->db->where('users.code', $code);
+		return $this->db->update('users', $data);
+	}
+
+	public function newPassword($data, $code){
 		$this->db->where('users.code', $code);
 		return $this->db->update('users', $data);
 	}
