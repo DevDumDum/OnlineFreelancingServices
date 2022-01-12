@@ -56,8 +56,6 @@ else
 
                                 <label for="">Work Category</label>
                                 <select name="work" id="works">
-                                    <option value="0" >Select</option>
-
                                     <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
                                         <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
 
