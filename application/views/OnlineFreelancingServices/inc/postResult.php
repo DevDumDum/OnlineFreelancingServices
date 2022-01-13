@@ -2,7 +2,15 @@
 $udata = $this->session->userdata('UserLoginSession');
 
 if(!empty($key_posts)) {
-    foreach($key_posts as $p) {
+
+    $current = 0;
+    $limit = 3;
+    $offset = 0;
+
+    $feed = array();
+    
+    foreach($feed as $p) {
+
         $id = $p['ID'];
         $name = $p['post_owner'];
         $p_title = "";
@@ -77,4 +85,31 @@ if(!empty($key_posts)) {
         echo '</script>';
     }
 }
+?>
+<script>
     
+    window.addEventListener('scroll',(event) => {
+        const limit = Math.max( document.body.scrollHeight, document.body.offsetHeight, 
+                   document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+        var current = window.scrollY;
+
+        if( current + window.innerHeight === limit){
+            alert("max");
+
+            var offset = <?php echo $offset ?>;
+            var limit = <?php echo $limit ?>;
+            var current = <?php echo $current ?>;
+
+            for(offset=offset; offset<offset+limit; offset++){
+                alert(<?php $feed[ ?>offset<?php ] ?>);
+            }
+
+            <?php 
+            
+                //for($offset; $offset<$offset+$limit; $offset++){
+                //}
+
+            ?>
+        }
+});
+</script>
