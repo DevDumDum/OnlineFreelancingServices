@@ -11,7 +11,7 @@ else
     redirect(base_url('index.php/Loginpage'));
 }
 ?>
-
+<?=$this->session->flashdata('message')?>
 <body>
 
     <br><br><br>
@@ -173,6 +173,15 @@ else
         alert(s_wid);
 
         document.getElementById(s_wid).selected = true;
+    }
+
+    function applicant(id){
+        alert(id);
+    $.ajax({
+        type: 'POST',
+        url:"<?=base_url('OnlineFreelancingServices/add_applicant');?>",
+        data: '{"a_id":"'+id+'"}'
+    });
     }
 </script>
 <!-- JavaScript Bundle with Popper -->

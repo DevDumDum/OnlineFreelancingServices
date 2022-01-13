@@ -26,10 +26,14 @@ class Post_model extends CI_Model{
         return $table = $this->db->get('post')->result_array();
    }
 
+   public function add_applicant($id){
+      if($this->db->where('post.applicants !=', null))
+         return $this->db->update('post.applicants', $id);
+   }
+
    public function add_post($data){
       if($this->db->insert('post', $data))
           return true;
       else return false;
    }
 }
-

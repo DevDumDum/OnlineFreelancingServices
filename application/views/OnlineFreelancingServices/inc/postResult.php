@@ -1,5 +1,7 @@
 <?php
 $udata = $this->session->userdata('UserLoginSession');
+$this->load->model("OFS/Post_model");
+
 
 if(!empty($key_posts)) {
     foreach($key_posts as $p) {
@@ -68,7 +70,11 @@ if(!empty($key_posts)) {
                 apply_'.$id.'.setAttribute("value", "Apply");
                 apply_'.$id.'.style.float = "right";
                 apply_'.$id.'.addEventListener ("click", function() {
-                    alert('.$id.');
+                    var proceed = confirm("Are you sure you want to proceed?");
+                        if (proceed) {
+                            applicant('.$id.');
+                            console.log("Applied.");       
+                        }
                 });
                 document.getElementById("post_'.$id.'").appendChild(apply_'.$id.');
             ';
@@ -77,4 +83,3 @@ if(!empty($key_posts)) {
         echo '</script>';
     }
 }
-    

@@ -168,6 +168,25 @@ class OnlineFreelancingServices extends CI_Controller{
         }
     }
 
+    public function add_applicant(){
+        header('content-type: text/json');
+        $id = $_POST["a_id"];
+        $this->load->model('OFS/Post_model');
+        $query = $this->Post_model->add_applicant($id);
+
+        if($query){
+            $this->session->set_flashdata('message', 'Pumasok');
+        }
+        else{
+            $this->session->set_flashdata('message', 'Mali');
+        }
+        
+        //if($id!=NULL)
+            //return $this->db->insert('post.applicants', $id);
+            //redirect(base_url('Profilepage'));
+        //else //return $this->db->insert('post.applicants', 0000);           
+     }
+
     public function Logout(){
         $array_items = array('id' => '', 'email' => '');
         $this->session->unset_userdata($array_items);
