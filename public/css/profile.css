@@ -83,7 +83,7 @@
     border-radius: 3px;
     box-shadow: 0 1px 3px rgb(25 25 25 / 10%);
     flex-shrink: 0;
-    width: 360px;
+    width: 350px;
     padding: 25px 30px 16px;
     text-align: center;
     border: none;
@@ -132,11 +132,203 @@
     white-space: nowrap;
 }
 
+.editbutton, .switchBox{
+    font-weight: bold;
+    padding: 6px 15px;
+    background-color: #929292;
+    border-radius: 15px;
+    border: none;
+    width: 60%;
+    margin-bottom: 7px;
+    display: inline-flex;
+    color: #ffff;
+}
 
+.editbutton{
+    justify-content: center;
+}
+.editbuttonicon{
+    margin-right: 5px;
+}
 
+.switch{
+    position: relative;
+    display: flex;
+    height: 18px;
+    width: 33px;
+}
 
+.slider{
+    position: absolute;
+    cursor: pointer;
+    left: 10px;
+    background-color: rgb(54, 54, 54);
+    transition: .4s;
+    border-radius: 34px;
+    height: 20px;
+}
 
+.switch input {
+    display: none;
+}
+
+.slider:before{
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 15px;
+    bottom: 5px;
+    background-color: #7c7c7c;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+input:checked + .slider {
+    background-color: #ffffff;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+#h4-status{
+    position: relative;
+    left: 6rem;
+    top: 0rem;
+    color: #ffff;
+}
+
+.messageprofilebtn{
+    border-radius: 10px;
+    padding: 5px;
+    width: 12%;
+    position: absolute;
+    top: -23rem;
+    right: -3rem;
+}
+
+.profileDesc{/*balikan*/
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: -20rem; 
+    left: 10rem;
+    width: 80rem;
+}
+
+.descbuttons{/*balikan*/
+    position: absolute;
+    right: -42.2rem;
+    top: 9rem;
+    width: 70%;
+}
+.descprofilebtn, .descprofilebtnsave{/*balikan*/
+    border-radius: 10px;
+    padding: 2px;
+    width: 10%;
+    margin-top: 5px;
+}
+
+.descprofilebtnsave:hover{
+    background-color: rgb(160, 160, 160);
+}
+
+.profileProjwrapper{/*balikan*/
+    background-color: #c5c5c5;
+    padding: 25px;
+    position: absolute;
+    left: 38.4rem;
+    top: 30rem;
+}
 /*
+.container-status{
+    position: absolute;
+    height: 2rem;
+    width: 8rem;
+    border: 3px solid #008CBA; 
+    top: 39.5rem;
+    left: 10%;
+    border-radius: 1rem;
+}
+
+.container-description {
+    position: absolute;
+    height: 10rem;
+    width: 61.5rem;
+    border: 1px solid black;
+    top: 32rem;
+    left: 25%;
+}
+
+.container-ratings{
+    position: absolute;
+    height: 4rem;
+    width: 12rem;
+    border: 1px solid black;
+    top: 43rem;
+    left: 83.8%;
+}
+
+#h3-ratings{
+    position: absolute;
+    padding-left: 3rem;
+}
+
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin: 0 10px;
+    top: 39.9rem;
+    left: 9rem;
+}
+
+.slider{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider:before{
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 5px;
+    bottom: 5px;
+    background-color: gray;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+input:checked + .slider {
+    background-color: #008CBA;
+}
+
+input:checked + .slider:before {
+    transform: translateX(15px);
+}
+
+#h4-status{
+    position: absolute;
+    left: 3rem;
+    top: 0rem;
+    color: gray;
+}
 #editProfile{
     top: 37rem;
     left: 10%;
@@ -340,88 +532,5 @@
     border-radius: 1rem;
 }
 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-    margin: 0 10px;
-    top: 39.9rem;
-    left: 9rem;
-}
 
-.slider{
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-}
 
-.switch input {
-    display: none;
-}
-
-.slider:before{
-    position: absolute;
-    content: "";
-    height: 10px;
-    width: 10px;
-    left: 5px;
-    bottom: 5px;
-    background-color: gray;
-    transition: 0.4s;
-    border-radius: 50px;
-}
-
-input:checked + .slider {
-    background-color: #008CBA;
-}
-
-input:checked + .slider:before {
-    transform: translateX(15px);
-}
-
-#h4-status{
-    position: absolute;
-    left: 3rem;
-    top: 0rem;
-    color: gray;
-}
-
-.container-status{
-    position: absolute;
-    height: 2rem;
-    width: 8rem;
-    border: 3px solid #008CBA; 
-    top: 39.5rem;
-    left: 10%;
-    border-radius: 1rem;
-}
-
-.container-description {
-    position: absolute;
-    height: 10rem;
-    width: 61.5rem;
-    border: 1px solid black;
-    top: 32rem;
-    left: 25%;
-}
-
-.container-ratings{
-    position: absolute;
-    height: 4rem;
-    width: 12rem;
-    border: 1px solid black;
-    top: 43rem;
-    left: 83.8%;
-}
-
-#h3-ratings{
-    position: absolute;
-    padding-left: 3rem;
-}
