@@ -1,0 +1,427 @@
+.profileBody{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.profileBody-container{
+    background-color: #f9f9f9;
+    color: #191919;
+    min-height: 100vh;
+    position: relative;
+}
+
+.cover-pic-div{
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgb(112, 112, 112);
+    color: #ebebeb;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-transition: background-color .15s linear,height .65s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: background-color .15s linear,height .65s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@media (min-width: 1201px){
+    .cover-pic-div {
+        height: 266px;
+    }
+}
+
+@media (min-width: 1201px){
+    .cover-pic-diV{
+        height: 210px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 2;
+    }
+}
+
+#uploadBtn{
+    height: 100px;
+    width: 30%;
+    position: absolute;
+    text-align: center;
+    background-color: rgb(0, 0, 0, 0.4);
+    color: #ffff;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: none;
+}
+
+.uploadingofcover{
+    margin-top: 25px;
+}
+
+#file, #fileProfile{
+    display: none;
+}
+
+#photoCover, #photoProfile{
+    height: 100%;
+    width: 100%;
+}
+
+.profile-wrapper{
+    margin: -10% 4% 0 4%;
+    max-width: 1760px;
+    min-height: 101vh;
+    position: relative;
+    z-index: 3;
+}
+
+.profile-container{
+    background-color: #ffff;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgb(25 25 25 / 10%);
+    flex-shrink: 0;
+    width: 360px;
+    padding: 25px 30px 16px;
+    text-align: center;
+    border: none;
+
+}
+
+.profile-pic-div{
+    height: 200px;
+    width: 200px;
+    background-color: rgb(247, 233, 233);
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 2px;
+    position: relative;
+    -webkit-transition: margin-top .65s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: margin-top .65s cubic-bezier(0.19, 1, 0.22, 1);
+    overflow: hidden;
+}
+
+#uploadBtnProfile{
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%; 
+    transform: translate(-50%); 
+    text-align: center;
+    background-color: rgb(0, 0, 0, 0.4);
+    color: #ffff;
+    line-height: 40px;
+    font-size: 15px;
+    cursor: pointer;
+    display: none;
+    margin-bottom: 0;
+}
+
+.profileUsername{
+    display: block;
+    font-size: 24px;
+    font-weight: 600;
+    height: 29px;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+
+
+
+/*
+#editProfile{
+    top: 37rem;
+    left: 10%;
+    background-color: #008CBA;
+    height: 2rem;
+    width: 8rem;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+#uploadBtn, #uploadBtnProfile{
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%; 
+    transform: translate(-50%); 
+    text-align: center;
+    background-color: rgb(0, 0, 0, 0.7);
+    color: #ffff;
+    line-height: 40px;
+    font-size: 15px;
+    cursor: pointer;
+    display: none;
+    margin-bottom: 0;
+}/*
+.profile-pic-div{
+    height: 200px;
+    width: 200px;
+    left: 50%;
+    position: absolute;
+    top: 35%;
+    -webkit-transform: translateX(-50%) translateY(-50%); 
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid grey;
+}
+.profile-container{
+    border: 1.5px solid grey;
+    height: 60%;
+    width: 25%;
+    background-color: #ffff;
+    position: absolute;
+    margin-left: 4%;
+    margin-top: -10%;
+}
+.profile-pic-div{
+    height: 200px;
+    width: 200px;
+    left: 50%;
+    position: absolute;
+    top: 40%;
+    -webkit-transform: translateX(-50%) translateY(-50%); 
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid grey;
+}
+
+#uploadBtnProfile{
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%; 
+    transform: translate(-50%); 
+    text-align: center;
+    background-color: rgb(0, 0, 0, 0.4);
+    color: #ffff;
+    line-height: 40px;
+    font-size: 15px;
+    cursor: pointer;
+    display: none;
+    margin-bottom: 0;
+}.profile-pic-div{
+    height: 200px;
+    width: 200px;
+    left: 50%;
+    position: absolute;
+    top: 40%;
+    -webkit-transform: translateX(-50%) translateY(-50%); 
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid grey;
+}
+
+#uploadBtnProfile{
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%; 
+    transform: translate(-50%); 
+    text-align: center;
+    background-color: rgb(0, 0, 0, 0.4);
+    color: #ffff;
+    line-height: 40px;
+    font-size: 15px;
+    cursor: pointer;
+    display: none;
+    margin-bottom: 0;
+}
+#file, #fileProfile{
+    display: none;
+}
+
+/*.profile-container{
+    border: 1.5px solid grey;
+    height: 50%;
+    width: 20%;
+    background-color: #ffff;
+    position: absolute;
+    margin-left: 4%;
+    margin-top: 10%;
+}*/
+
+/*.profile-container{
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgb(25 25 25 / 10%);
+    flex-shrink: 0;
+    width: 360px;
+    position: relative;
+    z-index: 2;
+    border: 1.5px solid grey;
+}
+
+
+.profile-pic-div{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid grey;
+    margin: 20px 25px 15px 25px;
+}*/
+
+
+
+/*.cover-pic-div {
+    height: 30rem;
+    width: 80rem;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow: hidden;
+    border: 1px solid grey;
+}
+
+#photoCover, #photoProfile{
+    height: 100%;
+    width: 100%;
+}
+
+#uploadBtn, #uploadBtnProfile{
+    height: 40px; 
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+    background-color: rgb(0, 0, 0, 0.7);
+    color: wheat;
+    line-height: 30px;
+    font-family: serif;
+    font-size: 15px;
+    cursor: pointer;
+    display: none;
+}
+
+#file, #fileProfile{
+    display: none;
+}
+
+
+
+.profile-pic-div {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    top: 70%;
+    left: 15%;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid grey;
+}
+
+#editProfile{
+    position: absolute;
+    top: 37rem;
+    left: 10%;
+    background-color: #008CBA;
+    height: 2rem;
+    width: 8rem;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin: 0 10px;
+    top: 39.9rem;
+    left: 9rem;
+}
+
+.slider{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider:before{
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 5px;
+    bottom: 5px;
+    background-color: gray;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+input:checked + .slider {
+    background-color: #008CBA;
+}
+
+input:checked + .slider:before {
+    transform: translateX(15px);
+}
+
+#h4-status{
+    position: absolute;
+    left: 3rem;
+    top: 0rem;
+    color: gray;
+}
+
+.container-status{
+    position: absolute;
+    height: 2rem;
+    width: 8rem;
+    border: 3px solid #008CBA; 
+    top: 39.5rem;
+    left: 10%;
+    border-radius: 1rem;
+}
+
+.container-description {
+    position: absolute;
+    height: 10rem;
+    width: 61.5rem;
+    border: 1px solid black;
+    top: 32rem;
+    left: 25%;
+}
+
+.container-ratings{
+    position: absolute;
+    height: 4rem;
+    width: 12rem;
+    border: 1px solid black;
+    top: 43rem;
+    left: 83.8%;
+}
+
+#h3-ratings{
+    position: absolute;
+    padding-left: 3rem;
+}
