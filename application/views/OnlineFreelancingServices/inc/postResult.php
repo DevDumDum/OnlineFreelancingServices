@@ -3,12 +3,18 @@ $udata = $this->session->userdata('UserLoginSession');
 
 if(!empty($key_posts)) {
 
-    $current = 0;
-    $limit = 3;
-    $offset = 0;
+    if(!isset($offset)){
+        $limit = 3;
+        $offset = 0;
+    }
 
     $feed = array();
-    
+    $feed[$offset] = $key_posts[$offset];
+
+    for($i=$offset; $i<$offset+$limit; $i++){
+        
+    }
+
     foreach($feed as $p) {
 
         $id = $p['ID'];
@@ -20,7 +26,7 @@ if(!empty($key_posts)) {
         } else {
             $p_title = $name." needs ".$key_works[0]['profession_type']."<b>!</b>";
         }
-
+        echo "<div id='lala'>";
         echo'<script>';
         echo'
             var post_'.$id.' = document.createElement("div");
@@ -32,25 +38,25 @@ if(!empty($key_posts)) {
             post_'.$id.'.style.backgroundColor ="lightblue";
             document.getElementById("result").appendChild(post_'.$id.');
 
-                var post_titlebar_'.$id.' = document.createElement("div");
-                post_titlebar_'.$id.'.id = "post_titlebar_'.$id.'";
-                post_titlebar_'.$id.'.style.height ="100px";
-                post_titlebar_'.$id.'.style.width ="100%";
-                post_titlebar_'.$id.'.style.backgroundColor ="grey";
-                document.getElementById("post_'.$id.'").appendChild(post_titlebar_'.$id.');
+            var post_titlebar_'.$id.' = document.createElement("div");
+            post_titlebar_'.$id.'.id = "post_titlebar_'.$id.'";
+            post_titlebar_'.$id.'.style.height ="100px";
+            post_titlebar_'.$id.'.style.width ="100%";
+            post_titlebar_'.$id.'.style.backgroundColor ="grey";
+            document.getElementById("post_'.$id.'").appendChild(post_titlebar_'.$id.');
 
-                var user_image'.$id.' = document.createElement("div");
-                user_image'.$id.'.id = "user_image'.$id.'";
-                user_image'.$id.'.className = "userImage";
-                user_image'.$id.'.style.height ="50px";
-                user_image'.$id.'.style.width ="50px";
-                user_image'.$id.'.style.backgroundColor ="red";
-                document.getElementById("post_titlebar_'.$id.'").appendChild(user_image'.$id.');
+            var user_image'.$id.' = document.createElement("div");
+            user_image'.$id.'.id = "user_image'.$id.'";
+            user_image'.$id.'.className = "userImage";
+            user_image'.$id.'.style.height ="50px";
+            user_image'.$id.'.style.width ="50px";
+            user_image'.$id.'.style.backgroundColor ="red";
+            document.getElementById("post_titlebar_'.$id.'").appendChild(user_image'.$id.');
 
-                var name_'.$id.' = document.createElement("p");
-                name_'.$id.'.id = "name_'.$id.'";
-                name_'.$id.'.innerHTML = "'.$p_title.'";
-                document.getElementById("post_titlebar_'.$id.'").appendChild(name_'.$id.');
+            var name_'.$id.' = document.createElement("p");
+            name_'.$id.'.id = "name_'.$id.'";
+            name_'.$id.'.innerHTML = "'.$p_title.'";
+            document.getElementById("post_titlebar_'.$id.'").appendChild(name_'.$id.');
         ';
 
         if($udata['id'] == $p['poster_ID']) {
@@ -83,33 +89,56 @@ if(!empty($key_posts)) {
         }
 
         echo '</script>';
+        echo "</div>";
     }
 }
 ?>
 <script>
-    
-    window.addEventListener('scroll',(event) => {
-        const limit = Math.max( document.body.scrollHeight, document.body.offsetHeight, 
+    var offset = <?php if(isset($offset)) echo $offset ?>; 
+    var scrollLimit = Math.max( document.body.scrollHeight, document.body.offsetHeight, 
                    document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+    
+    /*
+    window.addEventListener('scroll',(event) => {
         var current = window.scrollY;
 
-        if( current + window.innerHeight === limit){
-            alert("max");
+        if(current + window.innerHeight === limit) {
 
-            var offset = <?php echo $offset ?>;
-            var limit = <?php echo $limit ?>;
-            var current = <?php echo $current ?>;
+            add_post();
+            alert("max");            
+        }
+    });
+    */
 
-            for(offset=offset; offset<offset+limit; offset++){
-                alert(<?php $feed[ ?>offset<?php ] ?>);
+    function add_post(){
+        offset++;
+        console.log(offset);
+    }
+
+    $(function(){
+        
+        $.ajaxSetup ({ cache: false });
+        
+        $(window).scroll(function(){
+            
+            var current = window.scrollY;
+            if(current + window.innerHeight == scrollLimit) {
+
+                add_post();
+                alert("max");
+                
+                <?php
+                    echo '<script>';
+                    $temp = 'offset';
+                    echo 'tempVar = '.$key_posts[$temp].';';
+                    echo '</script>';
+                ?>
+                alert(tempVar);
+
+                $(<?php echo $feed[$temp] ?>).load(tempVar);
             }
 
-            <?php 
-            
-                //for($offset; $offset<$offset+$limit; $offset++){
-                //}
+        });
 
-            ?>
-        }
-});
+    });
 </script>
