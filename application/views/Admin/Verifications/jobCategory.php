@@ -37,32 +37,32 @@
                     <td onclick="newDetails()"><span>Alfreds Futterskie</span></td>
                     <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium doloremque error exercitationem voluptates? Porro dolore laboriosam laborum, minus voluptate recusandae expedita distinctio quas officiis rem accusantium eaque mollitia, aliquam veritatis!</td>
                 <td class="status_w">
-                    <button class="editbtn1" style="cursor: pointer;">Accept</button>
-                    <button class="editbtn2" style="cursor: pointer;">Decline</button>
+                    <button class="editbtn1 editbtn1-jobCategory-responsiveness" style="cursor: pointer;">Accept</button>
+                    <button class="editbtn2 editbtn2-jobCategory-responsiveness" style="cursor: pointer;">Decline</button>
                 </td></tr>
                 
                 <tr>
                 <td onclick="newDetails()"><span>Centro comercial</span></td>
                 <td>Description</td>
                 <td class="status_w">
-                    <button class="editbtn1" style="cursor: pointer;">Accept</button>
-                    <button class="editbtn2" style="cursor: pointer;">Decline</button>
+                    <button class="editbtn1 editbtn1-jobCategory-responsiveness" style="cursor: pointer;">Accept</button>
+                    <button class="editbtn2 editbtn2-jobCategory-responsiveness" style="cursor: pointer;">Decline</button>
                 </td></tr>
             
                 <tr>
                 <td onclick="newDetails()"><span>Ernst Handel</span></td>
                 <td>Description</td>
                 <td class="status_w">
-                    <button class="editbtn1" style="cursor: pointer;">Accept</button>
-                    <button class="editbtn2" style="cursor: pointer;">Decline</button>
+                    <button class="editbtn1 editbtn1-jobCategory-responsiveness" style="cursor: pointer;">Accept</button>
+                    <button class="editbtn2 editbtn2-jobCategory-responsiveness" style="cursor: pointer;">Decline</button>
                 </td></tr>
             
                 <tr>
                 <td onclick="newDetails()"><span>Island Trading</span></td>
                 <td>Description</td>
                 <td class="status_w">
-                    <button class="editbtn1" style="cursor: pointer;">Accept</button>
-                    <button class="editbtn2" style="cursor: pointer;">Decline</button>
+                    <button class="editbtn1 editbtn1-jobCategory-responsiveness" style="cursor: pointer;">Accept</button>
+                    <button class="editbtn2 editbtn2-jobCategory-responsiveness" style="cursor: pointer;">Decline</button>
                 </td></tr>
              
             </table>
