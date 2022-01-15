@@ -4,16 +4,13 @@
 if($this->session->userdata('UserLoginSession'))
 {
     $udata = $this->session->userdata('UserLoginSession');
-    echo 'Welcome'.' '.$udata['email'];
 }
 else
 {
     redirect(base_url('index.php/Loginpage'));
 }
 ?>
-
 <body>
-
     <br><br><br>
     <div>
         <!-- for filtering category-->
@@ -23,7 +20,6 @@ else
             <option value="null">----</option>
                 <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
                     <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
-
 
                 <?php }} ?>
         </select><br><br>
@@ -38,7 +34,13 @@ else
     ==========================================
     <br>
     <!--AddPost button display create post at line 23 event-->
-    <button onclick="AddPostPopUp()">Add Post</button>
+    <button onclick="AddPostPopUp()">Add Post</button><br><br>
+
+    <div id="PostOptionMenu" style="display:none; position: absolute;">
+        <button type="button" id="edit_p" value="" onclick="edit_post(this.value)">Edit</button>
+        <button type="button" id="del_p" value="" onclick="set_form_action('deact_post')">Delete</button>
+    </div>
+    <br>
     ==========================================
     <!--PopUp createPost-->
 
@@ -54,40 +56,39 @@ else
 
                             <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
 
-                                <label for="">Work Category</label>
-                                <select name="work" id="works">
-                                    <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
-                                        <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
-
-
-                                    <?php }} ?>
+                            <label for="">Work Category</label>
+                            <select name="work" id="works">
 
                                 </select>
                                 <button name="addWorkPost">+</button>
                         </div>
                         <div>
                             <label for="">Description</label>
-                            <input type="text" name="description" id="desc" placeholder="Requirements" required /><br>
+                            <input type="text" name="description" id="desc" placeholder="Requirements" required><br>
 
                             <label for="">Worker(s) needed</label>
-                            <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null"><br>
+                            <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" 
+                                oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : 1 required"><br>
                             
                             <label for="">Location</label>
-                            <input type="text" name="location" id="location" placeholder="Work location" required /><br>
+                            <input type="text" name="location" id="location" placeholder="Work location" required><br>
 
                             <label for="">Minimum Payment</label>
-                            <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
+                            <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled 
+                                oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" onfocusout="set_fixed()"
+                            >
                             
                             <label for="">Fixed</label>
                             <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"><br>
                             
-                            <label for="">Maximum Payment</label>
-                            <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /><br>
+                            <label for="" id="max_pay_label">Exact Amount</label>
+                            <input type="number" name="max-pay" id="max_pay" value="1" max="100" min="1" 
+                                oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required><br>
                             
                             <input type="file" name="fileToUpload" id="fileToUpload"><br>
                             <input type="submit" value="submit" name="submit">
                         </div>
-                    </form>
+                </form>
             </div>
     </div>
         <div id="blackbox" onclick="hidebox()">
@@ -96,15 +97,12 @@ else
     <br>
     ==========================================
     <br>
-    <?php include("inc/postResult.php"); ?>
+        <div id="result"></div>
     <br>
-    <!-- ====================================================================================================================================<br>
-    >Find Worker button clicked<br>
-    ====================================================================================================================================
-    <br>
-    <?php //include("inc/workResult.php"); ?> -->
 </body>
+
 <script>
+
     function set_min_pay(c){
         if(c.checked){
             document.getElementById("min_pay").disabled=true;
@@ -119,9 +117,64 @@ else
             document.getElementById("hiddenbox").style.animation="fadebox .3s reverse linear";
         }
     function hidebox(){
-            document.getElementById("hiddenbox").style.display="none";
+        document.getElementById("hiddenbox").style.display="none";
+    }
+    
+    function set_form_action(action){
+        var loc = "<?=base_url('Post_controller/"+action+"')?>";
+        document.getElementById("post_form").action = loc;
+        alert(loc);
+    }
+    
+    function edit_post(id){
+
+        document.getElementById("PostOptionMenu").style.display="none";
+        AddPostPopUp();
+        
+        var s_wid = "op_" + id;
+
+        alert(s_wid);
+
+        document.getElementById(s_wid).selected = true;
+    }
+
+</script>
+<script>
+    function set_form_action(action){
+        var loc = "<?=base_url('Post_controller/"+action+"')?>";
+        document.getElementById("post_form").action = loc;
+        alert(loc);
+    }
+    
+    function edit_post(id){
+        document.getElementById("PostOptionMenu").style.display="none";
+        AddPostPopUp();
+        
+        var s_wid = "op_" + id;
+
+        alert(s_wid);
+
+        document.getElementById(s_wid).selected = true;
+    }
+
+    function applicant(id,uid){
+    $.ajax({
+        type: 'POST',
+        url:"<?=base_url('OnlineFreelancingServices/add_applicant');?>",
+        data: {a_id : id , u_id : uid},
+        success: function(response) {
+            if(response.status == "success"){
+                alert("Application Request sent!");
+                document.getElementById('apply_'+id).disabled=true;
+            }else{
+                alert("Request Timeout: User already Applied");
+                document.getElementById('apply_'+id).disabled=true;
+            }
+            alert("<?php echo $udata['jobs'];?>");
         }
+    });
+    console.log("Applied.");
+    }
 </script>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</html>
