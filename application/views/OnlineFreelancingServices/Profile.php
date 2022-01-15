@@ -140,44 +140,11 @@
                             <input type="radio" name="star" id="star1"> <label for="star5"></label>
                         </div>
                     </div>
-                    
-
-
             <!--    </div>
-
-                
               </div>
       </div>-->
-                
-
-
       </div>
-
-        
-
-
- 
-
-            
-
-
-
     </div>
-    
-    
-
-    <!--
-
-    <div class = "container-status"></div>
-    
-
-    <div class="container-description">
-        <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at congue urna. Vivamus gravida congue velit, nec dapibus leo hendrerit vel. Mauris consectetur et ex ac rutrum. Maecenas interdum sagittis leo ac commodo. Vivamus velit augue, imperdiet eu laoreet a, mattis a lacus. Nam sagittis massa malesuada ante mattis maximus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus volutpat metus vitae ipsum blandit vulputate. Morbi auctor urna interdum, auctor eros vitae, tristique orci. Praesent pharetra urna tristique orci bibendum fermentum. Aenean faucibus justo ac ipsum aliquam convallis. Aenean ultricies eget libero et ultrices. Nullam auctor nisl ac magna interdum, et consectetur est blandit. Proin eu gravida purus. In quis efficitur nibh. Vestibulum congue euismod massa in tristique.</i>
-    </div>
-
-    <div class="container-ratings">
-        <h3 id="h3-ratings">RATINGS</h3>
-    </div>-->
 
     <script src="public/css/profile.js"></script>
 </body>
