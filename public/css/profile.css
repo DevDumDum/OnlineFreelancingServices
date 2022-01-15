@@ -5,10 +5,16 @@
     height: 100vh;
     width: 100%;
     font-family: 'Poppins', sans-serif;
+    background-color: #f1f1f1;
 }
 
+.row-profile{
+    display: flex;
+    flex-direction: column;
+}
+
+/*COVER PHOTO*/
 .profileBody-container{
-    background-color: #f9f9f9;
     color: #191919;
     min-height: 100vh;
     position: relative;
@@ -17,7 +23,7 @@
 .cover-pic-div{
     -webkit-box-align: center;
     align-items: center;
-    background-color: rgb(112, 112, 112);
+    background-color: #f9f9f9;
     color: #ebebeb;
     display: -webkit-box;
     display: flex;
@@ -30,17 +36,6 @@
 @media (min-width: 1201px){
     .cover-pic-div {
         height: 266px;
-    }
-}
-
-@media (min-width: 1201px){
-    .cover-pic-diV{
-        height: 210px;
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: 2;
     }
 }
 
@@ -70,30 +65,30 @@
     width: 100%;
 }
 
+/*PROFILE PICTURE*/
 .profile-wrapper{
     margin: -10% 4% 0 4%;
     max-width: 1760px;
     min-height: 101vh;
     position: relative;
-    z-index: 3;
+    z-index: 1;
 }
 
 .profile-container{
     background-color: #ffff;
     border-radius: 3px;
-    box-shadow: 0 1px 3px rgb(25 25 25 / 10%);
+    box-shadow: 0 3px 5px rgb(25 25 25 / 30%);
     flex-shrink: 0;
-    width: 350px;
-    padding: 25px 30px 16px;
+    width: 30rem;
+    padding: 25px 30px;
     text-align: center;
     border: none;
-
 }
 
 .profile-pic-div{
     height: 200px;
     width: 200px;
-    background-color: rgb(247, 233, 233);
+    background-color: rgb(255, 255, 255);
     border-radius: 50%;
     display: inline-block;
     margin-bottom: 2px;
@@ -101,6 +96,7 @@
     -webkit-transition: margin-top .65s cubic-bezier(0.19, 1, 0.22, 1);
     transition: margin-top .65s cubic-bezier(0.19, 1, 0.22, 1);
     overflow: hidden;
+    border: .1px solid #c7c2c2;
 }
 
 #uploadBtnProfile{
@@ -121,47 +117,47 @@
 }
 
 .profileUsername{
-    display: block;
-    font-size: 24px;
+    font-size: 23px;
     font-weight: 600;
     height: 29px;
     line-height: 1.15;
     margin-bottom: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
-.editbutton, .switchBox{
+.editprofilebutton, .switchBox{
     font-weight: bold;
-    padding: 6px 15px;
-    background-color: #929292;
-    border-radius: 15px;
+    padding: 5px 15px;
+    border-radius: 10px;
     border: none;
     width: 60%;
-    margin-bottom: 7px;
     display: inline-flex;
-    color: #ffff;
 }
 
-.editbutton{
+.editprofilebutton{
+    background-color: #0a95ca;
+    color: #fff;
     justify-content: center;
+    margin-bottom: 7px;
 }
-.editbuttonicon{
+
+.switchBox{
+    background-color: #e6e6e6;
+    color: rgb(63, 63, 63);
+}
+
+.editprofilebtnicon{
     margin-right: 5px;
+    margin-top: 2px;
 }
 
 .switch{
     position: relative;
-    display: flex;
     height: 18px;
-    width: 33px;
 }
 
 .slider{
     position: absolute;
     cursor: pointer;
-    left: 10px;
     background-color: rgb(54, 54, 54);
     transition: .4s;
     border-radius: 34px;
@@ -196,341 +192,225 @@ input:checked + .slider:before {
     position: relative;
     left: 6rem;
     top: 0rem;
-    color: #ffff;
+    font-weight: bold;
+
 }
 
+/*CALENDAR*/
+.container_calendar{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    color: #000;
+    justify-content: center;
+    align-items: center;
+    top: 40rem;
+}
+
+.calendar{
+    width: 30rem;
+    height: 30rem;
+    background-color: #ffff;
+    box-shadow: 0 3px 5px rgb(25 25 25 / 30%);
+}
+
+.month{
+    width: 100%;
+    height: 6rem;
+    background-color: #0a95ca;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    text-align: center;
+    text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
+}
+
+.month i{
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.month h1{
+    font-size: 2.3rem;
+    font-weight: bold;
+    /* font-weight: 150; */
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    /* margin-bottom: 0.5rem; */
+    margin-top: 1.5rem;
+}
+
+.month p{
+    font-size: 1rem;
+    margin-top: -1rem;
+}
+  
+.weekdays{
+    width: 100%;
+    height: 3rem;
+    padding: 0 0.2rem;
+    display: flex;
+    align-items: center;
+}
+  
+.weekdays div{
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    width: calc(44.2rem / 7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgb(0 0 0 / 20%);
+}
+  
+.days{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.3;
+}
+  
+.days div{
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    width: calc(6.5rem / 2);
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.1rem 0.2rem rgb(0 0 0 / 20%);
+    transition: background-color 0.2s;
+}
+  
+.days div:hover:not(.today){
+    background-color: #0a95ca;
+    border: 0.1rem solid #777;
+    cursor: pointer;
+}
+  
+.prev-date, .next-date{
+    opacity: 0.5;
+}
+  
+.today{
+    background-color: #0a95ca;
+}
+
+.profileboxesContainer{
+    width: 80%;
+    background-color: antiquewhite;
+    margin-left: 25%;
+}
+
+/*MESSAGE BUTTON*/
 .messageprofilebtn{
     border-radius: 10px;
     padding: 5px;
-    width: 12%;
     position: absolute;
-    top: -23rem;
-    right: -3rem;
+    margin-top: -23rem;
+    margin-left: 75%;
 }
 
-.profileDesc{/*balikan*/
+.profileDesc{
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: -20rem; 
-    left: 10rem;
-    width: 80rem;
+    position: relative;
+    top: -17.5rem;
+    left: 21%;
+    width: auto;
+    color: rgb(63, 63, 63);
 }
 
-.descbuttons{/*balikan*/
-    position: absolute;
-    right: -42.2rem;
-    top: 9rem;
+.descbuttons{
     width: 70%;
 }
-.descprofilebtn, .descprofilebtnsave{/*balikan*/
+
+.descprofilebtn, .descprofilebtnsave{
     border-radius: 10px;
     padding: 2px;
     width: 10%;
     margin-top: 5px;
 }
 
-.descprofilebtnsave:hover{
-    background-color: rgb(160, 160, 160);
+.descprofilebtnsave{
+    background-color: #0a95ca;
+    color: #fff;
 }
 
-.profileProjwrapper{/*balikan*/
+.descprofilebtnsave:hover{
+    background-color: rgb(255, 255, 255);
+}
+
+.profileProjwrapper{
     background-color: #c5c5c5;
     padding: 25px;
-    position: absolute;
-    left: 38.4rem;
-    top: 30rem;
+    position: relative;
+    margin-left: 33.5rem;
+    margin-top: -15rem;
+    width: 50%;
+    height: auto;
 }
-/*
-.container-status{
-    position: absolute;
-    height: 2rem;
-    width: 8rem;
-    border: 3px solid #008CBA; 
-    top: 39.5rem;
-    left: 10%;
-    border-radius: 1rem;
+.card-title{
+    font-size: 18px;
+    text-align: center;
 }
 
-.container-description {
-    position: absolute;
-    height: 10rem;
-    width: 61.5rem;
-    border: 1px solid black;
-    top: 32rem;
-    left: 25%;
+.card-body p{
+    font-size: 10px;
 }
 
 .container-ratings{
     position: absolute;
-    height: 4rem;
-    width: 12rem;
-    border: 1px solid black;
-    top: 43rem;
-    left: 83.8%;
+    height: 10rem;
+    width: 22rem;
+    border: 1px solid #afaeae;
+    top: 35.5rem;
+    left: 82%;
+    text-align: center;
 }
 
 #h3-ratings{
-    position: absolute;
-    padding-left: 3rem;
+    padding: 10px;
+    font-size: 18px;
 }
 
+.rating{
+    display: flex;
+    height: 2rem;
 
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-    margin: 0 10px;
-    top: 39.9rem;
-    left: 9rem;
 }
 
-.slider{
-    position: absolute;
+.rating label{
+    display: block;
     cursor: pointer;
+    width: 50px;
+    align-items: center;
+}
+
+.rating label:before{
+    content: '\f005';
+    font-family: fontAwesome;
+    position: relative;
+    display: block;
+    font-size: 30px;
+    color: #d3b554;
+}
+
+.rating label:after{
+    content: '\f005';
+    font-family: fontAwesome;
+    position: absolute;
+    display: block;
+    font-size: 30px;
+    color: #1f9cff;
     top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
+    opacity: 0;
+    transition: .5s;
+    text-shadow: 0 2px 5px rgba(0,0,0,.5);
 }
-
-.switch input {
+ 
+.rating input{
     display: none;
 }
-
-.slider:before{
-    position: absolute;
-    content: "";
-    height: 10px;
-    width: 10px;
-    left: 5px;
-    bottom: 5px;
-    background-color: gray;
-    transition: 0.4s;
-    border-radius: 50px;
-}
-
-input:checked + .slider {
-    background-color: #008CBA;
-}
-
-input:checked + .slider:before {
-    transform: translateX(15px);
-}
-
-#h4-status{
-    position: absolute;
-    left: 3rem;
-    top: 0rem;
-    color: gray;
-}
-#editProfile{
-    top: 37rem;
-    left: 10%;
-    background-color: #008CBA;
-    height: 2rem;
-    width: 8rem;
-    cursor: pointer;
-    border-radius: 1rem;
-}
-#uploadBtn, #uploadBtnProfile{
-    height: 40px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 50%; 
-    transform: translate(-50%); 
-    text-align: center;
-    background-color: rgb(0, 0, 0, 0.7);
-    color: #ffff;
-    line-height: 40px;
-    font-size: 15px;
-    cursor: pointer;
-    display: none;
-    margin-bottom: 0;
-}/*
-.profile-pic-div{
-    height: 200px;
-    width: 200px;
-    left: 50%;
-    position: absolute;
-    top: 35%;
-    -webkit-transform: translateX(-50%) translateY(-50%); 
-    transform: translateX(-50%) translateY(-50%);
-    border-radius: 50%;
-    overflow: hidden;
-    border: 1px solid grey;
-}
-.profile-container{
-    border: 1.5px solid grey;
-    height: 60%;
-    width: 25%;
-    background-color: #ffff;
-    position: absolute;
-    margin-left: 4%;
-    margin-top: -10%;
-}
-.profile-pic-div{
-    height: 200px;
-    width: 200px;
-    left: 50%;
-    position: absolute;
-    top: 40%;
-    -webkit-transform: translateX(-50%) translateY(-50%); 
-    transform: translateX(-50%) translateY(-50%);
-    border-radius: 50%;
-    overflow: hidden;
-    border: 1px solid grey;
-}
-
-#uploadBtnProfile{
-    height: 40px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 50%; 
-    transform: translate(-50%); 
-    text-align: center;
-    background-color: rgb(0, 0, 0, 0.4);
-    color: #ffff;
-    line-height: 40px;
-    font-size: 15px;
-    cursor: pointer;
-    display: none;
-    margin-bottom: 0;
-}.profile-pic-div{
-    height: 200px;
-    width: 200px;
-    left: 50%;
-    position: absolute;
-    top: 40%;
-    -webkit-transform: translateX(-50%) translateY(-50%); 
-    transform: translateX(-50%) translateY(-50%);
-    border-radius: 50%;
-    overflow: hidden;
-    border: 1px solid grey;
-}
-
-#uploadBtnProfile{
-    height: 40px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 50%; 
-    transform: translate(-50%); 
-    text-align: center;
-    background-color: rgb(0, 0, 0, 0.4);
-    color: #ffff;
-    line-height: 40px;
-    font-size: 15px;
-    cursor: pointer;
-    display: none;
-    margin-bottom: 0;
-}
-#file, #fileProfile{
-    display: none;
-}
-
-/*.profile-container{
-    border: 1.5px solid grey;
-    height: 50%;
-    width: 20%;
-    background-color: #ffff;
-    position: absolute;
-    margin-left: 4%;
-    margin-top: 10%;
-}*/
-
-/*.profile-container{
-    background-color: #fff;
-    border-radius: 3px;
-    box-shadow: 0 1px 3px rgb(25 25 25 / 10%);
-    flex-shrink: 0;
-    width: 360px;
-    position: relative;
-    z-index: 2;
-    border: 1.5px solid grey;
-}
-
-
-.profile-pic-div{
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 1px solid grey;
-    margin: 20px 25px 15px 25px;
-}*/
-
-
-
-/*.cover-pic-div {
-    height: 30rem;
-    width: 80rem;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    overflow: hidden;
-    border: 1px solid grey;
-}
-
-#photoCover, #photoProfile{
-    height: 100%;
-    width: 100%;
-}
-
-#uploadBtn, #uploadBtnProfile{
-    height: 40px; 
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%);
-    text-align: center;
-    background-color: rgb(0, 0, 0, 0.7);
-    color: wheat;
-    line-height: 30px;
-    font-family: serif;
-    font-size: 15px;
-    cursor: pointer;
-    display: none;
-}
-
-#file, #fileProfile{
-    display: none;
-}
-
-
-
-.profile-pic-div {
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    top: 70%;
-    left: 15%;
-    transform: translate(-50%,-50%);
-    border-radius: 50%;
-    overflow: hidden;
-    border: 1px solid grey;
-}
-
-#editProfile{
-    position: absolute;
-    top: 37rem;
-    left: 10%;
-    background-color: #008CBA;
-    height: 2rem;
-    width: 8rem;
-    cursor: pointer;
-    border-radius: 1rem;
-}
-
-
-
