@@ -40,8 +40,8 @@
                 </td>
                 </div>
                 <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;" id="activate">Activate</button>
-                    <button class="editbtn2" style="cursor: pointer;" id="deactivate">Deactivate</button>
+                    <button class="editbtn1 editbtn1-responsiveness" style="cursor: pointer;" id="activate">Activate</button>
+                    <button class="editbtn2 editbtn2-responsiveness" style="cursor: pointer;" id="deactivate">Deactivate</button>
                 </td></tr>
             
                 <tr>
@@ -49,8 +49,8 @@
                     <span>Centro comercial</span>
                 </td>                
                 <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;">Activate</button>
-                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
+                    <button class="editbtn1 editbtn1-responsiveness" style="cursor: pointer;">Activate</button>
+                    <button class="editbtn2 editbtn2-responsiveness" style="cursor: pointer;">Deactivate</button>
                 </td></tr>
             
                 <tr>
@@ -58,8 +58,8 @@
                     <span>Ernst Handel</span>
                 </td>
                 <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;">Activate</button>
-                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
+                    <button class="editbtn1 editbtn1-responsiveness" style="cursor: pointer;">Activate</button>
+                    <button class="editbtn2 editbtn2-responsiveness" style="cursor: pointer;">Deactivate</button>
                 </td></tr>
             
                 <tr>
@@ -67,8 +67,8 @@
                     <span>Island Trading</span>
                 </td>                
                 <td class="status">
-                    <button class="editbtn1" style="cursor: pointer;" >Activate</button>
-                    <button class="editbtn2" style="cursor: pointer;">Deactivate</button>
+                    <button class="editbtn1 editbtn1-responsiveness" style="cursor: pointer;" >Activate</button>
+                    <button class="editbtn2 editbtn2-responsiveness" style="cursor: pointer;">Deactivate</button>
                 </td></tr>
              
             </table>
