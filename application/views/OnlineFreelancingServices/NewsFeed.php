@@ -4,7 +4,6 @@
 if($this->session->userdata('UserLoginSession'))
 {
     $udata = $this->session->userdata('UserLoginSession');
-    echo ">".$udata['jobs'];
 }
 else
 {
