@@ -72,8 +72,7 @@ if(!empty($key_posts)) {
                 apply_'.$id.'.addEventListener ("click", function() {
                     var proceed = confirm("Are you sure you want to proceed?");
                         if (proceed) {
-                            applicant('.$id.');
-                            console.log("Applied.");       
+                            applicant('.$id.','.$udata['id'].');
                         }
                 });
                 document.getElementById("post_'.$id.'").appendChild(apply_'.$id.');

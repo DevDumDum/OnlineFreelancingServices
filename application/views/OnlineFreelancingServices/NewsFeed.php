@@ -11,10 +11,10 @@ else
     redirect(base_url('index.php/Loginpage'));
 }
 ?>
-<?=$this->session->flashdata('message')?>
 <body>
 
     <br><br><br>
+    <?=$this->session->flashdata('message')?>
     <div>
         <!-- for filtering category-->
         <!--Work:-->
@@ -175,13 +175,13 @@ else
         document.getElementById(s_wid).selected = true;
     }
 
-    function applicant(id){
-        alert(id);
+    function applicant(id,uid){
     $.ajax({
         type: 'POST',
         url:"<?=base_url('OnlineFreelancingServices/add_applicant');?>",
-        data: '{"a_id":"'+id+'"}'
+        data: {a_id : id , u_id : uid}
     });
+    console.log("Applied.");
     }
 </script>
 <!-- JavaScript Bundle with Popper -->

@@ -169,15 +169,14 @@ class OnlineFreelancingServices extends CI_Controller{
     }
 
     public function add_applicant(){
-        header('content-type: text/json');
         $id = $_POST["a_id"];
+        $uid = $_POST["u_id"];
         $this->load->model('OFS/Post_model');
-        $query = $this->Post_model->add_applicant($id);
-
-        if($query){
-            $this->session->set_flashdata('message', 'Pumasok');
-        }
-        else{
+        $query = $this->Post_model->add_applicant($id,$uid);
+        
+        if($query) {
+            $this->session->set_flashdata('message', $id+":"+$uid);
+        } else {
             $this->session->set_flashdata('message', 'Mali');
         }
         
