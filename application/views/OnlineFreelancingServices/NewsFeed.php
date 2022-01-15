@@ -4,7 +4,7 @@
 if($this->session->userdata('UserLoginSession'))
 {
     $udata = $this->session->userdata('UserLoginSession');
-    echo 'Welcome'.' '.$udata['email'];
+    echo ">".$udata['jobs'];
 }
 else
 {
@@ -12,9 +12,7 @@ else
 }
 ?>
 <body>
-
     <br><br><br>
-    <?=$this->session->flashdata('message')?>
     <div>
         <!-- for filtering category-->
         <!--Work:-->
@@ -179,7 +177,17 @@ else
     $.ajax({
         type: 'POST',
         url:"<?=base_url('OnlineFreelancingServices/add_applicant');?>",
-        data: {a_id : id , u_id : uid}
+        data: {a_id : id , u_id : uid},
+        success: function(response) {
+            if(response.status == "success"){
+                alert("Application Request sent!");
+                document.getElementById('apply_'+id).disabled=true;
+            }else{
+                alert("Request Timeout: User already Applied");
+                document.getElementById('apply_'+id).disabled=true;
+            }
+            alert("<?php echo $udata['jobs'];?>");
+        }
     });
     console.log("Applied.");
     }

@@ -77,8 +77,10 @@ if(!empty($key_posts)) {
                 });
                 document.getElementById("post_'.$id.'").appendChild(apply_'.$id.');
             ';
+            if($p['apply_status'] == 0){
+                echo 'document.getElementById("apply_'.$id.'").disabled=true;';
+            }
         }
-
         echo '</script>';
     }
 }

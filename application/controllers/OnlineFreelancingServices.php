@@ -39,17 +39,38 @@ class OnlineFreelancingServices extends CI_Controller{
         $table = array();
         $table['key_works'] = $works;
 
-        $this->load->model('OFS/OFS_model');
-        $users = array();
+        
+        $udata = $this->session->userdata('UserLoginSession');
+        #check if already applied on the post
+        
+         
+        $a_arr="";
+        if(isset($udata['jobs'])){
+            $a_arr = explode(",",$udata['jobs']);
+        }
+
         $x = 0;
         foreach($posts as $p){
-            $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
+            $posts[$x]['apply_status'] = 1;
             
-            if($posts[$x]['requirements'] == "") $posts[$x]['requirements'] = "No requirements.";
+            $s_while=true;
+            $j_count=0;
+            while($s_while) {
+                if(isset($a_arr[$j_count])) {
+                    if($a_arr[$j_count] == $posts[$x]['ID']){
+                        $posts[$x]['apply_status'] = 0;
+                    }
+                    $j_count++;
+                } else {
+                    $s_while = false;
+                }
+            }
 
+            $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
+            if($posts[$x]['requirements'] == "") {$posts[$x]['requirements'] = "No requirements.";}
             $posts[$x]['post_owner'] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
             $x++;
-        }        
+        }
         $table['key_posts'] = $posts;
 
         // DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! 
@@ -130,11 +151,14 @@ class OnlineFreelancingServices extends CI_Controller{
                     $email = $status->email;
                     $id = $status->id;
                     $user_type = $status->user_type;
+                    $jobs = $status->jobs;
 
 					$session_data = array(
 						'email'=>$email,
+                        'user_type'=>$user_type,
                         'id'=>$id,
-                        'location'=>$status->location
+                        'location'=>$status->location,
+                        'jobs'=>$jobs
                         
 					);
 
@@ -169,16 +193,20 @@ class OnlineFreelancingServices extends CI_Controller{
     }
 
     public function add_applicant(){
+        header('Content-type: application/json');
+        $udata = $this->session->userdata('UserLoginSession');
+
         $id = $_POST["a_id"];
         $uid = $_POST["u_id"];
         $this->load->model('OFS/Post_model');
-        $query = $this->Post_model->add_applicant($id,$uid);
-        
+        $query = $this->Post_model->add_applicant($id,$uid,$udata['jobs']);
+
         if($query) {
-            $this->session->set_flashdata('message', $id+":"+$uid);
+            $response_array['status'] = 'success'; 
         } else {
-            $this->session->set_flashdata('message', 'Mali');
+            $response_array['status'] = 'Error';  
         }
+        echo json_encode($response_array);
         
         //if($id!=NULL)
             //return $this->db->insert('post.applicants', $id);
