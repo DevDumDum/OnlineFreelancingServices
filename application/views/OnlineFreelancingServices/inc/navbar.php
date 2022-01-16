@@ -5,7 +5,7 @@ if($this->session->userdata('UserLoginSession')){
     <nav class="navbar custom-navbar navbar-expand-md navbar-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="NewsFeed">
-                    <img class="img-fluid" src="<?php echo base_url();?>public/images/logogif-unscreen.gif" alt="" width="120" 
+                    <img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" alt="" width="120" 
                     class="d-inline-block align-text-top">
                 </a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -33,7 +33,7 @@ if($this->session->userdata('UserLoginSession')){
     <nav class="navbar custom-navbar navbar-expand-md navbar-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="Homepage">
-                <img class="img-fluid" src="<?php echo base_url();?>public/images/logogif-unscreen.gif" alt="" width="120" class="d-inline-block align-text-top">
+                <img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" alt="" width="120" class="d-inline-block align-text-top">
                 </a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>

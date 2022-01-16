@@ -1,5 +1,9 @@
-.AUheading {
+.aboutusBody{
     font-family: 'Poppins', sans-serif; 
+    background-color: #E5e5e5;
+}
+
+.AUheading {
     color: #1F4E70; 
     font-weight: bolder;
     font-size: 4rem;
@@ -11,7 +15,6 @@
 
 p {
     font-size: 1.7rem;
-    font-family: 'Poppins', sans-serif;
 }
 
 .card {
