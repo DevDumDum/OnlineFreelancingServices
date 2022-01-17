@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class OnlineFreelancingServices extends CI_Controller{
+class OnlineFreelancingServices extends CI_Controller {
     public function index(){
         if($this->session->userdata('UserLoginSession')){
             redirect(base_url('NewsFeed'));
@@ -56,6 +56,9 @@ class OnlineFreelancingServices extends CI_Controller{
         //echo "<pre>";
         //print_r($posts);
 
+        $lala = json_encode($posts);
+        $lala = json_decode(serialize($lala));
+        echo $lala;
 
         $this -> load -> view ('OnlineFreelancingServices/NewsFeed', $table);
         $this -> load -> view ('OnlineFreelancingServices/inc/postResult', $table);

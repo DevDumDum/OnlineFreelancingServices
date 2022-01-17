@@ -49,4 +49,22 @@ class Post_controller extends CI_Controller {
         }
 
     }
+
+    public function get_limited_post($post){
+
+        // returns how many posts has it been
+        $offset = count($post);
+
+        //limit for autoloading data
+        const $limit = 2;
+
+
+
+        // stores new post 
+        for(int $i=1; $i<$offset+$limit; $i++){
+            $post[$offset+$i] = $this->Post_model->
+        }
+
+        return $post;
+    }
 }

@@ -1,34 +1,71 @@
 <?php
 $udata = $this->session->userdata('UserLoginSession');
-
-if(!empty($key_posts)) {
-
-    if(!isset($offset)){
-        $limit = 3;
-        $offset = 0;
-    }
-
-    $feed = array();
-    $feed[$offset] = $key_posts[$offset];
-
-    for($i=$offset; $i<$offset+$limit; $i++){
-        
-    }
-
-    foreach($feed as $p) {
+            
+if(!empty($key_posts)){
+    foreach($key_posts as $p) {
 
         $id = $p['ID'];
         $name = $p['post_owner'];
-        $p_title = "";
 
         if($p['profession_ID'] != 0) {
             $p_title = $name." needs ".$key_works[$p['profession_ID']-1]['profession_type']."<b>!</b>";
         } else {
             $p_title = $name." needs ".$key_works[0]['profession_type']."<b>!</b>";
         }
-        echo "<div id='lala'>";
-        echo'<script>';
-        echo'
+
+
+        echo'<script>'; 
+        echo'initPost();';
+        echo '</script>';
+    }
+}
+?>
+
+<script>
+    
+    //var offset = <?php if(isset($offset)) return $offset; else return 0  ?>; 
+    var scrollLimit = Math.max( document.body.scrollHeight, document.body.offsetHeight, 
+        document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+    
+    function add_post(){
+        alert();
+        offset++;
+        console.log(offset);
+    }
+    
+    function display_post(){
+        console.log('1');
+        alert();
+        //var lala= {};
+
+        //lala['my_'+id] = '12321';
+        //alert(my_1); 
+    }
+
+    $(function(){
+        display_post();
+        
+        $.ajaxSetup ({ cache: false });
+        
+        $(window).scroll(function(){
+            
+            var current = window.scrollY;
+            if(current + window.innerHeight == scrollLimit) {
+                <?php   ?>
+            }
+        });
+
+        $(window).load(function(){
+
+        })
+
+    });
+
+    function  initPost(id){
+        var id = id.toString();
+        var data['post_'+this.id] = document.createElement("div");
+        
+        
             var post_'.$id.' = document.createElement("div");
             post_'.$id.'.id = "post_'.$id.'";
             post_'.$id.'.className = "main_post";
@@ -85,60 +122,6 @@ if(!empty($key_posts)) {
                     alert('.$id.');
                 });
                 document.getElementById("post_'.$id.'").appendChild(apply_'.$id.');
-            ';
-        }
-
-        echo '</script>';
-        echo "</div>";
-    }
-}
-?>
-<script>
-    var offset = <?php if(isset($offset)) echo $offset ?>; 
-    var scrollLimit = Math.max( document.body.scrollHeight, document.body.offsetHeight, 
-                   document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
-    
-    /*
-    window.addEventListener('scroll',(event) => {
-        var current = window.scrollY;
-
-        if(current + window.innerHeight === limit) {
-
-            add_post();
-            alert("max");            
-        }
-    });
-    */
-
-    function add_post(){
-        offset++;
-        console.log(offset);
-    }
-
-    $(function(){
-        
-        $.ajaxSetup ({ cache: false });
-        
-        $(window).scroll(function(){
-            
-            var current = window.scrollY;
-            if(current + window.innerHeight == scrollLimit) {
-
-                add_post();
-                alert("max");
-                
-                <?php
-                    echo '<script>';
-                    $temp = 'offset';
-                    echo 'tempVar = '.$key_posts[$temp].';';
-                    echo '</script>';
-                ?>
-                alert(tempVar);
-
-                $(<?php echo $feed[$temp] ?>).load(tempVar);
             }
-
-        });
-
-    });
+        }
 </script>
