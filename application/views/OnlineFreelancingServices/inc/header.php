@@ -22,6 +22,7 @@ if($this->session->userdata('page')){
     <link rel="stylesheet" href="<?php echo base_url();?>public/css/loginpage.css"/>
     <link rel="stylesheet" href="<?php echo base_url();?>public/css/homepage.css"/>
     <link rel="stylesheet" href="<?php echo base_url();?>public/css/mediaquery.css"/>
+    <link rel="stylesheet" href="<?php echo base_url();?>public/css/newsfeed.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;1,300&display=swap" rel="stylesheet">
     
     <title><?php echo $page?></title>

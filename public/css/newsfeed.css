@@ -1,0 +1,67 @@
+#newsfeed{
+    background-color: #E5E5E5;
+}
+.container-newsfeed{
+
+}
+.work-category-side{
+    height: max-content;
+    padding-left: 2%;
+}
+#bg_box-nf{
+    float: left;
+    z-index: 0;
+    background-color: rgb(255, 255, 255);
+    height: max-content;
+    width: 30%;
+    margin-top: 30px;
+    border-radius: 5px;
+    padding-bottom: 2%;
+}
+#blackbox-nf{
+    --gap: 15px;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    
+    box-sizing: border-box;
+    padding: var(--gap);
+    background: rgba(0, 0, 0, 0.4);
+}
+#hiddenbox-nf{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: none;
+    z-index: 1;
+}
+@keyframes fadebox{
+    0%{opacity: 100%;}
+    100%{opacity: 0%;}
+}
+.modal-header-nf{
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(241, 234, 234);
+}
+.modal-header-nf .title{
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.modal-header-nf .close-button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.add-post-content label{
+    padding-left: 10%;
+}
