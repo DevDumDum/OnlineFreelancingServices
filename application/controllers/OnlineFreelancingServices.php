@@ -214,6 +214,34 @@ class OnlineFreelancingServices extends CI_Controller{
         //else //return $this->db->insert('post.applicants', 0000);           
      }
 
+
+     public function AcceptedJob(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Accepted Jobs');
+        //load AdminViewLogs views
+        $this->load->helper('url');
+        $this -> load -> view ('OnlineFreelancingServices/inc/header');
+        $this -> load -> view ('OnlineFreelancingServices/AcceptedJobs');
+    }
+
+    public function PostedJob(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Applied Jobs');
+        //load AdminViewLogs views
+        $this->load->helper('url');
+        $this -> load -> view ('OnlineFreelancingServices/inc/header');
+        $this -> load -> view ('OnlineFreelancingServices/PostedJobs');
+    }
+
+    public function AppliedJob(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Posted Jobs');
+        //load AdminViewLogs views
+        $this->load->helper('url');
+        $this -> load -> view ('OnlineFreelancingServices/inc/header');
+        $this -> load -> view ('OnlineFreelancingServices/AppliedJobs');
+    }
+
     public function Logout(){
         $array_items = array('id' => '', 'email' => '');
         $this->session->unset_userdata($array_items);

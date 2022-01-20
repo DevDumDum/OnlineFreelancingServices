@@ -60,6 +60,9 @@ $route['Loginpage'] = 'OnlineFreelancingServices/Loginpage';
 $route['Registerpage'] = 'OnlineFreelancingServices/Registerpage';
 $route['ForgotPassword'] = 'OnlineFreelancingServices/ForgotPassword';
 $route['NewPassword'] = 'OnlineFreelancingServices/NewPassword';
+$route['AcceptedJob'] = 'OnlineFreelancingServices/AcceptedJob';
+$route['PostedJob'] = 'OnlineFreelancingServices/PostedJob';
+$route['AppliedJob'] = 'OnlineFreelancingServices/AppliedJob';
 $route['Logout'] = 'OnlineFreelancingServices/Logout';
 
 
