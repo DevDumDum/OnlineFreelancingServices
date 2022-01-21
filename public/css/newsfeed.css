@@ -1,11 +1,18 @@
 #newsfeed{
     background-color: #E5E5E5;
 }
+.custom-row-container{
+    margin-top: 4%;
+    z-index: -1;
+}
 .work-category-side{
     height: max-content;
     padding-left: 2%;
     font-size: .7vw;
     font-weight: bold;
+}
+.sticky-top{
+    top: 8%; !important
 }
 .newsfeed-side{
     width: 70%;

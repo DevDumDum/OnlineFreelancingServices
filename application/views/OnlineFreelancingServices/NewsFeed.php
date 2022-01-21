@@ -14,7 +14,7 @@ else
 
 <body id="newsfeed">
     <div class="container-newsfeed">
-        <div class="row">
+        <div class="row custom-row-container">
             <div class="col-3 pl-0 work-category-side sticky-top">
                 <!-- for filtering category-->
                 <!--Work:-->
@@ -97,7 +97,7 @@ else
                     </div>
                     <div id="blackbox-nf" onclick="hidebox()"></div>
                 </div>
-                <?php include("inc/postResult.php"); ?>
+                <div id="result"></div>
             </div>
         </div>
     </div>
@@ -106,11 +106,6 @@ else
         <button type="button" id="edit_p" value="" onclick="edit_post(this.value)">Edit</button>
         <button type="button" id="del_p" value="" onclick="set_form_action('deact_post')">Delete</button>
     </div>
-    <br>
-    ==========================================
-    <br>
-        <div id="result"></div>
-    <br>
 </body>
 
 <script>
@@ -129,7 +124,7 @@ else
             document.getElementById("hiddenbox-nf").style.animation="fadebox .3s reverse linear";
         }
     function hidebox(){
-        document.getElementById("hiddenbox").style.display="none";
+        document.getElementById("hiddenbox-nf").style.display="none";
     }
     
     function set_form_action(action){
@@ -188,6 +183,6 @@ else
     console.log("Applied.");
     }
 </script>
-</html>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</html>
