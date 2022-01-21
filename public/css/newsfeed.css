@@ -1,0 +1,91 @@
+#newsfeed{
+    background-color: #E5E5E5;
+}
+.custom-row-container{
+    margin-top: 4%;
+    z-index: -1;
+}
+.work-category-side{
+    height: max-content;
+    padding-left: 2%;
+    font-size: .7vw;
+    font-weight: bold;
+}
+.sticky-top{
+    top: 8%; !important
+}
+.newsfeed-side{
+    width: 70%;
+    padding-left: 9%;
+}
+.work-category-apply{
+    font-size: .7vw;
+    padding-top: 0%;
+}
+.create-post{
+    padding: 2% 5% 0 5%;
+}
+#bg_box-nf{
+    float: left;
+    z-index: 0;
+    background-color: rgb(255, 255, 255);
+    height: max-content;
+    width: 30%;
+    margin-top: 30px;
+    border-radius: 5px;
+    padding-bottom: 2%;
+    margin-left: 1.8%;
+}
+#blackbox-nf{
+    --gap: 15px;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    box-sizing: border-box;
+    padding: var(--gap);
+    background: rgba(0, 0, 0, 0.4);
+}
+#hiddenbox-nf{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: none;
+    z-index: 1;
+}
+@keyframes fadebox{
+    0%{opacity: 100%;}
+    100%{opacity: 0%;}
+}
+.modal-header-nf{
+    padding: 3% 2% 2% 4%;
+    border-bottom: 1px solid rgb(241, 234, 234);
+    background-color: rgb(174, 174, 175);
+}
+.modal-header-nf .title{
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.modal-header-nf .close-button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.add-post-content label{
+    padding-left: 5%;
+    font-size: .7vw;
+}
+.add-post-content p{
+    font-size: .8vw;
+}
+.card-width{
+    width: max-content;
+    align-items: center;
+    margin-left: 8%;
+}
