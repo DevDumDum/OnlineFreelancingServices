@@ -2,6 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class OnlineFreelancingServices extends CI_Controller{
+    public function __construct() {
+        parent::__construct();
+        $this->load->helper('url');
+        $this->load->model('OFS/Register_model');
+        $this->load->model('OFS/OFS_model');
+
+        //get all users
+        $this->data['users'] = $this->OFS_model->getAllUsers();
+    }
+
     public function index(){
         if($this->session->userdata('UserLoginSession')){
             redirect(base_url('NewsFeed'));
@@ -179,6 +189,141 @@ class OnlineFreelancingServices extends CI_Controller{
 		}
     }
 
+    public function ForgotPassword() {
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Forgot Password');
+        $this->load->helper('url');
+        $this -> load -> view ('OnlineFreelancingServices/inc/header');
+        $this -> load -> view ('OnlineFreelancingServices/ForgotPassword');
+        $this->session->set_flashdata('error',NULL);
+        $this->session->set_flashdata('success',NULL);
+
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $array_items = array('id' => '', 'email' => '');
+            $this->session->unset_userdata($array_items);
+			$this->form_validation->set_rules('email','Email','required');
+
+			if($this->form_validation->run()==TRUE){
+				$email = $this->input->post('email');
+
+
+				$this->load->model('OFS/OFS_model');
+				$status = $this->OFS_model->getEmail($email);
+				if($status!=false){
+                    $email = $status->email;
+                    $code = $status->code;
+
+					$data = array(
+						'email'=>$email,
+                        'id'=>$id,
+                        'location'=>$status->location,
+                        'code'=>$code
+
+					);
+
+                //set up email
+                    $config = Array(
+                        'protocol' => 'smtp',
+                        'smtp_host' => 'ssl://smtp.googlemail.com',
+                        'smtp_port' => 465,
+                        'smtp_user' => 'kobelames21@gmail.com', 
+                        'smtp_pass' => 'awcwsivurwadfdem', 
+                        'mailtype' => 'html',
+                        'charset' => 'iso-8859-1',
+                        'wordwrap' => TRUE
+                    );
+
+                    $message = 	"
+                    <html>
+                    <head>
+                        <title>Change Password Request</title>
+                    </head>
+                    <body>
+                        <h2>Change Password.</h2>
+                        <p>Please click the link below to change your account password.</p>
+                        <h4><a href='".base_url()."OnlineFreelancingServices/Newpassword/".$code."'>Activate My Account</a></h4>
+                    </body>
+                    </html>
+                    ";
+                            $this->load->library('email', $config);
+                            $this->email->set_newline("\r\n");
+                            $this->email->from($config['smtp_user']); 
+                            $this->email->to($email);
+                            $this->email->subject('Testing');
+                            $this->email->message($message);
+                            if($this->email->send())
+                            {
+                                $this->session->set_flashdata('message', 'Email sent.');
+                                redirect(base_url('Loginpage'));
+                            }
+                            else
+                        {
+                            $this->session->set_flashdata('message', 'Email not sent');
+                            redirect(base_url('ForgotPassword'));
+                        }
+
+                }else{
+                    $this->session->set_flashdata('error','Email entered is not registered');
+                    redirect(base_url('ForgotPassword'));
+                }
+            }
+        }        
+    }
+
+    public function NewPassword(){
+        $code =  $this->uri->segment(3);
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','New Password');
+        $this->load->helper('url');
+        $this -> load -> view ('OnlineFreelancingServices/inc/header');
+        $this -> load -> view ('OnlineFreelancingServices/NewPassword');
+        $this->session->set_flashdata('error',NULL);
+        $this->session->set_flashdata('success',NULL);
+        if (isset($code)){
+            $this->session->set_userdata('UserCode',$code);
+        }
+
+
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $array_items = array('id' => '', 'email' => '');
+            $this->session->unset_userdata($array_items);
+			$this->form_validation->set_rules('password','Password','trim|required');
+            $this->form_validation->set_rules('confirm-pw','Password','trim|required|matches[password]');
+
+			if($this->form_validation->run()==TRUE){
+				$passwords = $this->input->post('password');
+
+		    //fetch user details
+
+            $cData = $this->session->userdata('UserCode');
+
+		    $user = $this->OFS_model->getUser($cData);
+
+            //if code matches
+            if($user['code'] == $cData){
+                //update user password
+                $data['password'] = $passwords;
+                $query = $this->OFS_model->newPassword($data, $cData);
+
+                if($query){
+                    $this->session->set_flashdata('message', 'Password changed!');
+                    $this->session->sess_destroy();
+                    redirect(base_url('LoginPage'));
+                }
+                else{
+                    $this->session->set_flashdata('message', 'Something went wrong in changing account password');
+                }
+            }
+            else{
+                $this->session->set_flashdata('message', 'Cannot change password, User does not exist!');
+            }
+
+            $this->session->set_flashdata('message', 'Error!');
+
+            }        
+	    }
+    }
+
     public function Registerpage(){
         $this->session->userdata('page');
         $this->session->set_userdata('page','Register Page');
@@ -218,28 +363,54 @@ class OnlineFreelancingServices extends CI_Controller{
      public function AcceptedJob(){
         $this->session->userdata('page');
         $this->session->set_userdata('page','Accepted Jobs');
-        //load AdminViewLogs views
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/AcceptedJobs');
+        $this->load->model('OFS/Post_model');
+        $udata = $this->session->userdata('UserLoginSession');
+        
+        #add accepted jobs in db users
+        #add client name in post db for easy fetch
+        $a_arr="";
+        if(isset($udata['acceptedjob'])){
+            $a_arr = explode(",",$udata['acceptedjob']);
+        }
+
+        
     }
 
     public function PostedJob(){
         $this->session->userdata('page');
         $this->session->set_userdata('page','Applied Jobs');
-        //load AdminViewLogs views
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/PostedJobs');
+        $this->load->model('OFS/Post_model');
+        $udata = $this->session->userdata('UserLoginSession');
+        
+        #add posted jobs in db users
+        $a_arr="";
+        if(isset($udata['postedjob'])){
+            $a_arr = explode(",",$udata['postedjob']);
+        }
     }
 
     public function AppliedJob(){
         $this->session->userdata('page');
         $this->session->set_userdata('page','Posted Jobs');
-        //load AdminViewLogs views
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/AppliedJobs');
+        $this->load->model('OFS/Post_model');
+        $udata = $this->session->userdata('UserLoginSession');
+        
+        
+        $a_arr="";
+        if(isset($udata['jobs'])){
+            $a_arr = explode(",",$udata['jobs']);
+        }
+
+        echo $a_arr[0];
     }
 
     public function Logout(){
