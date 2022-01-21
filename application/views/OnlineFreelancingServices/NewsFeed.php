@@ -189,7 +189,6 @@ else
         var work = postArray["work"];
         var curID = postArray["id"];
         var owner = postArray["name_id"];
-
         let post = [];
 
         //var post_ = document.createElement("div");
@@ -221,7 +220,7 @@ else
 
         post["name_"+curID] = document.createElement("p");
         post["name_"+curID].id = "name_"+curID;
-        post["name_"+curID].id.innerHTML = name+" needs " + work;
+        post["name_"+curID].innerHTML = name+" needs " + work;
         document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["name_"+curID]);
         
         if( <?php echo $udata["id"];  ?> == owner) {
