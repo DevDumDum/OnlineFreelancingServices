@@ -273,13 +273,13 @@ else
             }
         });
 
-        $(window).load(function(){
+        //$(window).load(function(){
 
-        })
+        //})
 
-        $(document).ready(function(){
-            alert();
-        })
+        //$(document).ready(function(){
+        //    alert();
+        //})
 
     });
 </script>
