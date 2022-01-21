@@ -217,12 +217,12 @@ else
         post["user_image_"+curID].style.height ="50px";
         post["user_image_"+curID].style.width ="50px";
         post["user_image_"+curID].style.backgroundColor ="red";
-        document.getElementById(post["post_titlebar_"+curID]).appendChild(post["user_image_"+curID]);
+        document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["user_image_"+curID]);
 
         post["name_"+curID] = document.createElement("p");
         post["name_"+curID].id = "name_"+curID;
         post["name_"+curID].id.innerHTML = name+" needs " + work;
-        document.getElementById("post_titlebar_"+curID+"").appendChild(post["name_"+curID]);
+        document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["name_"+curID]);
         
         if( <?php echo $udata["id"];  ?> == owner) {
             
@@ -237,7 +237,7 @@ else
                 document.getElementById("del_p").value=curID;
                 document.getElementById("PostOptionMenu").style.display="block";
             });
-            document.getElementById("post_titlebar_"+curID).appendChild(post["option_"+curID]);
+            document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["option_"+curID]);
             
         }else {
             post["apply_"+curID] = document.createElement("input"); 
@@ -249,7 +249,7 @@ else
             post["apply_"+curID].addEventListener ("click", function() {
                 alert(curID);
             });
-            document.getElementById(post["post_"+curID]).appendChild(post["apply_"+curID]);
+            document.getElementById(post["post_"+curID].id).appendChild(post["apply_"+curID]);
         }
     }
     

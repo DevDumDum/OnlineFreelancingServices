@@ -2,7 +2,11 @@
 $udata = $this->session->userdata('UserLoginSession');
             
 if(!empty($key_posts)){
+
+
     foreach($key_posts as $p) {
+        
+    print_r($p);
         /*
         $id = $p['ID'];
         $name_id = $p['poster_ID'];
@@ -20,6 +24,7 @@ if(!empty($key_posts)){
             : $post['work'] = $key_works[0]['profession_type'];
 
         echo'<script>'; 
+        echo 'alert('.$p["post_owner"].');';
         echo 'initPost('.json_encode($post).');';
         echo '</script>';
     }
