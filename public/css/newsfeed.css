@@ -1,12 +1,22 @@
 #newsfeed{
     background-color: #E5E5E5;
 }
-.container-newsfeed{
-
-}
 .work-category-side{
     height: max-content;
     padding-left: 2%;
+    font-size: .7vw;
+    font-weight: bold;
+}
+.newsfeed-side{
+    width: 70%;
+    padding-left: 9%;
+}
+.work-category-apply{
+    font-size: .7vw;
+    padding-top: 0%;
+}
+.create-post{
+    padding: 2% 5% 0 5%;
 }
 #bg_box-nf{
     float: left;
@@ -17,6 +27,7 @@
     margin-top: 30px;
     border-radius: 5px;
     padding-bottom: 2%;
+    margin-left: 1.8%;
 }
 #blackbox-nf{
     --gap: 15px;
@@ -27,7 +38,6 @@
     width: 100vw;
     height: 100vh;
     display: flex;
-    
     box-sizing: border-box;
     padding: var(--gap);
     background: rgba(0, 0, 0, 0.4);
@@ -44,11 +54,9 @@
     100%{opacity: 0%;}
 }
 .modal-header-nf{
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 3% 2% 2% 4%;
     border-bottom: 1px solid rgb(241, 234, 234);
+    background-color: rgb(174, 174, 175);
 }
 .modal-header-nf .title{
     font-size: 1.25rem;
@@ -63,5 +71,14 @@
     font-weight: bold;
 }
 .add-post-content label{
-    padding-left: 10%;
+    padding-left: 5%;
+    font-size: .7vw;
+}
+.add-post-content p{
+    font-size: .8vw;
+}
+.card-width{
+    width: max-content;
+    align-items: center;
+    margin-left: 8%;
 }
