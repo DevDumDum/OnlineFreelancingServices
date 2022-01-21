@@ -1,66 +1,86 @@
+<?php
+$udata = $this->session->userdata('UserLoginSession');
+$this->load->model("OFS/Post_model");
 
 
-<?php if(!empty($key_posts)){ foreach($key_posts as $p){?>
-    <div class="bg-primary m-5 p-10 w-50 rounded">
+if(!empty($key_posts)) {
+    foreach($key_posts as $p) {
+        $id = $p['ID'];
+        $name = $p['post_owner'];
+        $p_title = "";
 
-        <div>
-            <!--Display post here-->
-            <!--Post example layout-->
-            <div>
-                <img src="">
-                <div>
-                    <p><?php 
-                        if($p['profession_ID'] != 0){
-                            echo $p['post_owner']." needs ".$key_works[$p['profession_ID']-1]['profession_type']."<b>!</b>";
-                        }else{
-                            echo $p['post_owner']." needs ".$key_works[0]['profession_type']."<b>!</b>";
+        if($p['profession_ID'] != 0) {
+            $p_title = $name." needs ".$key_works[$p['profession_ID']-1]['profession_type']."<b>!</b>";
+        } else {
+            $p_title = $name." needs ".$key_works[0]['profession_type']."<b>!</b>";
+        }
+
+        echo'<script>';
+        echo'
+            var post_'.$id.' = document.createElement("div");
+            post_'.$id.'.id = "post_'.$id.'";
+            post_'.$id.'.className = "main_post";
+            post_'.$id.'.style.height ="400px";
+            post_'.$id.'.style.width ="400px";
+            post_'.$id.'.style.marginBottom ="50px";
+            post_'.$id.'.style.backgroundColor ="lightblue";
+            document.getElementById("result").appendChild(post_'.$id.');
+
+                var post_titlebar_'.$id.' = document.createElement("div");
+                post_titlebar_'.$id.'.id = "post_titlebar_'.$id.'";
+                post_titlebar_'.$id.'.style.height ="100px";
+                post_titlebar_'.$id.'.style.width ="100%";
+                post_titlebar_'.$id.'.style.backgroundColor ="grey";
+                document.getElementById("post_'.$id.'").appendChild(post_titlebar_'.$id.');
+
+                var user_image'.$id.' = document.createElement("div");
+                user_image'.$id.'.id = "user_image'.$id.'";
+                user_image'.$id.'.className = "userImage";
+                user_image'.$id.'.style.height ="50px";
+                user_image'.$id.'.style.width ="50px";
+                user_image'.$id.'.style.backgroundColor ="red";
+                document.getElementById("post_titlebar_'.$id.'").appendChild(user_image'.$id.');
+
+                var name_'.$id.' = document.createElement("p");
+                name_'.$id.'.id = "name_'.$id.'";
+                name_'.$id.'.innerHTML = "'.$p_title.'";
+                document.getElementById("post_titlebar_'.$id.'").appendChild(name_'.$id.');
+        ';
+
+        if($udata['id'] == $p['poster_ID']) {
+            echo '
+                var option_'.$id.' = document.createElement("input");
+                option_'.$id.'.id = "option_'.$id.'";
+                option_'.$id.'.setAttribute("type", "button");
+                option_'.$id.'.setAttribute("value", "option");
+                option_'.$id.'.style.float = "right";
+                option_'.$id.'.addEventListener ("click", function() {
+                    document.getElementById("edit_p").value='.$id.';
+                    document.getElementById("del_p").value='.$id.';
+                    document.getElementById("PostOptionMenu").style.display="block";
+                    
+                });
+                document.getElementById("post_titlebar_'.$id.'").appendChild(option_'.$id.');
+            ';
+        }else{
+            echo '
+                var apply_'.$id.' = document.createElement("input");
+                apply_'.$id.'.id = "apply_'.$id.'";
+                apply_'.$id.'.setAttribute("type", "button");
+                apply_'.$id.'.setAttribute("value", "Apply");
+                apply_'.$id.'.style.float = "right";
+                apply_'.$id.'.addEventListener ("click", function() {
+                    var proceed = confirm("Are you sure you want to proceed?");
+                        if (proceed) {
+                            applicant('.$id.','.$udata['id'].');
                         }
-                    ?></p>
-                </div>
-            </div>
-        </div>
-
-        ==========================================
-        <!--PopUp Post Details onclick-->
-        <div>
-            <div>
-                <!--Load skill needed-->
-            </div>
-            <div>
-                    <p>Description: <?php echo $p['requirements'] ?> </p>
-            </div>
-            <div>
-                <img src=""><br>
-                <div>Ratings:
-                    <!--Load starts rating-->
-                    <img src="">
-                </div>
-                <button>Apply</button>
-                <button>Report</button>
-            </div><br>
-            <div>
-                <!--Load work images here-->
-                <img src="">
-            </div><br>
-            <div>
-                <p>Numbers of Workers: <?php echo $p['worker_count'] ?> </p>
-            </div>
-
-            <div>Expected Fee:
-                <?php 
-                    if(!empty($p['min_pay'])){ echo " &#8369 ".$p['min_pay']." up to ";}
-                    echo "&#8369 ".$p['max_pay'];
-
-                ?>
-            </div>
-            <div><p>Location: <?php echo $p['location'] ?> </p></div>
-            <div><p><?php echo date("M j Y", $p['timestamp'])." ".date("h:iA", $p['timestamp']) ?> </p></div>
-        </div>
-    </div>
-
-    <?php // id, requirements, worker count, location, date, time, name  ?>
-    
-
-<?php }} else { ?>
-    <p>baka</p>
-<?php } ?>
+                });
+                document.getElementById("post_'.$id.'").appendChild(apply_'.$id.');
+            ';
+            if($p['apply_status'] == 0){
+                echo 'document.getElementById("apply_'.$id.'").disabled=true;';
+            }
+        }
+        echo '</script>';
+    }
+}

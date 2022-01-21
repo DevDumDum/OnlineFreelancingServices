@@ -101,15 +101,20 @@ else
             </div>
         </div>
     </div>
-    <!-- ====================================================================================================================================<br>
-    >Find Worker button clicked<br>
-    ====================================================================================================================================
     <br>
-    <?php //include("inc/workResult.php"); ?> -->
-    <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <div id="PostOptionMenu" style="display:none; position: absolute;">
+        <button type="button" id="edit_p" value="" onclick="edit_post(this.value)">Edit</button>
+        <button type="button" id="del_p" value="" onclick="set_form_action('deact_post')">Delete</button>
+    </div>
+    <br>
+    ==========================================
+    <br>
+        <div id="result"></div>
+    <br>
 </body>
+
 <script>
+
     function set_min_pay(c){
         if(c.checked){
             document.getElementById("min_pay").disabled=true;
@@ -124,7 +129,65 @@ else
             document.getElementById("hiddenbox-nf").style.animation="fadebox .3s reverse linear";
         }
     function hidebox(){
-            document.getElementById("hiddenbox-nf").style.display="none";
+        document.getElementById("hiddenbox").style.display="none";
+    }
+    
+    function set_form_action(action){
+        var loc = "<?=base_url('Post_controller/"+action+"')?>";
+        document.getElementById("post_form").action = loc;
+        alert(loc);
+    }
+    
+    function edit_post(id){
+
+        document.getElementById("PostOptionMenu").style.display="none";
+        AddPostPopUp();
+        
+        var s_wid = "op_" + id;
+
+        alert(s_wid);
+
+        document.getElementById(s_wid).selected = true;
+    }
+
+</script>
+<script>
+    function set_form_action(action){
+        var loc = "<?=base_url('Post_controller/"+action+"')?>";
+        document.getElementById("post_form").action = loc;
+        alert(loc);
+    }
+    
+    function edit_post(id){
+        document.getElementById("PostOptionMenu").style.display="none";
+        AddPostPopUp();
+        
+        var s_wid = "op_" + id;
+
+        alert(s_wid);
+
+        document.getElementById(s_wid).selected = true;
+    }
+
+    function applicant(id,uid){
+    $.ajax({
+        type: 'POST',
+        url:"<?=base_url('OnlineFreelancingServices/add_applicant');?>",
+        data: {a_id : id , u_id : uid},
+        success: function(response) {
+            if(response.status == "success"){
+                alert("Application Request sent!");
+                document.getElementById('apply_'+id).disabled=true;
+            }else{
+                alert("Request Timeout: User already Applied");
+                document.getElementById('apply_'+id).disabled=true;
+            }
+            alert("<?php echo $udata['jobs'];?>");
         }
+    });
+    console.log("Applied.");
+    }
 </script>
 </html>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
