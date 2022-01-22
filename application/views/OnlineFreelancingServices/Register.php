@@ -91,29 +91,24 @@
                         <br>
 
                         <label for="prof" class=""><br><span>Profession</span></br></label>
-                        <div>
-                            <select id="Work" class="registerOtherCustomLabelSelection">
-                                <option value="null" >Select</option>
-                                <option value="Work1">Carpenter</option>
-                                <option value="Work2">Accountant</option>
-                                <option value="Work3">Architect</option>
-                                <option value="Work4">Cashier</option>
-                                <option value="Work5">Web Developer</option>
-                                <option value="Work6">Cleaner</option>
-                                <option value="Work7">Data Encoder</option>
-                                <option value="Work8">Electrician</option>
-                                <option value="Work9">Engineer</option>
-                                <option value="Work10">Teacher</option>
+                        <div id="profession">
+                            <input type="number" name="profCount" id="profCount" value="1" disabled hidden /><!--counter-->
+                            <input type="text" name="profession_id" id="allProf" hidden />
+                            <select id="Work" name="Work" onchange="p_check(this.value,null)" class="P_registerOtherCustomLabelSelection">
+                                <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
+                                    <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
+                                <?php }} ?>
                             </select>
-
-                            <button type="button" name="addWorkPost">+</button> 
-                            <br>
-                                <label for="Others" class="registerOtherCustomLabel">Other</label>
-                                <input type="text" class="registerOtherCustomLabelSelection" placeholder="Ex. Lawyer">
-                                <button type="button" name="addWorkPost">+</button>
-
+                            <button type="button" onclick="addProf()" name="addWorkPost">+</button> 
                         </div>
-                
+                        <div id="otherProf">
+                            <input type="number" name="otherProfCount" id="otherProfCount" value="1" disabled hidden /><!--counter-->
+                            <label for="Others:" class="registerOtherCustomLabel">Others</label>
+                            <input type="text" name="op_" id="op_" class="registerOtherCustomLabelSelection" onchange="op_check(this.value,'')" placeholder="Ex. Lawyer">
+                            <input type="text" name="op_desc_" id="op_desc_" class="registerOtherCustomLabelSelection" placeholder="Descriptions">
+                            <button type="button" onclick="addOtherProf()" name="addWorkPost">+</button>
+                        </div>
+                        <br>
                         <label for="id" class=""><br><span>Type of ID</span></br></label>
                         <div>
                             <select id="id" class="registerOtherCustomLabelSelection">
@@ -161,6 +156,235 @@
         </form>
     </div>
     <script>
+        function addProf(){
+            if(document.getElementById("Work").value != 0){
+                var pcount = document.getElementById("profCount").value;
+                let status = 1;
+                let w = "";
+                let w_val = null;
+                if(parseInt(pcount) != 1){
+                    for(var x = 0; x < pcount; x++){
+                        if(x != 0){
+                            w_val = document.getElementById("Work"+x).value;
+                        }else{
+                            w_val = document.getElementById("Work").value;
+                        }
+                        if(w_val == 0) {
+                            status = 0;
+                        }
+                    }
+                }
+                if(status == 1){
+                    var prof=[];
+                    br = document.createElement("br");
+                    br.id = "br_"+pcount;
+                    document.getElementById("profession").appendChild(br);
+                    
+                    prof["p_sel_"+pcount] = document.createElement("select");
+                    prof["p_sel_"+pcount].name = "Work"+pcount;
+                    prof["p_sel_"+pcount].id = "Work"+pcount;
+                    prof["p_sel_"+pcount].className = "P_registerOtherCustomLabelSelection";
+                    prof["p_sel_"+pcount].addEventListener ("change", function() {
+                        p_check(this.value,pcount);
+                    });
+                    document.getElementById("profession").appendChild(prof["p_sel_"+pcount]);
+
+                        <?php if(!empty($key_works)) { foreach($key_works as  $w) { ?>
+                            prof["p_opt_"+pcount+"_<?php echo $w['ID'];?>"] = document.createElement("option");
+                            prof["p_opt_"+pcount+"_<?php echo $w['ID'];?>"].value = "<?php echo $w['ID'];?>";
+                            prof["p_opt_"+pcount+"_<?php echo $w['ID'];?>"].innerHTML = "<?php echo $w['profession_type'];?>";
+                            document.getElementById("Work"+pcount).appendChild(prof["p_opt_"+pcount+"_<?php echo $w['ID'];?>"]);
+                        <?php }} ?>
+
+                        prof["p_btn_"+pcount] = document.createElement("button");
+                        prof["p_btn_"+pcount].setAttribute("type", "button");
+                        prof["p_btn_"+pcount].id = "p_btn_"+pcount;
+                        prof["p_btn_"+pcount].value = pcount;
+                        prof["p_btn_"+pcount].innerHTML = "-";
+                        prof["p_btn_"+pcount].addEventListener ("click", function() {
+                            remove_p(this.value);
+                        });
+                        document.getElementById("profession").appendChild(prof["p_btn_"+pcount]);
+
+                    pcount++;
+                    document.getElementById("profCount").value = pcount;
+                }
+            }
+        }
+
+        function addOtherProf(){
+            if( document.getElementById("op_").value != "" && document.getElementById("op_desc_").value != ""){
+                var pcount = document.getElementById("otherProfCount").value;
+                var status = 0;
+                
+                if(pcount != 1){
+                    status = 1;
+                    for(var x = 1; x < parseInt(pcount); x++){
+                        if(document.getElementById("op_"+x).value != "" && document.getElementById("op_desc_"+x).value != ""){
+                            status++;
+                        }
+                    }
+                }else{
+                    status++;
+                }
+                if(status == pcount){
+                    var prof=[];
+                    br = document.createElement("br");
+                    br.id = "br_op_"+pcount;
+                    document.getElementById("otherProf").appendChild(br);
+                    
+                    prof["op_"+pcount] = document.createElement("input");
+                    prof["op_"+pcount].setAttribute("type", "text");
+                    prof["op_"+pcount].id = "op_"+pcount;
+                    prof["op_"+pcount].name = "op_"+pcount;
+                    prof["op_"+pcount].setAttribute("placeholder", "Ex. Lawyer");
+                    prof["op_"+pcount].className = "registerOtherCustomLabelSelection";
+                    prof["op_"+pcount].addEventListener ("focusout", function() {
+                        op_check(this.value,pcount-1);
+                    });
+                    document.getElementById("otherProf").appendChild(prof["op_"+pcount]);
+
+                    prof["op_desc_"+pcount] = document.createElement("input");
+                    prof["op_desc_"+pcount].setAttribute("type", "text");
+                    prof["op_desc_"+pcount].id = "op_desc_"+pcount;
+                    prof["op_desc_"+pcount].name = "op_desc_"+pcount;
+                    prof["op_desc_"+pcount].setAttribute("placeholder", "Descriptions");
+                    prof["op_desc_"+pcount].className = "registerOtherCustomLabelSelection";
+                    document.getElementById("otherProf").appendChild(prof["op_desc_"+pcount]);
+
+                        prof["op_btn_"+pcount] = document.createElement("button");
+                        prof["op_btn_"+pcount].setAttribute("type", "button");
+                        prof["op_btn_"+pcount].id = "op_btn_"+pcount;
+                        prof["op_btn_"+pcount].value = pcount;
+                        prof["op_btn_"+pcount].innerHTML = "-";
+                        prof["op_btn_"+pcount].addEventListener ("click", function() {
+                            remove_op(this.value);
+                        });
+                        document.getElementById("otherProf").appendChild(prof["op_btn_"+pcount]);
+
+                    pcount++;
+                    document.getElementById("otherProfCount").value = pcount;
+                }else{
+                    alert("Fill other Profession title and Description")
+                }
+            }else{
+                alert("Fill Profession title and Description")
+            }
+        }
+
+        function p_check(val,id){
+            let pcount = document.getElementById("profCount").value;
+            let work = <?php echo "["; if(!empty($key_works)) { foreach($key_works as  $w){echo '"'.$w['profession_type'].'",';}} echo "]";?>;
+            let status = 1;
+            let w = "";
+            let w_val = null;
+            if(parseInt(pcount) != 1){
+                for(var x = 0; x < pcount-1; x++){
+                    if(x != 0){
+                        w_val = document.getElementById("Work"+x).value;
+                    }else{
+                        w_val = document.getElementById("Work").value;
+                    }
+                    
+                    if(val == w_val || w_val == 0) {
+                        status = 0;
+                        w = work[val];
+                    }
+                }
+            }
+
+            if(status == 0){
+                alert("Profession: "+w.toUpperCase()+" already registered, please select on the suggestion tab");
+                remove_p(parseInt(id)-1);
+            }
+
+            let tempt = document.getElementById("allProf").value;
+            for(var x = 0; x < pcount; x++){
+                if(x == 0){
+                    tempt = document.getElementById("Work").value
+                }else{
+                    tempt += ","+document.getElementById("Work"+x).value
+                }
+            }
+            document.getElementById("allProf").value = tempt;
+        }
+
+        function op_check(val,id){
+            var pcount = document.getElementById("otherProfCount").value;
+            let status = 1;
+            let msg = "";
+            //let work = <?php echo "["; if(!empty($key_works)) { foreach($key_works as  $w){echo '"'.$w['profession_type'].'",';}} echo "]";?>;
+
+            <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
+                if(val.toLowerCase() == "<?php echo $w['profession_type'];?>".toLowerCase()) {
+                    status = 0;
+                    msg = "Profession: "+val+" already registered, please select on the suggestion tab";
+                }
+            <?php }} ?>
+
+            let w = "";
+            let w_val = null;
+            if(parseInt(pcount) != 1){
+                for(var x = 0; x < pcount-1; x++){
+                    if(x != 0){
+                        w_val = document.getElementById("op_"+x).value;
+                    }else{
+                        w_val = document.getElementById("op_").value;
+                    }
+                    if(val == w_val) {
+                        status = 0;
+                        msg = "Profession: "+val+":"+w_val+" already typed, input other profession";
+                    }
+                }
+            }
+
+            if(status == 0){
+                alert(msg);
+                remove_op(document.getElementById("op_btn_"+id).value);
+            }
+        }
+
+        function remove_p(id){
+            let pcount = document.getElementById("profCount").value;
+
+            document.getElementById("Work"+id).remove();
+            document.getElementById("p_btn_"+id).remove();
+            document.getElementById("br_"+id).remove();
+            document.getElementById("profCount").value = pcount-1;
+                
+            if(pcount != id){
+                for(var x = parseInt(id)+1; x < pcount; x++){
+                    document.getElementById("Work"+x).name = "Work"+(x-1);
+                    document.getElementById("Work"+x).id = "Work"+(x-1);
+                    document.getElementById("p_btn_"+x).value = x-1;
+                    document.getElementById("p_btn_"+x).id = "p_btn_"+(x-1);
+                    document.getElementById("br_"+x).id = "br_"+(x-1);
+                }
+            }
+        }
+
+        function remove_op(id){
+            alert(id);
+            let pcount = document.getElementById("otherProfCount").value;
+
+            document.getElementById("br_op_"+id).remove();
+            document.getElementById("op_"+id).remove();
+            document.getElementById("op_desc_"+id).remove();
+            document.getElementById("op_btn_"+id).remove();
+            document.getElementById("otherProfCount").value = pcount-1;
+            if(pcount != id){
+                for(var x = parseInt(id)+1; x < pcount; x++){
+                    document.getElementById("op_"+x).name = "op_"+(x-1);
+                    document.getElementById("op_desc_"+x).name = "op_desc_"+(x-1);
+                    document.getElementById("br_op_"+x).id = "br_op_"+(x-1);
+                    document.getElementById("op_"+x).id = "op_"+(x-1);
+                    document.getElementById("op_desc_"+x).id = "op_desc_"+(x-1);
+                    document.getElementById("op_btn_"+x).value = x-1;
+                    document.getElementById("op_btn_"+x).id = "op_btn_"+(x-1);
+                }
+            }
+        }
+
         function check(){
             $.post('<?=base_url('validation/check');?>', {email: $('#email').val()}, function(data){
 
@@ -178,7 +402,8 @@
             }, 'JSON');
         }
 
-        function confirm_pass(){
+
+    function confirm_pass(){
             
         const pswrd_1 = document.getElementById("pw1").value;
         const pswrd_2 = document.getElementById("pw2").value;
@@ -194,7 +419,7 @@
         }else{
             document.getElementById("errorPW").style.display="none";
         }
-      }
+    }
     </script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
