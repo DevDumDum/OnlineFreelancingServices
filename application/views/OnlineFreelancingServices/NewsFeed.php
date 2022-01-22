@@ -109,6 +109,7 @@ else
 
 <script>
 
+    // FOR ADD POST!! FOR ADD POST!! FOR ADD POST!!
     function set_min_pay(c){
         if(c.checked){
             document.getElementById("min_pay").disabled=true;
@@ -138,12 +139,13 @@ else
         }
     }
     
+    // QUESTIONABLE! QUESTIONABLE! QUESTIONABLE! QUESTIONABLE!
     function set_form_action(action){
         var loc = "<?=base_url('Post_controller/"+action+"')?>";
         document.getElementById("post_form").action = loc;
         alert(loc);
     }
-    
+
     function edit_post(id){
 
         document.getElementById("PostOptionMenu").style.display="none";
@@ -156,8 +158,6 @@ else
         document.getElementById(s_wid).selected = true;
     }
 
-</script>
-<script>
     function set_form_action(action){
         var loc = "<?=base_url('Post_controller/"+action+"')?>";
         document.getElementById("post_form").action = loc;
@@ -173,11 +173,18 @@ else
         alert(s_wid);
 
         document.getElementById(s_wid).selected = true;
-    }
-</script>
-<script>
-    var scrollLimit = Math.max( document.body.scrollHeight, document.body.offsetHeight, 
-        document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+    } // QUESTIONABLE END
+    
+    // FOR NEWSFEED !! FOR NEWSFEED !! FOR NEWSFEED !!
+    var scrollLimit;
+
+    $(window).ready(function(){
+        scrollLimit = Math.max($(document).height(), $(window).height());
+        alert(scrollLimit);
+
+        var limit = 3;
+        var offset = limit;
+    })
     
     function add_post(){
         alert();
@@ -255,21 +262,34 @@ else
     function display_post(){
         console.log('1');
         alert();
-        //var lala= {};
-
-        //lala['my_'+id] = '12321';
-        //alert(my_1); 
     }
 
+    window.addEventListener('scroll', (event)=>{
+
+        var current = window.scrollY;
+        var pos = current + window.innerHeight; 
+        console.log("Limit: "+ scrollLimit +" | Current: " + pos);
+
+        if(pos == scrollLimit) {
+            <?php   ?>
+            display_post();
+        }
+    })
+    
+    /*
     $(function(){
         
         $.ajaxSetup ({ cache: false });
         
         $(window).scroll(function(){
-            
+
             var current = window.scrollY;
-            if(current + window.innerHeight == scrollLimit) {
+            var pos = current + window.innerHeight; 
+            console.log("Limit: "+ scrollLimit +" | Current: " + pos);
+
+            if(pos == scrollLimit) {
                 <?php   ?>
+                display_post();
             }
         });
 
@@ -282,6 +302,7 @@ else
         //})
 
     });
+        */
 </script>
 
 <!-- JavaScript Bundle with Popper -->
