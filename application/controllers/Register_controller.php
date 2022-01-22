@@ -25,6 +25,8 @@ class Register_controller extends CI_Controller {
             $this->form_validation->set_rules('contact','Contact Number','integer|trim|required');
             $this->form_validation->set_rules('password','Password','trim|required');
             $this->form_validation->set_rules('confirm-pw','Password','trim|required|matches[password]');
+
+            $this->form_validation->set_rules('profession_id','profession_id','trim');
             
             if($this->form_validation->run()==TRUE){
                 $fn = $this->input->post('first-name');
@@ -33,6 +35,9 @@ class Register_controller extends CI_Controller {
                 $contact = $this->input->post('contact');
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
+
+                $profession_id = $this->input->post('profession_id');
+
                 $status = NULL;
                 $user_type = 'user';
                 $set = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -47,7 +52,8 @@ class Register_controller extends CI_Controller {
                     'password' => $password,
                     'status' => $status,
                     'code' => $code,
-                    'user_type' => $user_type
+                    'user_type' => $user_type,
+                    'profession_id' => $profession_id
                 );
 
                 //set up email
