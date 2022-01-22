@@ -31,5 +31,19 @@ class Post_model extends CI_Model{
           return true;
       else return false;
    }
-}
 
+   public function get_from_offset($offset){
+      $this->db->from('post');
+      $this->db->order_by('timestamp', 'desc');
+      $this->db->limit(1, $offset);
+
+      /*
+      $this->db->select('ID, poster_ID, profession_ID, 
+      worker_count, requirements, location, timestamp,
+      min_pay, max_pay, status');
+      */
+
+      $q = $this->db->get();
+      return $q->result_array();
+   }
+}

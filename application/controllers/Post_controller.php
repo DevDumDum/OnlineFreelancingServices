@@ -47,24 +47,52 @@ class Post_controller extends CI_Controller {
 
             redirect(base_url('NewsFeed'));
         }
-
     }
 
-    public function get_limited_post($post){
 
-        // returns how many posts has it been
-        $offset = count($post);
+    public function get_from_offset(){
 
-        //limit for autoloading data
-        const $limit = 2;
+        if(isset($_POST['postIndex'])) $offset = $_POST['postIndex'];
+        else $offset = 0;
+
+        
+        $posts = $this->Post_model->get_from_offset($offset);
+        
+        $this->load->model('OFS/Work_model');
+        $works = $this->Work_model->get_table();
+
+        $this->load->model('OFS/OFS_model');
+        $users = array();
+        
+        foreach($posts as $p){
+
+            $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
+            $posts[0]['post_owner'] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
+
+            if($posts[0]['requirements'] == "") 
+                $posts[0]['requirements'] = "No requirements.";
+        }     
 
 
+        // NEW_POST[] = {POSTER_NAME, PROFFESION_NAME, POST_ID, POSTER_ID}
+        $n_post=array();
 
-        // stores new post 
-        for(int $i=1; $i<$offset+$limit; $i++){
-            $post[$offset+$i] = $this->Post_model->
-        }
+        // POSTER NAME
+        $n_post[0] = $posts[0]['post_owner'];
 
-        return $post;
+        // PROFESSION NAME
+        $n_post[1] = ($posts[0]['profession_ID'] != 0) 
+            ? $works[$posts[0]['profession_ID']-1]['profession_type']
+            : $works[$posts[0]['profession_ID']]['profession_type'];
+
+        // POST ID
+        $n_post[2] = $posts[0]['ID'];
+
+        // POSTER ID
+        $n_post[3] = $posts[0]['poster_ID'];
+
+        
+        if($posts == null) echo [];
+        else echo json_encode($n_post);
     }
 }

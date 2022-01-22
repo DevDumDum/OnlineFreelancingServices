@@ -2,16 +2,7 @@
 $udata = $this->session->userdata('UserLoginSession');
             
 if(!empty($key_posts)){
-
-
     foreach($key_posts as $p) {
-        
-    //print_r($p);
-        /*
-        $id = $p['ID'];
-        $name_id = $p['poster_ID'];
-        $name = ($p['post_owner'] == '')? strval($p['post_owner']): "Anonymous";
-        */
 
         $post = array();
         $post['id'] = $p['ID'];
@@ -28,4 +19,5 @@ if(!empty($key_posts)){
         echo '</script>';
     }
 }
+
 ?>

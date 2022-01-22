@@ -175,22 +175,7 @@ else
         document.getElementById(s_wid).selected = true;
     } // QUESTIONABLE END
     
-    // FOR NEWSFEED !! FOR NEWSFEED !! FOR NEWSFEED !!
-    var scrollLimit;
-
-    $(window).ready(function(){
-        scrollLimit = Math.max($(document).height(), $(window).height());
-        alert(scrollLimit);
-
-        var limit = 3;
-        var offset = limit;
-    })
-    
-    function add_post(){
-        alert();
-        offset++;
-        console.log(offset);
-    }
+    // FOR DYNAMIC NEWSFEED !! FOR NEWSFEED !! FOR NEWSFEED !!
     function initPost(postArray){
         var name = postArray["name"];
         var work = postArray["work"];
@@ -198,7 +183,6 @@ else
         var owner = postArray["name_id"];
         let post = [];
 
-        //var post_ = document.createElement("div");
         post["post_"+curID] = document.createElement("div");
         post["post_"+curID].id = "post_"+curID;
         post["post_"+curID].className = "main_post";
@@ -208,7 +192,6 @@ else
         post["post_"+curID].style.backgroundColor ="lightblue";
         document.getElementById("result").appendChild(post["post_"+curID]);
 
-        //var post_titlebar_".$id." = document.createElement("div");
         post["post_titlebar_"+curID] = document.createElement("div");
         post["post_titlebar_"+curID].id = "post_titlebar_"+curID;
         post["post_titlebar_"+curID].style.height ="100px";
@@ -216,7 +199,6 @@ else
         post["post_titlebar_"+curID].style.backgroundColor ="grey";
         document.getElementById(post["post_"+curID].id).appendChild(post["post_titlebar_"+curID]);
 
-        //var user_image".$id." = document.createElement("div");
         post["user_image_"+curID] = document.createElement("div");
         post["user_image_"+curID].id = "user_image"+curID;
         post["user_image_"+curID].className = "userImage";
@@ -233,7 +215,6 @@ else
         if( <?php echo $udata["id"];  ?> == owner) {
             
             post["option_"+curID] = document.createElement("input");
-            // var option_ = document.createElement("input");
             post["option_"+curID].id = "option_"+curID;
             post["option_"+curID].setAttribute("type", "button");
             post["option_"+curID].setAttribute("value", "option");
@@ -247,7 +228,6 @@ else
             
         }else {
             post["apply_"+curID] = document.createElement("input"); 
-            //var apply_ = document.createElement("input");
             post["apply_"+curID].id = "apply_"+curID;
             post["apply_"+curID].setAttribute("type", "button");
             post["apply_"+curID].setAttribute("value", "Apply");
@@ -259,50 +239,47 @@ else
         }
     }
     
-    function display_post(){
-        console.log('1');
-        alert();
-    }
+    var scrollLimit ,limit, offset;
+    $(document).ready(function(){
+        
+        scrollLimit = Math.max($(document).height(), $(window).height());
+        limit = 3;
+        offset = 1;
+    })
 
-    window.addEventListener('scroll', (event)=>{
+    $(window).scroll(function(){
 
         var current = window.scrollY;
         var pos = current + window.innerHeight; 
         console.log("Limit: "+ scrollLimit +" | Current: " + pos);
 
         if(pos == scrollLimit) {
-            <?php   ?>
-            display_post();
+            
+  
+            display_new_post();
         }
     })
     
-    /*
-    $(function(){
-        
-        $.ajaxSetup ({ cache: false });
-        
-        $(window).scroll(function(){
+    function display_new_post(){
+        const theFunction = "<?=base_url('Post_controller/get_from_offset'); ?>";
+        $.post(theFunction, {postIndex: offset, postLimit: limit}, function(data, status){
+            alert(data);
 
-            var current = window.scrollY;
-            var pos = current + window.innerHeight; 
-            console.log("Limit: "+ scrollLimit +" | Current: " + pos);
+            var reData = data;
+            <?php 
+                $theData = "<script>document.writeln(data);</script>";
+                //$trimData = trim($data, )
+    
+            
+            ?>
 
-            if(pos == scrollLimit) {
-                <?php   ?>
-                display_post();
-            }
-        });
-
-        //$(window).load(function(){
-
-        //})
-
-        //$(document).ready(function(){
-        //    alert();
-        //})
-
-    });
-        */
+            offset+=limit;
+        })
+    }  
+    function tryfunction(item){
+        //alert(item);
+    }
+    
 </script>
 
 <!-- JavaScript Bundle with Popper -->

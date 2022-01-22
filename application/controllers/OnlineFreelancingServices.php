@@ -40,7 +40,6 @@ class OnlineFreelancingServices extends CI_Controller {
         $table['key_works'] = $works;
 
         $this->load->model('OFS/OFS_model');
-        $users = array();
         $x = 0;
         foreach($posts as $p){
             $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
@@ -55,10 +54,6 @@ class OnlineFreelancingServices extends CI_Controller {
         // DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! 
         //echo "<pre>";
         //print_r($posts);
-
-        $lala = json_encode($posts);
-        $lala = json_decode(serialize($lala));
-        echo $lala;
 
         $this -> load -> view ('OnlineFreelancingServices/NewsFeed', $table);
         $this -> load -> view ('OnlineFreelancingServices/inc/postResult', $table);
