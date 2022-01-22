@@ -263,9 +263,16 @@ else
     function display_new_post(){
         const theFunction = "<?=base_url('Post_controller/get_from_offset'); ?>";
         $.post(theFunction, {postIndex: offset, postLimit: limit}, function(data, status){
-            alert(data);
+            let text = data;
+            text = text.replace('[', '');
+            text = text.replace(']', '');
+            for(var x = 0; x<8; x++) {
+                text = text.replace('"', '');
+            }
+            alert(text);
+            const myArray = text.split(",");
+            alert(myArray[0]);
 
-            var reData = data;
             <?php 
                 $theData = "<script>document.writeln(data);</script>";
                 //$trimData = trim($data, )
