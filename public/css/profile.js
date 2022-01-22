@@ -55,7 +55,6 @@ fileProfile.addEventListener('change', function(){
     }
 });
 
-
 const date = new Date();
 
 const renderCalendar = () => {
@@ -138,3 +137,14 @@ document.querySelector(".next").addEventListener("click", () => {
 });
 
 renderCalendar();
+
+function switchEdit() {
+  document.getElementById('editDiv').style.display = "none";
+  document.getElementById('saveDiv').style.display = "block";
+  document.getElementById('cancelDiv').style.display = "block";
+}
+function switchCancel() {
+  document.getElementById('editDiv').style.display = "block";
+  document.getElementById('saveDiv').style.display = "none";
+  document.getElementById('cancelDiv').style.display = "none";
+}

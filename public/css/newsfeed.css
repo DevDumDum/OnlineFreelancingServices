@@ -12,7 +12,8 @@
     font-weight: bold;
 }
 .sticky-top{
-    top: 8%; !important
+    top: 8% !important;
+    z-index: 0;
 }
 .newsfeed-side{
     width: 70%;

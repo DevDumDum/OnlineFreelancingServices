@@ -47,6 +47,10 @@ else
                         <div class="card-body">
                         <button type="button" class="btn btn-primary btn-lg" onclick="AddPostPopUp()">Add Post</button>
                     </div>
+                    <div id="PostOptionMenu" style="display:none;">
+                        <button type="button" id="edit_p" value="" onclick="edit_post(this.value)">Edit</button>
+                        <button type="button" id="del_p" value="" onclick="set_form_action('deact_post')">Delete</button>
+                    </div>
                 </div>
                 <!--PopUp createPost-->
                 <div id="hiddenbox-nf">
@@ -102,10 +106,6 @@ else
         </div>
     </div>
     <br>
-    <div id="PostOptionMenu" style="display:none; position: absolute;">
-        <button type="button" id="edit_p" value="" onclick="edit_post(this.value)">Edit</button>
-        <button type="button" id="del_p" value="" onclick="set_form_action('deact_post')">Delete</button>
-    </div>
 </body>
 
 <script>
@@ -156,10 +156,7 @@ else
     function edit_post(id){
         document.getElementById("PostOptionMenu").style.display="none";
         AddPostPopUp();
-        
         var s_wid = "op_" + id;
-
-        alert(s_wid);
 
         document.getElementById(s_wid).selected = true;
     }
