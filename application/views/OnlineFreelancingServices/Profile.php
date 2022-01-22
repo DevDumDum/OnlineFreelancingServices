@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <div class="col-12 profile-wrapper">
+            <div class="col-12 profile-wrapper" style="z-index: 0;">
                 <div class="col-10 profilecontent">
                     <div class="profile-container">
                         <div class="profile-pic-div">
