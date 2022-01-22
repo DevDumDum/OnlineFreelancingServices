@@ -13,11 +13,67 @@
     flex-direction: column;
 }
 
-/*COVER PHOTO*/
+/*COVER PHOTO
 .profileBody-container{
     color: #191919;
     min-height: 100vh;
     position: relative;
+} */
+
+.profileBody-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+    position: relative;
+    color: #191919;
+}
+
+@media screen and (max-width:1200px) {
+    .row-profile {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .cover-pic-div {
+        width: 32rem;
+        height: 32rem;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .profile-container {
+        width: 32rem;
+        height: 32rem;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .location-profile {
+        width: 32rem;
+        height: 32rem;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .profile-button {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .profile-input {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .container-ratings {
+        width: 40%;
+    }
 }
 
 .cover-pic-div{
@@ -411,3 +467,12 @@ input:checked + .slider:before {
 .eduAttainment, .expertise, .contact-info{
     border: none;
 }
+
+/* LOCATION */
+#location-profile{
+    position: absolute;
+    top: 72rem;
+    right: 82.5rem;
+    box-shadow: 0 3px 5px rgb(25 25 25 / 30%);
+}
+
