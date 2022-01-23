@@ -135,4 +135,7 @@ class Verifications extends CI_Controller{
         
         $this -> load -> view ('Admin/Verifications/jobCategory',$v_list_x);
     }
+    public function AdminLogout(){
+        redirect(base_url('AdminAuth/AdminLogout'));
+    }
 }
