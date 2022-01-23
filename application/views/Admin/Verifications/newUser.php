@@ -8,20 +8,16 @@ if($this->session->userdata('UserLoginSession')){
 ?>
 
 <body>
-    <!--NAVBAR-->
-    <header>
-        <!--INSERT NAVBAR LINK HERE-->
-    </header>
     <!---POP UP-->
     <div id="hiddenbox">
         <div id="bg_box">
             <div class="modal-header">
                 <div class="title">User</div>
-                    <button class="close-button" onclick="hidebox()">&times;</button>
-                </div>
+                <button class="close-button" onclick="hidebox()">&times;</button>
             </div>
-        <div id="blackbox" onclick="hidebox()">
+            <iframe src="<?php echo base_url('Profilepage');?>" style="height: 100%; width: 100%;"></iframe>
         </div>
+        <div id="blackbox" onclick="hidebox()"></div>
     </div>
     <!--BACK BUTTON-->
 
@@ -74,9 +70,6 @@ if($this->session->userdata('UserLoginSession')){
                             <td class="status">
                                 <button type="button" class="editbtn1" style="cursor: pointer;" id="activate" onclick="accept_ver(<?php echo $v['v_id'];?>,<?php echo $v['u_id'];?>)">Activate</button>
                                 <button type="button" class="editbtn2" style="cursor: pointer;" id="deactivate" onclick="deny_ver(<?php echo $v['v_id'];?>,<?php echo $v['u_id'];?>)">Deactivate</button>
-
-                                <input hidden type="number" id="verify_id" value="<?php echo $v['v_id'];?>">
-                                <input hidden type="number" id="user_id" value="<?php echo $v['u_id'];?>">
                             </td>                        
                         </tr>
                     <?php }} else {
@@ -124,7 +117,7 @@ if($this->session->userdata('UserLoginSession')){
                 
         <?php }?>
 
-        function newDetails(){
+        function newDetails(id){
             document.getElementById("hiddenbox").style.display="block";
             document.getElementById("hiddenbox").style.animation="fadebox .3s reverse linear";
         }

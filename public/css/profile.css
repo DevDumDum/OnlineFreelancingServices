@@ -1,0 +1,477 @@
+.profileBody{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f1f1f1;
+}
+
+.row-profile{
+    display: flex;
+    flex-direction: column;
+}
+
+/*COVER PHOTO
+.profileBody-container{
+    color: #191919;
+    min-height: 100vh;
+    position: relative;
+} */
+
+.profileBody-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+    position: relative;
+    color: #191919;
+}
+
+@media screen and (max-width:1200px) {
+    .row-profile {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .cover-pic-div {
+        width: 32rem;
+        height: 32rem;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .profile-container {
+        width: 32rem;
+        height: 32rem;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .location-profile {
+        width: 32rem;
+        height: 32rem;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .profile-button {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .profile-input {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .container-ratings {
+        width: 40%;
+    }
+}
+
+.cover-pic-div{
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: #959595;
+    color: #ebebeb;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-transition: background-color .15s linear,height .65s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: background-color .15s linear,height .65s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@media (min-width: 1201px){
+    .cover-pic-div {
+        height: 266px;
+    }
+}
+
+#uploadBtn{
+    height: 100px;
+    width: 30%;
+    position: absolute;
+    text-align: center;
+    background-color: rgb(0, 0, 0, 0.4);
+    color: #ffff;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: none;
+}
+
+.uploadingofcover{
+    margin-top: 25px;
+}
+
+#file, #fileProfile{
+    display: none;
+}
+
+#photoCover, #photoProfile{
+    height: 100%;
+    width: 100%;
+}
+
+.profilecontent{
+    margin: -10% 4% 0 4%;
+    max-width: 1760px;
+    min-height: 101vh;
+    position: relative;
+    z-index: 1;
+}
+
+.profile-container{
+    background-color: #ffff;
+    border-radius: 3px;
+    box-shadow: 0 3px 5px rgb(25 25 25 / 30%);
+    flex-shrink: 0;
+    width: 30rem;
+    padding: 25px 30px;
+    text-align: center;
+    border: none;
+}
+
+.profile-pic-div{
+    height: 200px;
+    width: 200px;
+    background-color: #959595;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 2px;
+    position: relative;
+    -webkit-transition: margin-top .65s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: margin-top .65s cubic-bezier(0.19, 1, 0.22, 1);
+    overflow: hidden;
+    border: .1px solid #c7c2c2;
+}
+
+#uploadBtnProfile{
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%; 
+    transform: translate(-50%); 
+    text-align: center;
+    background-color: rgb(0, 0, 0, 0.4);
+    color: #ffff;
+    line-height: 40px;
+    font-size: 15px;
+    cursor: pointer;
+    display: none;
+    margin-bottom: 0;
+}
+
+.profileUsername{
+    font-size: 23px;
+    font-weight: 600;
+    height: 29px;
+    line-height: 1.15;
+    margin-bottom: 10px;
+}
+
+.switchBox{
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: none;
+    width: 60%;
+    display: inline-flex;
+}
+
+.switchBox{
+    background-color: #e6e6e6;
+    color: rgb(63, 63, 63);
+}
+
+.editprofilebtnicon{
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+.switch{
+    position: relative;
+    height: 18px;
+}
+
+.slider{
+    position: absolute;
+    cursor: pointer;
+    background-color: rgb(54, 54, 54);
+    transition: .4s;
+    border-radius: 34px;
+    height: 20px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider:before{
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 15px;
+    bottom: 5px;
+    background-color: #7c7c7c;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+input:checked + .slider {
+    background-color: #ffffff;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+#h4-status{
+    position: relative;
+    left: 6rem;
+    top: 0rem;
+    font-weight: bold;
+}
+
+.profilebuttons{
+    margin: -180px 0 0 320px
+}
+
+.editprofilebutton, .messageprofilebtn, .saveprofilebutton, .cancelprofilebutton{
+    background-color: #1875ff;
+    border-radius: 5px;
+}
+
+.cancelprofilebutton{
+    background-color: #7c7c7c;
+    color: #fff;
+}
+
+.profile-button{
+    display: flex;
+}
+
+.rightbutton{
+    margin-left: 75%;
+    position: absolute;
+}
+
+.inputCont{
+    margin: 10px;
+    width: 108%;
+    border: none;
+}
+
+.profile-input{
+    font-size: 16px;
+}
+
+/*CALENDAR*/
+.container_calendar{
+    position: absolute;
+    /* width: 100%;height: 100vh; */
+    color: #000;
+    justify-content: center;
+    align-items: center;
+    top: 35rem;
+}
+
+.calendar{
+    width: 30rem;
+    height: 35rem;
+    background-color: #ffff;
+    box-shadow: 0 3px 5px rgb(25 25 25 / 30%);
+}
+
+.month{
+    width: 100%;
+    height: 6rem;
+    background-color: #0a95ca;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    text-align: center;
+    text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
+}
+
+.month i{
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.month h1{
+    font-size: 2.3rem;
+    font-weight: bold;
+    /* font-weight: 150; */
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    /* margin-bottom: 0.5rem; */
+    margin-top: 1.5rem;
+}
+
+.month p{
+    font-size: 1rem;
+    margin-top: -1rem;
+}
+
+.weekdays{
+    width: 100%;
+    height: 3rem;
+    padding: 0 0.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.weekdays div{
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    width: calc(44.2rem / 7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgb(0 0 0 / 20%);
+}
+
+.days{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.3;
+}
+
+.days div{
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    width: calc(6.4rem / 1.5);
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.1rem 0.2rem rgb(0 0 0 / 20%);
+    transition: background-color 0.2s;
+}
+
+.days div:hover:not(.today){
+    background-color: #0a95ca;
+    border: 0.1rem solid #777;
+    cursor: pointer;
+}
+  
+.prev-date, .next-date{
+    opacity: 0.5;
+}
+  
+.today{
+    background-color: #0a95ca;
+}
+
+.profileProjwrapper{
+    background-color: #c5c5c5;
+    padding: 25px;
+    position: relative;
+    margin-left: 33.5rem;
+    margin-top: 12rem;
+    width: 60%;
+    height: auto;
+}
+
+.card-title{
+    font-size: 18px;
+    text-align: center;
+}
+
+.card-body p{
+    font-size: 10px;
+}
+
+.container-ratings{
+    position: absolute;
+    height: 10rem;
+    width: 22rem;
+    border: 1px solid #afaeae;
+    top: 34.6rem;
+    left: 93%;
+    text-align: center;
+}
+
+#h3-ratings{
+    padding: 10px;
+    font-size: 18px;
+}
+
+.rating{
+    display: flex;
+    height: 2rem;
+}
+
+.rating label{
+    display: block;
+    cursor: pointer;
+    width: 50px;
+    align-items: center;
+}
+
+.rating label:before{
+    content: '\f005';
+    font-family: fontAwesome;
+    position: relative;
+    display: block;
+    font-size: 30px;
+    color: #d3b554;
+}
+
+.rating label:after{
+    content: '\f005';
+    font-family: fontAwesome;
+    position: absolute;
+    display: block;
+    font-size: 30px;
+    color: #1f9cff;
+    top: 0;
+    opacity: 0;
+    transition: .5s;
+    text-shadow: 0 2px 5px rgba(0,0,0,.5);
+}
+ 
+.rating input{
+    display: none;
+}
+
+.eduAttainment{
+    height: 30px;
+}
+
+.info-cont{
+    position: relative;
+    height: 10rem;
+    width: 22rem;
+    border: 1px solid #afaeae;
+    top: -34rem;
+    left: 99.7rem;
+    text-align: center;
+}
+
+.eduAttainment, .expertise, .contact-info{
+    border: none;
+}
+
+/* LOCATION */
+#location-profile{
+    position: absolute;
+    top: 72rem;
+    right: 82.5rem;
+    box-shadow: 0 3px 5px rgb(25 25 25 / 30%);
+}
+

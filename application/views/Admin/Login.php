@@ -1,22 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<!--
-<header>
-	<nav class="navbar custom-navbar navbar-expand-md navbar-dark">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="AdminLogin">
-				<img class="img-fluid" src="<?php echo base_url();?>public/images/logogif-unscreen.gif" alt="" width="120"
-					class="d-inline-block align-text-top">
-			</a>
-			<ul class="nav justify-content-end">
-				<li class="nav-item">
-					<img class="img-fluid" src="<?php echo base_url();?>public/images/help.png" alt="" width="50">
-				</li>
-			</ul>
-		</div>
-	</nav>
-</header>
--->
 <body class="adminloginpageBody">
 
 	<form method="post" autocomplete="off" action="<?=base_url('AdminAuth/AdminLogin')?>" style="height:100%;">
@@ -25,7 +8,7 @@
         <div class="col-md-6 no-gutters modloginLeftSide">
 		<div class="logincontainer container-custom">
 		<div class="justify-content-center align-items-center">
-            <img class="img-fluid" src="<?php echo base_url();?>public/images/logogif-unscreen.gif" 
+            <img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" 
         	class ="modlogo mx-auto d-block" alt="" height="70">
 			<br>
 			<i class = "admin-doesnot">Does not have an account? <a href="AdminRegister" class = "admin-signup"><u>Sign Up</u></a></i>

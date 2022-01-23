@@ -12,21 +12,21 @@ if($this->session->userdata('UserLoginSession')){
     <nav class="navbar custom-navbar-admin navbar-expand-md navbar-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="Dashboard">
-                <img class="img-fluid" src="<?php echo base_url();?>public/images/logogif-unscreen.gif" alt="" width="120" 
+                <img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" alt="" width="120" 
                 class="d-inline-block align-text-top">
                 </a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <ul class="nav justify-content-end collapse navbar-collapse " id="navbarCollapse">
-                    <li class="nav-item d-flex justify-content-end">
-                        <img class="img-fluid" src="<?php echo base_url();?>public/images/changepassword.png" alt="" width="13%">
-                        <a href="#" class="nav-link-custom-admin">Change Password</a>
-                    </li>
-                    <li class="nav-item d-flex justify-content-end">
-                        <img class="img-fluid" src="<?php echo base_url();?>public/images/logout.png" alt="" width="17%">
-                        <a href="AdminLogout" class="nav-link-custom-admin">Logout</a>
-                    </li>
+                <ul class="nav justify-content-end collapse navbar-collapse nav" id="navbarCollapse">
+                    <li class="nav-item">
+                    <i class="fas fa-unlock-alt">
+                        <a href="#" class="nav-link-custom-admin" id = "changepass">Change Password</a>
+                    </li></i>
+                    <li class="nav-item">
+                        <i class="fas fa-sign-out-alt">
+                        <a href="AdminLogout" class="nav-link-custom-admin" id = "logout">Logout</a>
+                    </li></i>
                 </ul>
             </div>
     </nav>

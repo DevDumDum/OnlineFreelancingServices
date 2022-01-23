@@ -2,7 +2,6 @@
     font-family: 'Poppins', sans-serif;
     margin: 0; 
     height: 100%;
-    overflow: hidden; /*eto yung scroll*/
 }
 
 .register-row_custom{
@@ -49,7 +48,7 @@
     font-size: 13px;
 }
 
-#id, #Work{
+#id, .P_registerOtherCustomLabelSelection{
     width: 38%;
     height: 30px;
 }
@@ -67,6 +66,11 @@
     margin-bottom: 5px;
 }
 
+#errorEmail, #successEmail {
+    width: 24px;
+    float: right;
+    margin-right: -30px;
+}
 .customlabel{
     font-size: 14px;
     color: #ffff;

@@ -1,60 +1,36 @@
+<?php
+$udata = $this->session->userdata('UserLoginSession');
+            
+if(!empty($key_posts)){
 
+    foreach($key_posts as $p) {
 
-<?php if(!empty($key_posts)){ foreach($key_posts as $p){?>
-    <div class="bg-primary m-5 p-10 w-50 rounded">
+        $post = array();
+        $post['id'] = $p['ID'];
+        $post['name_id'] = $p['poster_ID'];
 
-        <div>
-            <!--Display post here-->
-            <!--Post example layout-->
-            <div>
-                <img src="">
-                <div>
-                    <p><?php echo $p['post_owner']." needs ".$key_works[$p['profession_ID']-1]['profession_type']."<b>!</b>"; ?></p>
-                </div>
-            </div>
-        </div>
+        $post['name'] = ($p['post_owner'] == '')
+            ? "Anonymous"
+            : strval($p['post_owner']);
+        $post['work'] = ($p['profession_ID'] != 0) 
+            ? $post['work'] = $key_works[$p['profession_ID']-1]['profession_type']
+            : $post['work'] = $key_works[0]['profession_type'];
 
-        ==========================================
-        <!--PopUp Post Details onclick-->
-        <div>
-            <div>
-                <!--Load skill needed-->
-            </div>
-            <div>
-                    <p>Description: <?php echo $p['requirements'] ?> </p>
-            </div>
-            <div>
-                <img src=""><br>
-                <div>Ratings:
-                    <!--Load starts rating-->
-                    <img src="">
-                </div>
-                <button>Apply</button>
-                <button>Report</button>
-            </div><br>
-            <div>
-                <!--Load work images here-->
-                <img src="">
-            </div><br>
-            <div>
-                <p>Numbers of Workers: <?php echo $p['worker_count'] ?> </p>
-            </div>
+            $post['requirements'] = $p["requirements"];
+            $post['worker_count'] = $p["worker_count"];
+            $post['applicants'] = $p["applicants"];
+            $post['accepted'] = $p['accepted'];
+            $post['apply_status'] = $p['apply_status'];
 
-            <div>Expected Fee:
-                <?php 
-                    if(!empty($p['min_pay'])){ echo " &#8369 ".$p['min_pay']." up to ";}
-                    echo "&#8369 ".$p['max_pay'];
+            $post['location'] = $p['location'];
+            $post['min_pay'] = $p['min_pay'];
+            $post['max_pay'] = $p['max_pay'];
+            $post['timestamp'] = $p['timestamp'];
 
-                ?>
-            </div>
-            <div><p>Location: <?php echo $p['location'] ?> </p></div>
-            <div><p><?php echo date("M j Y", $p['timestamp'])." ".date("h:iA", $p['timestamp']) ?> </p></div>
-        </div>
-    </div>
+        echo'<script>'; 
+        echo 'initPost('.json_encode($post).');';
+        echo '</script>';
+    }
+}
 
-    <?php // id, requirements, worker count, location, date, time, name  ?>
-    
-
-<?php }} else { ?>
-    <p>baka</p>
-<?php } ?>
+?>

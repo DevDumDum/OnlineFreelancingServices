@@ -1,4 +1,210 @@
-@media (min-width: 1920px) {
+@media all and (min-width: 500px) {
+    .custom-navbar a{
+        font-size: 2vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.9vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 4vw;
+    }
+    .loginH1{
+        font-size: 7vw;
+    }
+    .loginLeftSide{
+        background-color: #1F4E70;
+        text-align: center;
+        color: #ffffff;
+        padding-top:18%;
+        padding-bottom: 20%;
+        height:fit-content;
+    }
+    .right-column{
+        background-color: #E5e5e5;
+        text-align: center;
+        color: #000000;
+        padding-top: 25%;
+        height: 60%;  
+    }
+    .logo img{
+        padding-left: 35%;
+        width: 65%;
+    }
+    .registerLeftSide{
+        padding-top: 5%;
+    }
+    .registerRightSide{
+        padding-top: 3%;
+    }
+    .hp-search-container{
+        padding-top: 25%;
+    }
+    .h-d-down{
+        width: 25%;
+    }
+    #search-bar{
+        width: 55%;
+    }
+    .editbtn1-responsiveness{
+        font-size: 3.8vw;
+    }
+    .editbtn2-responsiveness{
+        font-size: 3.4vw;
+        margin-top: 6%;
+    }
+    .editbtn1-jobCategory-responsiveness{
+        font-size: 3.25vw;
+    }
+    .editbtn2-jobCategory-responsiveness{
+        font-size: 3vw;
+        margin-top: 10%;
+    }
+    
+}
+
+@media all and (min-width: 768px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.5vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 2vw;
+    }
+    .loginH1{
+        font-size: 3.5vw;
+    }
+    .loginLeftSide{
+        background-color: #1F4E70;
+        text-align: center;
+        color: #ffffff;
+        padding-top:35%;
+        height: inherit;
+    }
+    .right-column{
+        background-color: #E5e5e5;
+        text-align: center;
+        color: #000000;
+        padding-top:35%;
+        height: inherit;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo img{
+        padding-left: 35%;
+        width: 65%;
+    }
+    .registerLeftSide{
+        padding-top: 13%;
+    }
+    .registerRightSide{
+        padding-top:11%;
+    }
+    .hp-search-container{
+        padding-top: 15%;
+    }
+    .h-d-down{
+        width: 25%;
+    }
+    #search-bar{
+        width: 55%;
+    }
+    .editbtn1-responsiveness{
+        font-size: 2.1vw;
+    }
+    .editbtn2-responsiveness{
+        font-size: 2.1vw;
+        margin-top: 0%;
+    }
+    .editbtn1-jobCategory-responsiveness{
+        font-size: 2.4vw;
+    }
+    .editbtn2-jobCategory-responsiveness{
+        font-size: 2.22vw;
+        margin-top: 6%;
+    }
+}
+
+@media all and (min-width: 1024px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.5vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+    .loginH1{
+        font-size: 3vw;
+    }
+    .loginLeftSide{
+        background-color: #1F4E70;
+        text-align: center;
+        color: #ffffff;
+        padding-top:20%;
+        height: inherit;
+    }
+    .right-column{
+        background-color: #E5e5e5;
+        text-align: center;
+        color: #000000;
+        padding-top:20%;
+        height: inherit;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo img{
+        padding-left: 35%;
+        width: 65%;
+    }
+    .registerLeftSide{
+        padding-top: 5%;
+    }
+    .registerRightSide{
+        padding-top: 3%;
+    }
+    .hp-search-container{
+        padding-top: 10%;
+    }
+    .h-d-down{
+        width: 25%;
+    }
+    #search-bar{
+        width: 55%;
+    }
+    .editbtn1-responsiveness{
+        font-size: 1.55vw;
+    }
+    .editbtn2-responsiveness{
+        font-size: 1.55vw;
+        margin-top: 0%;
+    }
+    .editbtn1-jobCategory-responsiveness{
+        font-size: 1.8vw;
+    }
+    .editbtn2-jobCategory-responsiveness{
+        font-size: 1.8vw;
+        margin-top: 0%;
+    }
+}
+
+@media all and (min-width: 1280px) {
     .custom-navbar a{
         font-size: 1.3vw;
     }
@@ -9,21 +215,483 @@
         background-color: rgba(0, 0, 0, 0.3);
         padding: 30px 60px;
     }
-    
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+    .loginH1{
+        font-size: 2.5vw;
+    }
+    .loginLeftSide{
+        background-color: #1F4E70;
+        text-align: center;
+        color: #ffffff;
+        padding-top:18%;
+        height: inherit;
+    }
+    .right-column{
+        background-color: #E5e5e5;
+        text-align: center;
+        color: #000000;
+        padding-top:18%;
+        height: inherit;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo img{
+        padding-left: 35%;
+        width: 65%;
+    }
+    .registerLeftSide{
+        padding-top: 5%;
+    }
+    .registerRightSide{
+        padding-top: 3%;
+    }
+    .hp-search-container{
+        padding-top: 8%;
+    }
+    .h-d-down{
+        width: 25%;
+    }
+    #search-bar{
+        width: 55%;
+    }
+    .editbtn1-responsiveness{
+        font-size: 1.23vw;
+    }
+    .editbtn2-responsiveness{
+        font-size: 1.23vw;
+        margin-top: 0%;
+    }
+    .editbtn1-jobCategory-responsiveness{
+        font-size: 1.38vw;
+    }
+    .editbtn2-jobCategory-responsiveness{
+        font-size: 1.38vw;
+        margin-top: 0%;
+    }
 }
-    
 
-@media (min-width: 1536px) {
+@media all and (min-width: 1304px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+    .loginH1{
+        font-size: 2.5vw;
+    }
+    .loginLeftSide{
+        background-color: #1F4E70;
+        text-align: center;
+        color: #ffffff;
+        padding-top:18%;
+        height: inherit;
+    }
+    .right-column{
+        background-color: #E5e5e5;
+        text-align: center;
+        color: #000000;
+        padding-top:18%;
+        height: inherit;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo img{
+        padding-left: 35%;
+        width: 65%;
+    }
+    .registerLeftSide{
+        padding-top: 5%;
+    }
+    .registerRightSide{
+        padding-top: 3%;
+    }
+    .hp-search-container{
+        padding-top: 8%;
+    }
+    .h-d-down{
+        width: 25%;
+    }
+    #search-bar{
+        width: 55%;
+    }
+    .editbtn1-responsiveness{
+        font-size: 1.22vw;
+    }
+    .editbtn2-responsiveness{
+        font-size: 1.22vw;
+        margin-top: 0%;
+    }
+    .editbtn1-jobCategory-responsiveness{
+        font-size: 1.3vw;
+    }
+    .editbtn2-jobCategory-responsiveness{
+        font-size: 1.3vw;
+        margin-top: 0%;
+    }
+}
+
+@media all and (min-width: 1366px) {
+    .custom-navbar a{
+        font-size: 1.1vw;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+    .loginH1{
+        font-size: 2.5vw;
+    }
+    .loginLeftSide{
+        background-color: #1F4E70;
+        text-align: center;
+        color: #ffffff;
+        padding-top:19%;
+        height: inherit;
+    }
+    .right-column{
+        background-color: #E5e5e5;
+        text-align: center;
+        color: #000000;
+        padding-top:19%;
+        height: inherit;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo img{
+        padding-left: 35%;
+        width: 65%;
+    }
+    .registerLeftSide{
+        padding-top: 5%;
+    }
+    .registerRightSide{
+        padding-top: 3%;
+    }
+    .hp-search-container{
+        padding-top: 10%;
+    }
+    .h-d-down{
+        width: 25%;
+    }
+    #search-bar{
+        width: 56%;
+    }
+    .editbtn2-responsiveness{
+        font-size: 1.16vw;
+        margin-top: 0%;
+    }
+    .editbtn1-jobCategory-responsiveness{
+        font-size: 1.4vw;
+    }
+    .editbtn2-jobCategory-responsiveness{
+        font-size: 1.4vw;
+        margin-top: 0%;
+    }
+}
+
+@media all and (min-width: 1440px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+    .loginH1{
+        font-size: 2.5vw;
+    }
+    .loginLeftSide{
+        background-color: #1F4E70;
+        text-align: center;
+        color: #ffffff;
+        padding-top:18%;
+        height: inherit;
+    }
+    .right-column{
+        background-color: #E5e5e5;
+        text-align: center;
+        color: #000000;
+        padding-top:18%;
+        height: inherit;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo img{
+        padding-left: 35%;
+        width: 65%;
+    }
+    .registerLeftSide{
+        padding-top: 5%;
+    }
+    .registerRightSide{
+        padding-top: 3%;
+    }
+    .h-d-down{
+        width: 25%;
+    }
+    #search-bar{
+        width: 57%;
+    }
+    .editbtn2-responsiveness{
+        font-size: 1.1vw;
+        margin-top: 0%;
+    }
+    .editbtn1-jobCategory-responsiveness{
+        font-size: 1.3vw;
+    }
+    .editbtn2-jobCategory-responsiveness{
+        font-size: 1.3vw;
+        margin-top: 0%;
+    }
+}
+
+@media all and (min-width: 1536px) {
     .custom-navbar a{
         font-size: 1.3vw;
     }
     .homepageH1{
-        font-size: 2vw;
+        font-size: 1.8vw;
+    }
+    .loginH1{
+        font-size: 2.5vw;
+    }
+    .loginLeftSide{
+        background-color: #1F4E70;
+        text-align: center;
+        color: #ffffff;
+        padding-top:18%;
+        height: inherit;
+    }
+    .right-column{
+        background-color: #E5e5e5;
+        text-align: center;
+        color: #000000;
+        padding-top:18%;
+        height: inherit;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo img{
+        padding-left: 35%;
+        width: 65%;
+    }
+    .registerLeftSide{
+        padding-top: 5%;
+    }
+    .registerRightSide{
+        padding-top: 3%;
+    }
+    .h-d-down{
+        width: 20%;
+    }
+    #search-bar{
+        width: 63%;
+    }
+    .editbtn1-responsiveness{
+        font-size: 1.04vw;
+    }
+    .editbtn2-responsiveness{
+        font-size: 1.04vw;
+        margin-top: 0%;
+    }
+    .editbtn1-jobCategory-responsiveness{
+        font-size: 1.2vw;
+    }
+    .editbtn2-jobCategory-responsiveness{
+        font-size: 1.2vw;
+        margin-top: 0%;
     }
 }
 
-@media (min-width: 1366px) {
+@media all and (min-width: 1600px) {
     .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
         font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+    .loginH1{
+        font-size: 2.5vw;
+    }
+    .loginLeftSide{
+        background-color: #1F4E70;
+        text-align: center;
+        color: #ffffff;
+        padding-top:18%;
+        height: inherit;
+    }
+    .right-column{
+        background-color: #E5e5e5;
+        text-align: center;
+        color: #000000;
+        padding-top:18%;
+        height: inherit;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo img{
+        padding-left: 35%;
+        width: 65%;
+    }
+    .registerLeftSide{
+        padding-top: 5%;
+    }
+    .registerRightSide{
+        padding-top: 3%;
+    }
+    .h-d-down{
+        width: 20%;
+    }
+    #search-bar{
+        width: 60%;
+    }
+    .editbtn1-responsiveness{
+        font-size: .99vw;
+    }
+    .editbtn2-responsiveness{
+        font-size: .99vw;
+        margin-top: 0%;
+    }
+    .editbtn1-jobCategory-responsiveness{
+        font-size: 1.3vw;
+    }
+    .editbtn2-jobCategory-responsiveness{
+        font-size: 1.3vw;
+        margin-top: 0%;
+    }
+}
+
+@media all and (min-width: 1858px) {
+    .custom-navbar a{
+        font-size: 1.3vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 1.8vw;
+    }
+    .loginH1{
+        font-size: 2.5vw;
+    }
+    .loginLeftSide{
+        background-color: #1F4E70;
+        text-align: center;
+        color: #ffffff;
+        padding-top:15%;
+        height: inherit;
+    }
+    .logo{
+        padding-left: 28%;
+        width: 80%;
+    }
+    .h-d-down{
+        width: 15%;
+    }
+    #search-bar{
+        width: 70%;
+    }
+    .editbtn1-responsiveness{
+        font-size: .85vw;
+    }
+    .editbtn2-responsiveness{
+        font-size: .85vw;
+        margin-top: 0%;
+    }
+    .editbtn1-jobCategory-responsiveness{
+        font-size: 1vw;
+    }
+    .editbtn2-jobCategory-responsiveness{
+        font-size: 1vw;
+        margin-top: 0%;
+    }
+}
+
+@media all and (min-width: 1920px) {
+    .custom-navbar a{
+        font-size: 1.2vw;
+    }
+    .custom-navbar-admin a{
+        font-size: 1.1vw;
+    }
+    .homeFormbox{
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 30px 60px;
+    }
+    .homepageH1{
+        font-size: 2.5vw;
+    }
+    .containerLogin a{
+        font-size: .7vw;
+    }
+    .loginH1{
+        font-size: 3vw;
+    }
+    .loginLeftSide{
+        background-color: #1F4E70;
+        text-align: center;
+        color: #ffffff;
+        padding-top:15%;
+        height: inherit;
+    }
+    .logo{
+        padding-left: 10%;
+        width: 90%;
+    }
+    .hp-search-container{
+        padding-top: 5%;
+        padding-right: 5%;
+    }
+    .h-d-down{
+        width: 10%;
+    }
+    #search-bar{
+        width: 80%;
+    }
+    .editbtn1-responsiveness{
+        font-size: .86vw;
+    }
+    .editbtn2-responsiveness{
+        font-size: .86vw;
+        margin-top: 0%;
+    }
+    .editbtn1-jobCategory-responsiveness{
+        font-size: 1vw;
+    }
+    .editbtn2-jobCategory-responsiveness{
+        font-size: 1vw;
+        margin-top: 0%;
     }
 }
