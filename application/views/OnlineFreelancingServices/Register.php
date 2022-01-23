@@ -3,7 +3,7 @@
 <body class="registerBody">
 
     <div class="registerContainer container-fluid">    
-        <form method="post" autocomplete="off" action="<?=base_url('Register_controller/adduser')?>" style="height:100%;">
+        <form method="post" onsubmit="return check_fill();" autocomplete="off" action="<?=base_url('Register_controller/adduser')?>" style="height:100%;">
             <div class="row register-row_custom">
                 <div class="col-md-6 no-gutters registerLeftSide">
                     <div class="justify-content-center align-items-center">
@@ -41,14 +41,13 @@
                                 <div class = "registerTextCont">
                                     <label for="email-address" class="customlabel" ><span>Email Address</span></label><br>
                                     <input id="email" onfocusout="check()" name="email" type="email" placeholder="you@example.com" class="ea" required />
-                                </div>
+                                    <div class="registerTextCont" style="display:none;" id="errorEmail">
+                                        <span title="Email already exists!" style="color:red;font-size:24px" class="glyphicon glyphicon-exclamation-sign "></span>
+                                    </div>
 
-                                <div class="registerTextCont" style="display:none;" id="errorEmail">
-                                    <span title="Email already exists!" style="color:red;font-size:24px" class="glyphicon glyphicon-exclamation-sign "></span>
-                                </div>
-
-                                <div class="registerTextCont" style="display:none;" id="successEmail">
-                                    <span title="Looks good!" style="color:#32CD32;font-size:24px" class="glyphicon glyphicon-ok"></span>
+                                    <div class="registerTextCont" style="display:none;" id="successEmail">
+                                        <span title="Looks good!" style="color:#32CD32;font-size:24px" class="glyphicon glyphicon-ok"></span>
+                                    </div>
                                 </div>
 
                                 <div class = "registerTextCont">
@@ -93,7 +92,7 @@
                         <label for="prof" class=""><br><span>Profession</span></br></label>
                         <div id="profession">
                             <input type="number" name="profCount" id="profCount" value="1" disabled hidden /><!--counter-->
-                            <input type="text" name="profession_id" id="allProf" hidden />
+                            <input type="text" name="profession_id" id="allProf" />
                             <select id="Work" name="Work" onchange="p_check(this.value,null)" class="P_registerOtherCustomLabelSelection">
                                 <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
                                     <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
@@ -103,7 +102,8 @@
                         </div>
                         <div id="otherProf">
                             <input type="number" name="otherProfCount" id="otherProfCount" value="1" disabled hidden /><!--counter-->
-                            <label for="Others:" class="registerOtherCustomLabel">Others</label>
+                            <input type="text" name="other_profession_id" id="allOtherProf" />
+                            <label style="position: absolute;margin-left: -50px;margin-top: 5px;" for="Others:" class="registerOtherCustomLabel">Others</label>
                             <input type="text" name="op_" id="op_" class="registerOtherCustomLabelSelection" onchange="op_check(this.value,'')" placeholder="Ex. Lawyer">
                             <input type="text" name="op_desc_" id="op_desc_" class="registerOtherCustomLabelSelection" placeholder="Descriptions">
                             <button type="button" onclick="addOtherProf()" name="addWorkPost">+</button>
@@ -239,6 +239,7 @@
                     prof["op_"+pcount].name = "op_"+pcount;
                     prof["op_"+pcount].setAttribute("placeholder", "Ex. Lawyer");
                     prof["op_"+pcount].className = "registerOtherCustomLabelSelection";
+                    prof["op_"+pcount].required = true;
                     prof["op_"+pcount].addEventListener ("focusout", function() {
                         op_check(this.value,pcount-1);
                     });
@@ -249,7 +250,11 @@
                     prof["op_desc_"+pcount].id = "op_desc_"+pcount;
                     prof["op_desc_"+pcount].name = "op_desc_"+pcount;
                     prof["op_desc_"+pcount].setAttribute("placeholder", "Descriptions");
+                    prof["op_desc_"+pcount].required = true;
                     prof["op_desc_"+pcount].className = "registerOtherCustomLabelSelection";
+                    prof["op_desc_"+pcount].addEventListener ("focusout", function() {
+                        op_check(this.value,pcount-1);
+                    });
                     document.getElementById("otherProf").appendChild(prof["op_desc_"+pcount]);
 
                         prof["op_btn_"+pcount] = document.createElement("button");
@@ -264,6 +269,18 @@
 
                     pcount++;
                     document.getElementById("otherProfCount").value = pcount;
+                
+                    let tempt = document.getElementById("allProf").value;
+                    for(var x = 0; x < pcount-1; x++){
+                        if(x == 0){
+                            tempt = '"'+document.getElementById("op_").value+'"';
+                            tempt += ',"'+document.getElementById("op_desc_").value+'"';
+                        }else{
+                            tempt += ',"'+document.getElementById("op_"+x).value+'"';
+                            tempt += ',"'+document.getElementById("op_desc_"+x).value+'"';
+                        }
+                    }
+                    document.getElementById("allOtherProf").value = tempt;
                 }else{
                     alert("Fill other Profession title and Description")
                 }
@@ -340,8 +357,33 @@
 
             if(status == 0){
                 alert(msg);
-                remove_op(document.getElementById("op_btn_"+id).value);
+                if(id != '') {
+                    remove_op(document.getElementById("op_btn_"+id).value);
+                } else {
+                    for(var x = 0; x < pcount-1; x++){
+                        if(x == 0){
+                            document.getElementById("op_").value=document.getElementById("op_1").value;
+                            document.getElementById("op_desc_").value=document.getElementById("op_desc_1").value;
+                        } else {
+                            document.getElementById("op_"+x).value=document.getElementById("op_"+(x+1)).value;
+                            document.getElementById("op_desc_"+x).value=document.getElementById("op_desc_"+(x+1)).value;
+                        }
+                    }
+                    remove_op(pcount-1);
+                }
+                pcount--;
             }
+            let tempt = document.getElementById("allOtherProf").value;
+            for(var x = 0; x < pcount; x++){
+                if(x == 0){
+                    tempt = '"'+document.getElementById("op_").value+'"';
+                    tempt += ',"'+document.getElementById("op_desc_").value+'"';
+                }else{
+                    tempt += ',"'+document.getElementById("op_"+x).value+'"';
+                    tempt += ',"'+document.getElementById("op_desc_"+x).value+'"';
+                }
+            }
+            document.getElementById("allOtherProf").value = tempt;
         }
 
         function remove_p(id){
@@ -364,7 +406,6 @@
         }
 
         function remove_op(id){
-            alert(id);
             let pcount = document.getElementById("otherProfCount").value;
 
             document.getElementById("br_op_"+id).remove();
@@ -382,6 +423,18 @@
                     document.getElementById("op_btn_"+x).value = x-1;
                     document.getElementById("op_btn_"+x).id = "op_btn_"+(x-1);
                 }
+            }
+        }
+
+        function check_fill(){
+            let w = document.getElementById("Work").value;
+            let op = document.getElementById("op_").value;
+            let op_d = document.getElementById("op_desc_").value;
+            if( parseInt(w) == 0 && ( op == "" || op_d == "")) {
+                alert("Please fill the profession section");
+                return false;
+            } else {
+                return confirm('Do you really want to submit the form? ');
             }
         }
 

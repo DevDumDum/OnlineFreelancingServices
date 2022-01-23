@@ -27,6 +27,7 @@ class Register_controller extends CI_Controller {
             $this->form_validation->set_rules('confirm-pw','Password','trim|required|matches[password]');
 
             $this->form_validation->set_rules('profession_id','profession_id','trim');
+            $this->form_validation->set_rules('other_profession_id','other_profession_id','trim');
             
             if($this->form_validation->run()==TRUE){
                 $fn = $this->input->post('first-name');
@@ -37,6 +38,22 @@ class Register_controller extends CI_Controller {
                 $password = $this->input->post('password');
 
                 $profession_id = $this->input->post('profession_id');
+                $other_profession_id = $this->input->post('other_profession_id');
+
+                $temp_op = explode(",", $other_profession_id);
+
+                
+                for($x = 0; $x < count($temp_op); $x++){
+                    $temp_op[$x] = str_replace('"','' ,$temp_op[$x]);
+                }
+                
+                $r_op = $this->Register_model->addOtherProf($temp_op);
+                if($profession_id != null && $profession_id != 0) {
+                    $profession_id = $profession_id.",".$r_op;
+                } else {
+                    $profession_id = $r_op;
+                }
+
 
                 $status = NULL;
                 $user_type = 'user';
@@ -124,8 +141,7 @@ class Register_controller extends CI_Controller {
                     $this->load->helper('url');
                     $this->session->set_flashdata('error','Error query.');
                 }
-                
-            }else {
+            } else {
                 $this->session->set_flashdata('error','Error Input data');
                 redirect(base_url('Registerpage'));
             }
