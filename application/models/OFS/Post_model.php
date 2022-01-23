@@ -9,9 +9,9 @@ class Post_model extends CI_Model{
   }
 
    public function get_table(){
-        $this->db->select('ID, poster_ID, profession_ID, 
-        worker_count, requirements, location, timestamp,
-        min_pay, max_pay, status');
+      $this->db->select('ID, poster_ID, profession_ID, 
+      worker_count, requirements, location, timestamp,
+      min_pay, max_pay, status, applicants, accepted');
 
         return $table = $this->db->get('post')->result_array();
    }
@@ -43,7 +43,7 @@ class Post_model extends CI_Model{
       }
       $this->db->select('ID, poster_ID, profession_ID, 
       worker_count, requirements, location, timestamp,
-      min_pay, max_pay, status, applicants');
+      min_pay, max_pay, status, applicants, accepted');
 
       $this->db->where('status', 1);
 
@@ -86,6 +86,8 @@ class Post_model extends CI_Model{
          $a_arr = $uid;
          $n_a_arr = $a_arr;
       }
+      
+
       if($totalApplicants >= $posts['worker_count']) {
          $this->Post_model->close_posts($posts["ID"]);
       }else{
@@ -115,7 +117,7 @@ class Post_model extends CI_Model{
             $n_a_arr = $a_arr;
          }
 
-         $this->db->set('jobs',$n_a_arr);
+         $this->db->set('apply',$n_a_arr);
          $this->db->where('id', $uid);
          $query = $this->db->update('users');
          if($query){
