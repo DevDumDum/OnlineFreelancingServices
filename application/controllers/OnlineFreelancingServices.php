@@ -231,9 +231,20 @@ class OnlineFreelancingServices extends CI_Controller{
             //return $this->db->insert('post.applicants', $id);
             //redirect(base_url('Profilepage'));
         //else //return $this->db->insert('post.applicants', 0000);           
-     }
+    }
 
-    public function Logout(){
+    public function checkE(){
+        header('content-type: text/json');
+        if (!isset($_POST['email'])) {
+            exit;
+        }
+        $this->load->model('OFS/Register_model');
+        $result = $this->Register_model->checker();
+
+        echo json_encode(array('exists' => $result > 0));
+    }
+
+     public function Logout(){
         $array_items = array('id' => '', 'email' => '');
         $this->session->unset_userdata($array_items);
         $this->session->sess_destroy();

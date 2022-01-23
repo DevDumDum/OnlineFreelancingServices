@@ -439,7 +439,7 @@
         }
 
         function check(){
-            $.post('<?=base_url('validation/check');?>', {email: $('#email').val()}, function(data){
+            $.post('<?=base_url('OnlineFreelancingServices/checkE');?>', {email: $('#email').val()}, function(data){
 
                 if(document.getElementById("email").value!=""){
                     if(data.exists){
