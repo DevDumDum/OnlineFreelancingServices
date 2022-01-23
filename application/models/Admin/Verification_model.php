@@ -1,5 +1,7 @@
 <?php
 
+use function PHPSTORM_META\type;
+
 class Verification_model extends CI_Model{
 
     public function __construct(){
@@ -11,19 +13,19 @@ class Verification_model extends CI_Model{
     public function get_table(){
         return $table = $this->db->get('verification')->result_array();
     }
-    
-    public function get_existing_row($id){
-        $this->db->select('ID, verification_type, content_ID');
-        $this->db->where('viewer_id', $id);
-        $this->db->where('verification_type', 'user');
-        $q = $this->db->get('verification');
-        return $q->result_array();
-    }
 
-    public function mod_get_existing_row($id){
+    public function get_prof_current($id){
         $this->db->select('ID, verification_type, content_ID');
         $this->db->where('viewer_id', $id);
-        $this->db->where('verification_type', 'moderator');
+        $this->db->where('verification_type', 'profession');
+        $q = $this->db->get('verification');
+        return $table = $this->db->get('verification')->result_array();
+    }
+    
+    public function get_existing_row($id, $type){
+        $this->db->select('ID, verification_type, content_ID');
+        $this->db->where('viewer_id', $id);
+        $this->db->where('verification_type', $type);
         $q = $this->db->get('verification');
         return $q->result_array();
     }
@@ -37,26 +39,11 @@ class Verification_model extends CI_Model{
         return $q->num_rows();
     }
 
-    public function mod_get_existing_count($id){
-        $this->db->select('ID, verification_type, content_ID');
-        $this->db->where('verification_type', 'moderator');
-        $this->db->where('viewer_id', $id);
-        $q = $this->db->get('verification');
-        return $q->num_rows();
-    }
 
-    public function set_mod_id($id, $count){        
+    public function set_mod_id($id, $count, $type){        
         $this->db->set('viewer_id', $id);
         $this->db->where('viewer_id', NULL);
-        $this->db->where('verification_type', 'user');
-        $this->db->limit($count);
-        $this->db->update('verification');
-    }
-    
-    public function set_admin_id($id, $count){        
-        $this->db->set('viewer_id', $id);
-        $this->db->where('viewer_id', NULL);
-        $this->db->where('verification_type', 'moderator');
+        $this->db->where('verification_type', $type);
         $this->db->limit($count);
         $this->db->update('verification');
     }
@@ -76,5 +63,76 @@ class Verification_model extends CI_Model{
         
         if($ver) return $ver->result();
         else return false;
+    }
+
+
+    public function a_ver($v_id,$u_id){
+        header('content-type: text/json');
+        $this->db->set('status', 1);
+        $this->db->where('id', $u_id);
+        $query = $this->db->update('users');
+
+        $this->db->set('viewer_id', 0);
+        $this->db->where('ID',  $v_id);
+        $query2 = $this->db->update('verification');
+        
+        if($query && $query2){
+            return json_encode(array('msg' => "Success"));
+        }else{
+            return json_encode(array('msg' => "Error"));
+        }
+    }
+
+    public function d_ver($v_id,$u_id){
+        header('content-type: text/json');
+        
+        $this->db->set('status', -1);
+        $this->db->where('id', $u_id);
+        $query = $this->db->update('users');
+
+        $this->db->set('viewer_id', 0);
+        $this->db->where('ID',  $v_id);
+        $query2 = $this->db->update('verification');
+        
+        if($query && $query2){
+            return json_encode(array('msg' => "Success"));
+        }else{
+            return json_encode(array('msg' => "Error"));
+        }
+    }
+
+
+    public function a_ver_prof($v_id,$u_id){
+        header('content-type: text/json');
+        $this->db->set('status', '1');
+        $this->db->where('ID', $u_id);
+        $query = $this->db->update('profession');
+
+        $this->db->set('viewer_id', 0);
+        $this->db->where('ID',  $v_id);
+        $query2 = $this->db->update('verification');
+        
+        if($query && $query2){
+            return json_encode(array('msg' => "Success"));
+        }else{
+            return json_encode(array('msg' => "Error"));
+        }
+    }
+
+    public function d_ver_prof($v_id,$u_id){
+        header('content-type: text/json');
+        $this->db->set('status', '-1');
+        $this->db->where('ID', $u_id);
+        $query = $this->db->update('profession');
+
+        
+        $this->db->set('viewer_id', 0);
+        $this->db->where('ID',  $v_id);
+        $query2 = $this->db->update('verification');
+        if($query && $query2){
+            return json_encode(array('msg' => "Success"));
+        }else{
+            return json_encode(array('msg' => "Error"));
+        }
     }
 }
