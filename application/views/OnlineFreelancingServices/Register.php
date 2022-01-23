@@ -92,7 +92,7 @@
                         <label for="prof" class=""><br><span>Profession</span></br></label>
                         <div id="profession">
                             <input type="number" name="profCount" id="profCount" value="1" disabled hidden /><!--counter-->
-                            <input type="text" name="profession_id" id="allProf" />
+                            <input type="text" name="profession_id" id="allProf" hidden />
                             <select id="Work" name="Work" onchange="p_check(this.value,null)" class="P_registerOtherCustomLabelSelection">
                                 <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
                                     <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
@@ -102,7 +102,7 @@
                         </div>
                         <div id="otherProf">
                             <input type="number" name="otherProfCount" id="otherProfCount" value="1" disabled hidden /><!--counter-->
-                            <input type="text" name="other_profession_id" id="allOtherProf" />
+                            <input type="text" name="other_profession_id" id="allOtherProf" hidden />
                             <label style="position: absolute;margin-left: -50px;margin-top: 5px;" for="Others:" class="registerOtherCustomLabel">Others</label>
                             <input type="text" name="op_" id="op_" class="registerOtherCustomLabelSelection" onchange="op_check(this.value,'')" placeholder="Ex. Lawyer">
                             <input type="text" name="op_desc_" id="op_desc_" class="registerOtherCustomLabelSelection" placeholder="Descriptions">

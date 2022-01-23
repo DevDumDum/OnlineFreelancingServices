@@ -58,14 +58,12 @@
                 </div>
             </div>
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                  <button type="button" class="regadbackbtn btn-outline-primary btn-sm"><a href="AdminLogin">BACK</a></button>
-                  <button type="submit" id="form-pass" class="regadbtn btn-outline-dark btn-sm" style = "background-color:#1e4e70" disabled>
-                      <span class ="fw-bold" style="color: #ffff ">REGISTER</span>
-                  </button>
-                </div>
-
-      
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+              <button type="button" class="regadbackbtn btn-outline-primary btn-sm"><a href="AdminLogin">BACK</a></button>
+              <button type="submit" id="form-pass" class="regadbtn btn-outline-dark btn-sm" style = "background-color:#1e4e70" disabled>
+                  <span class ="fw-bold" style="color: #ffff ">REGISTER</span>
+              </button>
+            </div>
         </div>
     </div>
 

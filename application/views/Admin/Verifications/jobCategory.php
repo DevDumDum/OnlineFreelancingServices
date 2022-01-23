@@ -43,8 +43,6 @@
                             <?php echo $v['description'];?>
                         </td>
                         <td class="status_w">
-                            <input  type="number" id="verify_id" value="<?php echo $v['v_id'];?>">
-                            <input  type="number" id="user_id" value="<?php echo $v['u_id'];?>">
                             <button type="button" class="editbtn1 editbtn1-jobCategory-responsiveness" style="cursor: pointer;" id="activate" onclick="accept_ver(<?php echo $v['v_id'];?>,<?php echo $v['u_id'];?>)">Activate</button>
                             <button type="button" class="editbtn2 editbtn2-jobCategory-responsiveness" style="cursor: pointer;" id="deactivate" onclick="deny_ver(<?php echo $v['v_id'];?>,<?php echo $v['u_id'];?>)">Deactivate</button>
                         </td>
