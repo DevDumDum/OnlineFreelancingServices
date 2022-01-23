@@ -160,18 +160,20 @@ class OnlineFreelancingServices extends CI_Controller{
 				$this->load->model('OFS/OFS_model');
 				$status = $this->OFS_model->checkPassword($password,$email);
 				if($status!=false){
-                    $email = $status->email;
                     $id = $status->id;
                     $user_type = $status->user_type;
+                    $email = $status->email;
+                    $profession_id = $status->profession_id;
                     $jobs = $status->jobs;
+                    $apply = $status->apply;
 
 					$session_data = array(
-						'email'=>$email,
-                        'user_type'=>$user_type,
                         'id'=>$id,
-                        'location'=>$status->location,
-                        'jobs'=>$jobs
-                        
+                        'user_type'=>$user_type,
+						'email'=>$email,
+                        'profession_id'=>$profession_id,
+                        'jobs'=>$jobs,
+                        'apply'=>$apply
 					);
 
 					$this->session->set_userdata('UserLoginSession',$session_data);

@@ -122,7 +122,7 @@ class Post_model extends CI_Model{
          $query = $this->db->update('users');
          if($query){
             $udata = $this->session->userdata('UserLoginSession');
-            $udata['jobs'] = $n_a_arr;
+            $udata['apply'] = $n_a_arr;
             $this->session->set_userdata('UserLoginSession', $udata);  
             return true;
          }else{

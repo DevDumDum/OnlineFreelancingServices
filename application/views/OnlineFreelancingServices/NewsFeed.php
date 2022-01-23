@@ -94,7 +94,7 @@ else
                                             </p>
                                         
                                         <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                                        <input type="button" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit">
+                                        <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit">
                                     </div>
                                 </form>
                         </div>
@@ -154,22 +154,22 @@ else
     }
 
     function applicant(id,uid){
-    $.ajax({
-        type: 'POST',
-        url:"<?=base_url('OnlineFreelancingServices/add_applicant');?>",
-        data: {a_id : id , u_id : uid},
-        success: function(response) {
-            if(response.status == "success"){
-                alert("Application Request sent!");
-                document.getElementById('apply_'+id).disabled=true;
-            }else{
-                alert("Request Timeout: User already Applied");
-                document.getElementById('apply_'+id).disabled=true;
+        $.ajax({
+            type: 'POST',
+            url:"<?=base_url('OnlineFreelancingServices/add_applicant');?>",
+            data: {a_id : id , u_id : uid},
+            success: function(response) {
+                if(response.status == "success"){
+                    alert("Application Request sent!");
+                    document.getElementById('apply_'+id).disabled=true;
+                }else{
+                    alert("Request Timeout: User already Applied");
+                    document.getElementById('apply_'+id).disabled=true;
+                }
+                alert("<?php echo $udata['jobs'];?>");
             }
-            alert("<?php echo $udata['jobs'];?>");
-        }
-    });
-    console.log("Applied.");
+        });
+        console.log("Applied.");
     }
 
     function display_new_post(){
