@@ -94,7 +94,7 @@ else
                                             </p>
                                         
                                         <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                                        <input type="button" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit">
+                                        <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit">
                                     </div>
                                 </form>
                         </div>
@@ -114,39 +114,31 @@ else
         if(c.checked){
             document.getElementById("min_pay").disabled=true;
             document.getElementById("min_pay").value="";
+            document.getElementById("max_pay_label").textContent="Exact Amount";
         }else {
             document.getElementById('min_pay').value=1;
             document.getElementById('min_pay').disabled=false;
+            document.getElementById("max_pay_label").textContent="Maximum Payment";
         }
     }
     function AddPostPopUp(){
-            document.getElementById("hiddenbox-nf").style.display="block";
-            document.getElementById("hiddenbox-nf").style.animation="fadebox .3s reverse linear";
-        }
+        document.getElementById("hiddenbox-nf").style.display="block";
+        document.getElementById("hiddenbox-nf").style.animation="fadebox .3s reverse linear";
+    }
     function hidebox(){
         document.getElementById("hiddenbox-nf").style.display="none";
     }
-    
-    function set_form_action(action){
-        var loc = "<?=base_url('Post_controller/"+action+"')?>";
-        document.getElementById("post_form").action = loc;
-        alert(loc);
-    }
-    
-    function edit_post(id){
 
-        document.getElementById("PostOptionMenu").style.display="none";
-        AddPostPopUp();
-        
-        var s_wid = "op_" + id;
+    function set_fixed(){
+        var component = document.getElementById("min_pay");
 
-        alert(s_wid);
-
-        document.getElementById(s_wid).selected = true;
+        if(component.value == ""){
+            document.getElementById("min-checker").checked = true;
+            component.disabled = true;
+            document.getElementById("max_pay_label").textContent="Exact Amount";
+        }
     }
 
-</script>
-<script>
     function set_form_action(action){
         var loc = "<?=base_url('Post_controller/"+action+"')?>";
         document.getElementById("post_form").action = loc;
@@ -162,22 +154,175 @@ else
     }
 
     function applicant(id,uid){
-    $.ajax({
-        type: 'POST',
-        url:"<?=base_url('OnlineFreelancingServices/add_applicant');?>",
-        data: {a_id : id , u_id : uid},
-        success: function(response) {
-            if(response.status == "success"){
-                alert("Application Request sent!");
-                document.getElementById('apply_'+id).disabled=true;
-            }else{
-                alert("Request Timeout: User already Applied");
-                document.getElementById('apply_'+id).disabled=true;
+        $.ajax({
+            type: 'POST',
+            url:"<?=base_url('OnlineFreelancingServices/add_applicant');?>",
+            data: {a_id : id , u_id : uid},
+            success: function(response) {
+                if(response.status == "success"){
+                    alert("Application Request sent!");
+                    document.getElementById('apply_'+id).disabled=true;
+                }else{
+                    alert("Request Timeout: User already Applied");
+                    document.getElementById('apply_'+id).disabled=true;
+                }
+                alert("<?php echo $udata['jobs'];?>");
             }
-            alert("<?php echo $udata['jobs'];?>");
+        });
+        console.log("Applied.");
+    }
+
+    function display_new_post(){
+        const theFunction = "<?=base_url('Post_controller/get_from_offset'); ?>";
+        $.post(theFunction, {postIndex: offset, postLimit: limit}, function(data, status){
+
+            if(status=='success'){
+                 
+                let text = data;
+                text = text.replace('[', '');
+                text = text.replace(']', '');
+
+                if(data != " "){
+
+                    for(var x = 0; x<8; x++) text = text.replace('"', '');
+
+                    const myArray = text.split(",");
+                    var postArray = [];
+                    postArray["name"] = myArray[0];
+                    postArray["work"] = myArray[1];
+                    postArray["id"] = myArray[2];
+                    postArray["name_id"] = myArray[3];
+            
+                    initPost(postArray);
+                    
+                    // BIGGER DIV BETTER DIV; BIGGER BETTER
+                    scrollLimit = Math.max($(document).height(), $(window).height());
+                }
+
+            }
+
+        })
+    }
+
+    function initPost(postArray){
+        var name = postArray["name"];
+        var work = postArray["work"];
+        var curID = postArray["id"];
+        var owner = postArray["name_id"];
+        var req = postArray['requirements'];
+        var w_count = postArray['worker_count'];
+        var a_count = postArray['applicants'];
+        var accepted_count = postArray['accepted'];
+
+        var loc = postArray['location'];
+        var min_p = postArray['min_pay'];
+        var max_p = postArray['max_pay'];
+        var date = postArray['timestamp'];
+        var apply_status = postArray['apply_status']; // if already applied
+
+
+        /*
+        console.log(
+            "Name: "+name+
+            "\nWork: "+work+
+            "\nPost ID: "+curID+
+            "\nName ID: "+owner+
+            "\nReq: "+req+
+            "\nWorkers #: "+w_count+
+            "\nApplicants #: "+a_count+
+            "\nAccepted #: "+accepted_count+
+            "\nLocation: "+loc+
+            "\nMinimum Pay: "+min_p+
+            "\nMaximum Pay: "+max_p+
+            "\nDate: "+date
+        );
+        */
+        
+        let post = [];
+
+        post["post_"+curID] = document.createElement("div");
+        post["post_"+curID].id = "post_"+curID;
+        post["post_"+curID].className = "main_post";
+        post["post_"+curID].style.height ="400px";
+        post["post_"+curID].style.width ="400px";
+        post["post_"+curID].style.marginBottom ="50px";
+        post["post_"+curID].style.backgroundColor ="lightblue";
+        document.getElementById("result").appendChild(post["post_"+curID]);
+
+        post["post_titlebar_"+curID] = document.createElement("div");
+        post["post_titlebar_"+curID].id = "post_titlebar_"+curID;
+        post["post_titlebar_"+curID].style.height ="100px";
+        post["post_titlebar_"+curID].style.width ="100%";
+        post["post_titlebar_"+curID].style.backgroundColor ="grey";
+        document.getElementById(post["post_"+curID].id).appendChild(post["post_titlebar_"+curID]);
+
+        post["user_image_"+curID] = document.createElement("div");
+        post["user_image_"+curID].id = "user_image"+curID;
+        post["user_image_"+curID].className = "userImage";
+        post["user_image_"+curID].style.height ="50px";
+        post["user_image_"+curID].style.width ="50px";
+        post["user_image_"+curID].style.backgroundColor ="red";
+        document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["user_image_"+curID]);
+
+        post["name_"+curID] = document.createElement("p");
+        post["name_"+curID].id = "name_"+curID;
+        post["name_"+curID].innerHTML = name+" needs " + work;
+        document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["name_"+curID]);
+        
+        if( <?php echo $udata["id"];  ?> == owner) {
+            
+            post["option_"+curID] = document.createElement("input");
+            post["option_"+curID].id = "option_"+curID;
+            post["option_"+curID].setAttribute("type", "button");
+            post["option_"+curID].setAttribute("value", "option");
+            post["option_"+curID].style.float = "right";
+            post["option_"+curID].addEventListener ("click", function() {
+                document.getElementById("edit_p").value=curID;
+                document.getElementById("del_p").value=curID;
+                document.getElementById("PostOptionMenu").style.display="block";
+            });
+            document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["option_"+curID]);
+            
+        }else {
+            post["apply_"+curID] = document.createElement("input"); 
+            post["apply_"+curID].id = "apply_"+curID;
+            post["apply_"+curID].setAttribute("type", "button");
+            post["apply_"+curID].setAttribute("value", "Apply");
+            post["apply_"+curID].style.float = "right";
+            post["apply_"+curID].addEventListener ("click", function() {
+                var proceed = confirm("Are you sure you want to proceed?");
+                if (proceed) {
+                    applicant(curID,<?php echo $udata['id'];?>);
+                    document.getElementById(post["apply_"+curID].id).disabled=true;
+                }
+                
+            });
+            document.getElementById(post["post_"+curID].id).appendChild(post["apply_"+curID]);
+
+            if(apply_status == 0){ // if current user already applied
+                document.getElementById(post["apply_"+curID].id).disabled=true;
+            }
         }
-    });
-    console.log("Applied.");
+
+        post["container_"+curID] = document.createElement("div");
+        post["container_"+curID].id = "container_"+curID;
+        post["container_"+curID].style.height ="270px";
+        post["container_"+curID].style.width ="370px";
+        post["container_"+curID].style.marginTop ="15px";
+        post["container_"+curID].style.marginLeft ="15px";
+        post["container_"+curID].style.padding ="15px";
+        post["container_"+curID].style.backgroundColor ="red";
+        post["container_"+curID].innerHTML += 
+        "Req: "+req+
+        "<br>Workers #: "+w_count+
+        "<br>Applicants #: "+a_count+
+        "<br>Accepted #: "+accepted_count+
+        "<br>Location: "+loc+
+        "<br>Minimum Pay: "+min_p+
+        "<br>Maximum Pay: "+max_p+
+        "<br>Date: "+date+"<br><br>";
+        document.getElementById(post["post_"+curID].id).appendChild(post["container_"+curID]);
+
     }
 </script>
 <!-- JavaScript Bundle with Popper -->
