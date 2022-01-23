@@ -1,0 +1,85 @@
+.contactBody{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #E5e5e5;
+}
+
+.contact-cont-header{
+    padding: 5% 2% 5% 2%;
+    background-color: #B1D0E0;
+    color: #1F4E70;
+}
+
+.contact-cont-header h1{
+    font-size: 4vw;
+    font-weight: bolder;
+    position: relative;
+}
+
+.contact-cont-header h1::after{
+    content: " ";
+    position: absolute;
+    display: block;
+    left: 35%;
+    bottom: -6px;
+    width: 30%;
+    height: 1.5px;
+    background-color:#1F4E70;
+}
+
+.contact-p{
+    margin-top: 2%;
+}
+
+.contact-container{
+    max-width: 750px;
+    background: #F7F6F2;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: -4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
+}
+
+.adminpics{
+    padding: 5% 2% 5% 2%;
+}
+
+.img-profile{
+    border-radius: 50%;
+    width: 6rem;
+}
+
+.contacts-icon{
+    font-size: 35px;
+    color: #1281cc;
+    margin-right: 25px;
+}
+
+.contact-icon-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 2% 2% 5% 2%;
+}
+
+.contact-content{
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #1F4E70;
+    margin-bottom: 10px;
+}
+
+.contact-cont-content{
+    font-size: 10px;
+    color: slategray;
+    font-family: 'Poppins', sans-serif;
+}

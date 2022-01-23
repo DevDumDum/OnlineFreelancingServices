@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <link rel="stylesheet" href="<?php echo base_url();?>public/css/aboutuspage.css">
 
-<body>
+<body class="aboutusBody">
 
 <div class="main text-center mt-5">
     <h1 class="AUheading">ABOUT US</h1>

@@ -30,12 +30,10 @@ class OnlineFreelancingServices extends CI_Controller{
 
         $this->load->model('OFS/Post_model');
         $posts = $this->Post_model->get_posts();
+        $this->load->model('OFS/OFS_model');
 
         $this->load->model('OFS/Work_model');
         $works = $this->Work_model->get_table();
-
-        $this->load->model('OFS/OFS_model');
-        
         $table = array();
         $table['key_works'] = $works;
 
@@ -51,6 +49,7 @@ class OnlineFreelancingServices extends CI_Controller{
 
         $x = 0;
         foreach($posts as $p){
+            $temp = "";
             $posts[$x]['apply_status'] = 1;
             
             $s_while=true;
@@ -64,6 +63,19 @@ class OnlineFreelancingServices extends CI_Controller{
                 } else {
                     $s_while = false;
                 }
+            }
+            if($p['applicants'] != NULL){
+                $temp = explode(",", $p['applicants']);
+                $posts[$x]['applicants'] = $temp;
+            } else {
+                $posts[$x]['applicants'] = 0;
+            }
+
+            if($p['accepted'] != NULL){
+                $temp = explode(",", $p['accepted']);
+                $posts[$x]['accepted'] = $temp;
+            } else {
+                $posts[$x]['accepted'] = 0;
             }
 
             $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
@@ -148,18 +160,20 @@ class OnlineFreelancingServices extends CI_Controller{
 				$this->load->model('OFS/OFS_model');
 				$status = $this->OFS_model->checkPassword($password,$email);
 				if($status!=false){
-                    $email = $status->email;
                     $id = $status->id;
                     $user_type = $status->user_type;
+                    $email = $status->email;
+                    $profession_id = $status->profession_id;
                     $jobs = $status->jobs;
+                    $apply = $status->apply;
 
 					$session_data = array(
-						'email'=>$email,
-                        'user_type'=>$user_type,
                         'id'=>$id,
-                        'location'=>$status->location,
-                        'jobs'=>$jobs
-                        
+                        'user_type'=>$user_type,
+						'email'=>$email,
+                        'profession_id'=>$profession_id,
+                        'jobs'=>$jobs,
+                        'apply'=>$apply
 					);
 
 					$this->session->set_userdata('UserLoginSession',$session_data);
@@ -180,11 +194,16 @@ class OnlineFreelancingServices extends CI_Controller{
     }
 
     public function Registerpage(){
+        $this->load->model('OFS/Work_model');
+        $works = $this->Work_model->get_table();
+        $table = array();
+        $table['key_works'] = $works;
+
         $this->session->userdata('page');
         $this->session->set_userdata('page','Register Page');
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
-        $this -> load -> view ('OnlineFreelancingServices/Register');
+        $this -> load -> view ('OnlineFreelancingServices/Register',$table);
         $this->session->set_flashdata('error',NULL);
         $this->session->set_flashdata('success',NULL);
         if($this->session->userdata('UserLoginSession')){
@@ -199,8 +218,8 @@ class OnlineFreelancingServices extends CI_Controller{
         $id = $_POST["a_id"];
         $uid = $_POST["u_id"];
         $this->load->model('OFS/Post_model');
-        $query = $this->Post_model->add_applicant($id,$uid,$udata['jobs']);
 
+        $query = $this->Post_model->add_applicant($id,$uid,$udata['jobs']);
         if($query) {
             $response_array['status'] = 'success'; 
         } else {
