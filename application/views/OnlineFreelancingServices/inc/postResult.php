@@ -2,6 +2,7 @@
 $udata = $this->session->userdata('UserLoginSession');
             
 if(!empty($key_posts)){
+
     foreach($key_posts as $p) {
 
         $post = array();

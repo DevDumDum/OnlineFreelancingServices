@@ -63,36 +63,41 @@ class Post_controller extends CI_Controller {
 
         $this->load->model('OFS/OFS_model');
         $users = array();
+
+        //echo '<pre>';
+        //print_r($posts);
         
+        // NEW_POST[] = {POSTER_NAME, PROFFESION_NAME, POST_ID, POSTER_ID}
+        $n_post=array();
         foreach($posts as $p){
 
             $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
-            $posts[0]['post_owner'] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
+            
+            // POSTER NAME
+            $n_post[0] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
+            $n_post[0] = (empty($n_post[0]))
+                ? " "
+                : $n_post[0];
 
-            if($posts[0]['requirements'] == "") 
-                $posts[0]['requirements'] = "No requirements.";
-        }     
+            if($p['requirements'] == "") 
+                $p['requirements'] = "No requirements.";
+                
+            // PROFESSION NAME
+            $n_post[1] = ($p['profession_ID'] != 0) 
+                ? $works[$p['profession_ID']-1]['profession_type']
+                : $works[$p['profession_ID']]['profession_type'];
+                
+            // POST ID
+            $n_post[2] = empty($n_post[2])
+                ? " "
+                : $p['ID'];
 
+            // POSTER ID
+            $n_post[3] = $p['poster_ID'];
 
-        // NEW_POST[] = {POSTER_NAME, PROFFESION_NAME, POST_ID, POSTER_ID}
-        $n_post=array();
-
-        // POSTER NAME
-        $n_post[0] = $posts[0]['post_owner'];
-
-        // PROFESSION NAME
-        $n_post[1] = ($posts[0]['profession_ID'] != 0) 
-            ? $works[$posts[0]['profession_ID']-1]['profession_type']
-            : $works[$posts[0]['profession_ID']]['profession_type'];
-
-        // POST ID
-        $n_post[2] = $posts[0]['ID'];
-
-        // POSTER ID
-        $n_post[3] = $posts[0]['poster_ID'];
-
+        }
         
-        if($posts == null) echo [];
+        if(empty($n_post)) echo " ";
         else echo json_encode($n_post);
     }
 }

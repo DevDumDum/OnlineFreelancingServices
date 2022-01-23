@@ -181,6 +181,14 @@ else
         var work = postArray["work"];
         var curID = postArray["id"];
         var owner = postArray["name_id"];
+
+        alert(
+            "Name: "+name+
+            "\nWork: "+work+
+            "\nPost ID: "+curID+
+            "\nName ID: "+owner
+        );
+
         let post = [];
 
         post["post_"+curID] = document.createElement("div");
@@ -243,8 +251,8 @@ else
     $(document).ready(function(){
         
         scrollLimit = Math.max($(document).height(), $(window).height());
-        limit = 3;
-        offset = 1;
+        limit = 5;
+        offset = limit;
     })
 
     $(window).scroll(function(){
@@ -253,38 +261,50 @@ else
         var pos = current + window.innerHeight; 
         console.log("Limit: "+ scrollLimit +" | Current: " + pos);
 
-        if(pos == scrollLimit) {
+        if(pos >= scrollLimit) {
             
-  
-            display_new_post();
+            // REMOVE COMMENT BEFORE DEVELOPMENT DEPLOY! REMOVE COMMENT BEFORE DEVELOPMENT DEPLOY!
+
+            //for(var i=0; i<limit; i++){
+                display_new_post();
+                offset++;
+            //}
+
+            // REMOVE COMMENT BEFORE DEVELOPMENT DEPLOY! REMOVE COMMENT BEFORE DEVELOPMENT DEPLOY!
+
         }
     })
     
     function display_new_post(){
         const theFunction = "<?=base_url('Post_controller/get_from_offset'); ?>";
         $.post(theFunction, {postIndex: offset, postLimit: limit}, function(data, status){
-            let text = data;
-            text = text.replace('[', '');
-            text = text.replace(']', '');
-            for(var x = 0; x<8; x++) {
-                text = text.replace('"', '');
-            }
-            alert(text);
-            const myArray = text.split(",");
-            alert(myArray[0]);
 
-            <?php 
-                $theData = "<script>document.writeln(data);</script>";
-                //$trimData = trim($data, )
-    
+            if(status=='success'){
+                 
+                let text = data;
+                text = text.replace('[', '');
+                text = text.replace(']', '');
+
+                if(data != " "){
+
+                    for(var x = 0; x<8; x++) text = text.replace('"', '');
+
+                    const myArray = text.split(",");
+                    var postArray = [];
+                    postArray["name"] = myArray[0];
+                    postArray["work"] = myArray[1];
+                    postArray["id"] = myArray[2];
+                    postArray["name_id"] = myArray[3];
             
-            ?>
+                    initPost(postArray);
+                    
+                    // BIGGER DIV BETTER DIV; BIGGER BETTER
+                    scrollLimit = Math.max($(document).height(), $(window).height());
+                }
 
-            offset+=limit;
+            }
+
         })
-    }  
-    function tryfunction(item){
-        //alert(item);
     }
     
 </script>

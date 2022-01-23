@@ -29,7 +29,7 @@ class OnlineFreelancingServices extends CI_Controller {
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
 
         $this->load->model('OFS/Post_model');
-        $posts = $this->Post_model->get_posts();
+        $posts = $this->Post_model->get_posts_ordered();
 
         $this->load->model('OFS/Work_model');
         $works = $this->Work_model->get_table();
