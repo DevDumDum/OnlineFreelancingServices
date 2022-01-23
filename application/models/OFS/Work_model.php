@@ -10,16 +10,21 @@ class Work_model extends CI_Model{
           return $table = $this->db->get('profession')->result_array();
      }
 
-   public function get_table_all(){
+     public function get_table_all(){
           $this->db->select('ID, profession_type, description, status');
           return $table = $this->db->get('profession')->result_array();
      }
 
-   public function add_work($data){
-       
-        if($this->db->insert($data)) return true;
-        else return false;
-   }
+     public function get_prof($id) {
+          $this->db->select('ID, profession_type, description');
+          $this->db->where('ID', $id);
+          return $this->db->get('profession')->result_array();
+     }
+
+     public function add_work($data){
+          if($this->db->insert($data)) {return true;}
+          else {return false;}
+     }
 
 }
 

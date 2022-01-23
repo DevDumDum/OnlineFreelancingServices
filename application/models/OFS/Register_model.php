@@ -62,6 +62,13 @@ class Register_model extends CI_Model {
                     $p_id = $cur_id[0]["ID"];
                 }
                 $count_current_p++;
+                //put to verification
+                $this->load->model('Admin/Verification_model');
+                $data = array(
+                    'verification_type' => 'profession',
+                    'content_id' => $cur_id[0]["ID"]
+                );
+                $this->db->insert('verification', $data);
             }
         }
         return $p_id;

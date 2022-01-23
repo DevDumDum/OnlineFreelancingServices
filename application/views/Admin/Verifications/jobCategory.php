@@ -29,52 +29,48 @@
         <div class="tables">
             <table class = "table table-dark table-hover center" style="width:100%">
                 <tr>
-                    <th class="headings">User</th>
+                    <th class="headings">Title</th>
                     <th class="heading_desc">Description</th>
-                    <th> </th>
+                    <th></th>
                 </tr>
-                <tr>
-                    <td onclick="newDetails()"><span>Alfreds Futterskie</span></td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium doloremque error exercitationem voluptates? Porro dolore laboriosam laborum, minus voluptate recusandae expedita distinctio quas officiis rem accusantium eaque mollitia, aliquam veritatis!</td>
-                <td class="status_w">
-                    <button class="editbtn1 editbtn1-jobCategory-responsiveness" style="cursor: pointer;">Accept</button>
-                    <button class="editbtn2 editbtn2-jobCategory-responsiveness" style="cursor: pointer;">Decline</button>
-                </td></tr>
-                
-                <tr>
-                <td onclick="newDetails()"><span>Centro comercial</span></td>
-                <td>Description</td>
-                <td class="status_w">
-                    <button class="editbtn1 editbtn1-jobCategory-responsiveness" style="cursor: pointer;">Accept</button>
-                    <button class="editbtn2 editbtn2-jobCategory-responsiveness" style="cursor: pointer;">Decline</button>
-                </td></tr>
-            
-                <tr>
-                <td onclick="newDetails()"><span>Ernst Handel</span></td>
-                <td>Description</td>
-                <td class="status_w">
-                    <button class="editbtn1 editbtn1-jobCategory-responsiveness" style="cursor: pointer;">Accept</button>
-                    <button class="editbtn2 editbtn2-jobCategory-responsiveness" style="cursor: pointer;">Decline</button>
-                </td></tr>
-            
-                <tr>
-                <td onclick="newDetails()"><span>Island Trading</span></td>
-                <td>Description</td>
-                <td class="status_w">
-                    <button class="editbtn1 editbtn1-jobCategory-responsiveness" style="cursor: pointer;">Accept</button>
-                    <button class="editbtn2 editbtn2-jobCategory-responsiveness" style="cursor: pointer;">Decline</button>
-                </td></tr>
-             
+
+                <?php if(!empty($key_v_list)) { foreach($key_v_list as $v){?>
+                    <tr id="theTr_<?php echo $v['v_id'];?>">
+                        <td>
+                            <span><?php echo $v['profession_type'];?></span>
+                        </td>
+                        <td>
+                            <?php echo $v['description'];?>
+                        </td>
+                        <td class="status_w">
+                            <input  type="number" id="verify_id" value="<?php echo $v['v_id'];?>">
+                            <input  type="number" id="user_id" value="<?php echo $v['u_id'];?>">
+                            <button type="button" class="editbtn1 editbtn1-jobCategory-responsiveness" style="cursor: pointer;" id="activate" onclick="accept_ver(<?php echo $v['v_id'];?>,<?php echo $v['u_id'];?>)">Activate</button>
+                            <button type="button" class="editbtn2 editbtn2-jobCategory-responsiveness" style="cursor: pointer;" id="deactivate" onclick="deny_ver(<?php echo $v['v_id'];?>,<?php echo $v['u_id'];?>)">Deactivate</button>
+                        </td>
+                    </tr>
+                <?php }} else {
+                        echo "<tr><p>Other categories might have verifications left!</p></tr>";
+                    }?>
             </table>
         </div>
     </div>
+
     <script>
-        function newDetails(){
-            document.getElementById("hiddenbox").style.display="block";
-            document.getElementById("hiddenbox").style.animation="fadebox .3s reverse linear";
+        function accept_ver(verify_id, prof_id){
+            var id = "theTr_" + verify_id.toString();
+            $.post('<?=base_url('Verification_controller/accept_ver_prof');?>', {v_id: verify_id, u_id: prof_id}, function(data){
+                alert(data.msg);
+                document.getElementById(id).style.display="none";
+            }, 'JSON');
         }
-        function hidebox(){
-            document.getElementById("hiddenbox").style.display="none";
+        
+        function deny_ver(verify_id, prof_id){
+            var id = "theTr_" + verify_id.toString();
+            $.post('<?=base_url('Verification_controller/reject_ver_prof');?>', {v_id: verify_id, u_id: prof_id}, function(data){
+                alert(data.msg);
+                document.getElementById(id).style.display="none";
+            }, 'JSON');
         }
     </script>
     <!-- JavaScript Bundle with Popper -->
