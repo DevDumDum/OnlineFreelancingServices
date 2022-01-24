@@ -71,14 +71,26 @@ class OFS_model extends CI_Model{
 	}
 	
 	public function get_user_details($id){
-		$this->db->select('last_name, first_name, 
+		$this->db->select(
+				'last_name, first_name, 
 				middle_name, contact, email, 
 				profession_id, location, summary, 
-				calendarlist_id,code,status');
+				calendarlist_id,code,status'
+			);
 
 		$this->db->where('id', $id);
 		
 		return $this->db->get('users')->result_array();
+	}
+
+	public function search_user($nameHolder){
+		$this->db->select('ID, full_name');
+		$this->db->like('full_name', $nameHolder);
+
+		$q = $this->db->get('users');
+
+		if($q->num_rows()>0) return $q->result_array();
+		else return false;
 	}
 
 	//sira ka muna

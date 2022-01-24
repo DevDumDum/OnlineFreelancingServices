@@ -39,6 +39,15 @@ else
                         <button type="button" class="btn btn-success work-category-apply" name="category">Apply</button> 
                     </div>
                 </div>
+                <div class="card bg-light mb-3">
+                    <input type="text" name="search-user" id="search-user" placeholder="Search for someone!">
+                    <div class="bg-light" id="search-results" name="search-results">
+                        
+                        <table>
+                            <tr>Ian</tr>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="col-8 newsfeed-side">
                 <!--AddPost button display create post at line 23 event-->
@@ -322,7 +331,31 @@ else
         "<br>Maximum Pay: "+max_p+
         "<br>Date: "+date+"<br><br>";
         document.getElementById(post["post_"+curID].id).appendChild(post["container_"+curID]);
+    }
+    var searchContent;
+    $(document).ready(function(){
 
+        //var obj = jQuery.parseJSON('{"name":"John"}');
+        //alert( obj.name === "John" );
+
+        $('#search-user').on('input', function(){
+            searchUser();
+            //console.log($('#search-user').val());
+        });
+    });
+
+    function searchUser (){
+        searchContent=$('#search-user').val();
+
+        if(searchContent){            
+            $.post("<?=base_url('User_controller/search_user')?>", {theInput: searchContent}, function(data){
+                var obj = jQuery.parseJSON(data);
+                for(var i=0; i<obj.length;i++){
+                    console.log(obj[i].ID);
+                }
+                console.log(obj[0].ID);
+            })
+        }
     }
 </script>
 <!-- JavaScript Bundle with Popper -->
