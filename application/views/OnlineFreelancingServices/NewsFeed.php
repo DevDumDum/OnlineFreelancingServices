@@ -351,10 +351,13 @@ else
             $.post("<?=base_url('User_controller/search_user')?>", {theInput: searchContent}, function(data){
                 var obj = jQuery.parseJSON(data);
                 for(var i=0; i<obj.length;i++){
-                    console.log(obj[i].ID);
+                    console.log("Name: "+ obj[i].full_name+" | ID: "+obj[i].ID);
                 }
-                console.log(obj[0].ID);
+                console.log("==========");
+                //console.log("Name: "+ obj[i].full_name+"| ID: "+obj[i].ID);
             })
+        }else {
+            console.log("No searches");
         }
     }
 </script>
