@@ -70,7 +70,44 @@ class Post_controller extends CI_Controller {
         
         // NEW_POST[] = {POSTER_NAME, PROFFESION_NAME, POST_ID, POSTER_ID}
         $n_post=array();
+        $udata = $this->session->userdata('UserLoginSession');
+        $a_arr="";
+        if(isset($udata['jobs'])){
+            $a_arr = explode(",",$udata['jobs']);
+        }
+        $x=0;
+        $p['apply_status'] = 1;
+        $p['applicants'] = 0;
+        $p['accepted'] = 0;
         foreach($posts as $p){
+            $temp = "";
+            $p['apply_status'] = 1;
+            $s_while=true;
+            $j_count=0;
+            while($s_while) {
+                if(isset($a_arr[$j_count])) {
+                    if($a_arr[$j_count] == $p['ID']){
+                        $p['apply_status'] = 0;
+                    }
+                    $j_count++;
+                } else {
+                    $s_while = false;
+                }
+            }
+            if($p['applicants'] != NULL){
+                $temp = explode(",", $p['applicants']);
+                $p['applicants'] = $temp;
+            } else {
+                $p['applicants'] = 0;
+            }
+
+            if($p['accepted'] != NULL){
+                $temp = explode(",", $p['accepted']);
+                $p['accepted'] = $temp;
+            } else {
+                $p['accepted'] = 0;
+            }
+            $x++;
 
             $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
             
@@ -89,13 +126,21 @@ class Post_controller extends CI_Controller {
                 : $works[$p['profession_ID']]['profession_type'];
                 
             // POST ID
-            $n_post[2] = empty($n_post[2])
-                ? " "
-                : $p['ID'];
+            $n_post[2] = $p['ID'];
 
             // POSTER ID
             $n_post[3] = $p['poster_ID'];
 
+            $n_post[4] = $p["requirements"];
+            $n_post[5] = $p["worker_count"];
+            $n_post[6] = $p["applicants"];
+            $n_post[7] = $p['accepted'];
+            $n_post[8] = $p['apply_status'];
+
+            $n_post[9] = $p['location'];
+            $n_post[10] = $p['min_pay'];
+            $n_post[11] = $p['max_pay'];
+            $n_post[12] = $p['timestamp'];
         }
         
         if(empty($n_post)) echo " ";

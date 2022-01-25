@@ -158,7 +158,7 @@ class Post_model extends CI_Model{
       $this->db->where('status >', 0);  
       $this->db->select('ID, poster_ID, profession_ID, 
       worker_count, requirements, location, timestamp,
-      min_pay, max_pay, status');
+      min_pay, max_pay, status, applicants, accepted');
     
       return $q = $this->db->get('post')->result_array();
    }

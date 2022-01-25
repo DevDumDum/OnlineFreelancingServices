@@ -192,9 +192,19 @@ else
                     postArray["work"] = myArray[1];
                     postArray["id"] = myArray[2];
                     postArray["name_id"] = myArray[3];
-            
-                    initPost(postArray);
                     
+                    postArray['requirements'] = myArray[4];
+                    postArray['worker_count'] = myArray[5];
+                    postArray['applicants'] = myArray[6];
+                    postArray['accepted'] = myArray[7];
+                    postArray['apply_status'] = myArray[8];
+
+                    postArray['location'] = myArray[9];
+                    postArray['min_pay'] = myArray[10];
+                    postArray['max_pay'] = myArray[11];
+                    postArray['timestamp'] = myArray[12];
+                    initPost(postArray);
+
                     // BIGGER DIV BETTER DIV; BIGGER BETTER
                     scrollLimit = Math.max($(document).height(), $(window).height());
                 }
@@ -203,6 +213,8 @@ else
 
         })
     }
+
+    
 
     function initPost(postArray){
         var name = postArray["name"];
@@ -221,7 +233,7 @@ else
         var apply_status = postArray['apply_status']; // if already applied
 
 
-        /*
+    
         console.log(
             "Name: "+name+
             "\nWork: "+work+
@@ -236,7 +248,7 @@ else
             "\nMaximum Pay: "+max_p+
             "\nDate: "+date
         );
-        */
+
         
         let post = [];
 
@@ -337,7 +349,7 @@ else
 
         var current = window.scrollY;
         var pos = current + window.innerHeight; 
-        console.log("Limit: "+ scrollLimit +" | Current: " + pos);
+        //console.log("Limit: "+ scrollLimit +" | Current: " + pos);
 
         if(pos >= scrollLimit) {
             
@@ -352,38 +364,6 @@ else
 
         }
     })
-    
-    function display_new_post(){
-        const theFunction = "<?=base_url('Post_controller/get_from_offset'); ?>";
-        $.post(theFunction, {postIndex: offset, postLimit: limit}, function(data, status){
-
-            if(status=='success'){
-                 
-                let text = data;
-                text = text.replace('[', '');
-                text = text.replace(']', '');
-
-                if(data != " "){
-
-                    for(var x = 0; x<8; x++) text = text.replace('"', '');
-
-                    const myArray = text.split(",");
-                    var postArray = [];
-                    postArray["name"] = myArray[0];
-                    postArray["work"] = myArray[1];
-                    postArray["id"] = myArray[2];
-                    postArray["name_id"] = myArray[3];
-            
-                    initPost(postArray);
-                    
-                    // BIGGER DIV BETTER DIV; BIGGER BETTER
-                    scrollLimit = Math.max($(document).height(), $(window).height());
-                }
-
-            }
-
-        })
-    }
     
 </script>
 
