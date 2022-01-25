@@ -52,18 +52,16 @@ class Post_controller extends CI_Controller {
 
 
     public function get_from_offset(){
+        $this->load->model('OFS/Work_model');
+        $this->load->model('OFS/OFS_model');
 
         if(isset($_POST['postIndex'])) $offset = $_POST['postIndex'];
         else $offset = 0;
-
         
         $posts = $this->Post_model->get_from_offset($offset);
         
-        $this->load->model('OFS/Work_model');
-        $works = $this->Work_model->get_table();
 
-        $this->load->model('OFS/OFS_model');
-        $users = array();
+        
 
         //echo '<pre>';
         //print_r($posts);
@@ -121,10 +119,16 @@ class Post_controller extends CI_Controller {
                 $p['requirements'] = "No requirements.";
                 
             // PROFESSION NAME
-            $n_post[1] = ($p['profession_ID'] != 0) 
-                ? $works[$p['profession_ID']-1]['profession_type']
-                : $works[$p['profession_ID']]['profession_type'];
-                
+        
+            if ($p['profession_ID'] > 0) {
+                $works = $this->Work_model->get_work($p['profession_ID']);
+            } else {
+                $works = $this->Work_model->get_work($p['profession_ID']-1);
+            }
+            $n_post[1] = $works[0]['profession_type'];
+            print_r($n_post[1]);
+
+
             // POST ID
             $n_post[2] = $p['ID'];
 

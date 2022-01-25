@@ -109,7 +109,33 @@ else
 </body>
 
 <script>
+    var scrollLimit ,limit, offset;
+    $(document).ready(function(){
+        
+        scrollLimit = Math.max($(document).height(), $(window).height());
+        limit = 5;
+        offset = 1;
+        display_post_batch();
+    })
 
+    $(window).scroll(function(){
+
+        var current = window.scrollY;
+        var pos = current + window.innerHeight; 
+        //console.log("Limit: "+ scrollLimit +" | Current: " + pos);
+
+        if(pos >= scrollLimit) {
+            display_post_batch();
+        }
+    })
+
+    function display_post_batch(){
+        for(var i=0; i<limit; i++){
+            display_new_post();
+            console.log(offset);
+            offset++;
+        }
+    }
     // FOR ADD POST!! FOR ADD POST!! FOR ADD POST!!
     function set_min_pay(c){
         if(c.checked){
@@ -129,7 +155,6 @@ else
     function hidebox(){
         document.getElementById("hiddenbox-nf").style.display="none";
     }
-
     function set_fixed(){
         var component = document.getElementById("min_pay");
 
@@ -144,7 +169,6 @@ else
         document.getElementById("post_form").action = loc;
         alert(loc);
     }
-
     function edit_post(id){
         document.getElementById("PostOptionMenu").style.display="none";
         AddPostPopUp();
@@ -152,7 +176,6 @@ else
 
         document.getElementById(s_wid).selected = true;
     }
-
     function applicant(id,uid){
         $.ajax({
             type: 'POST',
@@ -175,7 +198,7 @@ else
     function display_new_post(){
         const theFunction = "<?=base_url('Post_controller/get_from_offset'); ?>";
         $.post(theFunction, {postIndex: offset, postLimit: limit}, function(data, status){
-
+            
             if(status=='success'){
                  
                 let text = data;
@@ -183,7 +206,6 @@ else
                 text = text.replace(']', '');
 
                 if(data != " "){
-
                     for(var x = 0; x<8; x++) text = text.replace('"', '');
 
                     const myArray = text.split(",");
@@ -208,13 +230,10 @@ else
                     // BIGGER DIV BETTER DIV; BIGGER BETTER
                     scrollLimit = Math.max($(document).height(), $(window).height());
                 }
-
             }
-
         })
     }
-
-    
+  
 
     function initPost(postArray){
         var name = postArray["name"];
@@ -232,8 +251,6 @@ else
         var date = postArray['timestamp'];
         var apply_status = postArray['apply_status']; // if already applied
 
-
-    
         console.log(
             "Name: "+name+
             "\nWork: "+work+
@@ -248,7 +265,6 @@ else
             "\nMaximum Pay: "+max_p+
             "\nDate: "+date
         );
-
         
         let post = [];
 
@@ -334,37 +350,7 @@ else
         "<br>Maximum Pay: "+max_p+
         "<br>Date: "+date+"<br><br>";
         document.getElementById(post["post_"+curID].id).appendChild(post["container_"+curID]);
-
     }
-    
-    var scrollLimit ,limit, offset;
-    $(document).ready(function(){
-        
-        scrollLimit = Math.max($(document).height(), $(window).height());
-        limit = 5;
-        offset = limit;
-    })
-
-    $(window).scroll(function(){
-
-        var current = window.scrollY;
-        var pos = current + window.innerHeight; 
-        //console.log("Limit: "+ scrollLimit +" | Current: " + pos);
-
-        if(pos >= scrollLimit) {
-            
-            // REMOVE COMMENT BEFORE DEVELOPMENT DEPLOY! REMOVE COMMENT BEFORE DEVELOPMENT DEPLOY!
-
-            //for(var i=0; i<limit; i++){
-                display_new_post();
-                offset++;
-            //}
-
-            // REMOVE COMMENT BEFORE DEVELOPMENT DEPLOY! REMOVE COMMENT BEFORE DEVELOPMENT DEPLOY!
-
-        }
-    })
-    
 </script>
 
 <!-- JavaScript Bundle with Popper -->
