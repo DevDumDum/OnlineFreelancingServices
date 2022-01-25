@@ -126,8 +126,6 @@ class Post_controller extends CI_Controller {
                 $works = $this->Work_model->get_work($p['profession_ID']-1);
             }
             $n_post[1] = $works[0]['profession_type'];
-            print_r($n_post[1]);
-
 
             // POST ID
             $n_post[2] = $p['ID'];

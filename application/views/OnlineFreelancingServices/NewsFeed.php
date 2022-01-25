@@ -132,7 +132,7 @@ else
     function display_post_batch(){
         for(var i=0; i<limit; i++){
             display_new_post();
-            console.log(offset);
+            //console.log(offset);
             offset++;
         }
     }
@@ -251,6 +251,7 @@ else
         var date = postArray['timestamp'];
         var apply_status = postArray['apply_status']; // if already applied
 
+        /*
         console.log(
             "Name: "+name+
             "\nWork: "+work+
@@ -265,7 +266,7 @@ else
             "\nMaximum Pay: "+max_p+
             "\nDate: "+date
         );
-        
+        */
         let post = [];
 
         post["post_"+curID] = document.createElement("div");
