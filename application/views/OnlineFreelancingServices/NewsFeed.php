@@ -43,9 +43,9 @@ else
                     <input type="text" name="search-user" id="search-user" placeholder="Search for someone!">
                     <div class="bg-light" id="search-results" name="search-results">
                         
-                        <table>
-                            <tr>Ian</tr>
-                        </table>
+                            <ul name="search-results" id="search-results">
+                                <li>Ian</li>
+                            </ul>
                     </div>
                 </div>
             </div>
@@ -346,19 +346,38 @@ else
 
     function searchUser (){
         searchContent=$('#search-user').val();
-
+        
         if(searchContent){            
             $.post("<?=base_url('User_controller/search_user')?>", {theInput: searchContent}, function(data){
-                var obj = jQuery.parseJSON(data);
+                
+                var searchObj = jQuery.parseJSON(data);
+                console.log(searchObj.full_name);
+                /*
                 for(var i=0; i<obj.length;i++){
-                    console.log("Name: "+ obj[i].full_name+" | ID: "+obj[i].ID);
+                    var tempName = obj[i].full_name;
+                    var tempID = obj[i].ID;
+                    console.log("Name: "+tempName+" | ID: "+tempID);
+                    $('$search-table').append('<tr>'+tempName+'</tr>');
                 }
                 console.log("==========");
+                */
+                searchObj.forEach(renderSearch);
+
+
                 //console.log("Name: "+ obj[i].full_name+"| ID: "+obj[i].ID);
             })
         }else {
             console.log("No searches");
         }
+    }
+
+    function renderSearch(element, index, arr) {
+        var li = document.createElement('li');
+        li.setAttribute('class','item');
+
+        $('#search-results').appendChild(li);
+
+        li.innerHTML=li.innerHTML + element;
     }
 </script>
 <!-- JavaScript Bundle with Popper -->
