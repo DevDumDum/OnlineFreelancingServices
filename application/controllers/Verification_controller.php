@@ -16,16 +16,9 @@ class Verification_controller extends CI_Controller{
         if (!isset($_POST['v_id']) || !isset($_POST['u_id']) ) {
             exit;
         }
-        $db = new PDO('mysql:host=localhost;dbname=loginsystem;charset=utf8mb4', 'root', '');
-        $query = $db->prepare('UPDATE users SET status = 1 WHERE ID = :lala');
-        $query2 = $db->prepare('UPDATE verification SET viewer_id = 0 WHERE ID = :name');
-        $query->bindParam(':lala', $_POST['u_id']);
-        $query2->bindParam(':name', $_POST['v_id']);
-        if($query->execute() && $query2->execute()){
-            echo json_encode(array('msg' => "Success"));
-        }else{
-            echo json_encode(array('msg' => "Error"));
-        }
+        $this->load->model('Admin/Verification_model');
+        $result = $this->Verification_model->a_ver($_POST['v_id'],$_POST['u_id']);
+        echo $result;
     }
     
     public function reject_ver(){
@@ -33,54 +26,31 @@ class Verification_controller extends CI_Controller{
         if (!isset($_POST['v_id']) || !isset($_POST['u_id']) ) {
             exit;
         }
-        $db = new PDO('mysql:host=localhost;dbname=loginsystem;charset=utf8mb4', 'root', '');
-        $query = $db->prepare('UPDATE users SET status = -1 WHERE ID = :lala');
-        $query2 = $db->prepare('UPDATE verification SET viewer_id = 0 WHERE ID = :name');
-        $query->bindParam(':lala', $_POST['u_id']);
-        $query2->bindParam(':name', $_POST['v_id']);
-        $query->execute();
-        $query2->execute();
-        if($query->execute() && $query2->execute()){
-            echo json_encode(array('msg' => "Success"));
-        }else{
-            echo json_encode(array('msg' => "Error"));
-        }
+        $this->load->model('Admin/Verification_model');
+        $result = $this->Verification_model->d_ver($_POST['v_id'],$_POST['u_id']);
+        echo $result;
     }
 
-    public function post_accept_ver(){
+    public function accept_ver_prof(){
         header('content-type: text/json');
-        if (!isset($_POST['v_id']) || !isset($_POST['p_id']) ) {
+        if (!isset($_POST['v_id']) || !isset($_POST['u_id']) ) {
             exit;
         }
-        $db = new PDO('mysql:host=localhost;dbname=loginsystem;charset=utf8mb4', 'root', '');
-        $query = $db->prepare('UPDATE post SET status = 1 WHERE ID = :lala');
-        $query2 = $db->prepare('UPDATE verification SET viewer_id = 0 WHERE ID = :name');
-        $query->bindParam(':lala', $_POST['p_id']);
-        $query2->bindParam(':name', $_POST['v_id']);
-        if($query->execute() && $query2->execute()){
-            echo json_encode(array('msg' => "Success"));
-        }else{
-            echo json_encode(array('msg' => "Error"));
-        }
+        $this->load->model('Admin/Verification_model');
+        $result = $this->Verification_model->a_ver_prof($_POST['v_id'],$_POST['u_id']);
+        echo $result;
+        return 0;
     }
     
-    public function post_reject_ver(){
+    public function reject_ver_prof(){
         header('content-type: text/json');
-        if (!isset($_POST['v_id']) || !isset($_POST['p_id']) ) {
+        if (!isset($_POST['v_id']) || !isset($_POST['u_id']) ) {
             exit;
         }
-        $db = new PDO('mysql:host=localhost;dbname=loginsystem;charset=utf8mb4', 'root', '');
-        $query = $db->prepare('UPDATE post SET status = -1 WHERE ID = :lala');
-        $query2 = $db->prepare('UPDATE verification SET viewer_id = 0 WHERE ID = :name');
-        $query->bindParam(':lala', $_POST['p_id']);
-        $query2->bindParam(':name', $_POST['v_id']);
-        $query->execute();
-        $query2->execute();
-        if($query->execute() && $query2->execute()){
-            echo json_encode(array('msg' => "Success"));
-        }else{
-            echo json_encode(array('msg' => "Error"));
-        }
+        $this->load->model('Admin/Verification_model');
+        $result = $this->Verification_model->d_ver_prof($_POST['v_id'],$_POST['u_id']);
+        echo $result;
+        return 0;
     }
 
 }

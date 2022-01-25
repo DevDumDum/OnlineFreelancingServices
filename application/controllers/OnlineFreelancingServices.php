@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class OnlineFreelancingServices extends CI_Controller {
+class OnlineFreelancingServices extends CI_Controller{
     public function index(){
         if($this->session->userdata('UserLoginSession')){
             redirect(base_url('NewsFeed'));
@@ -29,31 +29,66 @@ class OnlineFreelancingServices extends CI_Controller {
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
 
         $this->load->model('OFS/Post_model');
-        $posts = $this->Post_model->get_posts_ordered();
+        $posts = $this->Post_model->get_posts();
+        $this->load->model('OFS/OFS_model');
 
         $this->load->model('OFS/Work_model');
         $works = $this->Work_model->get_table();
-
-        $this->load->model('OFS/OFS_model');
-        
         $table = array();
         $table['key_works'] = $works;
 
-        $this->load->model('OFS/OFS_model');
+        
+        $udata = $this->session->userdata('UserLoginSession');
+        #check if already applied on the post
+        
+         
+        $a_arr="";
+        if(isset($udata['jobs'])){
+            $a_arr = explode(",",$udata['jobs']);
+        }
+
         $x = 0;
         foreach($posts as $p){
-            $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
+            $temp = "";
+            $posts[$x]['apply_status'] = 1;
             
-            if($posts[$x]['requirements'] == "") $posts[$x]['requirements'] = "No requirements.";
+            $s_while=true;
+            $j_count=0;
+            while($s_while) {
+                if(isset($a_arr[$j_count])) {
+                    if($a_arr[$j_count] == $posts[$x]['ID']){
+                        $posts[$x]['apply_status'] = 0;
+                    }
+                    $j_count++;
+                } else {
+                    $s_while = false;
+                }
+            }
+            if($p['applicants'] != NULL){
+                $temp = explode(",", $p['applicants']);
+                $posts[$x]['applicants'] = $temp;
+            } else {
+                $posts[$x]['applicants'] = 0;
+            }
 
+            if($p['accepted'] != NULL){
+                $temp = explode(",", $p['accepted']);
+                $posts[$x]['accepted'] = $temp;
+            } else {
+                $posts[$x]['accepted'] = 0;
+            }
+
+            $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
+            if($posts[$x]['requirements'] == "") {$posts[$x]['requirements'] = "No requirements.";}
             $posts[$x]['post_owner'] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
             $x++;
-        }        
+        }
         $table['key_posts'] = $posts;
 
         // DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! 
         //echo "<pre>";
         //print_r($posts);
+
 
         $this -> load -> view ('OnlineFreelancingServices/NewsFeed', $table);
         $this -> load -> view ('OnlineFreelancingServices/inc/postResult', $table);
@@ -95,6 +130,12 @@ class OnlineFreelancingServices extends CI_Controller {
         $this->session->userdata('page');
         $this->session->set_userdata('page','Profile Page');
         $this->load->helper('url');
+        $udata = $this->session->userdata('UserLoginSession');
+        if(isset($_GET['id']) || $this->session->userdata('UserLoginSession')){
+            echo "Welcome to userspage!";
+        }else{
+            redirect(base_url('NewsFeed'));
+        }
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
         $this -> load -> view ('OnlineFreelancingServices/Profile');
@@ -125,15 +166,20 @@ class OnlineFreelancingServices extends CI_Controller {
 				$this->load->model('OFS/OFS_model');
 				$status = $this->OFS_model->checkPassword($password,$email);
 				if($status!=false){
-                    $email = $status->email;
                     $id = $status->id;
                     $user_type = $status->user_type;
+                    $email = $status->email;
+                    $profession_id = $status->profession_id;
+                    $jobs = $status->jobs;
+                    $apply = $status->apply;
 
 					$session_data = array(
-						'email'=>$email,
                         'id'=>$id,
-                        'location'=>$status->location
-                        
+                        'user_type'=>$user_type,
+						'email'=>$email,
+                        'profession_id'=>$profession_id,
+                        'jobs'=>$jobs,
+                        'apply'=>$apply
 					);
 
 					$this->session->set_userdata('UserLoginSession',$session_data);
@@ -154,11 +200,16 @@ class OnlineFreelancingServices extends CI_Controller {
     }
 
     public function Registerpage(){
+        $this->load->model('OFS/Work_model');
+        $works = $this->Work_model->get_table();
+        $table = array();
+        $table['key_works'] = $works;
+
         $this->session->userdata('page');
         $this->session->set_userdata('page','Register Page');
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
-        $this -> load -> view ('OnlineFreelancingServices/Register');
+        $this -> load -> view ('OnlineFreelancingServices/Register',$table);
         $this->session->set_flashdata('error',NULL);
         $this->session->set_flashdata('success',NULL);
         if($this->session->userdata('UserLoginSession')){
@@ -166,7 +217,40 @@ class OnlineFreelancingServices extends CI_Controller {
         }
     }
 
-    public function Logout(){
+    public function add_applicant(){
+        header('Content-type: application/json');
+        $udata = $this->session->userdata('UserLoginSession');
+
+        $id = $_POST["a_id"];
+        $uid = $_POST["u_id"];
+        $this->load->model('OFS/Post_model');
+
+        $query = $this->Post_model->add_applicant($id,$uid,$udata['jobs']);
+        if($query) {
+            $response_array['status'] = 'success'; 
+        } else {
+            $response_array['status'] = 'Error';  
+        }
+        echo json_encode($response_array);
+        
+        //if($id!=NULL)
+            //return $this->db->insert('post.applicants', $id);
+            //redirect(base_url('Profilepage'));
+        //else //return $this->db->insert('post.applicants', 0000);           
+    }
+
+    public function checkE(){
+        header('content-type: text/json');
+        if (!isset($_POST['email'])) {
+            exit;
+        }
+        $this->load->model('OFS/Register_model');
+        $result = $this->Register_model->checker();
+
+        echo json_encode(array('exists' => $result > 0));
+    }
+
+     public function Logout(){
         $array_items = array('id' => '', 'email' => '');
         $this->session->unset_userdata($array_items);
         $this->session->sess_destroy();
