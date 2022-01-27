@@ -18,19 +18,15 @@
                         <!---INSERT REMOVE PHOTO BUTTON--->
                 </div>
             </div>
-
-            <div class="col-12 profile-wrapper" style="z-index: 0;">
+            <div>
                 <div class="col-10 profilecontent">
+                <p id = location-profile> <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.200523654514!2d120.97700491449882!3d14.644555779924874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b5c7b9e0893d%3A0x5a409de362168821!2sC-3%2C%20Grace%20Park%20West%2C%20Caloocan%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1642690241288!5m2!1sen!2sph" width="300" height="200" style="border: 1rem;" allowfullscreen="" loading="lazy"></iframe></p>
                     <div class="profile-container">
                         <div class="profile-pic-div">
                             <img src = "#" id="photoProfile">
                             <input type="file" id="fileProfile">
                             <label for="file" id="uploadBtnProfile">Choose Photo</label>
-                        </div>
-                        <!---INSERT CODE LOCATION---->
-                            <!-- LOCATION CODE HERE!!!-->
-                            <p id = location-profile> <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.200523654514!2d120.97700491449882!3d14.644555779924874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b5c7b9e0893d%3A0x5a409de362168821!2sC-3%2C%20Grace%20Park%20West%2C%20Caloocan%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1642690241288!5m2!1sen!2sph" width="300" height="200" style="border: 1rem;" allowfullscreen="" loading="lazy"></iframe></p>
-                                    
+                        </div>                         
                         <h1 class="profileUsername">Name</h1>
 
                         <div class="switchBox">
@@ -147,9 +143,7 @@
                                     <input type="radio" name="star" id="star1"> <label for="star4"></label>
                                     <input type="radio" name="star" id="star1"> <label for="star5"></label>
                                 </div>
-                            </div>
-
-                            <div class="info-cont d-flex flex-column bd-highlight mb-3">
+                                <div class="info-cont d-flex flex-column bd-highlight mb-4">
                                 <div class="p-2 bd-highlight">
                                 EDUCATIONAL ATTAINMENT<input class="eduAttainment" type="text" id="" name="eduAttainment" placeholder="+" disabled value="">
                                 </div>
@@ -164,24 +158,17 @@
                                 CONTACT INFORMATION<input class="contact-info" type="text" id="" name="contact-info" placeholder="+" disabled value="">
                                 </div>
                             </div>
-                                
-
-                            
+                            </div>         
 
                         </div>
                     </div>
 
-                
-
             </div>
-
-                    
-                
+                      
                 </div>
             </div>
         </div>
     </div>
     <script type="text/javascript" src="<?php echo base_url("public/css/profile.js")?>"> </script>
-
 </body>
 </html>

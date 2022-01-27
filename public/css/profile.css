@@ -259,6 +259,7 @@ input:checked + .slider:before {
 
 .profile-button{
     display: flex;
+    padding-top: 5rem;
 }
 
 .rightbutton{
@@ -458,8 +459,8 @@ input:checked + .slider:before {
     height: 10rem;
     width: 22rem;
     border: 1px solid #afaeae;
-    top: -34rem;
-    left: 99.7rem;
+    top: 6rem;
+    left: -0.3rem;
     text-align: center;
 }
 
@@ -470,8 +471,8 @@ input:checked + .slider:before {
 /* LOCATION */
 #location-profile{
     position: absolute;
-    top: 72rem;
-    right: 82.5rem;
+    top: 73rem;
+    left: 0.1rem;
     box-shadow: 0 3px 5px rgb(25 25 25 / 30%);
 }
 
