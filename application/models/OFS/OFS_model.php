@@ -63,7 +63,7 @@ class OFS_model extends CI_Model{
 				first_name, middle_name, 
 				contact, profession_id, 
 				location, summary, 
-				calendarlist_id, code, status, jobs, posts');
+				calendarlist_id, code, status, jobs, posts, accepted');
 				
 		$this->db->where('email', $email);
 		
@@ -74,7 +74,7 @@ class OFS_model extends CI_Model{
 		$this->db->select('last_name, first_name, 
 				middle_name, contact, email, 
 				profession_id, location, summary, 
-				calendarlist_id,code,status, jobs, posts');
+				calendarlist_id,code,status, jobs, posts, accepted');
 
 		$this->db->where('id', $id);
 		

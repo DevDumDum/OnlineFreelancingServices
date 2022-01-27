@@ -181,7 +181,8 @@ class OnlineFreelancingServices extends CI_Controller{
                     $email = $status->email;
                     $profession_id = $status->profession_id;
                     $jobs = $status->jobs;
-                    $apply = $status->apply;
+                    $accepted = $status->accepted;
+                    $posts = $status->posts;
 
 					$session_data = array(
                         'id'=>$id,
@@ -189,7 +190,8 @@ class OnlineFreelancingServices extends CI_Controller{
 						'email'=>$email,
                         'profession_id'=>$profession_id,
                         'jobs'=>$jobs,
-                        'apply'=>$apply
+                        'accepted'=>$accepted,
+                        'posts'=>$posts
 					);
 
 					$this->session->set_userdata('UserLoginSession',$session_data);
@@ -395,10 +397,6 @@ class OnlineFreelancingServices extends CI_Controller{
         echo json_encode(array('exists' => $result > 0));
     }
 
-<<<<<<< HEAD
-     public function Logout(){
-=======
-
      public function AcceptedJob(){
         $this->session->userdata('page');
         $this->session->set_userdata('page','Accepted Jobs');
@@ -408,12 +406,14 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->load->model('OFS/Post_model');
         $udata = $this->session->userdata('UserLoginSession');
         
-        #add accepted jobs in db users
-        #add client name in post db for easy fetch
+        #use jobs in db users
+        #add full name in post db for easy fetch
         $a_arr="";
-        if(isset($udata['acceptedjob'])){
-            $a_arr = explode(",",$udata['acceptedjob']);
+        if(isset($udata['accepted'])){
+            $a_arr = explode(",",$udata['accepted']);
         }
+
+        #fetch details in post, indicated in AcceptedJobs views
 
         
     }
@@ -427,11 +427,13 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->load->model('OFS/Post_model');
         $udata = $this->session->userdata('UserLoginSession');
         
-        #add posted jobs in db users
+        #use posts in db users
         $a_arr="";
         if(isset($udata['postedjob'])){
-            $a_arr = explode(",",$udata['postedjob']);
+            $a_arr = explode(",",$udata['posts']);
         }
+
+        #fetch details in post, indicated in PostedJobs views
     }
 
     public function AppliedJob(){
@@ -443,17 +445,16 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->load->model('OFS/Post_model');
         $udata = $this->session->userdata('UserLoginSession');
         
-        
+        #use apply in db users
         $a_arr="";
         if(isset($udata['jobs'])){
             $a_arr = explode(",",$udata['jobs']);
         }
 
-        echo $a_arr[0];
+        #fetch details in post, indicated in AppliedJobs views
     }
 
     public function Logout(){
->>>>>>> Alexandre_W11
         $array_items = array('id' => '', 'email' => '');
         $this->session->unset_userdata($array_items);
         $this->session->sess_destroy();
