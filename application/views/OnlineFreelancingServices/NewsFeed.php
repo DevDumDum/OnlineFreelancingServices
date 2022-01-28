@@ -18,7 +18,7 @@ else
             <div class="col-3 pl-0 work-category-side sticky-top">
                 <!-- for filtering category-->
                 <!--Work:-->
-                <div class="card bg-light mb-3">
+                <div class="card bg-light-custom mb-3">
                     <div class="card-header">Work Category Filter</div>
                         <div class="card-body">
                             <p>
@@ -42,7 +42,7 @@ else
             </div>
             <div class="col-8 newsfeed-side">
                 <!--AddPost button display create post at line 23 event-->
-                <div class="card bg-light mb-3 card-width">
+                <div class="card bg-light-custom mb-3 card-width">
                     <div class="card-header"><h1>Finding A Job? A worker? Post now!</h1></div>
                         <div class="card-body">
                         <button type="button" class="btn btn-primary btn-lg" onclick="AddPostPopUp()">Add Post</button>
@@ -272,25 +272,16 @@ else
         post["post_"+curID] = document.createElement("div");
         post["post_"+curID].id = "post_"+curID;
         post["post_"+curID].className = "main_post";
-        post["post_"+curID].style.height ="400px";
-        post["post_"+curID].style.width ="400px";
-        post["post_"+curID].style.marginBottom ="50px";
-        post["post_"+curID].style.backgroundColor ="lightblue";
         document.getElementById("result").appendChild(post["post_"+curID]);
 
         post["post_titlebar_"+curID] = document.createElement("div");
-        post["post_titlebar_"+curID].id = "post_titlebar_"+curID;
-        post["post_titlebar_"+curID].style.height ="100px";
-        post["post_titlebar_"+curID].style.width ="100%";
-        post["post_titlebar_"+curID].style.backgroundColor ="grey";
+        post["post_titlebar_"+curID].id = "_post_titlebar"+curID;
+        post["post_titlebar_"+curID].className = "post_titlebar";
         document.getElementById(post["post_"+curID].id).appendChild(post["post_titlebar_"+curID]);
 
         post["user_image_"+curID] = document.createElement("div");
         post["user_image_"+curID].id = "user_image"+curID;
         post["user_image_"+curID].className = "userImage";
-        post["user_image_"+curID].style.height ="50px";
-        post["user_image_"+curID].style.width ="50px";
-        post["user_image_"+curID].style.backgroundColor ="red";
         document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["user_image_"+curID]);
 
         post["name_"+curID] = document.createElement("p");
@@ -315,6 +306,7 @@ else
         }else {
             post["apply_"+curID] = document.createElement("input"); 
             post["apply_"+curID].id = "apply_"+curID;
+            post["apply_"+curID].className = "btn btn-primary btn-lg";
             post["apply_"+curID].setAttribute("type", "button");
             post["apply_"+curID].setAttribute("value", "Apply");
             post["apply_"+curID].style.float = "right";
@@ -335,12 +327,7 @@ else
 
         post["container_"+curID] = document.createElement("div");
         post["container_"+curID].id = "container_"+curID;
-        post["container_"+curID].style.height ="270px";
-        post["container_"+curID].style.width ="370px";
-        post["container_"+curID].style.marginTop ="15px";
-        post["container_"+curID].style.marginLeft ="15px";
-        post["container_"+curID].style.padding ="15px";
-        post["container_"+curID].style.backgroundColor ="red";
+        post["container_"+curID].className = "post-description-container";
         post["container_"+curID].innerHTML += 
         "Req: "+req+
         "<br>Workers #: "+w_count+
