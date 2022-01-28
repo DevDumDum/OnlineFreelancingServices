@@ -73,7 +73,7 @@ class OFS_model extends CI_Model{
 	public function get_user_details($id){
 		$this->db->select(
 				'last_name, first_name, 
-				middle_name, contact, email, 
+				middle_name, full_name contact, email, 
 				profession_id, location, summary, 
 				calendarlist_id,code,status'
 			);

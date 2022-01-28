@@ -40,12 +40,9 @@ else
                     </div>
                 </div>
                 <div class="card bg-light mb-3">
-                    <input type="text" name="search-user" id="search-user" placeholder="Search for someone!">
-                    <div class="bg-light" id="search-results" name="search-results">
-                        
-                            <ul name="search-results" id="search-results">
-                                <li>Ian</li>
-                            </ul>
+                    <input type="text" name="search-user" id="search-user" placeholder="Search">
+                    <div class="bg-light" id="search-results-div" name="search-results-div">
+                        <ul name="search-results" id="search-results"></ul>
                     </div>
                 </div>
             </div>
@@ -332,53 +329,49 @@ else
         "<br>Date: "+date+"<br><br>";
         document.getElementById(post["post_"+curID].id).appendChild(post["container_"+curID]);
     }
+
     var searchContent;
     $(document).ready(function(){
-
-        //var obj = jQuery.parseJSON('{"name":"John"}');
-        //alert( obj.name === "John" );
-
         $('#search-user').on('input', function(){
             searchUser();
-            //console.log($('#search-user').val());
+        });
+
+        $('#search-results').focusout(function(){
+            $('#search-results').empty();
         });
     });
 
     function searchUser (){
         searchContent=$('#search-user').val();
+        var searchList = $('#search-results');
         
         if(searchContent){            
             $.post("<?=base_url('User_controller/search_user')?>", {theInput: searchContent}, function(data){
                 
                 var searchObj = jQuery.parseJSON(data);
-                console.log(searchObj.full_name);
-                /*
-                for(var i=0; i<obj.length;i++){
-                    var tempName = obj[i].full_name;
-                    var tempID = obj[i].ID;
-                    console.log("Name: "+tempName+" | ID: "+tempID);
-                    $('$search-table').append('<tr>'+tempName+'</tr>');
+                $(searchList).empty();
+                
+                for(var i=0; i<searchObj.length;i++){
+                    var tempName = searchObj[i].full_name;
+                    var tempID = searchObj[i].ID;
+
+                    var li = document.createElement('li');
+                    li.innerText = tempName;
+
+                    searchList.append(li);
                 }
-                console.log("==========");
-                */
-                searchObj.forEach(renderSearch);
 
-
-                //console.log("Name: "+ obj[i].full_name+"| ID: "+obj[i].ID);
             })
         }else {
-            console.log("No searches");
+            $(searchList).empty();
+            
+            var li = document.createElement('li');
+            li.innerText = "No searches";
+            
+            searchList.append(li);
         }
     }
 
-    function renderSearch(element, index, arr) {
-        var li = document.createElement('li');
-        li.setAttribute('class','item');
-
-        $('#search-results').appendChild(li);
-
-        li.innerHTML=li.innerHTML + element;
-    }
 </script>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
