@@ -33,6 +33,7 @@ class Register_controller extends CI_Controller {
                 $fn = $this->input->post('first-name');
                 $sn = $this->input->post('last-name');
                 $mn = $this->input->post('middle-name');
+                $full = $fn." ".$mn." ".$sn;
                 $contact = $this->input->post('contact');
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
@@ -54,7 +55,6 @@ class Register_controller extends CI_Controller {
                     $profession_id = $r_op;
                 }
 
-
                 $status = NULL;
                 $user_type = 'user';
                 $set = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -64,6 +64,7 @@ class Register_controller extends CI_Controller {
                     'first_name' => $fn,
                     'last_name' => $sn,
                     'middle_name' => $mn,
+                    'full_name' => $full,
                     'contact' => $contact,
                     'email' => $email,
                     'password' => $password,
@@ -151,24 +152,19 @@ class Register_controller extends CI_Controller {
     public function activate(){
         $code =  $this->uri->segment(3);
 	
-
 		//fetch user details
 		$user = $this->OFS_model->getUser($code);
 
 		//if code matches
-		if($user['code'] == $code){
+		if($user['code'] == $code) {
 			//update user active status
 			$data['status'] = 0;
 			$query = $this->OFS_model->activate($data, $code);
 
-			if($query){
-				$this->session->set_flashdata('message', 'User activated successfully');
-			}
-			else{
-				$this->session->set_flashdata('message', 'Something went wrong in activating account');
-			}
-		}
-		else{
+			if($query){ $this->session->set_flashdata('message', 'User activated successfully'); }
+			else { $this->session->set_flashdata('message', 'Something went wrong in activating account'); }
+
+		} else {
 			$this->session->set_flashdata('message', 'Cannot activate account. Code didnt match');
 		}
 
@@ -179,7 +175,7 @@ class Register_controller extends CI_Controller {
     public function addMod() {
     
 
-        if($_SERVER['REQUEST_METHOD']=='POST'){
+        if($_SERVER['REQUEST_METHOD']=='POST') {
 
             $this->form_validation->set_rules('companyid','CompanyID','trim|required|is_unique[users.email],');
             $this->form_validation->set_rules('password','Password','trim|required');

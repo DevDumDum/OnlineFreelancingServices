@@ -60,9 +60,6 @@ class Post_controller extends CI_Controller {
         
         $posts = $this->Post_model->get_from_offset($offset);
         
-
-        
-
         //echo '<pre>';
         //print_r($posts);
         
@@ -114,7 +111,7 @@ class Post_controller extends CI_Controller {
             $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
             
             // POSTER NAME
-            $n_post[0] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
+            $n_post[0] = $user_details[0]['full_name'];
             $n_post[0] = (empty($n_post[0]))
                 ? "Anonymous"
                 : $n_post[0];
