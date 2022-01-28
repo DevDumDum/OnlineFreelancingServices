@@ -1,7 +1,3 @@
-.Aboutpage {
-    padding-top: 2%;
-}
-
 .aboutusBody{
     font-family: 'Poppins', sans-serif; 
     background-color: #E5e5e5;
@@ -11,18 +7,21 @@
     color: #1F4E70; 
     font-weight: bolder;
     font-size: 4rem;
-    padding-top: 45px;
 }
 
 .text-info {
     font-size: 2rem;
 }
 
+p {
+    font-size: 1.7rem;
+}
+
 .card {
     margin-top: 5%;
     margin-bottom: 5%;
     transition: all 0.2s ease;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .card-text {
