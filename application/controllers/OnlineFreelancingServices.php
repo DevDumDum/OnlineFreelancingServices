@@ -130,6 +130,12 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->session->userdata('page');
         $this->session->set_userdata('page','Profile Page');
         $this->load->helper('url');
+        $udata = $this->session->userdata('UserLoginSession');
+        if(isset($_GET['id']) || $this->session->userdata('UserLoginSession')){
+            echo "Welcome to userspage!";
+        }else{
+            redirect(base_url('NewsFeed'));
+        }
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
         $this -> load -> view ('OnlineFreelancingServices/Profile');
