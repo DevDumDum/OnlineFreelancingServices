@@ -109,7 +109,34 @@ else
 </body>
 
 <script>
+    var scrollLimit ,limit, offset;
+    $(document).ready(function(){
+        
+        scrollLimit = Math.max($(document).height(), $(window).height());
+        limit = 5;
+        offset = 1;
+        display_post_batch();
+    })
 
+    $(window).scroll(function(){
+
+        var current = window.scrollY;
+        var pos = current + window.innerHeight; 
+        //console.log("Limit: "+ scrollLimit +" | Current: " + pos);
+
+        if(pos >= scrollLimit) {
+            display_post_batch();
+        }
+    })
+
+    function display_post_batch(){
+        for(var i=0; i<limit; i++){
+            display_new_post();
+            //console.log(offset);
+            offset++;
+        }
+    }
+    // FOR ADD POST!! FOR ADD POST!! FOR ADD POST!!
     function set_min_pay(c){
         if(c.checked){
             document.getElementById("min_pay").disabled=true;
@@ -128,7 +155,6 @@ else
     function hidebox(){
         document.getElementById("hiddenbox-nf").style.display="none";
     }
-
     function set_fixed(){
         var component = document.getElementById("min_pay");
 
@@ -138,13 +164,11 @@ else
             document.getElementById("max_pay_label").textContent="Exact Amount";
         }
     }
-
     function set_form_action(action){
         var loc = "<?=base_url('Post_controller/"+action+"')?>";
         document.getElementById("post_form").action = loc;
         alert(loc);
     }
-    
     function edit_post(id){
         document.getElementById("PostOptionMenu").style.display="none";
         AddPostPopUp();
@@ -152,7 +176,6 @@ else
 
         document.getElementById(s_wid).selected = true;
     }
-
     function applicant(id,uid){
         $.ajax({
             type: 'POST',
@@ -175,7 +198,7 @@ else
     function display_new_post(){
         const theFunction = "<?=base_url('Post_controller/get_from_offset'); ?>";
         $.post(theFunction, {postIndex: offset, postLimit: limit}, function(data, status){
-
+            
             if(status=='success'){
                  
                 let text = data;
@@ -183,7 +206,6 @@ else
                 text = text.replace(']', '');
 
                 if(data != " "){
-
                     for(var x = 0; x<8; x++) text = text.replace('"', '');
 
                     const myArray = text.split(",");
@@ -192,17 +214,26 @@ else
                     postArray["work"] = myArray[1];
                     postArray["id"] = myArray[2];
                     postArray["name_id"] = myArray[3];
-            
-                    initPost(postArray);
                     
+                    postArray['requirements'] = myArray[4];
+                    postArray['worker_count'] = myArray[5];
+                    postArray['applicants'] = myArray[6];
+                    postArray['accepted'] = myArray[7];
+                    postArray['apply_status'] = myArray[8];
+
+                    postArray['location'] = myArray[9];
+                    postArray['min_pay'] = myArray[10];
+                    postArray['max_pay'] = myArray[11];
+                    postArray['timestamp'] = myArray[12];
+                    initPost(postArray);
+
                     // BIGGER DIV BETTER DIV; BIGGER BETTER
                     scrollLimit = Math.max($(document).height(), $(window).height());
                 }
-
             }
-
         })
     }
+  
 
     function initPost(postArray){
         var name = postArray["name"];
@@ -220,7 +251,6 @@ else
         var date = postArray['timestamp'];
         var apply_status = postArray['apply_status']; // if already applied
 
-
         /*
         console.log(
             "Name: "+name+
@@ -237,7 +267,6 @@ else
             "\nDate: "+date
         );
         */
-        
         let post = [];
 
         post["post_"+curID] = document.createElement("div");
@@ -322,9 +351,7 @@ else
         "<br>Maximum Pay: "+max_p+
         "<br>Date: "+date+"<br><br>";
         document.getElementById(post["post_"+curID].id).appendChild(post["container_"+curID]);
-
     }
 </script>
+
 <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</html>
