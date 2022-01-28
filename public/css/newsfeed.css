@@ -104,8 +104,9 @@
     background-color: #b0c7cf9f;
 }
 .post_titlebar{
+    color: #ffffff;
     width: 100%;
-    background-color: #e87c16;
+    background-color: #1f4e70;
 }
 .post-description-container{
     height: 270px;
@@ -116,8 +117,10 @@
 .userImage{
     height: 80px;
     width: 80px;
-    background-image: url("../images/franco-in-80px.jpg");
-    background-color: #e8a49a;
+    /* testing lang to kung ano magiging itsura ng picture sa post, may function naman ata kayong gagamitin sa js 
+    na mag ddisplay ng picture ng nag-post diba? kaya pede to iremove 'tong background-image anytime pag working na yon*/
+    background-image: url("../images/franco-in-80px.jpg"); 
+    background-color: #ffffff;
 }
 #result{
     margin-left: 8%;
