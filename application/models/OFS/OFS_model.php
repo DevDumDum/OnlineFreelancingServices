@@ -73,7 +73,7 @@ class OFS_model extends CI_Model{
 	public function get_user_details($id){
 		$this->db->select(
 				'last_name, first_name, 
-				middle_name, full_name contact, email, 
+				middle_name, full_name, contact, email, 
 				profession_id, location, summary, 
 				calendarlist_id,code,status'
 			);
@@ -81,6 +81,18 @@ class OFS_model extends CI_Model{
 		$this->db->where('id', $id);
 		
 		return $this->db->get('users')->result_array();
+	}
+	
+	public function get_user_from_search($id){
+		$this->db->select(
+				'last_name, first_name, middle_name, full_name, 
+				contact, email, profession_id, location, summary, 
+				calendarlist_id'
+			);
+
+		$this->db->where('id', $id);
+		
+		return $this->db->get('users')->row_array();
 	}
 
 	public function search_user($nameHolder){

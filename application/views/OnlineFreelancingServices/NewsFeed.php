@@ -42,7 +42,10 @@ else
                 <div class="card bg-light mb-3">
                     <input type="text" name="search-user" id="search-user" placeholder="Search">
                     <div class="bg-light" id="search-results-div" name="search-results-div">
-                        <ul name="search-results" id="search-results"></ul>
+                        <form name="search-form" id="search-form" action="<?=base_url('Profile_controller/search_user')?>" method="get">
+                            <ul name="search-results" id="search-results"></ul>
+                            <input id="search-id" name="search-id" type="text" style="display:none;" value="">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -330,18 +333,7 @@ else
         document.getElementById(post["post_"+curID].id).appendChild(post["container_"+curID]);
     }
 
-    var searchContent;
-    $(document).ready(function(){
-        $('#search-user').on('input', function(){
-            searchUser();
-        });
-
-        $('#search-results').focusout(function(){
-            $('#search-results').empty();
-        });
-    });
-
-    function searchUser (){
+    function searchUser(){
         searchContent=$('#search-user').val();
         var searchList = $('#search-results');
         
@@ -356,21 +348,46 @@ else
                     var tempID = searchObj[i].ID;
 
                     var li = document.createElement('li');
-                    li.innerText = tempName;
-
-                    searchList.append(li);
+                    $(li).attr('id', tempID);
+                    $(li).attr('class', 'searchValues');
+                    $(li).text(tempName);
+                    $(li).attr('onclick')
+                    
+                    $(searchList).append(li);
                 }
-
+                
             })
         }else {
-            $(searchList).empty();
+            searchList.empty();
             
             var li = document.createElement('li');
-            li.innerText = "No searches";
-            
+            $(li).text("No result");
             searchList.append(li);
         }
     }
+
+    var searchContent;
+    $(document).ready(function(){
+
+        var s = $('#search-user');
+
+        s.on('input', function(){
+            searchUser();
+        });
+
+        s.focusout(function(){
+            if(!s.val()) $('#search-results').empty();
+        });
+
+        s.focusin(function(){
+            searchUser();
+        });
+
+        $("#search-results").on('click','li',function(){
+            $('#search-id').attr('value', $(this).attr('id'));
+            $('#search-form').submit();
+        });
+    });
 
 </script>
 <!-- JavaScript Bundle with Popper -->
