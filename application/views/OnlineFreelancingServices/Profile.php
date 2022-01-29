@@ -1,5 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
-
+if ($this->session->userdata('UserLoginSession')){
+    $udata = $this->session->userdata('UserLoginSession');
+}
 ?>
 
 <body class="profileBody">
@@ -84,7 +86,8 @@
                     <div class="buttons-container d-flex flex-column text-center py-3">
                         <form method="POST" action="">
                             <div class="profile-button d-flex align-items-center justify-content-between">
-                                <div class="mx-2"  id="editDiv" style="display: block;"> 
+                                <?php if(isset($_GET['id']) && $_GET['id'] == $udata['id']){?>
+                                <div class="mx-2"  id="editDiv" style="display: block;">
                                     <button class="editprofilebutton btn btn-primary btn-sm" type="button" id ="editProfile" onclick="switchEdit()">
                                         <i class="editprofilebtnicon fal fa-pencil"></i>Edit Profile
                                     </button>
@@ -103,10 +106,11 @@
                                         </button>
                                     </div>
                                 </div>
-                                
+                                <?php } else {?>
                                 <div class="rightbutton">
                                     <button type="button" class="messageprofilebtn btn btn-primary btn-sm">Message</button>
                                 </div>
+                                <?php }?>
                             </div>
 
                             <div class="form-group">
