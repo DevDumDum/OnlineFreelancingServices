@@ -274,10 +274,15 @@ else
         post["post_"+curID].className = "main_post";
         document.getElementById("result").appendChild(post["post_"+curID]);
 
+        post["a_"+curID] = document.createElement("a");
+        post["a_"+curID].id = "a_"+curID;
+        post["a_"+curID].href = 'Profilepage?id='+curID;
+        document.getElementById(post["post_"+curID].id).appendChild(post["a_"+curID]);
+        
         post["post_titlebar_"+curID] = document.createElement("div");
-        post["post_titlebar_"+curID].id = "_post_titlebar"+curID;
+        post["post_titlebar_"+curID].id = "post_titlebar"+curID;
         post["post_titlebar_"+curID].className = "post_titlebar";
-        document.getElementById(post["post_"+curID].id).appendChild(post["post_titlebar_"+curID]);
+        document.getElementById(post["a_"+curID].id).appendChild(post["post_titlebar_"+curID]);
 
         post["user_image_"+curID] = document.createElement("div");
         post["user_image_"+curID].id = "user_image"+curID;
