@@ -17,6 +17,7 @@ class Post_controller extends CI_Controller {
         $loc = $this->input->post('location');
         $min_p = $this->input->post('min-pay');
         $max_p = $this->input->post('max-pay');
+        $status = 1;
         //echo date("M j Y", $timestamp)." ".date("h:iA", $timestamp);
         
         $data = array(
@@ -27,14 +28,11 @@ class Post_controller extends CI_Controller {
             'location' => $loc,
             'min_pay' => $min_p,
             'max_pay' => $max_p,
+            'status' => $status,
             'timestamp'=> time()
         );
 
-        if($this->Post_model->add_post($data)){
-            redirect(base_url('NewsFeed'));
-        }else {
-
-        }
+        if($this->Post_model->add_post($data)) redirect(base_url('NewsFeed'));
     }
 
     public function deact_post(){
@@ -49,7 +47,6 @@ class Post_controller extends CI_Controller {
             redirect(base_url('NewsFeed'));
         }
     }
-
 
     public function get_from_offset(){
         $this->load->model('OFS/Work_model');
@@ -139,7 +136,9 @@ class Post_controller extends CI_Controller {
             $n_post[9] = $p['location'];
             $n_post[10] = $p['min_pay'];
             $n_post[11] = $p['max_pay'];
-            $n_post[12] = $p['timestamp'];
+
+            //date("M j Y", $p['timestamp'])." ".date("h:iA", $p['timestamp']);
+            $n_post[12] = date("M j Y", $p['timestamp'])." ".date("h:i A", $p['timestamp']); //$p['timestamp'];
         }
         
         if(empty($n_post)) echo " ";

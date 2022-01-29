@@ -141,9 +141,7 @@ class Post_model extends CI_Model{
 
       $this->db->where('status >', 0);
       return $table = $this->db->get('post')->result_array();
- }
-
-   
+   }
 
    public function add_post($data){
       if($this->db->insert('post', $data))

@@ -24,7 +24,7 @@ class Work_model extends CI_Model{
      public function get_prof($id) {
           $this->db->select('ID, profession_type, description');
           $this->db->where('ID', $id);
-          return $this->db->get('profession')->result_array();
+          return $this->db->get('profession')->row_array();
      }
 
      public function add_work($data){
