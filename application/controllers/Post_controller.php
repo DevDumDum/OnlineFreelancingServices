@@ -59,7 +59,7 @@ class Post_controller extends CI_Controller {
         else $offset = 0;
         
         $posts = $this->Post_model->get_from_offset($offset);
-        
+
         //echo '<pre>';
         //print_r($posts);
         
@@ -67,16 +67,13 @@ class Post_controller extends CI_Controller {
         $n_post=array();
         $udata = $this->session->userdata('UserLoginSession');
         $a_arr="";
-        
         if(isset($udata['jobs'])){
             $a_arr = explode(",",$udata['jobs']);
         }
-
         $x=0;
         $p['apply_status'] = 1;
         $p['applicants'] = 0;
         $p['accepted'] = 0;
-
         foreach($posts as $p){
             $temp = "";
             $p['apply_status'] = 1;
@@ -107,13 +104,12 @@ class Post_controller extends CI_Controller {
             }
             $x++;
 
-            // kunin yung row gamit yung id
             $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
             
             // POSTER NAME
-            $n_post[0] = $user_details[0]['full_name'];
+            $n_post[0] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
             $n_post[0] = (empty($n_post[0]))
-                ? "Anonymous"
+                ? " "
                 : $n_post[0];
 
             if($p['requirements'] == "") 

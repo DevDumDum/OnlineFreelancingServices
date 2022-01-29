@@ -8,6 +8,7 @@
     </div>
     <div class="contact-container">
         <div class="adminpics">
+            <img class="img-profile" src="<?php echo base_url();?>public/images/maku.jpg" alt="">
             <img class="img-profile" src="<?php echo base_url();?>public/images/ian.jpg" alt="">
             <img class="img-profile" src="<?php echo base_url();?>public/images/alyssa.jpg" alt="">
             <img class="img-profile" src="<?php echo base_url();?>public/images/aileen.jpg" alt="">
@@ -34,7 +35,7 @@
                 <div class="contact-content">
                     Message Us
                 </div>
-                <a href="#" class="contact-cont-content">
+                <a href="https://www.facebook.com/lysprpz/" class="contact-cont-content">
                 OLFServices            
             </i>
         </div>
