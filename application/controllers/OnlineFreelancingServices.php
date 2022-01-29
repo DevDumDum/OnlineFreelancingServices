@@ -37,61 +37,14 @@ class OnlineFreelancingServices extends CI_Controller{
         $table = array();
         $table['key_works'] = $works;
 
-        
-        $udata = $this->session->userdata('UserLoginSession');
-        #check if already applied on the post
-        
-         
-        $a_arr="";
-        if(isset($udata['jobs'])){
-            $a_arr = explode(",",$udata['jobs']);
-        }
-
-        $x = 0;
-        foreach($posts as $p){
-            $temp = "";
-            $posts[$x]['apply_status'] = 1;
-            
-            $s_while=true;
-            $j_count=0;
-            while($s_while) {
-                if(isset($a_arr[$j_count])) {
-                    if($a_arr[$j_count] == $posts[$x]['ID']){
-                        $posts[$x]['apply_status'] = 0;
-                    }
-                    $j_count++;
-                } else {
-                    $s_while = false;
-                }
-            }
-            if($p['applicants'] != NULL){
-                $temp = explode(",", $p['applicants']);
-                $posts[$x]['applicants'] = $temp;
-            } else {
-                $posts[$x]['applicants'] = 0;
-            }
-
-            if($p['accepted'] != NULL){
-                $temp = explode(",", $p['accepted']);
-                $posts[$x]['accepted'] = $temp;
-            } else {
-                $posts[$x]['accepted'] = 0;
-            }
-
-            $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
-            if($posts[$x]['requirements'] == "") {$posts[$x]['requirements'] = "No requirements.";}
-            $posts[$x]['post_owner'] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
-            $x++;
-        }
-        $table['key_posts'] = $posts;
-
         // DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! DO NOT DELETE NEXT LINE !! 
         //echo "<pre>";
         //print_r($posts);
 
 
         $this -> load -> view ('OnlineFreelancingServices/NewsFeed', $table);
-        $this -> load -> view ('OnlineFreelancingServices/inc/postResult', $table);
+        //$this -> load -> view ('OnlineFreelancingServices/inc/postResult', $table);
+        
     }
     public function Aboutpage(){
         $this->session->userdata('page');

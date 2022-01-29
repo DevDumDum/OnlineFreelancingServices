@@ -1,5 +1,5 @@
 #newsfeed{
-    background-color: #E5E5E5;
+    background-color: #E5e5e5;
 }
 .custom-row-container{
     margin-top: 4%;
@@ -10,6 +10,10 @@
     padding-left: 2%;
     font-size: .7vw;
     font-weight: bold;
+}
+.bg-light-custom{
+    --bs-bg-opacity: 1;
+    background-color: #b0c7cf;
 }
 .sticky-top{
     top: 8% !important;
@@ -88,5 +92,36 @@
 .card-width{
     width: max-content;
     align-items: center;
+    margin-left: 8%;
+}
+/* post result */
+.main_post{
+    font-size: 1vw;
+    align-items: center;
+    width: max-content;
+    margin-bottom: 2%;
+    padding: 2% 2.57% 2% 2.57%;
+    background-color: #b0c7cf9f;
+}
+.post_titlebar{
+    color: #ffffff;
+    width: 100%;
+    background-color: #1f4e70;
+}
+.post-description-container{
+    height: 270px;
+    width: 370px;
+    background-color: #549cac;
+    padding: 15px;
+}
+.userImage{
+    height: 80px;
+    width: 80px;
+    /* testing lang to kung ano magiging itsura ng picture sa post, may function naman ata kayong gagamitin sa js 
+    na mag ddisplay ng picture ng nag-post diba? kaya pede to iremove 'tong background-image anytime pag working na yon*/
+    background-image: url("../images/franco-in-80px.jpg"); 
+    background-color: #ffffff;
+}
+#result{
     margin-left: 8%;
 }
