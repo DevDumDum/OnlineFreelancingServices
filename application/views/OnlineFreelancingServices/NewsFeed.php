@@ -47,10 +47,6 @@ else
                         <div class="card-body">
                         <button type="button" class="btn btn-primary btn-lg" onclick="AddPostPopUp()">Add Post</button>
                     </div>
-                    <div id="PostOptionMenu" style="display:none;">
-                        <button type="button" id="edit_p" value="" onclick="edit_post(this.value)">Edit</button>
-                        <button type="button" id="del_p" value="" onclick="set_form_action('deact_post')">Delete</button>
-                    </div>
                 </div>
                 <!--PopUp createPost-->
                 <div id="hiddenbox-nf">
@@ -164,13 +160,14 @@ else
             document.getElementById("max_pay_label").textContent="Exact Amount";
         }
     }
-    function set_form_action(action){
+    function set_form_action(action,id){
         var loc = "<?=base_url('Post_controller/"+action+"')?>";
         document.getElementById("post_form").action = loc;
+        document.getElementById("PostOptionMenu_"+id).remove();
         alert(loc);
     }
     function edit_post(id){
-        document.getElementById("PostOptionMenu").style.display="none";
+        document.getElementById("PostOptionMenu_"+id).style.display="none";
         AddPostPopUp();
         var s_wid = "op_" + id;
 
@@ -302,11 +299,35 @@ else
             post["option_"+curID].setAttribute("value", "option");
             post["option_"+curID].style.float = "right";
             post["option_"+curID].addEventListener ("click", function() {
-                document.getElementById("edit_p").value=curID;
-                document.getElementById("del_p").value=curID;
-                document.getElementById("PostOptionMenu").style.display="block";
+                document.getElementById("PostOptionMenu_"+curID).style.display="block";
             });
             document.getElementById(post["post_"+curID].id).appendChild(post["option_"+curID]);
+
+
+            post["PostOptionMenu_"+curID] = document.createElement("div");
+            post["PostOptionMenu_"+curID].id = "PostOptionMenu_"+curID;
+            post["PostOptionMenu_"+curID].style.float = "right";
+            post["PostOptionMenu_"+curID].style.display = "none";
+
+            document.getElementById(post["post_"+curID].id).appendChild(post["PostOptionMenu_"+curID]);
+
+                post["edit_p_"+curID] = document.createElement("BUTTON");
+                post["edit_p_"+curID].id = "edit_p_"+curID;
+                post["edit_p_"+curID].setAttribute("value", curID);
+                post["edit_p_"+curID].innerHTML = "Edit";
+                post["edit_p_"+curID].addEventListener ("click", function() {
+                    edit_post(curID);
+                });
+                document.getElementById(post["PostOptionMenu_"+curID].id).appendChild(post["edit_p_"+curID]);
+
+                post["del_p_"+curID] = document.createElement("BUTTON");
+                post["del_p_"+curID].id = "del_p_"+curID;
+                post["del_p_"+curID].setAttribute("value", curID);
+                post["del_p_"+curID].innerHTML = "Delete";
+                post["del_p_"+curID].addEventListener ("click", function() {
+                     set_form_action('deact_post',curID);
+                });
+                document.getElementById(post["PostOptionMenu_"+curID].id).appendChild(post["del_p_"+curID]);
             
         }else {
             post["apply_"+curID] = document.createElement("input"); 
