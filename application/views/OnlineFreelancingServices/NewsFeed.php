@@ -4,7 +4,6 @@
 if($this->session->userdata('UserLoginSession'))
 {
     $udata = $this->session->userdata('UserLoginSession');
-    echo 'Welcome'.' '.$udata['email'];
 }
 else
 {
@@ -14,7 +13,7 @@ else
 
 <body id="newsfeed">
     <div class="container-newsfeed">
-        <div class="row custom-row-container">
+        <div class="row custom-row-container" style="margin-right: 0;">
             <div class="col-3 pl-0 work-category-side sticky-top">
                 <!-- for filtering category-->
                 <!--Work:-->
@@ -50,49 +49,70 @@ else
                 </div>
                 <!--PopUp createPost-->
                 <div id="hiddenbox-nf">
-                    <div id="bg_box-nf">
-                        <div class="modal-header-nf">
-                            <div class="d-flex justify-content-between">
-                                <div class="p-2"><h1>Create Post</h1></div>
-                                <div class="p-2"><button type="button" class="btn btn-secondary btn-lg rounded-circle" class="close-button" onclick="hidebox()">&times;</button></div>
+                    <!--Add post-->
+                    <div id="add_p" style="display: none;">
+                        <div id="bg_box-nf">
+                            <div class="modal-header-nf">
+                                <div class="d-flex justify-content-between">
+                                    <div class="p-2"><h1>Create Post</h1></div>
+                                    <div class="p-2"><button type="button" class="btn btn-secondary btn-lg rounded-circle" class="close-button" onclick="hidebox()">&times;</button></div>
+                                </div>
+                            </div>
+                            <div class="create-post">
+                                    <form action="<?=base_url('Post_controller/addPost')?>" method="post" enctype="multipart/form-data">
+                                        <div class="add-post-content btn-block">
+                                            <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
+                                                <p>
+                                                    <label for="">Work Category</label>
+                                                    <select name="work" id="works">
+                                                        <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
+                                                            <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
+                                                        <?php }} ?>
+                                                    </select>
+                                                    <button type="button" class="btn btn-secondary" name="addWorkPost">+</button><br>
+
+                                                    <label for="">Description</label>
+                                                    <input type="text" name="description" id="desc" placeholder="Requirements" required /> <br>
+
+                                                    <label for="">Worker(s) needed</label>
+                                                    <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
+                                                    
+                                                    <label for="">Location</label>
+                                                    <input type="text" name="location" id="location" placeholder="Work location" required /> <br>
+                                                    
+                                                    <label for="">Minimum Payment</label>
+                                                    <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
+                                                    
+                                                    <label for="">Fixed</label>
+                                                    <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"> <br>
+                                                    
+                                                    <label for="">Maximum Payment</label>
+                                                    <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /> 
+                                                </p>
+                                            
+                                            <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                                            <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit">
+                                        </div>
+                                    </form>
                             </div>
                         </div>
-                        <div class="create-post">
-                                <form action="<?=base_url('Post_controller/addPost')?>" method="post" enctype="multipart/form-data">
-                                    <div class="add-post-content btn-block">
-                                        <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
-                                            <p>
-                                                <label for="">Work Category</label>
-                                                <select name="work" id="works">
-                                                    <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
-                                                        <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
-                                                    <?php }} ?>
-                                                </select>
-                                                <button type="button" class="btn btn-secondary" name="addWorkPost">+</button><br>
-
-                                                <label for="">Description</label>
-                                                <input type="text" name="description" id="desc" placeholder="Requirements" required /> <br>
-
-                                                <label for="">Worker(s) needed</label>
-                                                <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
-                                                
-                                                <label for="">Location</label>
-                                                <input type="text" name="location" id="location" placeholder="Work location" required /> <br>
-                                                
-                                                <label for="">Minimum Payment</label>
-                                                <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
-                                                
-                                                <label for="">Fixed</label>
-                                                <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"> <br>
-                                                
-                                                <label for="">Maximum Payment</label>
-                                                <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /> 
-                                            </p>
-                                        
-                                        <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                                        <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit">
-                                    </div>
-                                </form>
+                    </div>
+                        
+                    <!--Report post-->
+                    <div id="report_p" style="display: none;">
+                        <div id="bg_box-nf">
+                            <div class="modal-header-nf">
+                                <div class="d-flex justify-content-between">
+                                    <div class="p-2"><h1>Report Post</h1></div>
+                                    <div class="p-2"><button type="button" class="btn btn-secondary btn-lg rounded-circle" class="close-button" onclick="hidebox()">&times;</button></div>
+                                </div>
+                            </div>
+                            <div class="create-post">
+                                <br>
+                                Description:<br>
+                                <textarea id="r_desc" style="width:100%; height:150px;"></textarea><br>
+                                <button id="r_id" value="">Submit</button>
+                            </div>
                         </div>
                     </div>
                     <div id="blackbox-nf" onclick="hidebox()"></div>
@@ -146,10 +166,13 @@ else
     }
     function AddPostPopUp(){
         document.getElementById("hiddenbox-nf").style.display="block";
+        document.getElementById("add_p").style.display="block";
         document.getElementById("hiddenbox-nf").style.animation="fadebox .3s reverse linear";
     }
     function hidebox(){
         document.getElementById("hiddenbox-nf").style.display="none";
+        document.getElementById("add_p").style.display="none";
+        document.getElementById("report_p").style.display="none";
     }
     function set_fixed(){
         var component = document.getElementById("min_pay");
@@ -173,6 +196,12 @@ else
 
         document.getElementById(s_wid).selected = true;
     }
+
+    function report_post(id){
+        document.getElementById("hiddenbox-nf").style.display="block";
+        document.getElementById("report_p").style.display="block";
+    }
+
     function applicant(id,uid){
         $.ajax({
             type: 'POST',
@@ -230,7 +259,6 @@ else
             }
         })
     }
-  
 
     function initPost(postArray){
         var name = postArray["name"];
@@ -270,36 +298,28 @@ else
         post["post_"+curID].id = "post_"+curID;
         post["post_"+curID].className = "main_post";
         document.getElementById("result").appendChild(post["post_"+curID]);
-
-        post["a_"+curID] = document.createElement("a");
-        post["a_"+curID].id = "a_"+curID;
-        post["a_"+curID].href = 'Profilepage?id='+curID;
-        document.getElementById(post["post_"+curID].id).appendChild(post["a_"+curID]);
         
-        post["post_titlebar_"+curID] = document.createElement("div");
-        post["post_titlebar_"+curID].id = "post_titlebar"+curID;
-        post["post_titlebar_"+curID].className = "post_titlebar";
-        document.getElementById(post["a_"+curID].id).appendChild(post["post_titlebar_"+curID]);
-
-        post["user_image_"+curID] = document.createElement("div");
-        post["user_image_"+curID].id = "user_image"+curID;
-        post["user_image_"+curID].className = "userImage";
-        document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["user_image_"+curID]);
-
-        post["name_"+curID] = document.createElement("p");
-        post["name_"+curID].id = "name_"+curID;
-        post["name_"+curID].innerHTML = name+" needs " + work;
-        document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["name_"+curID]);
-        
-        if( <?php echo $udata["id"];  ?> == owner) {
-            
+        if( <?php echo $udata["id"];  ?> != owner) {
+            post["report_p_"+curID] = document.createElement("BUTTON");
+            post["report_p_"+curID].id = "report_p_"+curID;
+            post["report_p_"+curID].style.float = "right";
+            post["report_p_"+curID].innerHTML = "Report";
+            post["report_p_"+curID].addEventListener ("click", function() {
+                report_post(curID);
+            });
+            document.getElementById(post["post_"+curID].id).appendChild(post["report_p_"+curID]);
+        } else {
             post["option_"+curID] = document.createElement("input");
             post["option_"+curID].id = "option_"+curID;
             post["option_"+curID].setAttribute("type", "button");
             post["option_"+curID].setAttribute("value", "option");
             post["option_"+curID].style.float = "right";
             post["option_"+curID].addEventListener ("click", function() {
-                document.getElementById("PostOptionMenu_"+curID).style.display="block";
+                if(document.getElementById("PostOptionMenu_"+curID).style.display == "block"){
+                    document.getElementById("PostOptionMenu_"+curID).style.display = "none"
+                }else{
+                    document.getElementById("PostOptionMenu_"+curID).style.display="block";
+                }
             });
             document.getElementById(post["post_"+curID].id).appendChild(post["option_"+curID]);
 
@@ -307,6 +327,8 @@ else
             post["PostOptionMenu_"+curID] = document.createElement("div");
             post["PostOptionMenu_"+curID].id = "PostOptionMenu_"+curID;
             post["PostOptionMenu_"+curID].style.float = "right";
+            post["PostOptionMenu_"+curID].style.marginTop = "30px";
+            post["PostOptionMenu_"+curID].style.marginRight = "-80px";
             post["PostOptionMenu_"+curID].style.display = "none";
 
             document.getElementById(post["post_"+curID].id).appendChild(post["PostOptionMenu_"+curID]);
@@ -329,7 +351,30 @@ else
                 });
                 document.getElementById(post["PostOptionMenu_"+curID].id).appendChild(post["del_p_"+curID]);
             
-        }else {
+        }
+
+        post["a_"+curID] = document.createElement("a");
+        post["a_"+curID].id = "a_"+curID;
+        post["a_"+curID].href = 'Profilepage?id='+curID;
+        document.getElementById(post["post_"+curID].id).appendChild(post["a_"+curID]);
+
+        post["post_titlebar_"+curID] = document.createElement("div");
+        post["post_titlebar_"+curID].id = "post_titlebar"+curID;
+        post["post_titlebar_"+curID].className = "post_titlebar";
+        document.getElementById(post["a_"+curID].id).appendChild(post["post_titlebar_"+curID]);
+
+        post["user_image_"+curID] = document.createElement("div");
+        post["user_image_"+curID].id = "user_image"+curID;
+        post["user_image_"+curID].className = "userImage";
+        document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["user_image_"+curID]);
+
+        post["name_"+curID] = document.createElement("p");
+        post["name_"+curID].id = "name_"+curID;
+        post["name_"+curID].innerHTML = name+" needs " + work;
+        document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["name_"+curID]);
+        
+        if( <?php echo $udata["id"];  ?> != owner) {
+            
             post["apply_"+curID] = document.createElement("input"); 
             post["apply_"+curID].id = "apply_"+curID;
             post["apply_"+curID].className = "btn btn-primary btn-lg";
