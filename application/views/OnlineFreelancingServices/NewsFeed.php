@@ -306,7 +306,7 @@ else
                 document.getElementById("del_p").value=curID;
                 document.getElementById("PostOptionMenu").style.display="block";
             });
-            document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["option_"+curID]);
+            document.getElementById(post["post_"+curID].id).appendChild(post["option_"+curID]);
             
         }else {
             post["apply_"+curID] = document.createElement("input"); 
