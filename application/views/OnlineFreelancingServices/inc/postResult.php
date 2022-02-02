@@ -8,6 +8,7 @@ if(!empty($key_posts)){
         $post = array();
         $post['id'] = $p['ID'];
         $post['name_id'] = $p['poster_ID'];
+
         $post['name'] = ($p['post_owner'] == '')
             ? "Anonymous"
             : strval($p['post_owner']);

@@ -1,14 +1,17 @@
 <?php
 
-class Post_model extends CI_Model{
+class Post_model extends CI_Model
+{
    
-   public function __construct() {
+   public function __construct()
+   {
       parent::__construct();
       $this->load->helper('url');
       $this->load->model('OFS/Post_model');
   }
 
-   public function get_table(){
+   public function get_table()
+   {
       $this->db->select('ID, poster_ID, profession_ID, 
       worker_count, requirements, location, timestamp,
       min_pay, max_pay, status, applicants, accepted');
@@ -16,7 +19,8 @@ class Post_model extends CI_Model{
         return $table = $this->db->get('post')->result_array();
    }
 
-   public function get_posts(){
+   public function get_posts()
+   {
       $this->db->select('ID, worker_count, applicants');
       $this->db->where('status', 1);
       $posts = $this->db->get('post')->result_array();
@@ -50,14 +54,16 @@ class Post_model extends CI_Model{
       return $posts = $this->db->get('post')->result_array();
    }
 
-   public function close_posts($id){
+   public function close_posts($id)
+   {
       $this->db->set('status', 0);
       $this->db->where('ID', $id);
       return $this->db->update('post');
    }
 
 
-   public function add_applicant($id,$uid,$ujob){
+   public function add_applicant($id,$uid,$ujob)
+   {
       $this->db->select('ID, worker_count, applicants');
       $this->db->where('ID', $id);
       $posts = $this->db->get('post')->row_array();
@@ -131,7 +137,8 @@ class Post_model extends CI_Model{
       }
    }
 
-   public function get_posts_ordered(){
+   public function get_posts_ordered()
+   {
       $this->db->order_by('timestamp', 'desc');
       $this->db->limit(5);
 
@@ -141,17 +148,17 @@ class Post_model extends CI_Model{
 
       $this->db->where('status >', 0);
       return $table = $this->db->get('post')->result_array();
- }
+   }
 
-   
-
-   public function add_post($data){
+   public function add_post($data)
+   {
       if($this->db->insert('post', $data))
           return true;
       else return false;
    }
 
-   public function get_from_offset($offset){
+   public function get_from_offset($offset)
+   {
       $offset -=1;
       
       $this->db->select('ID, poster_ID, profession_ID, 
@@ -162,5 +169,48 @@ class Post_model extends CI_Model{
       $this->db->order_by('timestamp', 'DESC');
       $q = $this->db->get('post')->result_array();
       return $q;
+   }
+
+   public function get_job_details($post_id)
+   {
+      return $this->db
+         ->select('post.*, profession.profession_type, profession.description as profession_description')
+         ->where('post.ID', $post_id)
+         ->where('post.status', 0)
+         ->join('profession', 'profession.ID = post.profession_ID')
+         ->get('post')->row();
+   }
+
+   public function get_jobs($poster_id)
+   {
+      return $this->db
+         ->select('post.*, profession.profession_type, profession.description as profession_description')
+         ->where('post.poster_ID', $poster_id)
+         // ->where('post.status', $status)
+         // ->group_start()
+         // ->where('accepted', 0)
+         // ->or_where('accepted', null)
+         // ->group_end()
+         ->join('profession', 'profession.ID = post.profession_ID')
+         ->get('post')->result();
+   }
+
+   public function accept_applicant($post_id, $applicant_id)
+   {
+      $post = $this->db->where('ID', $post_id)->get('post')->row();
+      if (!$post) {
+         return false;
+      }
+      $accepted = $post->accepted;
+      $accepted_value = "";
+      if ($accepted == null) {
+         $accepted_value = $applicant_id;
+      } else {
+         $accepted_value = $accepted . "," . $applicant_id;
+      }
+      $this->db->set('accepted', $accepted_value);
+      $this->db->set('status', 1);
+      $this->db->where('ID', $post_id);
+      return $this->db->update('post');
    }
 }

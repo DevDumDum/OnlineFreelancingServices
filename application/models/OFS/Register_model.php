@@ -75,9 +75,10 @@ class Register_model extends CI_Model {
     }
 
     public function checker(){
-        $this->db->select('ID');
-        $this->db->where('email', $_POST['email']);
-        $query = $this->db->get('users')->num_rows();
-        return (int)$query;
+        $db = new PDO('mysql:host=localhost;dbname=loginsystem;charset=utf8mb4', 'root', '');
+        $query = $db->prepare('SELECT COUNT(*) FROM users WHERE email = :name');
+        $query->bindParam(':name', $_POST['email']);
+        $query->execute();
+        return $query->fetchColumn();
     }
 }

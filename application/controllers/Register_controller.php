@@ -2,10 +2,12 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Register_controller extends CI_Controller {
+class Register_controller extends CI_Controller 
+{
 
 
-    public function __construct() {
+    public function __construct() 
+    {
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('OFS/Register_model');
@@ -15,21 +17,23 @@ class Register_controller extends CI_Controller {
         $this->data['users'] = $this->OFS_model->getAllUsers();
     }
 
-    public function addUser() {
-        if($_SERVER['REQUEST_METHOD']=='POST'){
+    public function addUser()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|is_unique[users.email],');
-            $this->form_validation->set_rules('first-name','First name','alpha|trim|required');
-            $this->form_validation->set_rules('last-name','Last name','alpha|trim|required');
-            $this->form_validation->set_rules('middle-name','Middle name','alpha|trim');
-            $this->form_validation->set_rules('contact','Contact Number','integer|trim|required');
-            $this->form_validation->set_rules('password','Password','trim|required');
-            $this->form_validation->set_rules('confirm-pw','Password','trim|required|matches[password]');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email],');
+            $this->form_validation->set_rules('first-name', 'First name', 'alpha|trim|required');
+            $this->form_validation->set_rules('last-name', 'Last name', 'alpha|trim|required');
+            $this->form_validation->set_rules('middle-name', 'Middle name', 'alpha|trim');
+            $this->form_validation->set_rules('contact', 'Contact Number', 'integer|trim|required');
+            $this->form_validation->set_rules('password', 'Password', 'trim|required');
+            $this->form_validation->set_rules('confirm-pw', 'Password', 'trim|required|matches[password]');
 
-            $this->form_validation->set_rules('profession_id','profession_id','trim');
-            $this->form_validation->set_rules('other_profession_id','other_profession_id','trim');
-            
-            if($this->form_validation->run()==TRUE){
+            $this->form_validation->set_rules('profession_id', 'profession_id', 'trim');
+            $this->form_validation->set_rules('other_profession_id', 'other_profession_id', 'trim');
+
+            if ($this->form_validation->run() == TRUE) {
+                
                 $fn = $this->input->post('first-name');
                 $sn = $this->input->post('last-name');
                 $mn = $this->input->post('middle-name');
@@ -42,14 +46,14 @@ class Register_controller extends CI_Controller {
 
                 $temp_op = explode(",", $other_profession_id);
 
-                
-                for($x = 0; $x < count($temp_op); $x++){
-                    $temp_op[$x] = str_replace('"','' ,$temp_op[$x]);
+
+                for ($x = 0; $x < count($temp_op); $x++) {
+                    $temp_op[$x] = str_replace('"', '', $temp_op[$x]);
                 }
-                
+
                 $r_op = $this->Register_model->addOtherProf($temp_op);
-                if($profession_id != null && $profession_id != 0) {
-                    $profession_id = $profession_id.",".$r_op;
+                if ($profession_id != null && $profession_id != 0) {
+                    $profession_id = $profession_id . "," . $r_op;
                 } else {
                     $profession_id = $r_op;
                 }
@@ -70,7 +74,8 @@ class Register_controller extends CI_Controller {
                     'status' => $status,
                     'code' => $code,
                     'user_type' => $user_type,
-                    'profession_id' => $profession_id
+                    'profession_id' => $profession_id,
+                    "ValidId" => ''
                 );
 
                 //set up email
@@ -119,66 +124,72 @@ class Register_controller extends CI_Controller {
 </body>
 </html>
                   ";
-                        $this->load->library('email', $config);
-                        $this->email->set_newline("\r\n");
-                        $this->email->from($config['smtp_user']); // change it to yours
-                        $this->email->to($email);// change it to yours
-                        $this->email->subject('Testing');
-                        $this->email->message($message);
-                        if($this->email->send())
-                        {
-                            $this->session->set_flashdata('message', 'Email sent.');
-                        }
-                        else
-                       {
-                        $this->session->set_flashdata('message', 'Email not sent');
-                       }
-
-                if ($this->Register_model->addUser($data)) {
-
-                    $this->load->helper('url');
-                    $this->load->model('Admin/Verification_model');
-                    
-                    $status = $this->OFS_model->checkPassword($password,$email);
-                    
-                    //login
-                    if($status!=false){
-                        $id = $status->id;
-                        $user_type = $status->user_type;
-                        $email = $status->email;
-                        $profession_id = $status->profession_id;
-                        $jobs = $status->jobs;
-                        $apply = $status->apply;
-
-                        $session_data = array(
-                            'id'=>$id,
-                            'user_type'=>$user_type,
-                            'email'=>$email,
-                            'profession_id'=>$profession_id,
-                            'jobs'=>$jobs,
-                            'apply'=>$apply
-                        );
-                        
-                        $this->Verification_model->new_ver($status->id, $user_type);
-                        $this->session->set_userdata('UserLoginSession',$session_data);
-                        redirect(base_url('NewsFeed'));
-
-                    }else{
-                        $this->load->helper('url');
-                        $this->session->set_flashdata('error','Session Error.');
-                        redirect(base_url('Registerpage'));
-                    }
-
-                }else{
-                    $this->load->helper('url');
-                    $this->session->set_flashdata('error','Error query.');
-                }
-            } else {
-                $this->session->set_flashdata('error','Error Input data');
-                redirect(base_url('Registerpage'));
-            }
-        }        
-    }
+                  $this->load->library('email', $config);
+                  $this->email->set_newline("\r\n");
+                  $this->email->from($config['smtp_user']); // change it to yours
+                  $this->email->to($email); // change it to yours
+                  $this->email->subject('Testing');
+                  $this->email->message($message);
+                  if ($this->email->send()) {
+                      $this->session->set_flashdata('message', 'Email sent.');
+                  } else {
+                      $this->session->set_flashdata('message', 'Email not sent');
+                  }
+  
+                  if ($this->Register_model->addUser($data)) {
+                      // get user id
+                      $uid = $this->db->insert_id();
+                      if (!empty($_FILES['valid_id']['name'])) {
+                          $config['upload_path'] = './uploads/users/' . $uid . '/';
+  
+                          if (!is_dir($config['upload_path'])) {
+                              mkdir($config['upload_path'], 0777, true);
+                          }
+                          $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                          $config['max_size'] = '15000';
+                          $config['overwrite'] = TRUE;
+                          $config['file_name'] = 'valid_id';
+                          // upload
+                          $this->load->library('upload', $config);
+                          $this->upload->initialize($config);
+                          $upload = $this->upload->do_upload('valid_id');
+                          if ($upload) {
+                              $file_name = $this->upload->data('file_name');
+                              $this->db->where('id', $uid);
+                              $this->db->update('users', array('ValidId' => $file_name));
+                          }
+                      }
+                      $this->load->helper('url');
+                      $this->load->model('Admin/Verification_model');
+  
+                      $status = $this->OFS_model->checkPassword($password, $email);
+  
+                      //login
+                      if ($status != false) {
+                          $session_data = array(
+                              'email' => $email,
+                              'id' => $status->id,
+                              'user_type' => $user_type
+                          );
+  
+                          $this->Verification_model->new_ver($status->id, $user_type);
+                          $this->session->set_userdata('UserLoginSession', $session_data);
+                          redirect(base_url('NewsFeed'));
+                      } else {
+                          $this->load->helper('url');
+                          $this->session->set_flashdata('error', 'Session Error.');
+                          redirect(base_url('Registerpage'));
+                      }
+                  } else {
+                      $this->load->helper('url');
+                      $this->session->set_flashdata('error', 'Error query.');
+                  }
+              } else {
+                  $this->session->set_flashdata('error', 'Error Input data');
+                  redirect(base_url('Registerpage'));
+              }
+          }
+      }
 
     public function activate(){
         $code =  $this->uri->segment(3);
