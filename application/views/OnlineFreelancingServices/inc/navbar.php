@@ -1,6 +1,7 @@
 <header>
 <?php 
 if($this->session->userdata('UserLoginSession')){
+    $udata = $this->session->userdata('UserLoginSession');
 ?>
     <nav class="navbar custom-navbar navbar-expand-md navbar-dark">
             <div class="container-fluid">
@@ -16,7 +17,7 @@ if($this->session->userdata('UserLoginSession')){
                         <a href="NewsFeed" class="nav-item active nav-link">NewsFeed</a></li>
                     </li>
                     <li class="nav-item">
-                        <a href="Profilepage" class="nav-item nav-link">Profile</a>
+                        <a href="Profilepage?id=<?php echo $udata['id']?>" class="nav-item nav-link">Profile</a>
                     </li>
                 </ul>
                 <ul class="nav justify-content-end">

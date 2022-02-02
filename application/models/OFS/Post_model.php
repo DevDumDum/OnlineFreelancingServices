@@ -131,9 +131,36 @@ class Post_model extends CI_Model{
       }
    }
 
+   public function get_posts_ordered(){
+      $this->db->order_by('timestamp', 'desc');
+      $this->db->limit(5);
+
+      $this->db->select('ID, poster_ID, profession_ID, 
+      worker_count, requirements, location, timestamp,
+      min_pay, max_pay, status');
+
+      $this->db->where('status >', 0);
+      return $table = $this->db->get('post')->result_array();
+ }
+
+   
+
    public function add_post($data){
       if($this->db->insert('post', $data))
           return true;
       else return false;
+   }
+
+   public function get_from_offset($offset){
+      $offset -=1;
+      
+      $this->db->select('ID, poster_ID, profession_ID, 
+      worker_count, requirements, location, timestamp,
+      min_pay, max_pay, status, applicants, accepted');
+      $this->db->limit(1, $offset);
+      $this->db->where('status >', 0);
+      $this->db->order_by('timestamp', 'DESC');
+      $q = $this->db->get('post')->result_array();
+      return $q;
    }
 }
