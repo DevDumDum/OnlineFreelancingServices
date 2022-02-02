@@ -31,9 +31,11 @@
         </div>
         <!---NEW USER TABLE-->
         <div class="tables">
+            
             <table class = "table table-dark table-hover center">
                 <tr>
-                <th>User</th>
+                <th class="headings">User</th>
+                <th class="heading_desc">Details</th>
                 <th> </th>
                 </tr>
             
@@ -42,6 +44,7 @@
                 <td onclick="newDetails()">
                     <span>Alfreds Futterskie</span>
                 </td>
+                <td></td>
                 <td class="status">
                     <button class="editbtn1" style="cursor: pointer;">Ban</button>
                     <button class="editbtn2" style="cursor: pointer;">Ignore</button>
@@ -51,6 +54,7 @@
                 <td onclick="newDetails()">
                     <span>Centro comercial</span>
                 </td>
+                <td></td>
                 <td class="status">
                     <button class="editbtn1" style="cursor: pointer;">Ban</button>
                     <button class="editbtn2" style="cursor: pointer;">Ignore</button>
@@ -60,6 +64,7 @@
                 <td onclick="newDetails()">
                     <span>Ernst Handel</span>
                 </td>
+                <td></td>
                 <td class="status">
                     <button class="editbtn1" style="cursor: pointer;">Ban</button>
                     <button class="editbtn2" style="cursor: pointer;">Ignore</button>
@@ -69,6 +74,7 @@
                 <td onclick="newDetails()">
                     <span>Island Trading</span>
                 </td>
+                <td></td>
                 <td class="status">
                     <button class="editbtn1" style="cursor: pointer;">Ban</button>
                     <button class="editbtn2" style="cursor: pointer;">Ignore</button>
