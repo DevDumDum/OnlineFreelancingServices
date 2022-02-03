@@ -10,6 +10,12 @@ class Work_model extends CI_Model{
           return $table = $this->db->get('profession')->result_array();
      }
 
+     public function get_work($id){
+          $this->db->select('ID, profession_type, description');
+          $this->db->where('ID', $id);
+          return $table = $this->db->get('profession')->result_array();
+     }
+
      public function get_table_all(){
           $this->db->select('ID, profession_type, description, status');
           return $table = $this->db->get('profession')->result_array();

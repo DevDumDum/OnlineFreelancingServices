@@ -4,7 +4,6 @@
 if($this->session->userdata('UserLoginSession'))
 {
     $udata = $this->session->userdata('UserLoginSession');
-    echo 'Welcome'.' '.$udata['email'];
 }
 else
 {
@@ -14,11 +13,11 @@ else
 
 <body id="newsfeed">
     <div class="container-newsfeed">
-        <div class="row custom-row-container">
+        <div class="row custom-row-container" style="margin-right: 0;">
             <div class="col-3 pl-0 work-category-side sticky-top">
                 <!-- for filtering category-->
                 <!--Work:-->
-                <div class="card bg-light mb-3">
+                <div class="card bg-light-custom mb-3">
                     <div class="card-header">Work Category Filter</div>
                         <div class="card-body">
                             <p>
@@ -42,61 +41,78 @@ else
             </div>
             <div class="col-8 newsfeed-side">
                 <!--AddPost button display create post at line 23 event-->
-                <div class="card bg-light mb-3 card-width">
+                <div class="card bg-light-custom mb-3 card-width">
                     <div class="card-header"><h1>Finding A Job? A worker? Post now!</h1></div>
                         <div class="card-body">
                         <button type="button" class="btn btn-primary btn-lg" onclick="AddPostPopUp()">Add Post</button>
                     </div>
-                    <div id="PostOptionMenu" style="display:none;">
-                        <button type="button" id="edit_p" value="" onclick="edit_post(this.value)">Edit</button>
-                        <button type="button" id="del_p" value="" onclick="set_form_action('deact_post')">Delete</button>
-                    </div>
                 </div>
                 <!--PopUp createPost-->
                 <div id="hiddenbox-nf">
-                    <div id="bg_box-nf">
-                        <div class="modal-header-nf">
-                            <div class="d-flex justify-content-between">
-                                <div class="p-2"><h1>Create Post</h1></div>
-                                <div class="p-2"><button type="button" class="btn btn-secondary btn-lg rounded-circle" class="close-button" onclick="hidebox()">&times;</button></div>
+                    <!--Add post-->
+                    <div id="add_p" style="display: none;">
+                        <div id="bg_box-nf">
+                            <div class="modal-header-nf">
+                                <div class="d-flex justify-content-between">
+                                    <div class="p-2"><h1>Create Post</h1></div>
+                                    <div class="p-2"><button type="button" class="btn btn-secondary btn-lg rounded-circle" class="close-button" onclick="hidebox()">&times;</button></div>
+                                </div>
+                            </div>
+                            <div class="create-post">
+                                    <form action="<?=base_url('Post_controller/addPost')?>" method="post" enctype="multipart/form-data">
+                                        <div class="add-post-content btn-block">
+                                            <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
+                                                <p>
+                                                    <label for="">Work Category</label>
+                                                    <select name="work" id="works">
+                                                        <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
+                                                            <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
+                                                        <?php }} ?>
+                                                    </select>
+                                                    <button type="button" class="btn btn-secondary" name="addWorkPost">+</button><br>
+
+                                                    <label for="">Description</label>
+                                                    <input type="text" name="description" id="desc" placeholder="Requirements" required /> <br>
+
+                                                    <label for="">Worker(s) needed</label>
+                                                    <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
+                                                    
+                                                    <label for="">Location</label>
+                                                    <input type="text" name="location" id="location" placeholder="Work location" required /> <br>
+                                                    
+                                                    <label for="">Minimum Payment</label>
+                                                    <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
+                                                    
+                                                    <label for="">Fixed</label>
+                                                    <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"> <br>
+                                                    
+                                                    <label for="">Maximum Payment</label>
+                                                    <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /> 
+                                                </p>
+                                            
+                                            <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                                            <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit">
+                                        </div>
+                                    </form>
                             </div>
                         </div>
-                        <div class="create-post">
-                                <form action="<?=base_url('Post_controller/addPost')?>" method="post" enctype="multipart/form-data">
-                                    <div class="add-post-content btn-block">
-                                        <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
-                                            <p>
-                                                <label for="">Work Category</label>
-                                                <select name="work" id="works">
-                                                    <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
-                                                        <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
-                                                    <?php }} ?>
-                                                </select>
-                                                <button type="button" class="btn btn-secondary" name="addWorkPost">+</button><br>
-
-                                                <label for="">Description</label>
-                                                <input type="text" name="description" id="desc" placeholder="Requirements" required /> <br>
-
-                                                <label for="">Worker(s) needed</label>
-                                                <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
-                                                
-                                                <label for="">Location</label>
-                                                <input type="text" name="location" id="location" placeholder="Work location" required /> <br>
-                                                
-                                                <label for="">Minimum Payment</label>
-                                                <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
-                                                
-                                                <label for="">Fixed</label>
-                                                <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"> <br>
-                                                
-                                                <label for="">Maximum Payment</label>
-                                                <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /> 
-                                            </p>
-                                        
-                                        <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                                        <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit">
-                                    </div>
-                                </form>
+                    </div>
+                        
+                    <!--Report post-->
+                    <div id="report_p" style="display: none;">
+                        <div id="bg_box-nf">
+                            <div class="modal-header-nf">
+                                <div class="d-flex justify-content-between">
+                                    <div class="p-2"><h1>Report Post</h1></div>
+                                    <div class="p-2"><button type="button" class="btn btn-secondary btn-lg rounded-circle" class="close-button" onclick="hidebox()">&times;</button></div>
+                                </div>
+                            </div>
+                            <div class="create-post">
+                                <br>
+                                Description:<br>
+                                <textarea id="r_desc" style="width:100%; height:150px;"></textarea><br>
+                                <button id="r_id" value="">Submit</button>
+                            </div>
                         </div>
                     </div>
                     <div id="blackbox-nf" onclick="hidebox()"></div>
@@ -109,7 +125,34 @@ else
 </body>
 
 <script>
+    var scrollLimit ,limit, offset;
+    $(document).ready(function(){
+        
+        scrollLimit = Math.max($(document).height(), $(window).height());
+        limit = 5;
+        offset = 1;
+        display_post_batch();
+    })
 
+    $(window).scroll(function(){
+
+        var current = window.scrollY;
+        var pos = current + window.innerHeight; 
+        //console.log("Limit: "+ scrollLimit +" | Current: " + pos);
+
+        if(pos >= scrollLimit) {
+            display_post_batch();
+        }
+    })
+
+    function display_post_batch(){
+        for(var i=0; i<limit; i++){
+            display_new_post();
+            //console.log(offset);
+            offset++;
+        }
+    }
+    // FOR ADD POST!! FOR ADD POST!! FOR ADD POST!!
     function set_min_pay(c){
         if(c.checked){
             document.getElementById("min_pay").disabled=true;
@@ -123,12 +166,14 @@ else
     }
     function AddPostPopUp(){
         document.getElementById("hiddenbox-nf").style.display="block";
+        document.getElementById("add_p").style.display="block";
         document.getElementById("hiddenbox-nf").style.animation="fadebox .3s reverse linear";
     }
     function hidebox(){
         document.getElementById("hiddenbox-nf").style.display="none";
+        document.getElementById("add_p").style.display="none";
+        document.getElementById("report_p").style.display="none";
     }
-
     function set_fixed(){
         var component = document.getElementById("min_pay");
 
@@ -138,19 +183,23 @@ else
             document.getElementById("max_pay_label").textContent="Exact Amount";
         }
     }
-
-    function set_form_action(action){
+    function set_form_action(action,id){
         var loc = "<?=base_url('Post_controller/"+action+"')?>";
         document.getElementById("post_form").action = loc;
+        document.getElementById("PostOptionMenu_"+id).remove();
         alert(loc);
     }
-    
     function edit_post(id){
-        document.getElementById("PostOptionMenu").style.display="none";
+        document.getElementById("PostOptionMenu_"+id).style.display="none";
         AddPostPopUp();
         var s_wid = "op_" + id;
 
         document.getElementById(s_wid).selected = true;
+    }
+
+    function report_post(id){
+        document.getElementById("hiddenbox-nf").style.display="block";
+        document.getElementById("report_p").style.display="block";
     }
 
     function applicant(id,uid){
@@ -175,7 +224,7 @@ else
     function display_new_post(){
         const theFunction = "<?=base_url('Post_controller/get_from_offset'); ?>";
         $.post(theFunction, {postIndex: offset, postLimit: limit}, function(data, status){
-
+            
             if(status=='success'){
                  
                 let text = data;
@@ -183,7 +232,6 @@ else
                 text = text.replace(']', '');
 
                 if(data != " "){
-
                     for(var x = 0; x<8; x++) text = text.replace('"', '');
 
                     const myArray = text.split(",");
@@ -192,15 +240,23 @@ else
                     postArray["work"] = myArray[1];
                     postArray["id"] = myArray[2];
                     postArray["name_id"] = myArray[3];
-            
-                    initPost(postArray);
                     
+                    postArray['requirements'] = myArray[4];
+                    postArray['worker_count'] = myArray[5];
+                    postArray['applicants'] = myArray[6];
+                    postArray['accepted'] = myArray[7];
+                    postArray['apply_status'] = myArray[8];
+
+                    postArray['location'] = myArray[9];
+                    postArray['min_pay'] = myArray[10];
+                    postArray['max_pay'] = myArray[11];
+                    postArray['timestamp'] = myArray[12];
+                    initPost(postArray);
+
                     // BIGGER DIV BETTER DIV; BIGGER BETTER
                     scrollLimit = Math.max($(document).height(), $(window).height());
                 }
-
             }
-
         })
     }
 
@@ -220,7 +276,6 @@ else
         var date = postArray['timestamp'];
         var apply_status = postArray['apply_status']; // if already applied
 
-
         /*
         console.log(
             "Name: "+name+
@@ -237,31 +292,80 @@ else
             "\nDate: "+date
         );
         */
-        
         let post = [];
 
         post["post_"+curID] = document.createElement("div");
         post["post_"+curID].id = "post_"+curID;
         post["post_"+curID].className = "main_post";
-        post["post_"+curID].style.height ="400px";
-        post["post_"+curID].style.width ="400px";
-        post["post_"+curID].style.marginBottom ="50px";
-        post["post_"+curID].style.backgroundColor ="lightblue";
         document.getElementById("result").appendChild(post["post_"+curID]);
+        
+        if( <?php echo $udata["id"];  ?> != owner) {
+            post["report_p_"+curID] = document.createElement("BUTTON");
+            post["report_p_"+curID].id = "report_p_"+curID;
+            post["report_p_"+curID].style.float = "right";
+            post["report_p_"+curID].innerHTML = "Report";
+            post["report_p_"+curID].addEventListener ("click", function() {
+                report_post(curID);
+            });
+            document.getElementById(post["post_"+curID].id).appendChild(post["report_p_"+curID]);
+        } else {
+            post["option_"+curID] = document.createElement("input");
+            post["option_"+curID].id = "option_"+curID;
+            post["option_"+curID].setAttribute("type", "button");
+            post["option_"+curID].setAttribute("value", "option");
+            post["option_"+curID].style.float = "right";
+            post["option_"+curID].addEventListener ("click", function() {
+                if(document.getElementById("PostOptionMenu_"+curID).style.display == "block"){
+                    document.getElementById("PostOptionMenu_"+curID).style.display = "none"
+                }else{
+                    document.getElementById("PostOptionMenu_"+curID).style.display="block";
+                }
+            });
+            document.getElementById(post["post_"+curID].id).appendChild(post["option_"+curID]);
+
+
+            post["PostOptionMenu_"+curID] = document.createElement("div");
+            post["PostOptionMenu_"+curID].id = "PostOptionMenu_"+curID;
+            post["PostOptionMenu_"+curID].style.float = "right";
+            post["PostOptionMenu_"+curID].style.marginTop = "30px";
+            post["PostOptionMenu_"+curID].style.marginRight = "-80px";
+            post["PostOptionMenu_"+curID].style.display = "none";
+
+            document.getElementById(post["post_"+curID].id).appendChild(post["PostOptionMenu_"+curID]);
+
+                post["edit_p_"+curID] = document.createElement("BUTTON");
+                post["edit_p_"+curID].id = "edit_p_"+curID;
+                post["edit_p_"+curID].setAttribute("value", curID);
+                post["edit_p_"+curID].innerHTML = "Edit";
+                post["edit_p_"+curID].addEventListener ("click", function() {
+                    edit_post(curID);
+                });
+                document.getElementById(post["PostOptionMenu_"+curID].id).appendChild(post["edit_p_"+curID]);
+
+                post["del_p_"+curID] = document.createElement("BUTTON");
+                post["del_p_"+curID].id = "del_p_"+curID;
+                post["del_p_"+curID].setAttribute("value", curID);
+                post["del_p_"+curID].innerHTML = "Delete";
+                post["del_p_"+curID].addEventListener ("click", function() {
+                     set_form_action('deact_post',curID);
+                });
+                document.getElementById(post["PostOptionMenu_"+curID].id).appendChild(post["del_p_"+curID]);
+            
+        }
+
+        post["a_"+curID] = document.createElement("a");
+        post["a_"+curID].id = "a_"+curID;
+        post["a_"+curID].href = 'Profilepage?id='+curID;
+        document.getElementById(post["post_"+curID].id).appendChild(post["a_"+curID]);
 
         post["post_titlebar_"+curID] = document.createElement("div");
-        post["post_titlebar_"+curID].id = "post_titlebar_"+curID;
-        post["post_titlebar_"+curID].style.height ="100px";
-        post["post_titlebar_"+curID].style.width ="100%";
-        post["post_titlebar_"+curID].style.backgroundColor ="grey";
-        document.getElementById(post["post_"+curID].id).appendChild(post["post_titlebar_"+curID]);
+        post["post_titlebar_"+curID].id = "post_titlebar"+curID;
+        post["post_titlebar_"+curID].className = "post_titlebar";
+        document.getElementById(post["a_"+curID].id).appendChild(post["post_titlebar_"+curID]);
 
         post["user_image_"+curID] = document.createElement("div");
         post["user_image_"+curID].id = "user_image"+curID;
         post["user_image_"+curID].className = "userImage";
-        post["user_image_"+curID].style.height ="50px";
-        post["user_image_"+curID].style.width ="50px";
-        post["user_image_"+curID].style.backgroundColor ="red";
         document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["user_image_"+curID]);
 
         post["name_"+curID] = document.createElement("p");
@@ -269,23 +373,11 @@ else
         post["name_"+curID].innerHTML = name+" needs " + work;
         document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["name_"+curID]);
         
-        if( <?php echo $udata["id"];  ?> == owner) {
+        if( <?php echo $udata["id"];  ?> != owner) {
             
-            post["option_"+curID] = document.createElement("input");
-            post["option_"+curID].id = "option_"+curID;
-            post["option_"+curID].setAttribute("type", "button");
-            post["option_"+curID].setAttribute("value", "option");
-            post["option_"+curID].style.float = "right";
-            post["option_"+curID].addEventListener ("click", function() {
-                document.getElementById("edit_p").value=curID;
-                document.getElementById("del_p").value=curID;
-                document.getElementById("PostOptionMenu").style.display="block";
-            });
-            document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["option_"+curID]);
-            
-        }else {
             post["apply_"+curID] = document.createElement("input"); 
             post["apply_"+curID].id = "apply_"+curID;
+            post["apply_"+curID].className = "btn btn-primary btn-lg";
             post["apply_"+curID].setAttribute("type", "button");
             post["apply_"+curID].setAttribute("value", "Apply");
             post["apply_"+curID].style.float = "right";
@@ -306,12 +398,7 @@ else
 
         post["container_"+curID] = document.createElement("div");
         post["container_"+curID].id = "container_"+curID;
-        post["container_"+curID].style.height ="270px";
-        post["container_"+curID].style.width ="370px";
-        post["container_"+curID].style.marginTop ="15px";
-        post["container_"+curID].style.marginLeft ="15px";
-        post["container_"+curID].style.padding ="15px";
-        post["container_"+curID].style.backgroundColor ="red";
+        post["container_"+curID].className = "post-description-container";
         post["container_"+curID].innerHTML += 
         "Req: "+req+
         "<br>Workers #: "+w_count+
@@ -322,9 +409,7 @@ else
         "<br>Maximum Pay: "+max_p+
         "<br>Date: "+date+"<br><br>";
         document.getElementById(post["post_"+curID].id).appendChild(post["container_"+curID]);
-
     }
 </script>
+
 <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</html>

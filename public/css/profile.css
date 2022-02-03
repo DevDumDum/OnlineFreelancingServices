@@ -515,6 +515,7 @@ input:checked + .slider:before {
     /* margin-top: 12rem; */
     width: 70%;
     /* height: auto;*/
+    float: left;
 }
 
 .card-title{
@@ -602,8 +603,10 @@ input:checked + .slider:before {
     display: flex;
     flex-direction: column;
     position: inherit;
-    margin-top: -50%;
     margin-left: 73%;
+    left: 0;
+    top: 0;
+    min-height: 600px;
 }
 
 
