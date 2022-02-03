@@ -203,7 +203,6 @@ else
         }
     }
     function set_form_action(action,id){
-        var loc = "<?=base_url('Post_controller/"+action+"')?>";
         document.getElementById("post_form").action = loc;
         document.getElementById("PostOptionMenu_"+id).remove();
         alert(loc);
@@ -395,26 +394,26 @@ else
             post["PostOptionMenu_"+curID].style.marginTop = "30px";
             post["PostOptionMenu_"+curID].style.marginRight = "-80px";
             post["PostOptionMenu_"+curID].style.display = "none";
-
             document.getElementById(post["post_"+curID].id).appendChild(post["PostOptionMenu_"+curID]);
 
-                post["edit_p_"+curID] = document.createElement("BUTTON");
-                post["edit_p_"+curID].id = "edit_p_"+curID;
-                post["edit_p_"+curID].setAttribute("value", curID);
-                post["edit_p_"+curID].innerHTML = "Edit";
-                post["edit_p_"+curID].addEventListener ("click", function() {
-                    edit_post(curID);
-                });
-                document.getElementById(post["PostOptionMenu_"+curID].id).appendChild(post["edit_p_"+curID]);
+            post["edit_p_"+curID] = document.createElement("BUTTON");
+            post["edit_p_"+curID].id = "edit_p_"+curID;
+            post["edit_p_"+curID].setAttribute("value", curID);
+            post["edit_p_"+curID].innerHTML = "Edit";
+            post["edit_p_"+curID].addEventListener ("click", function() {
+                edit_post(curID);
+            });
+            document.getElementById(post["PostOptionMenu_"+curID].id).appendChild(post["edit_p_"+curID]);
 
-                post["del_p_"+curID] = document.createElement("BUTTON");
-                post["del_p_"+curID].id = "del_p_"+curID;
-                post["del_p_"+curID].setAttribute("value", curID);
-                post["del_p_"+curID].innerHTML = "Delete";
-                post["del_p_"+curID].addEventListener ("click", function() {
-                     set_form_action('deact_post',curID);
-                });
-                document.getElementById(post["PostOptionMenu_"+curID].id).appendChild(post["del_p_"+curID]);
+            post["del_p_"+curID] = document.createElement("BUTTON");
+            post["del_p_"+curID].id = "del_p_"+curID;
+            post["del_p_"+curID].setAttribute("value", curID);
+            post["del_p_"+curID].innerHTML = "Delete";
+            post["del_p_"+curID].addEventListener ("click", function() {
+                    set_form_action('deact_post',curID);
+                    $(post["post_"+curID]).remove();
+            });
+            document.getElementById(post["PostOptionMenu_"+curID].id).appendChild(post["del_p_"+curID]);
             
         }
 
