@@ -23,7 +23,7 @@ else
                         <div class="card-body">
                             <p>
                             Type of Work:
-                            <select name="Work">
+                            <select name="Work" id="work-filter">
                                 <option value="null">----</option>
                                     <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
                                         <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
@@ -32,11 +32,9 @@ else
                             </p>             
                         <!--Location:-->
                         <div class="location-filter">
-                            <p>Location: <input type="text" name="location"></p>
-                            <p>Province: <input type="text" name="province"></p>
-                            <p>City: <input type="text" name="City"></p> 
+                            <p>Location: <input type="text" name="location" id="location-filter-t"></p>
                         </div>
-                        <button type="button" class="btn btn-success work-category-apply" name="category">Apply</button> 
+                        <button type="button" class="btn btn-success work-category-apply" name="category" id="work-filter-btn">Apply</button> 
                     </div>
                 </div>
                 <div class="card bg-light mb-3">
@@ -49,7 +47,7 @@ else
                     </div>
                 </div>
             </div>
-            <div class="col-8 newsfeed-side">
+            <div class="col-8 newsfeed-side" id="newsfeed-div">
                 <!--AddPost button display create post at line 23 event-->
                 <div class="card bg-light-custom mb-3 card-width">
                     <div class="card-header"><h1>Finding A Job? A worker? Post now!</h1></div>
@@ -118,6 +116,7 @@ else
 </body>
 
 <script>
+
     var scrollLimit ,limit, offset;
     $(document).ready(function(){
         
@@ -126,7 +125,7 @@ else
         offset = 1;
         display_post_batch();
     })
-
+    
     $(window).scroll(function(){
 
         var current = window.scrollY;
@@ -141,10 +140,21 @@ else
     function display_post_batch(){
         for(var i=0; i<limit; i++){
             display_new_post();
-            //console.log(offset);
             offset++;
         }
     }
+
+    function display_post_batchf(){
+        
+        var l = $("#location-filter-t").val();
+        var w = $('#work-filter').val();
+
+        for(var i=0; i<limit; i++){
+            display_new_postf(l,w);
+            offset++;
+        }
+    }
+
     // FOR ADD POST!! FOR ADD POST!! FOR ADD POST!!
     function set_min_pay(c){
         if(c.checked){
@@ -204,12 +214,57 @@ else
         console.log("Applied.");
     }
 
+    function createResultContainer(){
+        var res = document.createElement("div");
+        $(res).attr('id', 'result')
+        $("#newsfeed-div").append(res);
+    }
+
     function display_new_post(){
         const theFunction = "<?=base_url('Post_controller/get_from_offset'); ?>";
         $.post(theFunction, {postIndex: offset, postLimit: limit}, function(data, status){
             
             if(status=='success'){
                  
+                let text = data;
+                text = text.replace('[', '');
+                text = text.replace(']', '');
+
+                if(data != " "){
+                    for(var x = 0; x<8; x++) text = text.replace('"', '');
+
+                    const myArray = text.split(",");
+                    var postArray = [];
+                    postArray["name"] = myArray[0];
+                    postArray["work"] = myArray[1];
+                    postArray["id"] = myArray[2];
+                    postArray["name_id"] = myArray[3];
+                    
+                    postArray['requirements'] = myArray[4];
+                    postArray['worker_count'] = myArray[5];
+                    postArray['applicants'] = myArray[6];
+                    postArray['accepted'] = myArray[7];
+                    postArray['apply_status'] = myArray[8];
+
+                    postArray['location'] = myArray[9];
+                    postArray['min_pay'] = myArray[10];
+                    postArray['max_pay'] = myArray[11];
+                    postArray['timestamp'] = myArray[12];
+                    initPost(postArray);
+
+                    // BIGGER DIV BETTER DIV; BIGGER BETTER
+                    scrollLimit = Math.max($(document).height(), $(window).height());
+                }
+            }
+        })
+    }
+
+    function display_new_postf(l, w){
+        const theFunction = "<?=base_url('Post_controller/get_from_offset_filtered'); ?>";
+        $.post(theFunction, {postIndex: offset, postLimit: limit, location:l, work: w}, function(data, status){
+            
+            if(status=='success'){
+                
                 let text = data;
                 text = text.replace('[', '');
                 text = text.replace(']', '');
@@ -387,6 +442,7 @@ else
             searchList.append(li);
         }
     }
+    
 
     var searchContent;
     $(document).ready(function(){
@@ -416,6 +472,28 @@ else
             //$('#search-id').attr('value', $(this).attr('id'));
             alert();
         });
+
+        $("#work-filter-btn").click(function(){
+            alert();
+            $('#result').remove();
+            offset=1;
+            
+            var l = $("#location-filter-t").val();
+            var w = $('#work-filter').val();
+
+            if(l||w){
+                
+                createResultContainer();
+                display_post_batchf();
+                alert(w);
+            }else {
+                // IF NO VAL. DEFAULT
+                createResultContainer();
+                display_post_batch();
+
+                alert();
+            }
+        })
 
     });
     

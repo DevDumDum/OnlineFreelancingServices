@@ -161,4 +161,47 @@ class Post_model extends CI_Model{
       $q = $this->db->get('post')->result_array();
       return $q;
    }
+   
+   public function get_from_offset_l($offset, $location){
+      $offset -=1;
+      
+      $this->db->select('ID, poster_ID, profession_ID, 
+      worker_count, requirements, location, timestamp,
+      min_pay, max_pay, status, applicants, accepted');
+      $this->db->limit(1, $offset);
+      $this->db->where('status >', 0);
+      $this->db->like('location', $location);
+      $this->db->order_by('timestamp', 'DESC');
+      $q = $this->db->get('post')->result_array();
+      return $q;
+   }
+   
+   public function get_from_offset_w($offset, $work_ID){
+      $offset -=1;
+      
+      $this->db->select('ID, poster_ID, profession_ID, 
+      worker_count, requirements, location, timestamp,
+      min_pay, max_pay, status, applicants, accepted');
+      $this->db->limit(1, $offset);
+      $this->db->where('status >', 0);
+      $this->db->where('profession_ID', $work_ID);
+      $this->db->order_by('timestamp', 'DESC');
+      $q = $this->db->get('post')->result_array();
+      return $q;
+   }
+   
+   public function get_from_offset_lw($offset, $location, $work_ID){
+      $offset -=1;
+      
+      $this->db->select('ID, poster_ID, profession_ID, 
+      worker_count, requirements, location, timestamp,
+      min_pay, max_pay, status, applicants, accepted');
+      $this->db->limit(1, $offset);
+      $this->db->where('status >', 0);
+      $this->db->like('location', $location);
+      $this->db->where('profession_ID', $work_ID);
+      $this->db->order_by('timestamp', 'DESC');
+      $q = $this->db->get('post')->result_array();
+      return $q;
+   }
 }
