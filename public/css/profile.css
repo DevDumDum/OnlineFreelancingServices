@@ -610,3 +610,87 @@ input:checked + .slider:before {
 }
 
 
+
+/*THIS IS THE POP UP*/
+#bg_box-profile{
+    position: fixed;
+    z-index: 0;
+    background-color: rgb(255, 255, 255);
+    height: 300px;
+    width: 40%;
+    margin-left: 1rem;
+    margin-top: 20rem;
+    border-radius: 5px;
+}
+#blackbox{
+    --gap: 15px;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: var(--gap);
+    background: rgba(0, 0, 0, 0.4);
+}
+#hiddenbox-profile{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: none;
+    z-index: 1;
+}
+@keyframes fadebox{
+    0%{opacity: 100%;}
+    100%{opacity: 0%;}
+}
+.modal-header-profile{
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(241, 234, 234);
+}
+.modal-header-profile .title{
+    font-size: 2rem;
+    font-weight: bold;
+}
+.modal-header-profile .close-button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.description-message-1 {
+    position: absolute;
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    padding-top: 3rem;
+}
+
+.description-message-2 {
+    position: absolute;
+    padding-left: 7rem;
+    font-size: 1.5rem;
+    padding-top: 6rem;
+}
+
+.description-message-3{
+    position: absolute;
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    padding-top: 10rem;
+}
+.description-message-4{
+    position: absolute;
+    padding-left: 16rem;
+    font-size: 1.5rem;
+    padding-top: 13rem;
+}
