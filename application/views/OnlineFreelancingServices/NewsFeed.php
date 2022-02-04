@@ -143,9 +143,6 @@ else
       state: STATE.IDLE
       
     };
-
-    newsfeed.state = STATE.ADD;
-    
     $(window).scroll(function(){
 
         var current = window.scrollY;
@@ -156,14 +153,12 @@ else
             display_post_batch();
         }
     })
-
     function display_post_batch(){
         for(var i=0; i<limit; i++){
             display_new_post();
             offset++;
         }
     }
-
     function display_post_batchf(){
         
         var l = $("#location-filter-t").val();
@@ -174,8 +169,6 @@ else
             offset++;
         }
     }
-
-    // FOR ADD POST!! FOR ADD POST!! FOR ADD POST!!
     function set_min_pay(c){
         if(c.checked){
             document.getElementById("min_pay").disabled=true;
@@ -209,7 +202,6 @@ else
             document.getElementById("max-pay-l").textContent="Exact Amount";
         }
     }
-
     function get_post(id){
         console.log(newsfeed.state);
         
@@ -246,7 +238,6 @@ else
 
         });
     }
-
     function add_post(){
 
         $.post("<?=base_url('Post_controller/add_post')?>",
@@ -267,14 +258,12 @@ else
             window.location.reload();
         });
     }
-
     function edit_post(id){
         newsfeed.state = STATE.EDIT;
 
         get_post(id);
         AddPostPopUp();
     }
-
     function update_post(){
           
         $.post("<?=base_url('Post_controller/update_post')?>",
@@ -294,7 +283,13 @@ else
             window.location.reload();
         });
     }
+    function delete_post(id){
+        $.post("<?=base_url('Post_controller/deactivate_post')?>", {post_ID: id}, function(data){
+            alert("Delete requested.");
+        });
 
+        window.location.reload();
+    }
     function reset_post_fields(){
         $('#post-id').attr("value", "");
         $('#desc').attr("value", "");
@@ -305,12 +300,10 @@ else
         $('max-pay-l').text("Exact payment: ")
         $('#max_pay').attr("value", "");
     }
-
     function report_post(id){
         document.getElementById("hiddenbox-nf").style.display="block";
         document.getElementById("report_p").style.display="block";
     }
-
     function applicant(id,uid){
         $.ajax({
             type: 'POST',
@@ -329,13 +322,11 @@ else
         });
         console.log("Applied.");
     }
-
     function createResultContainer(){
         var res = document.createElement("div");
         $(res).attr('id', 'result')
         $("#newsfeed-div").append(res);
     }
-
     function display_new_post(){
         const theFunction = "<?=base_url('Post_controller/get_from_offset'); ?>";
         $.post(theFunction, {postIndex: offset, postLimit: limit}, function(data, status){
@@ -374,7 +365,6 @@ else
             }
         })
     }
-
     function display_new_postf(l, w){
         const theFunction = "<?=base_url('Post_controller/get_from_offset_filtered'); ?>";
         $.post(theFunction, {postIndex: offset, postLimit: limit, location:l, work: w}, function(data, status){
@@ -413,8 +403,6 @@ else
             }
         })
     }
-  
-
     function initPost(postArray){
         var name = postArray["name"];
         var work = postArray["work"];
@@ -478,7 +466,6 @@ else
             });
             document.getElementById(post["post_"+curID].id).appendChild(post["option_"+curID]);
 
-
             post["PostOptionMenu_"+curID] = document.createElement("div");
             post["PostOptionMenu_"+curID].id = "PostOptionMenu_"+curID;
             post["PostOptionMenu_"+curID].style.float = "right";
@@ -502,10 +489,10 @@ else
             post["del_p_"+curID].setAttribute("value", curID);
             post["del_p_"+curID].innerHTML = "Delete";
             post["del_p_"+curID].addEventListener ("click", function() {
-                    set_form_action('deact_post',curID);
+                    delete_post(curID);
             });
             document.getElementById(post["PostOptionMenu_"+curID].id).appendChild(post["del_p_"+curID]);
-            
+             
         }
 
         post["a_"+curID] = document.createElement("a");
@@ -566,7 +553,6 @@ else
         "<br>Date: "+date+"<br><br>";
         document.getElementById(post["post_"+curID].id).appendChild(post["container_"+curID]);
     }
-
     function searchUser(){
         searchContent=$('#search-user').val();
         var searchList = $('#search-results');
@@ -599,7 +585,6 @@ else
             searchList.append(li);
         }
     }
-    
 
     var searchContent;
     $(document).ready(function(){

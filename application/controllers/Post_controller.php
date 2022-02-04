@@ -36,16 +36,14 @@ class Post_controller extends CI_Controller {
         if($this->Post_model->add_post($data)) redirect(base_url('NewsFeed'));
     }
 
-    public function deact_post(){
+    public function deactivate_post(){
 
         if($_SERVER['REQUEST_METHOD']=='POST'){
 
             $post = $this->input->post("post_ID");
-
             $this->load->model('Admin/Verification_model');
-            $this->Verification_model->new_ver($post, 'post');
-
-            redirect(base_url('NewsFeed'));
+            $q = $this->Verification_model->new_ver($post, 'post');
+            return $q;
         }
     }
 
@@ -271,8 +269,6 @@ class Post_controller extends CI_Controller {
 
     public function update_post(){    
         
-        
-
         $post_u = array(
             'worker_count' => $_POST['worker_count'],
             'requirements' => $_POST['requirements'],
