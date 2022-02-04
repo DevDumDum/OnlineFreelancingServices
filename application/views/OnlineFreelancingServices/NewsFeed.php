@@ -203,9 +203,9 @@ else
         }
     }
     function set_form_action(action,id){
-        document.getElementById("post_form").action = loc;
-        document.getElementById("PostOptionMenu_"+id).remove();
-        alert(loc);
+        $.post("<?=base_url('Post_controller/')?>"+action, {post_ID: id}, function(data){
+            window.location.reload();
+        });
     }
     function edit_post(id){
         document.getElementById("PostOptionMenu_"+id).style.display="none";
@@ -411,7 +411,6 @@ else
             post["del_p_"+curID].innerHTML = "Delete";
             post["del_p_"+curID].addEventListener ("click", function() {
                     set_form_action('deact_post',curID);
-                    $(post["post_"+curID]).remove();
             });
             document.getElementById(post["PostOptionMenu_"+curID].id).appendChild(post["del_p_"+curID]);
             
