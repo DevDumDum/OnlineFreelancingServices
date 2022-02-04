@@ -163,10 +163,9 @@ class Post_controller extends CI_Controller {
         }else {
             $posts = $this->Post_model->get_from_offset($offset);
         }
-        
 
         //echo '<pre>';
-        //print_r($posts);
+        print_r($posts);
         
         // NEW_POST[] = {POSTER_NAME, PROFFESION_NAME, POST_ID, POSTER_ID}
         $n_post=array();

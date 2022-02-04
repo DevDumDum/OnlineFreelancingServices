@@ -152,7 +152,7 @@ else
         if(pos >= scrollLimit) {
             display_post_batch();
         }
-    })
+    });
     function display_post_batch(){
         for(var i=0; i<limit; i++){
             display_new_post();
@@ -628,32 +628,43 @@ else
             
             var l = $("#location-filter-t").val();
             var w = $('#work-filter').val();
+            
+            createResultContainer();
 
             if(l||w){
                 
-                createResultContainer();
                 display_post_batchf();
                 alert(w);
             }else {
                 // IF NO VAL. DEFAULT
-                createResultContainer();
                 display_post_batch();
-
                 alert();
             }
         });
 
         $('#submit-post').click(function(){
-            console.log("Newsfeed: "+newsfeed.state);
+            var trim = "<script>";
+            var validated = true;
+            var id = ($('#post-id').val()).replace(trim, '');
+            var desc = ($('#desc').val()).replace(trim, '');
+            var count = ($('#worker_count').val()).replace(trim, '');
+            var loc = ($('#location').val()).replace(trim, '');
+            var maxp = ($('#max_pay').val()).replace(trim, '');
 
-            if(newsfeed.state == STATE.EDIT) {
-                update_post();
-            }else if(newsfeed.state == STATE.ADD){
-                add_post();
+            if(desc == null || desc == "") validated = false;
+            if(count == null || count == "" || isNaN(count)) validated = false;
+            if(loc == null || loc == "") validated = false;
+            if(maxp == null || maxp == "" || isNaN(maxp)) validated = false;
+
+            if(validated){
+                if(newsfeed.state == STATE.EDIT) update_post();
+                else if(newsfeed.state == STATE.ADD) add_post();
+                
+                reset_post_fields();
+                newsfeed.state = STATE.IDLE;
+            }else {
+                alert("Please correctly fill up all required fields!");
             }
-
-            reset_post_fields();
-            newsfeed.state = STATE.IDLE;
         });
 
         $('#add-post-btn').click(function(){
