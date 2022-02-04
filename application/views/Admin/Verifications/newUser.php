@@ -88,7 +88,7 @@ if($this->session->userdata('UserLoginSession')){
             var id = "theTr_" + verify_id.toString();
             $.post('<?=base_url('Verification_controller/accept_ver');?>', {v_id: verify_id, u_id: user_id}, function(data){
                 alert(data.msg);
-                document.getElementById(id).style.display="none";
+                document.getElementById(id).remove();
             }, 'JSON');
         }
         
@@ -96,7 +96,7 @@ if($this->session->userdata('UserLoginSession')){
             var id = "theTr_" + verify_id.toString();
             $.post('<?=base_url('Verification_controller/reject_ver');?>', {v_id: verify_id, u_id: user_id}, function(data){
                 alert(data.msg);
-                document.getElementById(id).style.display="none";
+                document.getElementById(id).remove();
             }, 'JSON');
         }
 

@@ -1,3 +1,11 @@
+<?php 
+if($this->session->userdata('UserLoginSession')){
+    $udata = $this->session->userdata('UserLoginSession');
+    $page = $this->session->userdata('page');
+}else{
+    redirect(base_url('AdminAuth/AdminLogin'));
+}
+?>
 <body>
     <!--NAVBAR-->
     <header>
@@ -31,10 +39,22 @@
         </div>
         <!---NEW USER TABLE-->
         <div class="tables">
+        <?php if($udata['user_type']=='admin'){?>
+                    <select id="comboA" onchange="getComboA(this);">
+                        <?php if($page === 'Verification-Moderator') {?>
+                            <option value="mod">Mod</option>
+                            <option value="user">User</option>
+                        <?php } else { ?>
+                            <option value="user">User</option>
+                            <option value="mod">Mod</option>
+                        <?php } ?>
+                    </select>
+                <?php } ?>
             <table class = "table table-dark table-hover center">
                 <tr>
-                <th>User</th>
-                <th> </th>
+                    <th class="headings">User</th>
+                    <th class="heading_desc">Details</th>
+                    <th> </th>
                 </tr>
             
                 <tr>
@@ -42,6 +62,7 @@
                 <td onclick="newDetails()">
                     <span>Alfreds Futterskie</span>
                 </td>
+                <td></td>
                 <td class="status">
                     <button class="editbtn1" style="cursor: pointer;">Ban</button>
                     <button class="editbtn2" style="cursor: pointer;">Ignore</button>
@@ -51,6 +72,7 @@
                 <td onclick="newDetails()">
                     <span>Centro comercial</span>
                 </td>
+                <td></td>
                 <td class="status">
                     <button class="editbtn1" style="cursor: pointer;">Ban</button>
                     <button class="editbtn2" style="cursor: pointer;">Ignore</button>
@@ -60,6 +82,7 @@
                 <td onclick="newDetails()">
                     <span>Ernst Handel</span>
                 </td>
+                <td></td>
                 <td class="status">
                     <button class="editbtn1" style="cursor: pointer;">Ban</button>
                     <button class="editbtn2" style="cursor: pointer;">Ignore</button>
@@ -69,6 +92,7 @@
                 <td onclick="newDetails()">
                     <span>Island Trading</span>
                 </td>
+                <td></td>
                 <td class="status">
                     <button class="editbtn1" style="cursor: pointer;">Ban</button>
                     <button class="editbtn2" style="cursor: pointer;">Ignore</button>
