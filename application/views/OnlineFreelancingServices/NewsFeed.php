@@ -208,17 +208,14 @@ else
         var uid = <?php echo $udata["id"]; ?>;
         $.ajax({
             type: 'POST',
-            url:"<?=base_url('OnlineFreelancingServices/report_p');?>",
-            data: {r_id : id , desc : desc},
+            url:"<?=base_url('OnlineFreelancingServices/report');?>",
+            data: {r_id : id , desc : desc, type: "report-p"},
             success: function(response) {
-                // if(response.status == "success"){
-                //     alert("Application Request sent!");
-                // }else{
-                //     alert("Post already reported");
-                // }
                 alert(response);
                 document.getElementById("r_desc").value="";
                 document.getElementById("r_id").value="";
+                document.getElementById("hiddenbox-nf").style.display="none";
+                document.getElementById("report_p").style.display="none";
             }
         });
     }

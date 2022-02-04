@@ -141,21 +141,32 @@ class Post_model extends CI_Model{
       return $this->db->get('post')->result_array();
    }
 
-   public function report_post($data,$type) {
-      if($this->db->insert('report', $data)) {
-         $this->db->select('ID, id_reported');
-         $this->db->where('id_reported', $data['id_reported']);
-         $cur_id = $this->db->get('report')->result_array();
+   public function report_post($data,$type,$uid) {
+      $this->db->select('ID');
+      $this->db->where('id_reported', $data['id_reported']);
+      $this->db->where('user_id', $uid);
+      $cur_id = $this->db->get('report')->result_array();
+      if((int)$cur_id > 0){
+         $response = "Already reported";
+      }else{
 
-         $data2 = array(
-            'verification_type' => $type,
-            'content_ID' => (int)$cur_id
-        );
-        $this->db->insert('verification', $data2);
+         if($this->db->insert('report', $data)) {
 
-        $response = "success";
-      } else {
-         $response = "failed";
+            $this->db->select('ID');
+            $this->db->where('id_reported', $data['id_reported']);
+
+            $cur_id = $this->db->get('report')->result_array();
+
+            $data2 = array(
+               'verification_type' => $type,
+               'content_ID' => (int)$cur_id[0]["ID"]
+            );
+            $this->db->insert('verification', $data2);
+
+            $response = "Reported successfully";
+         } else {
+            $response = "Error";
+         }
       }
       return $response;
    }

@@ -189,12 +189,13 @@ class OnlineFreelancingServices extends CI_Controller{
             //redirect(base_url('Profilepage'));
         //else //return $this->db->insert('post.applicants', 0000);           
     }
-    public function report_p(){
+    public function report(){
         header('content-type: text/json');
         $this->load->model('OFS/Post_model');
         $udata = $this->session->userdata('UserLoginSession');
         $uid = $udata['id'];
         $rid = $this->input->post('r_id');
+        $type = $this->input->post('type');
         $desc = $this->input->post('desc');
         
         $data = array(
@@ -202,7 +203,8 @@ class OnlineFreelancingServices extends CI_Controller{
             'user_id' => $uid,
             'description' => $desc
         );
-        $result = $this->Post_model->report_post($data, "report-p");
+
+        $result = $this->Post_model->report_post($data, $type, $uid);
         echo json_encode($result);
     }
 
