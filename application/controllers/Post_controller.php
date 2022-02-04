@@ -154,7 +154,7 @@ class Post_controller extends CI_Controller {
         else $offset = 0;
 
         $posts = array();
-
+        
         if(isset($_POST['location']) && isset($_POST['work_ID'])){
             $post = $this->Post_model->get_from_offset_lw($offset, $_POST['location'], $_POST['work_ID']);
         }else if (isset($_POST['location']) && !isset($_POST['work_ID'])){
@@ -252,6 +252,10 @@ class Post_controller extends CI_Controller {
         
         if(empty($n_post)) echo " ";
         else echo json_encode($n_post);
+    }
+
+    public function edit_post(){
+
     }
 
 }
