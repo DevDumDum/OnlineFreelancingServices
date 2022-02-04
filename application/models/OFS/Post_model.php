@@ -6,12 +6,10 @@ class Post_model extends CI_Model{
       parent::__construct();
       $this->load->helper('url');
       $this->load->model('OFS/Post_model');
-  }
+   }
 
    public function get_table(){
-      $this->db->select('ID, poster_ID, profession_ID, 
-      worker_count, requirements, location, timestamp,
-      min_pay, max_pay, status, applicants, accepted');
+      $this->db->select('*');
 
         return $table = $this->db->get('post')->result_array();
    }
@@ -140,15 +138,35 @@ class Post_model extends CI_Model{
       min_pay, max_pay, status');
 
       $this->db->where('status >', 0);
-      return $table = $this->db->get('post')->result_array();
- }
+      return $this->db->get('post')->result_array();
+   }
 
-   
+   public function report_post($data,$type) {
+      if($this->db->insert('report', $data)) {
+         $this->db->select('ID, id_reported');
+         $this->db->where('id_reported', $data['id_reported']);
+         $cur_id = $this->db->get('report')->result_array();
 
-   public function add_post($data){
-      if($this->db->insert('post', $data))
-          return true;
-      else return false;
+         $data2 = array(
+            'verification_type' => $type,
+            'content_ID' => (int)$cur_id
+        );
+        $this->db->insert('verification', $data2);
+
+        $response = "success";
+      } else {
+         $response = "failed";
+      }
+      return $response;
+   }
+
+   public function add_post($data) {
+      if($this->db->insert('post', $data)) {
+         $response = true;
+      } else {
+         $response = false;
+      }
+      return $response;
    }
 
    public function get_from_offset($offset){
