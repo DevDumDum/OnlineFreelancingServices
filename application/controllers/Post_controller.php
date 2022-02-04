@@ -32,8 +32,6 @@ class Post_controller extends CI_Controller {
 
         if($this->Post_model->add_post($data)){
             redirect(base_url('NewsFeed'));
-        }else {
-
         }
     }
 

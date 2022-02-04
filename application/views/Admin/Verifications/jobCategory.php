@@ -59,7 +59,7 @@
             var id = "theTr_" + verify_id.toString();
             $.post('<?=base_url('Verification_controller/accept_ver_prof');?>', {v_id: verify_id, u_id: prof_id}, function(data){
                 alert(data.msg);
-                document.getElementById(id).style.display="none";
+                document.getElementById(id).remove();
             }, 'JSON');
         }
         
@@ -67,7 +67,7 @@
             var id = "theTr_" + verify_id.toString();
             $.post('<?=base_url('Verification_controller/reject_ver_prof');?>', {v_id: verify_id, u_id: prof_id}, function(data){
                 alert(data.msg);
-                document.getElementById(id).style.display="none";
+                document.getElementById(id).remove();
             }, 'JSON');
         }
     </script>
