@@ -9,15 +9,16 @@ class Post_controller extends CI_Controller {
         $this->load->model('OFS/Post_model');
     }
     
-    public function addPost(){
-        $poster_id = $this->input->post('poster_name');
-        $work = $this->input->post('work');
-        $desc = $this->input->post('description');
-        $w_count = $this->input->post('worker-count');
-        $loc = $this->input->post('location');
-        $min_p = $this->input->post('min-pay');
-        $max_p = $this->input->post('max-pay');
+    public function add_post(){
+        $poster_id = $_POST['poster_ID'];
+        $work = $_POST['work'];
+        $desc = $_POST['desc'];
+        $w_count = $_POST['worker_count'];
+        $loc = $_POST['location'];
+        $min_p = ($_POST['min_pay']>0)? $_POST['min_pay'] : null; 
+        $max_p = $_POST['max_pay'];
         $status = 1;
+        $time = time();
         //echo date("M j Y", $timestamp)." ".date("h:iA", $timestamp);
         
         $data = array(
@@ -29,7 +30,7 @@ class Post_controller extends CI_Controller {
             'min_pay' => $min_p,
             'max_pay' => $max_p,
             'status' => $status,
-            'timestamp'=> time()
+            'timestamp'=> $time
         );
 
         if($this->Post_model->add_post($data)) redirect(base_url('NewsFeed'));
@@ -268,7 +269,9 @@ class Post_controller extends CI_Controller {
      
     }
 
-    public function update_post(){        
+    public function update_post(){    
+        
+        
 
         $post_u = array(
             'worker_count' => $_POST['worker_count'],
@@ -278,7 +281,7 @@ class Post_controller extends CI_Controller {
             'max_pay' => $_POST['max_pay']
         );
 
-        $q = $this->Post_model->update_post(1, $post_u);
+        $q = $this->Post_model->update_post($_POST['post_ID'], $post_u);
         echo $q;
     }
 }

@@ -221,7 +221,7 @@ class Post_model extends CI_Model{
       
       $this->db->set($data);
       $this->db->where('ID', $id);
-      $this->db->update('posts');
+      $this->db->update('post');
 
       if($this->db->affected_rows() > 0) return true;
       else return false;

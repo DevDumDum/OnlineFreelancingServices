@@ -100,6 +100,7 @@ class OFS_model extends CI_Model{
 	public function search_user($nameHolder){
 		$this->db->select('ID, full_name');
 		$this->db->like('full_name', $nameHolder);
+		$this->db->limit(5);
 
 		$q = $this->db->get('users');
 

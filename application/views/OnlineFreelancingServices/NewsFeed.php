@@ -51,7 +51,7 @@ else
                 <div class="card bg-light-custom mb-3 card-width">
                     <div class="card-header"><h1>Finding A Job? A worker? Post now!</h1></div>
                         <div class="card-body">
-                        <button type="button" class="btn btn-primary btn-lg" onclick="AddPostPopUp()">Add Post</button>
+                        <button id="add-post-btn" type="button" class="btn btn-primary btn-lg">Add Post</button>
                     </div>
                 </div>
                 <!--PopUp createPost-->
@@ -66,43 +66,41 @@ else
                                 </div>
                             </div>
                             <div class="create-post">
-                                    <form action="<?=base_url('Post_controller/addPost')?>" method="post" enctype="multipart/form-data">
-                                        <div class="add-post-content btn-block">
-                                            <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
-                                                <p>
-                                                    <label for="">Work Category</label>
-                                                    <select name="work" id="works">
-                                                        <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
-                                                            <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
-                                                        <?php }} ?>
-                                                    </select>
-                                                    <button type="button" class="btn btn-secondary" name="addWorkPost">+</button><br>
+                                <div class="add-post-content btn-block">
+                                    <input type="text" id="poster_ID" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
+                                        <p>
+                                            <label for="">Work Category</label>
+                                            <select name="work" id="works">
+                                                <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
+                                                    <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
+                                                <?php }} ?>
+                                            </select>
+                                            <button type="button" class="btn btn-secondary" name="addWorkPost">+</button><br>
 
-                                                    <input type="text" id="post-id"  value=""/> <br>
+                                            <input style="display:none;" type="text" id="post-id"  value=""/> <br>
 
-                                                    <label for="">Description</label>
-                                                    <input type="text" name="description" id="desc" placeholder="Requirements" required /> <br>
+                                            <label for="">Description</label>
+                                            <input type="text" name="description" id="desc" placeholder="Requirements" required /> <br>
 
-                                                    <label for="">Worker(s) needed</label>
-                                                    <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
-                                                    
-                                                    <label for="">Location</label>
-                                                    <input type="text" name="location" id="location" placeholder="Work location" required /> <br>
-                                                    
-                                                    <label for="">Minimum Payment</label>
-                                                    <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
-                                                    
-                                                    <label for="">Fixed</label>
-                                                    <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"> <br>
-                                                    
-                                                    <label for="" id="max-pay-l">Maximum Payment</label>
-                                                    <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /> 
-                                                </p>
+                                            <label for="">Worker(s) needed</label>
+                                            <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
                                             
-                                            <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                                            <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit" id="submit-post" onclick="reset_post()">
-                                        </div>
-                                    </form>
+                                            <label for="">Location</label>
+                                            <input type="text" name="location" id="location" placeholder="Work location" required /> <br>
+                                            
+                                            <label for="">Minimum Payment</label>
+                                            <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
+                                            
+                                            <label for="">Fixed</label>
+                                            <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"> <br>
+                                            
+                                            <label for="" id="max-pay-l">Maximum Payment</label>
+                                            <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /> 
+                                        </p>
+                                    
+                                    <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                                    <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit" id="submit-post">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -137,20 +135,16 @@ else
 
     var scrollLimit ,limit, offset;
     var STATE = {
-        NOT_EDITING: 0,
-        EDITINGl: 1
+        IDLE: 0,
+        EDIT: 1,
+        ADD: 2
     };
     var newsfeed = {
-      state: STATE.EDITING
+      state: STATE.IDLE
+      
     };
 
-    $(document).ready(function(){
-        
-        scrollLimit = Math.max($(document).height(), $(window).height());
-        limit = 5;
-        offset = 1;
-        display_post_batch();
-    })
+    newsfeed.state = STATE.ADD;
     
     $(window).scroll(function(){
 
@@ -186,11 +180,11 @@ else
         if(c.checked){
             document.getElementById("min_pay").disabled=true;
             document.getElementById("min_pay").value="";
-            document.getElementById("max_pay_label").textContent="Exact Amount";
+            $('#max_pay_l').text("Exact Payment");
         }else {
             document.getElementById('min_pay').value=1;
             document.getElementById('min_pay').disabled=false;
-            document.getElementById("max_pay_label").textContent="Maximum Payment";
+            $('#max_pay_l').text("Maximum Payment");
         }
     }
     function AddPostPopUp(){
@@ -199,9 +193,12 @@ else
         document.getElementById("hiddenbox-nf").style.animation="fadebox .3s reverse linear";
     }
     function hidebox(){
+        newsfeed.state = STATE.IDLE;
+        reset_post_fields();
+
         document.getElementById("hiddenbox-nf").style.display="none";
         document.getElementById("add_p").style.display="none";
-        document.getElementById("report_p").style.display="none";
+        document.getElementById("report_p").style.display="none"
     }
     function set_fixed(){
         var component = document.getElementById("min_pay");
@@ -209,27 +206,24 @@ else
         if(component.value == ""){
             document.getElementById("min-checker").checked = true;
             component.disabled = true;
-            document.getElementById("max_pay_label").textContent="Exact Amount";
+            document.getElementById("max-pay-l").textContent="Exact Amount";
         }
     }
-    function set_form_action(action,id){
-        $.post("<?=base_url('Post_controller/')?>"+action, {post_ID: id}, function(data){
-            window.location.reload();
-        });
-    }
 
-    function edit_post(id){
+    function get_post(id){
+        console.log(newsfeed.state);
         
+
         $.post("<?=base_url('Post_controller/get_post')?>", {post_ID: id}, function(data){
             
+                
             if(data){
 
-                newsfeed.state = STATE.EDITING;
+                newsfeed.state = STATE.EDIT;
                 var post = jQuery.parseJSON(data);
 
                 AddPostPopUp();
                 $('#post-id').attr("value", id);
-                $('#desc').attr("value", post['requirements']);
                 $('#desc').attr("value", post['requirements']);
                 $('#worker_count').attr("value", post['worker_count']);
                 $('#location').attr("value", post['location']);
@@ -240,6 +234,7 @@ else
                     $('max-pay-l').text("Maximum Pay: ")
                 }else {
                     $('#min-checker').attr("checked", true);
+                    $('#min_pay').attr("value", "");
                     $('max-pay-l').text("Exact payment: ");
                 }
                 $('#max_pay').attr("value", post['max_pay']);
@@ -250,6 +245,34 @@ else
             }
 
         });
+    }
+
+    function add_post(){
+
+        $.post("<?=base_url('Post_controller/add_post')?>",
+        {
+            poster_ID: $('#poster_ID').val(),
+            work: $('#works').val(),
+            worker_count: $('#worker_count').val(),
+            desc: $('#desc').val(),
+            location: $('#location').val(),
+            min_pay: $('#min_pay').val(),
+            max_pay: $('#max_pay').val()
+        },        
+        function(data){
+            
+            if(data)alert("Your post added");
+            else alert("Some error occured. Your post was added.");
+            
+            window.location.reload();
+        });
+    }
+
+    function edit_post(id){
+        newsfeed.state = STATE.EDIT;
+
+        get_post(id);
+        AddPostPopUp();
     }
 
     function update_post(){
@@ -265,21 +288,19 @@ else
         },
         function(data){
             
-            if(data)alert("Your post was updated");
+            if(data==true)alert("Your post was updated");
             else alert("Some error occured. Your post was not updated.");
             
             window.location.reload();
         });
     }
 
-    function reset_post(){
-        
-        newsfeed.state = STATE.NOT_EDITING;
-
+    function reset_post_fields(){
+        $('#post-id').attr("value", "");
         $('#desc').attr("value", "");
         $('#worker_count').attr("value", "");
         $('#location').attr("value", "");
-        $('#min-checker').attr("checked", false);
+        $('#min-checker').attr("checked", true);
         $('#min_pay').attr("value", "");
         $('max-pay-l').text("Exact payment: ")
         $('#max_pay').attr("value", "");
@@ -468,6 +489,7 @@ else
 
             post["edit_p_"+curID] = document.createElement("BUTTON");
             post["edit_p_"+curID].id = "edit_p_"+curID;
+            post["edit_p_"+curID].className = "edit-btn";
             post["edit_p_"+curID].setAttribute("value", curID);
             post["edit_p_"+curID].innerHTML = "Edit";
             post["edit_p_"+curID].addEventListener ("click", function() {
@@ -582,6 +604,13 @@ else
     var searchContent;
     $(document).ready(function(){
         
+        scrollLimit = Math.max($(document).height(), $(window).height());
+        limit = 5;
+        offset = 1;
+        display_post_batch();
+
+        newsfeed.state = STATE.IDLE;
+        
         var s = $('#search-user');
         s.on('input', function(){
             searchUser();
@@ -627,12 +656,28 @@ else
 
                 alert();
             }
-        })
-        
+        });
+
+        $('#submit-post').click(function(){
+            console.log("Newsfeed: "+newsfeed.state);
+
+            if(newsfeed.state == STATE.EDIT) {
+                update_post();
+            }else if(newsfeed.state == STATE.ADD){
+                add_post();
+            }
+
+            reset_post_fields();
+            newsfeed.state = STATE.IDLE;
+        });
+
+        $('#add-post-btn').click(function(){
+            newsfeed.state = STATE.ADD;
+            AddPostPopUp();
+        });
 
     });
     
-
 </script>
 
 <!-- JavaScript Bundle with Popper -->
