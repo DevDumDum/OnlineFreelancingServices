@@ -254,8 +254,31 @@ class Post_controller extends CI_Controller {
         else echo json_encode($n_post);
     }
 
-    public function edit_post(){
+    public function get_post(){
+        if(isset($_POST['post_ID'])) {
 
+            $post = array();
+            $post = $this->Post_model->get_post_from_id($_POST['post_ID']);
+            
+            if(empty($post)) echo null;
+            else echo json_encode($post);
+
+
+        }else {echo null;}
+     
     }
 
+    public function update_post(){        
+
+        $post_u = array(
+            'worker_count' => $_POST['worker_count'],
+            'requirements' => $_POST['requirements'],
+            'location' => $_POST['location'],
+            'min_pay' => $_POST['min_pay'],
+            'max_pay' => $_POST['max_pay']
+        );
+
+        $q = $this->Post_model->update_post(1, $post_u);
+        echo $q;
+    }
 }

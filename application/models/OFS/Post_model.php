@@ -8,12 +8,24 @@ class Post_model extends CI_Model{
       $this->load->model('OFS/Post_model');
   }
 
+  public function get_post_from_id($id){
+      $this->db->select('ID, poster_ID, profession_ID, 
+      worker_count, requirements, location, timestamp,
+      min_pay, max_pay, status, applicants, accepted');
+
+      $this->db->where('ID', $id);
+      $q = $this->db->get('post');
+
+      if($q->num_rows()>0) return $q->row_array();
+      else return false;
+   }
+
    public function get_table(){
       $this->db->select('ID, poster_ID, profession_ID, 
       worker_count, requirements, location, timestamp,
       min_pay, max_pay, status, applicants, accepted');
 
-        return $table = $this->db->get('post')->result_array();
+      return $table = $this->db->get('post')->result_array();
    }
 
    public function get_posts(){
@@ -203,5 +215,16 @@ class Post_model extends CI_Model{
       $this->db->order_by('timestamp', 'DESC');
       $q = $this->db->get('post')->result_array();
       return $q;
+   }
+   
+   public function update_post($id, $data){
+      
+      $this->db->set($data);
+      $this->db->where('ID', $id);
+      $this->db->update('posts');
+
+      if($this->db->affected_rows() > 0) return true;
+      else return false;
+      
    }
 }

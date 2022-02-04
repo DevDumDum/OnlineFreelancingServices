@@ -78,6 +78,8 @@ else
                                                     </select>
                                                     <button type="button" class="btn btn-secondary" name="addWorkPost">+</button><br>
 
+                                                    <input type="text" id="post-id"  value=""/> <br>
+
                                                     <label for="">Description</label>
                                                     <input type="text" name="description" id="desc" placeholder="Requirements" required /> <br>
 
@@ -93,12 +95,12 @@ else
                                                     <label for="">Fixed</label>
                                                     <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"> <br>
                                                     
-                                                    <label for="">Maximum Payment</label>
+                                                    <label for="" id="max-pay-l">Maximum Payment</label>
                                                     <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /> 
                                                 </p>
                                             
                                             <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                                            <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit" id="submit-post">
+                                            <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit" id="submit-post" onclick="reset_post()">
                                         </div>
                                     </form>
                             </div>
@@ -134,6 +136,14 @@ else
 <script>
 
     var scrollLimit ,limit, offset;
+    var STATE = {
+        NOT_EDITING: 0,
+        EDITINGl: 1
+    };
+    var newsfeed = {
+      state: STATE.EDITING
+    };
+
     $(document).ready(function(){
         
         scrollLimit = Math.max($(document).height(), $(window).height());
@@ -207,17 +217,72 @@ else
             window.location.reload();
         });
     }
+
     function edit_post(id){
         
-        $.post("<?=base_url('Post_controller/edit_post')?>", {post_ID: id}, function(data){
+        $.post("<?=base_url('Post_controller/get_post')?>", {post_ID: id}, function(data){
+            
+            if(data){
 
-            AddPostPopUp();
+                newsfeed.state = STATE.EDITING;
+                var post = jQuery.parseJSON(data);
 
-            $("#submit-post").click(function (){
+                AddPostPopUp();
+                $('#post-id').attr("value", id);
+                $('#desc').attr("value", post['requirements']);
+                $('#desc').attr("value", post['requirements']);
+                $('#worker_count').attr("value", post['worker_count']);
+                $('#location').attr("value", post['location']);
 
-            });
+                if(post['min_pay']){
+                    $('#min-checker').attr("checked", false);
+                    $('#min_pay').attr("value", post['min_pay']);
+                    $('max-pay-l').text("Maximum Pay: ")
+                }else {
+                    $('#min-checker').attr("checked", true);
+                    $('max-pay-l').text("Exact payment: ");
+                }
+                $('#max_pay').attr("value", post['max_pay']);
+
+            }else {
+                alert("Cannot fetch data");
+                window.location.reload();
+            }
 
         });
+    }
+
+    function update_post(){
+          
+        $.post("<?=base_url('Post_controller/update_post')?>",
+        {
+            post_ID: $('#post-id').val(),
+            worker_count: $('#worker_count').val(),
+            requirements: $('#desc').val(),
+            location: $('#location').val(),
+            min_pay: $('#min_pay').val(),
+            max_pay: $('#max_pay').val()
+        },
+        function(data){
+            
+            if(data)alert("Your post was updated");
+            else alert("Some error occured. Your post was not updated.");
+            
+            window.location.reload();
+        });
+    }
+
+    function reset_post(){
+        
+        newsfeed.state = STATE.NOT_EDITING;
+
+        $('#desc').attr("value", "");
+        $('#worker_count').attr("value", "");
+        $('#location').attr("value", "");
+        $('#min-checker').attr("checked", false);
+        $('#min_pay').attr("value", "");
+        $('max-pay-l').text("Exact payment: ")
+        $('#max_pay').attr("value", "");
     }
 
     function report_post(id){
@@ -516,9 +581,8 @@ else
 
     var searchContent;
     $(document).ready(function(){
-
+        
         var s = $('#search-user');
-
         s.on('input', function(){
             searchUser();
         });
@@ -564,6 +628,7 @@ else
                 alert();
             }
         })
+        
 
     });
     
