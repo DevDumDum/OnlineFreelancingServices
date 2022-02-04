@@ -33,7 +33,7 @@ if ($this->session->userdata('UserLoginSession')){
             </div>   
 
             <div class="profile-wrapper col-12">
-                <div class="profilecontent col-md-3 border-right py-2">
+                <div class="profilecontent col-3 border-right py-2">
                     <div class="profile-container d-flex flex-column align-items-center text-center py-5 ">
 
                         <div class="profile-pic-div">
@@ -150,7 +150,7 @@ if ($this->session->userdata('UserLoginSession')){
 
                             <div class="profileProjwrapper col-9">
                                 <div class="profileProjContainer">
-                                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                                    <div class="row row-cols-1 row-cols-3 g-4">
                                         <div class="col">
                                             <div class="card">
                                                 <img src="./public/images/sample.png" class="card-img-top" alt="...">
@@ -202,17 +202,6 @@ if ($this->session->userdata('UserLoginSession')){
                                     </div>
                                 </div>
 
-                                <div class="info-cont d-flex flex-column bd-highlight mb-3">
-                                    <div class="p-2 bd-highlight">
-                                    EXPERTISE<input class="expertise" type="text" id="" name="expertise" placeholder="+" disabled value="">
-                                    </div>
-                                </div>
-
-                                <div class="info-cont d-flex flex-column bd-highlight mb-3">
-                                    <div class="p-2 bd-highlight">
-                                    CONTACT INFORMATION<input class="contact-info" type="text" id="" name="contact-info" placeholder="+" disabled value="">
-                                    </div>
-                                </div>
                             </div>
                         </form>
                     </div>

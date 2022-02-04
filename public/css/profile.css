@@ -301,186 +301,6 @@ input:checked + .slider:before {
     position: inherit;
 }
 
-@media screen and (max-width:500px) {
-    .profilecontent{
-        margin-top: -50%!important;
-    }
-    .container_calendar{
-        margin-top: 40%!important;
-    }
-    .buttons-container{
-        margin-top: 50%!important;
-        position: absolute!important;
-        margin-left: 15%!important;
-    }
-    .profilebuttons{
-        /*padding-left: 10%; */
-        position: absolute;
-        margin-top: 20%!important;
-    }
-    .profile-button{
-        gap: 30%!important;
-    }
-    .inputCont{
-        width: 150%!important;
-        margin-left: -25px!important;
-        margin-top: 10%!important;
-    }
-    #location-profile{
-        display: none;
-    }
-    .profileProjwrapper{
-        width: 144%!important;
-        margin-top: 200%!important;
-        margin-left: -7%!important;
-    }
-    .rightcont{
-        margin-top: 10%!important;
-        margin-left: 14%!important;
-    }
-}
-
-@media screen and (max-width:1000px){
-    .profilebanner{
-        width: 100%;
-    }
-    .profilecontent{
-        margin-top: -15%;
-    }
-    .buttons-container{
-        margin-top: 50%!important;
-        position: absolute;
-        margin-left: 15%;
-    }
-    .profilebuttons{
-        padding-left: 25%;
-        position: absolute;
-        margin-top: -49%;
-    }
-    .profile-button{
-        gap: 80%;
-    }
-    .inputCont{
-        width: 150%;
-        margin-left: -25px;
-        margin-top: 10%;
-    }
-    .row{
-        display: flex;
-        flex-direction: column;
-    }
-    .profileProjContainer{
-        width: 305%;
-    }
-    .rightcont{
-        margin-top: -242%!important;
-        margin-left: 62%!important;
-    }
-    .profileProjwrapper{
-        width: 60%!important;
-    }
-}
-
-@media screen and (max-width:500px) {  
-    .profilecontent{
-        padding-left: 75px;
-    }
-}
-
-@media screen and (max-width:1200px) {
-  .profile-button {
-      width: 40%;
-  }
-}
-
-@media screen and (max-width:1200px) {
-  .profile-input {
-      width: 100%;
-  }
-}
-
-@media screen and (max-width:1200px) {
-  .container-ratings {
-      width: 40%;
-  }
-}
-
-@media screen and (max-width:700px) {
-    .profilecontent{
-        margin-top: -20%!important;
-        margin-left: 25%;
-    }
-    .container_calendar{
-        margin-top: 50%!important;
-    }
-    .buttons-container{
-        margin-top: 50%!important;
-        position: absolute!important;
-        margin-left: 15%!important;
-    }
-    .profilebuttons{
-        /*padding-left: 10%; */
-        position: absolute;
-        margin-top: 20%!important;
-    }
-    .profile-button{
-        gap: 30%!important;
-    }
-    .inputCont{
-        width: 150%!important;
-        margin-left: -25px!important;
-        margin-top: 10%!important;
-    }
-    #location-profile{
-        margin-top: 45%!important;
-    }
-    .profileProjwrapper{
-        width: 144%!important;
-        margin-top: 290%!important;
-        margin-left: -7%!important;
-    }
-    .rightcont{
-        margin-top: 10%!important;
-        margin-left: 14%!important;
-    }
-    .profileProjContainer{
-        width: 100%;
-    }
-}
-
-@media screen and (max-width:800px) {
-    .profilecontent{
-        margin-top: -20%!important;
-    }
-
-    .buttons-container{
-        margin-top: 50%!important;
-        position: absolute!important;
-        margin-left: 15%!important;
-    }
-    .profilebuttons{
-        padding-left: 30%;
-        position: absolute;
-    }
-    .profile-button{
-        gap: 0%!important;
-    }
-    .inputCont{
-        width: 95%!important;
-    }
-
-    .profileProjwrapper{
-
-        width: 100%!important;
-
-    }
-    .rightcont{
-        margin-top: -210%!important;
-        margin-left: -65%!important;
-    }
-
-}
-
 .buttons-container{
     margin-left: 12%;
     position: inherit;
@@ -693,4 +513,197 @@ input:checked + .slider:before {
     padding-left: 16rem;
     font-size: 1.5rem;
     padding-top: 13rem;
+}
+
+/* For desktop: */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 72%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+      width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .profilecontent{
+        margin-top: -15%!important;
+    }
+    .buttons-container{
+        position: absolute!important;
+        margin-left: 1%!important;
+    }
+    .profilebuttons{
+        padding-left: 30%;
+        position: absolute;
+    }
+    .profile-button{
+        gap: 0%!important;
+    }
+    .inputCont{
+        width: 95%!important;
+    }
+    .profileProjwrapper{
+        width: 65%!important;
+        margin-left: 20px;
+    }
+    .rightcont{
+        margin-left: -65%!important;
+    }
+    .col{
+        width: 33%;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .profilecontent{
+        margin-top: -15%!important;
+    }
+    .profilebuttons{
+        padding-left: 35%;
+        position: absolute;
+    }
+    .row{
+        display: flex;
+    }
+    .col{
+        width: auto;
+    }
+    .container-ratings, .info-cont {
+        height: 10rem;
+        width: 16rem;
+    }
+    .rightcont{
+        margin-left: -65%!important;
+    }
+    .profileProjwrapper{
+        margin-right: 1rem;
+    }
+    .rating label{
+        width: 40px;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .inputCont{
+        width: 80%!important;
+    }
+    .profile-button {
+    gap: 0;
+    margin-left: 35px;
+    }
+
+    .profileProjwrapper {
+        width: 70%!important;
+        margin-left: 80px;
+        margin-top: 18%;
+    }
+    .rightcont{
+        margin-left: 20%!important;
+        margin-top: 22%;
+        position: absolute;
+    }
+    .info-cont{
+        margin-left: 130%!important;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .inputCont{
+        width: 80%!important;
+    }
+
+    .profileProjwrapper {
+        width: 70%!important;
+        margin-left: 80px;
+        margin-top: 20%!important;
+    }
+    .rightcont{
+        margin-left: 15%!important;
+        margin-top: 26%;
+        position: absolute;
+    }
+    .info-cont{
+        margin-left: 40%!important;
+    }
+    .buttons-container{
+        margin-left: 5%!important;
+    }
+}
+
+@media only screen and (max-width:650px) {
+    .profilecontent{
+        margin-top: -20%!important;
+        margin-left: 25%;
+    }
+    .container_calendar{
+        margin-top: 40%!important;
+    }
+    .buttons-container{
+        margin-top: 15%!important;
+        margin-left: 1%!important;
+    }
+    .profilebuttons{
+        padding-left: 10%!important;
+        margin-top: 21%!important;
+    }
+
+    .inputCont{
+        margin-left: -25px!important;
+    }
+    .rightcont{
+        margin-left: 10%!important;
+        margin-top: 22%!important;
+    }
+    #location-profile{
+        margin-top: 35%!important;
+    }
+    .profileProjwrapper{
+        margin-top: 125%!important;
+        margin-left: 7%!important;
+    }
+}
+
+@media only screen and (max-width:550px) {
+    .profilecontent{
+        margin-top: -20%!important;
+        margin-left: 25%;
+    }
+    .container_calendar{
+        margin-top: 40%!important;
+    }
+    .buttons-container{
+        margin-top: 15%!important;
+        margin-left: 1%!important;
+    }
+    .profilebuttons{
+        padding-left: 10%!important;
+        margin-top: 21%!important;
+    }
+
+    .inputCont{
+        margin-left: -25px!important;
+    }
+    .rightcont{
+        margin-left: 10%!important;
+        margin-top: 22%!important;
+    }
+    #location-profile{
+        margin-top: 35%!important;
+    }
+    .profileProjwrapper{
+        margin-top: 130%!important;
+        margin-left: 7%!important;
+    }
 }
