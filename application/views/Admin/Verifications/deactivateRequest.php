@@ -29,7 +29,8 @@
         <div class="tables">
             <table class = "table table-dark table-hover center">
                 <tr>
-                <th>User</th>
+                <th class="headings">User</th>
+                <th class="heading_desc">Details</th>
                 <th> </th>
                 </tr>
                 
@@ -38,6 +39,7 @@
                 <td onclick="newDetails()">
                     <span>Alfreds Futterskie</span>
                 </td>
+                <td></td>
                 </div>
                 <td class="status">
                     <button class="editbtn1 editbtn1-responsiveness" style="cursor: pointer;" id="activate">Activate</button>
@@ -47,7 +49,8 @@
                 <tr>
                 <td onclick="newDetails()">
                     <span>Centro comercial</span>
-                </td>                
+                </td>   
+                <td></td>             
                 <td class="status">
                     <button class="editbtn1 editbtn1-responsiveness" style="cursor: pointer;">Activate</button>
                     <button class="editbtn2 editbtn2-responsiveness" style="cursor: pointer;">Deactivate</button>
@@ -57,6 +60,7 @@
                 <td onclick="newDetails()">
                     <span>Ernst Handel</span>
                 </td>
+                <td></td>
                 <td class="status">
                     <button class="editbtn1 editbtn1-responsiveness" style="cursor: pointer;">Activate</button>
                     <button class="editbtn2 editbtn2-responsiveness" style="cursor: pointer;">Deactivate</button>
@@ -65,7 +69,8 @@
                 <tr>
                 <td onclick="newDetails()">
                     <span>Island Trading</span>
-                </td>                
+                </td>     
+                <td></td>           
                 <td class="status">
                     <button class="editbtn1 editbtn1-responsiveness" style="cursor: pointer;" >Activate</button>
                     <button class="editbtn2 editbtn2-responsiveness" style="cursor: pointer;">Deactivate</button>
