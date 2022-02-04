@@ -23,7 +23,7 @@ else
                             <p>
                             Type of Work:
                             <select name="Work" id="work-filter">
-                                <option value="null">----</option>
+                                <option value="null">Select</option>
                                     <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
                                         <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
                                     <?php }} ?>
@@ -98,7 +98,7 @@ else
                                                 </p>
                                             
                                             <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                                            <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit">
+                                            <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit" id="submit-post">
                                         </div>
                                     </form>
                             </div>
@@ -208,11 +208,16 @@ else
         });
     }
     function edit_post(id){
-        document.getElementById("PostOptionMenu_"+id).style.display="none";
-        AddPostPopUp();
-        var s_wid = "op_" + id;
+        
+        $.post("<?=base_url('Post_controller/edit_post')?>", {post_ID: id}, function(data){
 
-        document.getElementById(s_wid).selected = true;
+            AddPostPopUp();
+
+            $("#submit-post").click(function (){
+
+            });
+
+        });
     }
 
     function report_post(id){

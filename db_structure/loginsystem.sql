@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2022 at 02:27 PM
+-- Generation Time: Feb 04, 2022 at 03:45 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -47,7 +47,7 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`ID`, `poster_ID`, `profession_ID`, `worker_count`, `requirements`, `location`, `status`, `min_pay`, `max_pay`, `timestamp`, `applicants`, `accepted`) VALUES
-(1, 36, 1, 1, 'Hindi ko din alam eh.', 'Samin lang naman.', 1, NULL, 5, 1640257501, '41', NULL),
+(1, 36, 1, 1, 'Hindi ko din alam eh.', 'Samin lang naman.', 0, NULL, 5, 1640257501, '41', NULL),
 (2, 5, 2, 1, 'Di ko lang sure.', 'Teka hanapin ko lang.', 1, 1, 1, 1640257255, NULL, NULL),
 (3, 36, 1, 1, 'Kung ano sabihin ko yung ang susundin mo!', 'Dito dito lang.', 1, 5, 5, 1640256666, NULL, NULL),
 (5, 1, 1, 1, '', '', 0, NULL, 1, 1640414463, NULL, NULL),
@@ -78,7 +78,6 @@ CREATE TABLE `profession` (
 --
 
 INSERT INTO `profession` (`ID`, `profession_type`, `description`, `status`) VALUES
-(0, 'Select', 'none', '1'),
 (1, 'Carpenter', '', '1'),
 (2, 'Accountant', '', '1'),
 (3, 'Architect', '', '1'),
@@ -189,7 +188,16 @@ INSERT INTO `verification` (`ID`, `verification_type`, `content_ID`, `viewer_id`
 (21, 'profession', 12, 3, NULL),
 (22, 'user', 40, 3, NULL),
 (23, 'profession', 11, 0, NULL),
-(24, 'user', 41, 0, NULL);
+(24, 'user', 41, 0, NULL),
+(25, 'post', 14, NULL, NULL),
+(26, 'post', 14, NULL, NULL),
+(27, 'post', 14, NULL, NULL),
+(28, 'post', 14, NULL, NULL),
+(29, 'post', 14, NULL, NULL),
+(30, 'post', 13, NULL, NULL),
+(31, 'post', 13, NULL, NULL),
+(32, 'post', 14, NULL, NULL),
+(33, 'post', 14, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -245,7 +253,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `verification`
 --
 ALTER TABLE `verification`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
