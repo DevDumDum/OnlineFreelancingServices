@@ -85,7 +85,7 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->load->helper('url');
         $udata = $this->session->userdata('UserLoginSession');
         if(isset($_GET['id']) || $this->session->userdata('UserLoginSession')){
-            echo "Welcome to userspage!";
+            #echo "Welcome to userspage!";
         }else{
             redirect(base_url('NewsFeed'));
         }
