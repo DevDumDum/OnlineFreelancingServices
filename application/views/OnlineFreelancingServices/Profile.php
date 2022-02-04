@@ -123,7 +123,7 @@ if ($this->session->userdata('UserLoginSession')){
                                 <div id="hiddenbox-profile">
                                     <div id="bg_box-profile">
                                         <div class="modal-header-profile">
-                                            <div class="title">CONTACT ME!!!</div>
+                                            <div class="title">CONTACT ME</div>
                                             <button class="close-button" onclick="hidebox()">&times;</button>
                                         </div>
                                         <div>
