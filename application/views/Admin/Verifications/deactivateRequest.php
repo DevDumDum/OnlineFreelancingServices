@@ -20,9 +20,9 @@
         </div>
         <!--VERIFICATION BUTTONS-->
         <div class="btn_category">
-            <button class="btn" onclick="window.location.href='VerifyUser';">New User</button>
+            <button class="btn" onclick="window.location.href='.';">New User</button>
             <button class="btn" onclick="window.location.href='VerifyRequest';" disabled>Deactivate Requests</button>
-            <button class="btn" onclick="window.location.href='VerifyReports';">Reports</button>
+            <button class="btn" onclick="window.location.href='Report';">Reports</button>
             <button class="btn" onclick="window.location.href='VerifyJobCategory';">Job Category</button>
         </div>
         <!---NEW USER TABLE-->
