@@ -71,14 +71,41 @@ class OFS_model extends CI_Model{
 	}
 	
 	public function get_user_details($id){
-		$this->db->select('last_name, first_name, 
+		$this->db->select(
+				'last_name, first_name, 
 				middle_name, full_name, contact, email, 
 				profession_id, location, summary, 
-				calendarlist_id,code,status');
+				calendarlist_id,code,status'
+			);
 
 		$this->db->where('id', $id);
 		
 		return $this->db->get('users')->result_array();
+	}
+	
+	public function get_user_from_search($id){
+		$this->db->select(
+			'last_name, first_name, middle_name, full_name, 
+			contact, email, profession_id, , education_id, location,  
+			summary, calendarlist_id, status'
+		);
+
+		$this->db->where('id', $id);
+		$q = $this->db->get('users');
+		
+		if($q->num_rows()>0) return $q->row_array();
+		else return false;
+	}
+
+	public function search_user($nameHolder){
+		$this->db->select('ID, full_name');
+		$this->db->like('full_name', $nameHolder);
+		$this->db->limit(5);
+
+		$q = $this->db->get('users');
+
+		if($q->num_rows()>0) return $q->result_array();
+		else return false;
 	}
 
 	public function get_report($id) {
