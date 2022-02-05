@@ -30,9 +30,10 @@
     background-color: #b0c7cf;
 }
 .sticky-top{
-    top: 0px !important;
-    z-index: 0;
+    z-index: 1;
     margin-bottom: 5%;
+    position: sticky !important;
+    top: 65px;
 }
 .newsfeed-side{
     width: 70%;

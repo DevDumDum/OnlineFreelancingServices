@@ -107,7 +107,7 @@ else
                                 <br>
                                 Description:<br>
                                 <textarea id="r_desc" style="width:100%; height:150px;"></textarea><br>
-                                <button id="r_id" value="">Submit</button>
+                                <button id="r_id" class="btn btn-block btn-success" value="">Submit</button>
                             </div>
                         </div>
                     </div>

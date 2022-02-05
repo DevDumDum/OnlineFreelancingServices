@@ -291,7 +291,7 @@
     }
     .sticky-top{
         margin: 25px auto auto 330px !important;
-        z-index: 0;
+        z-index: 0 !important;
     }
     .card-width{
         margin: 15px auto auto 200px !important;
@@ -1002,7 +1002,7 @@
         margin-top: 0%;
     }
     .sticky-top{
-        margin: 0 auto auto 15px !important;
+        margin: 10px auto auto 15px !important;
         z-index: 0;
     }
     .card-width{
