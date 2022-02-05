@@ -33,9 +33,9 @@ if($this->session->userdata('UserLoginSession')){
 
         <!--VERIFICATION BUTTONS-->
         <div class="btn_category">
-            <button class="btn" onclick="window.location.href='VerifyUser';" disabled>New User</button>
+            <button class="btn" onclick="window.location.href='.';" disabled>New User</button>
             <button class="btn" onclick="window.location.href='VerifyRequest';">Deactivate Requests</button>
-            <button class="btn" onclick="window.location.href='VerifyReports';">Reports</button>
+            <button class="btn" onclick="window.location.href='Report';">Reports</button>
             <button class="btn" onclick="window.location.href='VerifyJobCategory';">Job Category</button>
         </div>
 

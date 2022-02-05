@@ -47,6 +47,69 @@ class Post_controller extends CI_Controller {
         }
     }
 
+    public function get_a_post(){
+        $this->load->model('OFS/Post_model');
+        $this->load->model('OFS/Work_model');
+        $this->load->model('OFS/OFS_model');
+
+        if(isset($_POST["id"])) {
+            $posts = $this->Post_model->fetch_a_post($_POST["id"]);
+            foreach($posts as $p){
+                $temp = "";
+
+                if($p['applicants'] != NULL){
+                    $temp = explode(",", $p['applicants']);
+                    $p['applicants'] = $temp;
+                } else {
+                    $p['applicants'] = 0;
+                }
+    
+                if($p['accepted'] != NULL){
+                    $temp = explode(",", $p['accepted']);
+                    $p['accepted'] = $temp;
+                } else {
+                    $p['accepted'] = 0;
+                }
+    
+                $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
+                
+                // POSTER NAME
+                $n_post[0] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
+                $n_post[0] = (empty($n_post[0]))
+                    ? " "
+                    : $n_post[0];
+    
+                if($p['requirements'] == "") {$p['requirements'] = "No requirements.";}
+                    
+                // PROFESSION NAME
+            
+                if ($p['profession_ID'] > 0) {
+                    $works = $this->Work_model->get_work($p['profession_ID']);
+                } else {
+                    $works = $this->Work_model->get_work($p['profession_ID']-1);
+                }
+                $n_post[1] = $works[0]['profession_type'];
+    
+                // POST ID
+                $n_post[2] = $p['ID'];
+    
+                // POSTER ID
+                $n_post[3] = $p['poster_ID'];
+    
+                $n_post[4] = $p["requirements"];
+                $n_post[5] = $p["worker_count"];
+                $n_post[6] = $p["applicants"];
+                $n_post[7] = $p['accepted'];
+    
+                $n_post[8] = $p['location'];
+                $n_post[9] = $p['min_pay'];
+                $n_post[10] = $p['max_pay'];
+                $n_post[11] = $p['timestamp'];
+            }
+            echo json_encode($n_post);
+        }
+    }
+
     public function get_from_offset(){
         $this->load->model('OFS/Work_model');
         $this->load->model('OFS/OFS_model');

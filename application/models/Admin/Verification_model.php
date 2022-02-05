@@ -30,10 +30,10 @@ class Verification_model extends CI_Model{
         return $q->result_array();
     }
 
-    public function get_existing_count($id){
+    public function get_existing_count($id, $type){
         $this->db->select('ID, verification_type, content_ID');
         $this->db->where('viewer_id', $id);
-        $this->db->where('verification_type', 'user');
+        $this->db->where('verification_type', $type);
         $q = $this->db->get('verification');
 
         return $q->num_rows();
@@ -107,11 +107,9 @@ class Verification_model extends CI_Model{
         $this->db->set('status', '1');
         $this->db->where('ID', $u_id);
         $query = $this->db->update('profession');
-
         $this->db->set('viewer_id', 0);
         $this->db->where('ID',  $v_id);
         $query2 = $this->db->update('verification');
-        
         if($query && $query2){
             return json_encode(array('msg' => "Success"));
         }else{
@@ -130,6 +128,46 @@ class Verification_model extends CI_Model{
         $this->db->where('ID',  $v_id);
         $query2 = $this->db->update('verification');
         if($query && $query2){
+            return json_encode(array('msg' => "Success"));
+        }else{
+            return json_encode(array('msg' => "Error"));
+        }
+    }
+
+    public function a_ver_rep($v_id,$u_id, $type){
+        header('content-type: text/json');
+        if($type == "report-p"){
+            $this->db->set('status', -1);
+            $this->db->where('ID', $u_id);
+            $query = $this->db->update('post');
+        }else{
+            $this->db->select('*');
+            $this->db->where('id', $u_id);
+            $q = $this->db->get('report')->result_array();
+            $this->db->set('status', -1);
+            $this->db->where('id', $q[0]["id_reported"]);
+            $query = $this->db->update('users');
+        }
+
+        $this->db->set('viewer_id', 0);
+        $this->db->where('ID',  $v_id);
+        $query2 = $this->db->update('verification');
+        
+        if($query && $query2){
+            return json_encode(array('msg' => "Success"));
+        }else{
+            return json_encode(array('msg' => "Error"));
+        }
+    }
+
+    public function d_ver_rep($v_id,$u_id){
+        header('content-type: text/json');
+        
+        $this->db->set('viewer_id', 0);
+        $this->db->where('ID',  $v_id);
+        $query2 = $this->db->update('verification');
+        
+        if($query2){
             return json_encode(array('msg' => "Success"));
         }else{
             return json_encode(array('msg' => "Error"));
