@@ -866,6 +866,9 @@
         width: 92%;
         font-size: .5vw;
     }
+    #hiddenbox-nf label {
+        font-size: .8vw !important;
+    }
     .add-post-content input{
         font-size: .6vw !important;
     }
