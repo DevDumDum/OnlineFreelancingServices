@@ -20,9 +20,9 @@
         </div>
         <!--VERIFICATION BUTTONS-->
         <div class="btn_category">
-            <button class="btn" onclick="window.location.href='VerifyUser';">New User</button>
+            <button class="btn" onclick="window.location.href='.';">New User</button>
             <button class="btn" onclick="window.location.href='VerifyRequest';">Deactivate Requests</button>
-            <button class="btn" onclick="window.location.href='VerifyReports';">Reports</button>
+            <button class="btn" onclick="window.location.href='Report';">Reports</button>
             <button class="btn" onclick="window.location.href='VerifyJobCategory';" disabled>Job Category</button>
         </div>
         <!---NEW USER TABLE-->
@@ -43,8 +43,8 @@
                             <?php echo $v['description'];?>
                         </td>
                         <td class="status_w">
-                            <button type="button" class="editbtn1 editbtn1-jobCategory-responsiveness" style="cursor: pointer;" id="activate" onclick="accept_ver(<?php echo $v['v_id'];?>,<?php echo $v['u_id'];?>)">Activate</button>
-                            <button type="button" class="editbtn2 editbtn2-jobCategory-responsiveness" style="cursor: pointer;" id="deactivate" onclick="deny_ver(<?php echo $v['v_id'];?>,<?php echo $v['u_id'];?>)">Deactivate</button>
+                            <button type="button" class="editbtn1 editbtn1-jobCategory-responsiveness" style="cursor: pointer;" id="activate" onclick="accept_ver(<?php echo $v['v_id'];?>,<?php echo $v['ID'];?>)">Activate</button>
+                            <button type="button" class="editbtn2 editbtn2-jobCategory-responsiveness" style="cursor: pointer;" id="deactivate" onclick="deny_ver(<?php echo $v['v_id'];?>,<?php echo $v['ID'];?>)">Deactivate</button>
                         </td>
                     </tr>
                 <?php }} else {
