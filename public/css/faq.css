@@ -1,5 +1,6 @@
 .FAQpage {
     padding-top: 8%;
+    z-index: 0;
 }
 
 .FAQimage {

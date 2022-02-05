@@ -118,7 +118,7 @@ else
                                 <br>
                                 Description:<br>
                                 <textarea id="r_desc" style="width:100%; height:150px;"></textarea><br>
-                                <button id="r_id" value="">Submit</button>
+                                <button id="r_id" type="button" value="" onclick="report_p(this.value)">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -301,6 +301,24 @@ else
     function report_post(id){
         document.getElementById("hiddenbox-nf").style.display="block";
         document.getElementById("report_p").style.display="block";
+        document.getElementById("r_id").value=id;
+    }
+
+    function report_p(id){
+        var desc = document.getElementById("r_desc").value;
+        var uid = <?php echo $udata["id"]; ?>;
+        $.ajax({
+            type: 'POST',
+            url:"<?=base_url('OnlineFreelancingServices/report');?>",
+            data: {r_id : id , desc : desc, type: "report-p"},
+            success: function(response) {
+                alert(response);
+                document.getElementById("r_desc").value="";
+                document.getElementById("r_id").value="";
+                document.getElementById("hiddenbox-nf").style.display="none";
+                document.getElementById("report_p").style.display="none";
+            }
+        });
     }
     function applicant(id,uid){
         $.ajax({

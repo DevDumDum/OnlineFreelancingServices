@@ -6,7 +6,7 @@ class Post_model extends CI_Model{
       parent::__construct();
       $this->load->helper('url');
       $this->load->model('OFS/Post_model');
-  }
+   }
 
    public function get_post_from_id($id){
       $this->db->select('ID, poster_ID, profession_ID, 
@@ -21,9 +21,7 @@ class Post_model extends CI_Model{
    }
 
    public function get_table(){
-      $this->db->select('ID, poster_ID, profession_ID, 
-      worker_count, requirements, location, timestamp,
-      min_pay, max_pay, status, applicants, accepted');
+      $this->db->select('*');
 
       return $table = $this->db->get('post')->result_array();
    }
@@ -152,13 +150,46 @@ class Post_model extends CI_Model{
       min_pay, max_pay, status');
 
       $this->db->where('status >', 0);
-      return $table = $this->db->get('post')->result_array();
+      return $this->db->get('post')->result_array();
    }
 
-   public function add_post($data){
-      if($this->db->insert('post', $data))
-          return true;
-      else return false;
+   public function report_post($data,$type,$uid) {
+      $this->db->select('ID');
+      $this->db->where('id_reported', $data['id_reported']);
+      $this->db->where('user_id', $uid);
+      $cur_id = $this->db->get('report')->result_array();
+      if((int)$cur_id > 0){
+         $response = "Already reported";
+      }else{
+
+         if($this->db->insert('report', $data)) {
+
+            $this->db->select('ID');
+            $this->db->where('id_reported', $data['id_reported']);
+
+            $cur_id = $this->db->get('report')->result_array();
+
+            $data2 = array(
+               'verification_type' => $type,
+               'content_ID' => (int)$cur_id[0]["ID"]
+            );
+            $this->db->insert('verification', $data2);
+
+            $response = "Reported successfully";
+         } else {
+            $response = "Error";
+         }
+      }
+      return $response;
+   }
+
+   public function add_post($data) {
+      if($this->db->insert('post', $data)) {
+         $response = true;
+      } else {
+         $response = false;
+      }
+      return $response;
    }
 
    public function get_from_offset($offset){
