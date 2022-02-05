@@ -11,7 +11,7 @@ class Post_model extends CI_Model{
    public function get_table(){
       $this->db->select('*');
 
-        return $table = $this->db->get('post')->result_array();
+      return $this->db->get('post')->result_array();
    }
 
    public function get_posts(){
@@ -52,6 +52,13 @@ class Post_model extends CI_Model{
       $this->db->set('status', 0);
       $this->db->where('ID', $id);
       return $this->db->update('post');
+   }
+
+   public function fetch_a_post($id){
+      $this->db->select('*');
+      $this->db->where("ID", $id);
+      $result = $this->db->get('post')->result_array();
+      return $result;
    }
 
 

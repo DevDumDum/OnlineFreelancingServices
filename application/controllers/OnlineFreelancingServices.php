@@ -225,4 +225,15 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->session->sess_destroy();
         redirect(base_url('Homepage'));
     }
+
+    public function Post_page(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Profile Page');
+        $this->load->helper('url');
+        $this -> load -> view ('OnlineFreelancingServices/inc/header');
+        $this->load->model('OFS/Post_model');
+        $posts = $this->Post_model->fetch_a_post($_GET["p_id"]);
+
+        $this -> load -> view ('OnlineFreelancingServices/Post_page',$posts);
+    }
 }

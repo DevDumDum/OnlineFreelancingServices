@@ -81,6 +81,12 @@ class OFS_model extends CI_Model{
 		return $this->db->get('users')->result_array();
 	}
 
+	public function get_report($id) {
+		$this->db->select('*');
+		$this->db->where('ID', $id);
+		return $this->db->get('report')->result_array();
+	 }
+
 	//sira ka muna
 	public function get_username($id){
 		$this->db->select('first_name, middle_name, last_name');

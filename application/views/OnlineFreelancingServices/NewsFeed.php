@@ -59,41 +59,41 @@ else
                                 </div>
                             </div>
                             <div class="create-post">
-                                    <form action="<?=base_url('Post_controller/addPost')?>" method="post" enctype="multipart/form-data">
-                                        <div class="add-post-content btn-block">
-                                            <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
-                                                <p>
-                                                    <label for="">Work Category</label>
-                                                    <select name="work" id="works">
-                                                        <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
-                                                            <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
-                                                        <?php }} ?>
-                                                    </select>
-                                                    <button type="button" class="btn btn-secondary" name="addWorkPost">+</button><br>
+                                <form action="<?=base_url('Post_controller/addPost')?>" method="post" enctype="multipart/form-data">
+                                    <div class="add-post-content btn-block">
+                                        <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
+                                            <p>
+                                                <label for="">Work Category</label>
+                                                <select name="work" id="works">
+                                                    <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
+                                                        <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
+                                                    <?php }} ?>
+                                                </select>
+                                                <button type="button" class="btn btn-secondary" name="addWorkPost">+</button><br>
 
-                                                    <label for="">Description</label>
-                                                    <input type="text" name="description" id="desc" placeholder="Requirements" required /> <br>
+                                                <label for="">Description</label>
+                                                <input type="text" name="description" id="desc" placeholder="Requirements" required /> <br>
 
-                                                    <label for="">Worker(s) needed</label>
-                                                    <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
-                                                    
-                                                    <label for="">Location</label>
-                                                    <input type="text" name="location" id="location" placeholder="Work location" required /> <br>
-                                                    
-                                                    <label for="">Minimum Payment</label>
-                                                    <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
-                                                    
-                                                    <label for="">Fixed</label>
-                                                    <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"> <br>
-                                                    
-                                                    <label for="">Maximum Payment</label>
-                                                    <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /> 
-                                                </p>
-                                            
-                                            <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                                            <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit">
-                                        </div>
-                                    </form>
+                                                <label for="">Worker(s) needed</label>
+                                                <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
+                                                
+                                                <label for="">Location</label>
+                                                <input type="text" name="location" id="location" placeholder="Work location" required /> <br>
+                                                
+                                                <label for="">Minimum Payment</label>
+                                                <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
+                                                
+                                                <label for="">Fixed</label>
+                                                <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"> <br>
+                                                
+                                                <label for="">Maximum Payment</label>
+                                                <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /> 
+                                            </p>
+
+                                        <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                                        <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit">
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
