@@ -107,7 +107,7 @@ else
                                 <br>
                                 Description:<br>
                                 <textarea id="r_desc" style="width:100%; height:150px;"></textarea><br>
-                                <button id="r_id" class="btn btn-block btn-success" value="" onclick="report_p(this.value)>Submit</button>
+                                <button id="r_id" class="btn btn-block btn-success" onclick="report_p(this.value) value="">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -327,8 +327,9 @@ else
         } else {
             post["option_"+curID] = document.createElement("input");
             post["option_"+curID].id = "option_"+curID;
+            post["option_"+curID].className = "btn btn-secondary p-3 btn-block"+curID;
             post["option_"+curID].setAttribute("type", "button");
-            post["option_"+curID].setAttribute("value", "option");
+            post["option_"+curID].setAttribute("value", "Option");
             post["option_"+curID].style.float = "right";
             post["option_"+curID].addEventListener ("click", function() {
                 if(document.getElementById("PostOptionMenu_"+curID).style.display == "block"){
@@ -342,6 +343,7 @@ else
 
             post["PostOptionMenu_"+curID] = document.createElement("div");
             post["PostOptionMenu_"+curID].id = "PostOptionMenu_"+curID;
+            post["PostOptionMenu_"+curID].className = "p-2 mb-2 bg-dark bg-dark"+curID;
             post["PostOptionMenu_"+curID].style.float = "right";
             post["PostOptionMenu_"+curID].style.marginTop = "30px";
             post["PostOptionMenu_"+curID].style.marginRight = "-80px";
@@ -351,6 +353,7 @@ else
 
                 post["edit_p_"+curID] = document.createElement("BUTTON");
                 post["edit_p_"+curID].id = "edit_p_"+curID;
+                post["edit_p_"+curID].className = "btn btn-secondary btn-block p-1"+curID;
                 post["edit_p_"+curID].setAttribute("value", curID);
                 post["edit_p_"+curID].innerHTML = "Edit";
                 post["edit_p_"+curID].addEventListener ("click", function() {
@@ -360,6 +363,7 @@ else
 
                 post["del_p_"+curID] = document.createElement("BUTTON");
                 post["del_p_"+curID].id = "del_p_"+curID;
+                post["del_p_"+curID].className = "btn btn-secondary btn-block p-2"+curID;
                 post["del_p_"+curID].setAttribute("value", curID);
                 post["del_p_"+curID].innerHTML = "Delete";
                 post["del_p_"+curID].addEventListener ("click", function() {
