@@ -78,6 +78,7 @@ CREATE TABLE `profession` (
 --
 
 INSERT INTO `profession` (`ID`, `profession_type`, `description`, `status`) VALUES
+(0, 'Select', 'none', '1'),
 (1, 'Carpenter', '', '1'),
 (2, 'Accountant', '', '1'),
 (3, 'Architect', '', '1'),
@@ -279,7 +280,7 @@ ALTER TABLE `verification`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `profession`
