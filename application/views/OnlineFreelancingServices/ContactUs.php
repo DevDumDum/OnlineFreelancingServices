@@ -14,6 +14,7 @@
             <img class="img-profile" src="<?php echo base_url();?>public/images/aileen.jpg" alt="">
             <img class="img-profile" src="<?php echo base_url();?>public/images/franco.jpg" alt="">
             <img class="img-profile" src="<?php echo base_url();?>public/images/agapor.jpg" alt="">
+            <img class="img-profile" src="<?php echo base_url();?>public/images/alex.jpg" alt="">
         </div>
         <div class="contact-icon-info">
             <i class="contacts-icon fal fa-sms">
