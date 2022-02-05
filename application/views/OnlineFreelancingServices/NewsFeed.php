@@ -141,7 +141,6 @@ else
     };
     var newsfeed = {
       state: STATE.IDLE
-      
     };
     $(window).scroll(function(){
 
@@ -203,20 +202,22 @@ else
         }
     }
     function get_post(id){
-        console.log(newsfeed.state);
-        
 
         $.post("<?=base_url('Post_controller/get_post')?>", {post_ID: id}, function(data){
             
-                
             if(data){
-
                 newsfeed.state = STATE.EDIT;
                 var post = jQuery.parseJSON(data);
 
                 AddPostPopUp();
                 $('#post-id').attr("value", id);
                 $('#desc').attr("value", post['requirements']);
+
+                if(post['applicants'] === null && post['accepted'] === null)
+                    $("#works").prop("disabled", false);
+                else 
+                    $("#works").prop("disabled", true);
+
                 $('#worker_count').attr("value", post['worker_count']);
                 $('#location').attr("value", post['location']);
 
@@ -368,7 +369,7 @@ else
     function display_new_postf(l, w){
         const theFunction = "<?=base_url('Post_controller/get_from_offset_filtered'); ?>";
         $.post(theFunction, {postIndex: offset, postLimit: limit, location:l, work: w}, function(data, status){
-            
+            alert();
             if(status=='success'){
                 
                 let text = data;
@@ -622,7 +623,7 @@ else
         });
 
         $("#work-filter-btn").click(function(){
-            alert();
+            alert("Fileter");
             $('#result').remove();
             offset=1;
             
@@ -631,14 +632,11 @@ else
             
             createResultContainer();
 
-            if(l||w){
-                
+            if(l || w > 0){
+                console.log("L: "+l+" | W: "+w);
                 display_post_batchf();
-                alert(w);
             }else {
-                // IF NO VAL. DEFAULT
-                display_post_batch();
-                alert();
+                window.location.reload();
             }
         });
 
