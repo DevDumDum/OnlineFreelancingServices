@@ -57,7 +57,7 @@
     <script>
         function accept_ver(verify_id, prof_id){
             var id = "theTr_" + verify_id.toString();
-            $.post('<?=base_url('Verification_controller/accept_ver_prof');?>', {v_id: verify_id, ID: prof_id}, function(data){
+            $.post('<?=base_url('Verification_controller/accept_ver_prof');?>', {v_id: verify_id, u_id: prof_id}, function(data){
                 alert(data.msg);
                 document.getElementById(id).remove();
             }, 'JSON');
@@ -65,7 +65,7 @@
         
         function deny_ver(verify_id, prof_id){
             var id = "theTr_" + verify_id.toString();
-            $.post('<?=base_url('Verification_controller/reject_ver_prof');?>', {v_id: verify_id, ID: prof_id}, function(data){
+            $.post('<?=base_url('Verification_controller/reject_ver_prof');?>', {v_id: verify_id, u_id: prof_id}, function(data){
                 alert(data.msg);
                 document.getElementById(id).remove();
             }, 'JSON');

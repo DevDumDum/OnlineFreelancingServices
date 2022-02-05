@@ -107,11 +107,9 @@ class Verification_model extends CI_Model{
         $this->db->set('status', '1');
         $this->db->where('ID', $u_id);
         $query = $this->db->update('profession');
-
         $this->db->set('viewer_id', 0);
         $this->db->where('ID',  $v_id);
         $query2 = $this->db->update('verification');
-        
         if($query && $query2){
             return json_encode(array('msg' => "Success"));
         }else{
@@ -143,8 +141,11 @@ class Verification_model extends CI_Model{
             $this->db->where('ID', $u_id);
             $query = $this->db->update('post');
         }else{
-            $this->db->set('status', -1);
+            $this->db->select('*');
             $this->db->where('id', $u_id);
+            $q = $this->db->get('report')->result_array();
+            $this->db->set('status', -1);
+            $this->db->where('id', $q[0]["id_reported"]);
             $query = $this->db->update('users');
         }
 

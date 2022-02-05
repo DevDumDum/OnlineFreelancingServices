@@ -57,21 +57,9 @@ if($this->session->userdata('UserLoginSession')){
                     <th class="heading_desc">Details</th>
                     <th> </th>
                 </tr>
-            
-                <tr>
-                
-                    <td onclick="newDetails()">
-                        <span>Alfreds Futterskie</span>
-                    </td>
-                    <td></td>
-                    <td class="status">
-                        <button class="editbtn1" style="cursor: pointer;">Ban</button>
-                        <button class="editbtn2" style="cursor: pointer;">Ignore</button>
-                    </td>
-                </tr>
                 
                 <?php if(!empty($key_v_list)) { foreach($key_v_list as $v){ $type = $v['type'];?>
-                    <tr id="theTr_<?php echo $v['main_r_id'];?>">
+                    <tr id="theTr_<?php echo $v['v_id'];?>">
                         <td onclick="newDetails('<?php echo $v['id_reported'];?>','<?php echo $v['type'];?>')">
                             <span class="user_details"><?php echo $v['name']?></span>
                         </td>
@@ -92,7 +80,6 @@ if($this->session->userdata('UserLoginSession')){
         function accept_ver(verify_id, user_id, type){
             var id = "theTr_" + verify_id.toString();
             $.post('<?=base_url('Verification_controller/accept_ver_rep');?>', {v_id: verify_id, u_id: user_id, type: type}, function(data){
-                alert(verify_id);
                 alert(data.msg);
                 document.getElementById(id).remove();
             }, 'JSON');

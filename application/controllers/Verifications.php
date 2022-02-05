@@ -155,7 +155,7 @@ class Verifications extends CI_Controller{
                 $v_list[$x]['name'] = $temp[0]['email'];
             }
             $v_list[$x]['main_r_id'] = $t['content_ID'];
-            $v_list[$x]['v_id'] = $report_details[0]['ID'];
+            $v_list[$x]['v_id'] = $t['ID'];
             $v_list[$x]['u_id'] = $report_details[0]['user_id'];
             $v_list[$x]['id_reported'] = $report_details[0]['id_reported'];
             $v_list[$x]['description'] = $report_details[0]['description'];
