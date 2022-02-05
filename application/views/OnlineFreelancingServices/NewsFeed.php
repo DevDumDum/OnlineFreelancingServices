@@ -207,6 +207,7 @@ else
                 var post = jQuery.parseJSON(data);
 
                 AddPostPopUp();
+                $("#works").val(post['profession_ID']);
                 $('#post-id').attr("value", id);
                 $('#desc').attr("value", post['requirements']);
 
