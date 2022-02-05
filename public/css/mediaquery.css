@@ -1,3 +1,22 @@
+@media all and (min-width: 300px){
+    .work-category-side{
+      height: 0px;
+      width: 0px;
+    }
+    .card-custom{
+      transform: scale(0);
+    }
+    .appear{
+      transform: scale(1);
+    }
+    .move{
+      left: 100%;
+    }
+    .resize{
+    width: 100px;
+    height: 100px;
+    }
+}
 @media all and (min-width: 500px) {
     .custom-navbar a{
         font-size: 2vw;
@@ -63,7 +82,38 @@
         font-size: 3vw;
         margin-top: 10%;
     }
-    
+    .work-category-side{
+        height: max-content;
+        width: 480px;
+    }
+    .sticky-top{
+        margin: 45px auto 0 70px !important;
+        z-index: 0;
+    }
+    .card-width{
+        margin: 8px auto 0 35px !important;
+    }
+    #result{
+        margin: 10px auto 0 25px !important;
+    }
+    .work-category-side button{
+        font-size: 2vw;
+    }
+    .main_post{
+        font-size: 3vw !important;
+    }
+    #hiddenbox-nf{
+        margin: 5px auto auto 10px !important;
+        height: 100%;
+        width: 270%;
+        font-size: 2vw;
+    }
+    #hiddenbox-nf label{
+        font-size: 2vw !important;
+    }
+    .add-post-content input{
+        font-size: 2vw !important;
+    }
 }
 
 @media all and (min-width: 768px) {
@@ -132,6 +182,43 @@
     .editbtn2-jobCategory-responsiveness{
         font-size: 2.22vw;
         margin-top: 6%;
+    }
+    .card-custom{
+        transform: translateX(0%);
+    }
+    #filter-btn{
+        display: none;
+    }
+    .work-category-side{
+        height: max-content;
+        width: 500px;
+    }
+    .sticky-top{
+        margin: 35px auto auto 200px !important;
+        z-index: 0;
+    }
+    .card-width{
+        margin: 15px auto auto 120px !important;
+    }
+    #result{
+        margin: 10px auto auto 140px !important;
+    }
+    .work-category-side button{
+        font-size: 1.4vw;
+    }
+    .main_post{
+        font-size: 2vw !important;
+    }
+    #hiddenbox-nf{
+        margin: 5px auto auto 120px !important;
+        height: 100%;
+        width: 180%;
+    }
+    #hiddenbox-nf label{
+        font-size: 1.5vw !important;
+    }
+    .add-post-content input{
+        font-size: 1vw !important;
     }
 }
 
@@ -202,6 +289,32 @@
         font-size: 1.8vw;
         margin-top: 0%;
     }
+    .sticky-top{
+        margin: 25px auto auto 330px !important;
+        z-index: 0 !important;
+    }
+    .card-width{
+        margin: 15px auto auto 200px !important;
+    }
+    #result{
+        margin: 10px auto auto 250px !important;
+    }
+    .work-category-side button{
+        font-size: 1.2vw;
+    }
+    .main_post{
+        font-size: 1.8vw !important;
+    }
+    #hiddenbox-nf{
+        margin: 5px auto auto 185px !important;
+        height: 100%;
+        width: 168%;
+        font-size: .5vw;
+    }
+    .add-post-content input{
+        font-size: .8vw !important;
+    }
+    
 }
 
 @media all and (min-width: 1280px) {
@@ -271,6 +384,35 @@
         font-size: 1.38vw;
         margin-top: 0%;
     }
+    .sticky-top{
+        margin: 15px auto auto 0px !important;
+        z-index: 0;
+    }
+    .card-width{
+        margin: 15px auto auto 4px !important;
+    }
+    #result{
+        margin: 10px auto auto 3px !important;
+    }
+    .work-category-side button{
+        font-size: .8vw;
+    }
+    .row{
+        flex-wrap: nowrap;
+    }
+    .main_post{
+        font-size: 1vw !important;
+    }
+    #hiddenbox-nf{
+        margin: 5px auto auto 10px !important;
+        height: 100%;
+        width: 100%;
+        font-size: .5vw;
+    }
+    .add-post-content input{
+        font-size: .8vw !important;
+    }
+    
 }
 
 @media all and (min-width: 1304px) {
@@ -340,6 +482,34 @@
         font-size: 1.3vw;
         margin-top: 0%;
     }
+    .sticky-top{
+        margin: 15px auto auto 0px !important;
+        z-index: 0;
+    }
+    .card-width{
+        margin: 15px auto auto 4px !important;
+    }
+    #result{
+        margin: 10px auto auto 3px !important;
+    }
+    .work-category-side button{
+        font-size: .8vw;
+    }
+    .row{
+        flex-wrap: nowrap;
+    }
+    .main_post{
+        font-size: 1vw !important;
+    }
+    #hiddenbox-nf{
+        margin: 5px auto auto 7px !important;
+        height: 100%;
+        width: 100%;
+        font-size: .5vw;
+    }
+    .add-post-content input{
+        font-size: .8vw !important;
+    }
 }
 
 @media all and (min-width: 1366px) {
@@ -398,6 +568,34 @@
     .editbtn2-jobCategory-responsiveness{
         font-size: 1.4vw;
         margin-top: 0%;
+    }
+    .sticky-top{
+        margin: 15px auto auto 0px !important;
+        z-index: 0;
+    }
+    .card-width{
+        margin: 15px auto auto 4px !important;
+    }
+    #result{
+        margin: 10px auto auto 3px !important;
+    }
+    .work-category-side button{
+        font-size: .8vw;
+    }
+    .row{
+        flex-wrap: nowrap;
+    }
+    .main_post{
+        font-size: 1vw !important;
+    }
+    #hiddenbox-nf{
+        margin: 5px auto auto 2px !important;
+        height: 100%;
+        width: 100%;
+        font-size: .5vw;
+    }
+    .add-post-content input{
+        font-size: .8vw !important;
     }
 }
 
@@ -462,6 +660,34 @@
         font-size: 1.3vw;
         margin-top: 0%;
     }
+    .sticky-top{
+        margin: 10px auto auto 0px !important;
+        z-index: 0;
+    }
+    .card-width{
+        margin: 10px auto auto 4px !important;
+    }
+    #result{
+        margin: 10px auto auto 3px !important;
+    }
+    .work-category-side button{
+        font-size: .8vw;
+    }
+    .row{
+        flex-wrap: nowrap;
+    }
+    .main_post{
+        font-size: 1vw !important;
+    }
+    #hiddenbox-nf{
+        margin: 5px auto auto auto !important;
+        height: 100%;
+        width: 100%;
+        font-size: .45vw;
+    }
+    .add-post-content input{
+        font-size: .5vw !important;
+    }
 }
 
 @media all and (min-width: 1536px) {
@@ -520,6 +746,34 @@
     .editbtn2-jobCategory-responsiveness{
         font-size: 1.2vw;
         margin-top: 0%;
+    }
+    .sticky-top{
+        margin: 0 auto auto 0px !important;
+        z-index: 0;
+    }
+    .card-width{
+        margin: 0 auto auto 4px !important;
+    }
+    #result{
+        margin: 10px auto auto 3px !important;
+    }
+    .work-category-side button{
+        font-size: .8vw;
+    }
+    .row{
+        flex-wrap: nowrap;
+    }
+    .main_post{
+        font-size: 1vw !important;
+    }
+    #hiddenbox-nf{
+        margin: 5px auto auto auto !important;
+        height: 100%;
+        width: 92%;
+        font-size: .5vw;
+    }
+    .add-post-content input{
+        font-size: .8vw !important;
     }
 }
 
@@ -587,6 +841,37 @@
         font-size: 1.3vw;
         margin-top: 0%;
     }
+    .sticky-top{
+        margin: 0 auto auto 100px !important;
+        z-index: 0;
+    }
+    .card-width{
+        margin: 0 auto auto 4px !important;
+    }
+    #result{
+        margin: 10px auto auto 3px !important;
+    }
+    .work-category-side button{
+        font-size: .8vw;
+    }
+    .row{
+        flex-wrap: nowrap;
+    }
+    .main_post{
+        font-size: 1vw !important;
+    }
+    #hiddenbox-nf{
+        margin: 5px auto auto auto !important;
+        height: 100%;
+        width: 92%;
+        font-size: .5vw;
+    }
+    #hiddenbox-nf label {
+        font-size: .8vw !important;
+    }
+    .add-post-content input{
+        font-size: .6vw !important;
+    }
 }
 
 @media all and (min-width: 1858px) {
@@ -636,6 +921,31 @@
     .editbtn2-jobCategory-responsiveness{
         font-size: 1vw;
         margin-top: 0%;
+    }
+    .sticky-top{
+        margin: 0 auto auto 15px !important;
+        z-index: 0;
+    }
+    .card-width{
+        margin: 0 auto auto 4px !important;
+    }
+    #result{
+        margin: 10px auto auto 3px !important;
+    }
+    .work-category-side button{
+        font-size: .8vw;
+    }
+    .main_post{
+        font-size: 1vw !important;
+    }
+    #hiddenbox-nf{
+        margin: 5px auto auto auto !important;
+        height: 100%;
+        width: 80%;
+        font-size: .4vw;
+    }
+    .add-post-content input{
+        font-size: .5vw !important;
     }
 }
 
@@ -693,5 +1003,30 @@
     .editbtn2-jobCategory-responsiveness{
         font-size: 1vw;
         margin-top: 0%;
+    }
+    .sticky-top{
+        margin: 10px auto auto 15px !important;
+        z-index: 0;
+    }
+    .card-width{
+        margin: 0 auto auto 4px !important;
+    }
+    #result{
+        margin: 10px auto auto 3px !important;
+    }
+    .work-category-side button{
+        font-size: .6vw;
+    }
+    .main_post{
+        font-size: 1vw !important;
+    }
+    #hiddenbox-nf{
+        margin: 5px auto auto auto !important;
+        height: 100%;
+        width: 75%;
+        font-size: .6vw;
+    }
+    .add-post-content input{
+        font-size: .45vw !important;
     }
 }

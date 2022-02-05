@@ -13,30 +13,26 @@ else
 
 <body id="newsfeed">
     <div class="container-newsfeed">
-        <div class="row custom-row-container" style="margin-right: 0;">
+        <div class="row custom-row-container">
             <div class="col-3 pl-0 work-category-side sticky-top">
                 <!-- for filtering category-->
                 <!--Work:-->
-                <div class="card bg-light-custom mb-3">
-                    <div class="card-header">Work Category Filter</div>
-                        <div class="card-body">
-                            <p>
-                            Type of Work:
-                            <select name="Work">
-                                <option value="null">----</option>
-                                    <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
-                                        <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
-                                    <?php }} ?>
-                            </select>
-                            </p>             
-                        <!--Location:-->
-                        <div class="location-filter">
+                <div class="card bg-light-custom mb-3 card-custom">
+                    <div class="card-header"><h1>Work Category Filter</h1></div>
+                        <div class="card-body work-width">
+                            <p>Type of Work:
+                                <select name="Work">
+                                    <option value="null">----</option>
+                                        <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
+                                            <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
+                                        <?php }} ?>
+                                </select>
+                            </p>
                             <p>Location: <input type="text" name="location"></p>
                             <p>Province: <input type="text" name="province"></p>
                             <p>City: <input type="text" name="City"></p> 
                         </div>
-                        <button type="button" class="btn btn-success work-category-apply" name="category">Apply</button> 
-                    </div>
+                        <button type="button" class="btn btn-success work-category-apply" name="category">Apply</button>
                 </div>
             </div>
             <div class="col-8 newsfeed-side">
@@ -44,8 +40,8 @@ else
                 <div class="card bg-light-custom mb-3 card-width">
                     <div class="card-header"><h1>Finding A Job? A worker? Post now!</h1></div>
                         <div class="card-body">
-                        <button type="button" class="btn btn-primary btn-lg" onclick="AddPostPopUp()">Add Post</button>
-                    </div>
+                            <button type="button" class="btn btn-primary btn-lg" onclick="AddPostPopUp()">Add Post</button>
+                        </div>
                 </div>
                 <!--PopUp createPost-->
                 <div id="hiddenbox-nf">
@@ -59,41 +55,41 @@ else
                                 </div>
                             </div>
                             <div class="create-post">
-                                <form action="<?=base_url('Post_controller/addPost')?>" method="post" enctype="multipart/form-data">
-                                    <div class="add-post-content btn-block">
-                                        <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
-                                            <p>
-                                                <label for="">Work Category</label>
-                                                <select name="work" id="works">
-                                                    <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
-                                                        <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
-                                                    <?php }} ?>
-                                                </select>
-                                                <button type="button" class="btn btn-secondary" name="addWorkPost">+</button><br>
+                                    <form action="<?=base_url('Post_controller/addPost')?>" method="post" enctype="multipart/form-data">
+                                        <div class="add-post-content btn-block">
+                                            <input type="text" name="poster_name" value="<?php echo $udata['id'];?>" style="display:none">
+                                                <p>
+                                                    <label for="">Work Category</label>
+                                                    <select name="work" id="works">
+                                                        <?php if(!empty($key_works)) { foreach($key_works as  $w){ ?>
+                                                            <option value="<?php echo $w['ID'];?>"> <?php echo $w['profession_type'];?> </option>
+                                                        <?php }} ?>
+                                                    </select>
+                                                    <button type="button" class="btn btn-secondary" name="addWorkPost">+</button><br>
 
-                                                <label for="">Description</label>
-                                                <input type="text" name="description" id="desc" placeholder="Requirements" required /> <br>
+                                                    <label for="">Description</label>
+                                                    <input type="text" name="description" id="desc" placeholder="Requirements" required /> <br>
 
-                                                <label for="">Worker(s) needed</label>
-                                                <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
-                                                
-                                                <label for="">Location</label>
-                                                <input type="text" name="location" id="location" placeholder="Work location" required /> <br>
-                                                
-                                                <label for="">Minimum Payment</label>
-                                                <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
-                                                
-                                                <label for="">Fixed</label>
-                                                <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"> <br>
-                                                
-                                                <label for="">Maximum Payment</label>
-                                                <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /> 
-                                            </p>
-
-                                        <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                                        <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit">
-                                    </div>
-                                </form>
+                                                    <label for="">Worker(s) needed</label>
+                                                    <input type="number" name="worker-count" id="worker_count" value="1" max="100" min="1" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
+                                                    
+                                                    <label for="">Location</label>
+                                                    <input type="text" name="location" id="location" placeholder="Work location" required /> <br>
+                                                    
+                                                    <label for="">Minimum Payment</label>
+                                                    <input type="number" name="min-pay" id="min_pay" value="" max="100" min="1" placeholder="None" disabled oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null">
+                                                    
+                                                    <label for="">Fixed</label>
+                                                    <input type="checkbox" id="min-checker" checked onclick="set_min_pay(this)"> <br>
+                                                    
+                                                    <label for="">Maximum Payment</label>
+                                                    <input type="number" name="max-pay" id="max_pay" oninput="this.value = !!this.value && Math.abs(this.value) >= 1 ? Math.abs(this.value) : null" required /> 
+                                                </p>
+                                            
+                                            <input type="file" name="fileToUpload" id="fileToUpload"> <br>
+                                            <input type="submit" class="btn btn-block btn-primary btn-sm p-3" value="Post" name="submit">
+                                        </div>
+                                    </form>
                             </div>
                         </div>
                     </div>
@@ -111,7 +107,7 @@ else
                                 <br>
                                 Description:<br>
                                 <textarea id="r_desc" style="width:100%; height:150px;"></textarea><br>
-                                <button id="r_id" type="button" value="" onclick="report_p(this.value)">Submit</button>
+                                <button id="r_id" class="btn btn-block btn-success" onclick="report_p(this.value) value="">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -122,6 +118,8 @@ else
         </div>
     </div>
     <br>
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 <script>
@@ -320,7 +318,7 @@ else
         if( <?php echo $udata["id"];  ?> != owner) {
             post["report_p_"+curID] = document.createElement("BUTTON");
             post["report_p_"+curID].id = "report_p_"+curID;
-            post["report_p_"+curID].style.float = "right";
+            post["report_p_"+curID].className = "report-post btn btn-danger btn-lg";
             post["report_p_"+curID].innerHTML = "Report";
             post["report_p_"+curID].addEventListener ("click", function() {
                 report_post(curID);
@@ -329,8 +327,9 @@ else
         } else {
             post["option_"+curID] = document.createElement("input");
             post["option_"+curID].id = "option_"+curID;
+            post["option_"+curID].className = "btn btn-secondary p-3 btn-block"+curID;
             post["option_"+curID].setAttribute("type", "button");
-            post["option_"+curID].setAttribute("value", "option");
+            post["option_"+curID].setAttribute("value", "Option");
             post["option_"+curID].style.float = "right";
             post["option_"+curID].addEventListener ("click", function() {
                 if(document.getElementById("PostOptionMenu_"+curID).style.display == "block"){
@@ -344,6 +343,7 @@ else
 
             post["PostOptionMenu_"+curID] = document.createElement("div");
             post["PostOptionMenu_"+curID].id = "PostOptionMenu_"+curID;
+            post["PostOptionMenu_"+curID].className = "p-2 mb-2 bg-dark bg-dark"+curID;
             post["PostOptionMenu_"+curID].style.float = "right";
             post["PostOptionMenu_"+curID].style.marginTop = "30px";
             post["PostOptionMenu_"+curID].style.marginRight = "-80px";
@@ -353,6 +353,7 @@ else
 
                 post["edit_p_"+curID] = document.createElement("BUTTON");
                 post["edit_p_"+curID].id = "edit_p_"+curID;
+                post["edit_p_"+curID].className = "btn btn-secondary btn-block p-1"+curID;
                 post["edit_p_"+curID].setAttribute("value", curID);
                 post["edit_p_"+curID].innerHTML = "Edit";
                 post["edit_p_"+curID].addEventListener ("click", function() {
@@ -362,6 +363,7 @@ else
 
                 post["del_p_"+curID] = document.createElement("BUTTON");
                 post["del_p_"+curID].id = "del_p_"+curID;
+                post["del_p_"+curID].className = "btn btn-secondary btn-block p-2"+curID;
                 post["del_p_"+curID].setAttribute("value", curID);
                 post["del_p_"+curID].innerHTML = "Delete";
                 post["del_p_"+curID].addEventListener ("click", function() {
@@ -428,6 +430,22 @@ else
         "<br>Date: "+date+"<br><br>";
         document.getElementById(post["post_"+curID].id).appendChild(post["container_"+curID]);
     }
+    const filterBtn = document.getElementById('filter-btn');
+    const card = document.querySelector('.card-custom');
+    const workCategory = document.querySelector('.work-category-side');
+    const mediaQuery = window.matchMedia('(min-width: 768px)')
+
+    if (mediaQuery.matches) {
+    card.classList.remove("appear");
+    filterBtn.style.left = '0%';
+    }
+
+    filterBtn.addEventListener('click', function() {
+    console.log('click');
+    filterBtn.classList.toggle("move");
+    card.classList.toggle("appear");
+    workCategory.classList.toggle("resize");
+    });
 </script>
 
-<!-- JavaScript Bundle with Popper -->
+
