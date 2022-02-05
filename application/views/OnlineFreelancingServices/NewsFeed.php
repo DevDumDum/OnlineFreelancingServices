@@ -137,19 +137,19 @@ else
     var STATE = {
         IDLE: 0,
         EDIT: 1,
-        ADD: 2
+        ADD: 2,
+        FILTER: 3
     };
     var newsfeed = {
-      state: STATE.IDLE
+      state: STATE.IDLE,
+      scrollable: false
     };
     $(window).scroll(function(){
+        if(newsfeed.scrollable){
+            var current = window.scrollY;
+            var pos = current + window.innerHeight; 
 
-        var current = window.scrollY;
-        var pos = current + window.innerHeight; 
-        //console.log("Limit: "+ scrollLimit +" | Current: " + pos);
-
-        if(pos >= scrollLimit) {
-            display_post_batch();
+            if(pos >= scrollLimit) display_post_batch();
         }
     });
     function display_post_batch(){
@@ -158,10 +158,7 @@ else
             offset++;
         }
     }
-    function display_post_batchf(){
-        
-        var l = $("#location-filter-t").val();
-        var w = $('#work-filter').val();
+    function display_post_batchf(l,w){
 
         for(var i=0; i<limit; i++){
             display_new_postf(l,w);
@@ -368,15 +365,14 @@ else
     }
     function display_new_postf(l, w){
         const theFunction = "<?=base_url('Post_controller/get_from_offset_filtered'); ?>";
-        $.post(theFunction, {postIndex: offset, postLimit: limit, location:l, work: w}, function(data, status){
-            alert();
-            if(status=='success'){
-                
-                let text = data;
-                text = text.replace('[', '');
-                text = text.replace(']', '');
+        $.post(theFunction, {postIndex: offset, postLimit: limit, location:l, work_ID: w}, function(data, status){
 
+            if(status=='success'){
                 if(data != " "){
+                    let text = data;
+                    text = text.replace('[', '');
+                    text = text.replace(']', '');
+
                     for(var x = 0; x<8; x++) text = text.replace('"', '');
 
                     const myArray = text.split(",");
@@ -596,6 +592,7 @@ else
         display_post_batch();
 
         newsfeed.state = STATE.IDLE;
+        newsfeed.scrollable = true;
         
         var s = $('#search-user');
         s.on('input', function(){
@@ -622,8 +619,16 @@ else
             alert();
         });
 
+        $("#work-filter").change(function(){
+            var l = $("#location-filter-t").val();
+            var w = $('#work-filter').val();
+            
+            if(l || w > 0) newsfeed.scrollable = false;
+            else newsfeed.scrollable = true;
+
+        });
+
         $("#work-filter-btn").click(function(){
-            alert("Fileter");
             $('#result').remove();
             offset=1;
             
@@ -633,8 +638,7 @@ else
             createResultContainer();
 
             if(l || w > 0){
-                console.log("L: "+l+" | W: "+w);
-                display_post_batchf();
+                display_post_batchf(l,w);
             }else {
                 window.location.reload();
             }

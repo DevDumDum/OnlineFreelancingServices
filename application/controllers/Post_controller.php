@@ -155,20 +155,18 @@ class Post_controller extends CI_Controller {
         $posts = array();
         
         if(isset($_POST['location']) && isset($_POST['work_ID'])){
-            $post = $this->Post_model->get_from_offset_lw($offset, $_POST['location'], $_POST['work_ID']);
+            $posts = $this->Post_model->get_from_offset_lw($offset, $_POST['location'], $_POST['work_ID']);
         }else if (isset($_POST['location']) && !isset($_POST['work_ID'])){
-            $post = $this->Post_model->get_from_offset_l($offset, $_POST['location']);
+            $posts = $this->Post_model->get_from_offset_l($offset, $_POST['location']);
         }else if (!isset($_POST['location']) && isset($_POST['work_ID'])){
-            $post = $this->Post_model->get_from_offset_w($offset, $_POST['work_ID']);
+            $posts = $this->Post_model->get_from_offset_w($offset, $_POST['work_ID']);
         }else {
             $posts = $this->Post_model->get_from_offset($offset);
         }
 
         //echo '<pre>';
-        print_r($posts);
-        
+        //print_r($posts);
         // NEW_POST[] = {POSTER_NAME, PROFFESION_NAME, POST_ID, POSTER_ID}
-        $n_post=array();
         $udata = $this->session->userdata('UserLoginSession');
         $a_arr="";
         if(isset($udata['jobs'])){

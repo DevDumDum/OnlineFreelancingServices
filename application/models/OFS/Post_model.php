@@ -8,7 +8,7 @@ class Post_model extends CI_Model{
       $this->load->model('OFS/Post_model');
   }
 
-  public function get_post_from_id($id){
+   public function get_post_from_id($id){
       $this->db->select('ID, poster_ID, profession_ID, 
       worker_count, requirements, location, timestamp,
       min_pay, max_pay, status, applicants, accepted');
@@ -182,7 +182,7 @@ class Post_model extends CI_Model{
       min_pay, max_pay, status, applicants, accepted');
       $this->db->limit(1, $offset);
       $this->db->where('status >', 0);
-      $this->db->like('location', $location);
+      $this->db->like('location', $location, "after");
       $this->db->order_by('timestamp', 'DESC');
       $q = $this->db->get('post')->result_array();
       return $q;
@@ -210,7 +210,7 @@ class Post_model extends CI_Model{
       min_pay, max_pay, status, applicants, accepted');
       $this->db->limit(1, $offset);
       $this->db->where('status >', 0);
-      $this->db->like('location', $location);
+      $this->db->like('location', $location, "after");
       $this->db->where('profession_ID', $work_ID);
       $this->db->order_by('timestamp', 'DESC');
       $q = $this->db->get('post')->result_array();
