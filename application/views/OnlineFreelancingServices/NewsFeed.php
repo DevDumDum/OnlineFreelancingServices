@@ -13,7 +13,7 @@ else
 
 <body id="newsfeed">
     <div class="container-newsfeed">
-        <div class="row custom-row-container">
+        <div class="row custom-row-container" style="margin-right: 0;">
             <div class="col-3 pl-0 work-category-side sticky-top">
                 <!-- for filtering category-->
                 <!--Work:-->
@@ -118,8 +118,6 @@ else
         </div>
     </div>
     <br>
-    <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 <script>
@@ -318,7 +316,7 @@ else
         if( <?php echo $udata["id"];  ?> != owner) {
             post["report_p_"+curID] = document.createElement("BUTTON");
             post["report_p_"+curID].id = "report_p_"+curID;
-            post["report_p_"+curID].className = "report-post btn btn-danger btn-lg";
+            post["report_p_"+curID].style.float = "right";
             post["report_p_"+curID].innerHTML = "Report";
             post["report_p_"+curID].addEventListener ("click", function() {
                 report_post(curID);
@@ -327,9 +325,8 @@ else
         } else {
             post["option_"+curID] = document.createElement("input");
             post["option_"+curID].id = "option_"+curID;
-            post["option_"+curID].className = "btn btn-secondary p-3 btn-block"+curID;
             post["option_"+curID].setAttribute("type", "button");
-            post["option_"+curID].setAttribute("value", "Option");
+            post["option_"+curID].setAttribute("value", "option");
             post["option_"+curID].style.float = "right";
             post["option_"+curID].addEventListener ("click", function() {
                 if(document.getElementById("PostOptionMenu_"+curID).style.display == "block"){
@@ -343,7 +340,6 @@ else
 
             post["PostOptionMenu_"+curID] = document.createElement("div");
             post["PostOptionMenu_"+curID].id = "PostOptionMenu_"+curID;
-            post["PostOptionMenu_"+curID].className = "p-2 mb-2 bg-dark bg-dark"+curID;
             post["PostOptionMenu_"+curID].style.float = "right";
             post["PostOptionMenu_"+curID].style.marginTop = "30px";
             post["PostOptionMenu_"+curID].style.marginRight = "-80px";
@@ -430,6 +426,130 @@ else
         "<br>Date: "+date+"<br><br>";
         document.getElementById(post["post_"+curID].id).appendChild(post["container_"+curID]);
     }
+    function searchUser(){
+        searchContent=$('#search-user').val();
+        var searchList = $('#search-results');
+        
+        if(searchContent){            
+            $.post("<?=base_url('User_controller/search_user')?>", {theInput: searchContent}, function(data){
+                
+                var searchObj = jQuery.parseJSON(data);
+                $(searchList).empty();
+                
+                for(var i=0; i<searchObj.length;i++){
+                    var tempName = searchObj[i].full_name;
+                    var tempID = searchObj[i].ID;
+
+                    var li = document.createElement('li');
+                    $(li).attr('id', tempID);
+                    $(li).attr('class', 'searchValues');
+                    $(li).text(tempName);
+                    $(li).attr('onclick')
+                    
+                    $(searchList).append(li);
+                }
+            })
+        }else {
+            searchList.empty();
+            var li = document.createElement('li');
+            $(li).text("No result");
+            searchList.append(li);
+        }
+    }
+
+    var searchContent;
+    $(document).ready(function(){
+        
+        scrollLimit = Math.max($(document).height(), $(window).height());
+        limit = 5;
+        offset = 1;
+        display_post_batch();
+
+        newsfeed.state = STATE.IDLE;
+        newsfeed.scrollable = true;
+        
+        var s = $('#search-user');
+        s.on('input', function(){
+            searchUser();
+        });
+
+        s.focusout(function(){
+            if(!s.val()) $('#search-results').empty();
+        });
+
+        s.focusin(function(){
+            searchUser();
+        });
+
+        $("#search-results").on('click','li',function(){
+            //$('#search-id').attr('value', $(this).attr('id'));
+            window.location.href = 'Profilepage?id='+$(this).attr('id');
+        });
+
+        var tb = document.getElementsByClassName('userImage');
+        
+        $(tb).click(function(){
+            //$('#search-id').attr('value', $(this).attr('id'));
+            alert();
+        });
+
+        $("#work-filter").change(function(){
+            var l = $("#location-filter-t").val();
+            var w = $('#work-filter').val();
+            
+            if(l || w > 0) newsfeed.scrollable = false;
+            else newsfeed.scrollable = true;
+
+        });
+
+        $("#work-filter-btn").click(function(){
+            $('#result').remove();
+            offset=1;
+            
+            var l = $("#location-filter-t").val();
+            var w = $('#work-filter').val();
+            
+            createResultContainer();
+
+            if(l || w > 0){
+                display_post_batchf(l,w);
+            }else {
+                window.location.reload();
+            }
+        });
+
+        $('#submit-post').click(function(){
+            var trim = "<script>";
+            var validated = true;
+            var id = ($('#post-id').val()).replace(trim, '');
+            var desc = ($('#desc').val()).replace(trim, '');
+            var count = ($('#worker_count').val()).replace(trim, '');
+            var loc = ($('#location').val()).replace(trim, '');
+            var maxp = ($('#max_pay').val()).replace(trim, '');
+
+            if(desc == null || desc == "") validated = false;
+            if(count == null || count == "" || isNaN(count)) validated = false;
+            if(loc == null || loc == "") validated = false;
+            if(maxp == null || maxp == "" || isNaN(maxp)) validated = false;
+
+            if(validated){
+                if(newsfeed.state == STATE.EDIT) update_post();
+                else if(newsfeed.state == STATE.ADD) add_post();
+                
+                reset_post_fields();
+                newsfeed.state = STATE.IDLE;
+            }else {
+                alert("Please correctly fill up all required fields!");
+            }
+        });
+
+        $('#add-post-btn').click(function(){
+            newsfeed.state = STATE.ADD;
+            AddPostPopUp();
+        });
+
+    });
+    
     const filterBtn = document.getElementById('filter-btn');
     const card = document.querySelector('.card-custom');
     const workCategory = document.querySelector('.work-category-side');
@@ -446,6 +566,7 @@ else
     card.classList.toggle("appear");
     workCategory.classList.toggle("resize");
     });
+    
 </script>
 
-
+<!-- JavaScript Bundle with Popper -->
