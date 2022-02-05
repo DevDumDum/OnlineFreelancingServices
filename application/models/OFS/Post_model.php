@@ -265,4 +265,16 @@ class Post_model extends CI_Model{
       else return false;
       
    }
+
+   public function count_work_id($work_ID){
+      $this->db->where('profession_ID', $work_ID);
+      $this->db->from('post');
+      return $this->db->count_all_results();
+   }
+
+   public function count_work_location($location){
+      $this->db->like('location', $location);
+      $this->db->from('post');
+      return $this->db->count_all_results();
+   }
 }

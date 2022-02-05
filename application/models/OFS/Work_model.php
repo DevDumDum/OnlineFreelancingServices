@@ -6,6 +6,7 @@ class Work_model extends CI_Model{
           $this->db->select('ID, profession_type, description');
           $this->db->select('status');
           $this->db->where('status', 1);
+          $this->db->order_by("profession_type", "ASC");
 
           return $table = $this->db->get('profession')->result_array();
      }

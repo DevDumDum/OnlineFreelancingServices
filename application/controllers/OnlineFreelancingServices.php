@@ -15,7 +15,14 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
-        $this -> load -> view ('OnlineFreelancingServices/Homepage');
+
+        $this->load->model('OFS/Work_model');
+        $works = $this->Work_model->get_table();
+        $table = array();
+        $table['key_works'] = $works;
+        
+        $this -> load -> view ('OnlineFreelancingServices/Homepage', $table);
+
         if($this->session->userdata('UserLoginSession')){
             redirect(base_url('NewsFeed'));
         }

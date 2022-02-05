@@ -591,11 +591,9 @@ else
                     
                     $(searchList).append(li);
                 }
-                
             })
         }else {
             searchList.empty();
-            
             var li = document.createElement('li');
             $(li).text("No result");
             searchList.append(li);
