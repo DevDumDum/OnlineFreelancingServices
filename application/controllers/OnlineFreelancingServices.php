@@ -151,7 +151,6 @@ class OnlineFreelancingServices extends CI_Controller{
 			}
 		}
     }
-
     public function Registerpage(){
         $this->load->model('OFS/Work_model');
         $works = $this->Work_model->get_table();
@@ -169,7 +168,6 @@ class OnlineFreelancingServices extends CI_Controller{
             redirect(base_url('NewsFeed'));
         }
     }
-
     public function add_applicant(){
         header('Content-type: application/json');
         $udata = $this->session->userdata('UserLoginSession');
@@ -190,6 +188,24 @@ class OnlineFreelancingServices extends CI_Controller{
             //return $this->db->insert('post.applicants', $id);
             //redirect(base_url('Profilepage'));
         //else //return $this->db->insert('post.applicants', 0000);           
+    }
+    public function report(){
+        header('content-type: text/json');
+        $this->load->model('OFS/Post_model');
+        $udata = $this->session->userdata('UserLoginSession');
+        $uid = $udata['id'];
+        $rid = $this->input->post('r_id');
+        $type = $this->input->post('type');
+        $desc = $this->input->post('desc');
+        
+        $data = array(
+            'id_reported' => $rid,
+            'user_id' => $uid,
+            'description' => $desc
+        );
+
+        $result = $this->Post_model->report_post($data, $type, $uid);
+        echo json_encode($result);
     }
 
     public function checkE(){
