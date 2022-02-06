@@ -33,8 +33,13 @@
 					<div class="form-padding">
 					<input type="password" name="password" placeholder="Password" class="form-control form-width" id="password" required>
 					</div>
-					<br>
 				</div>
+
+				<div class="text-center text-button">
+						<a href="AdminFPS" class="loginforgotPass">Forgot Password?</a> 
+				</div> 
+				<br>
+
 				<div class="text-center text-button">
 					<button type="submit" class="btn btn-primary button-custom-color">Login Now</button>
 				</div>

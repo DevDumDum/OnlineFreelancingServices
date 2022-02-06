@@ -20,6 +20,9 @@ if($this->session->userdata('UserLoginSession')){
                     <li class="nav-item">
                         <a href="Profilepage?id=<?php echo $udata['id']?>" class="nav-item nav-link">Profile</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="AppliedJob" class="nav-item nav-link">Notifications</a>
+                    </li>
                 </ul>
                 <ul class="nav justify-content-end">
                     <li class="nav-item">

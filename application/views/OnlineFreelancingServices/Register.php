@@ -131,9 +131,9 @@
 
                             <br>
                             <br>
-                            <label for="id" class="fs-5 text-uppercase fst-italic fw-bold text-center" style="color: #1e4e70">kindly provide a photo of your id</label>
+                            label for="id" class="fs-5 text-uppercase fst-italic fw-bold text-center" style="color: #1e4e70">kindly provide a photo of your id</label>
                             <br>
-                            <input type="file" class="registerfilebtn btn-basic btn-sm btn-block"  style="color: #1e4e70" value="Browse">
+                            <input name="valid_id" type="file" class="registerfilebtn btn-basic btn-sm btn-block"  style="color: #1e4e70" value="Browse">
                             <br>
 
                         </div>

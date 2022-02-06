@@ -40,13 +40,13 @@ if ($this->session->userdata('UserLoginSession')){
                 </div>
             <div class="profilebanner d-flex col-12">
                 <div class="cover-pic-div">
-                    <img src = "#" id="photoCover">
-                    <input type="file" id="file">
+                    <img src="<?= base_url() ?>uploads/users/<?= $user->id ?>/<?= $user->ProfBanner ?>" id="photoCover">
+                    <input type="file" id="file" onchange="uploadBanner(this);" name="cover_pic" accept="image/*">
                     <label for="file" id="uploadBtn">
                         <div class="uploadingofcover">
-                            <i class="fal fa-upload"></i><br>
-                            <h3>Add banner image<h3>
-                        </div>  
+                        <i class="fal fa-upload"></i><br>
+                        <h3>Add banner image<h3>
+                        </div>
                     </label>           
                 </div>
             </div>   
@@ -55,11 +55,11 @@ if ($this->session->userdata('UserLoginSession')){
                 <div class="profilecontent col-3 border-right py-2">
                     <div class="profile-container d-flex flex-column align-items-center text-center py-5 ">
 
-                        <div class="profile-pic-div">
-                            <img src = "#" id="photoProfile">
-                            <input type="file" id="fileProfile">
-                            <label for="file" id="uploadBtnProfile">Choose Photo</label>
-                        </div>
+                    <div class="profile-pic-div">
+                        <img src="<?= base_url() ?>uploads/users/<?= $user->id ?>/<?= $user->ProfPic ?>" id="photoProfile">
+                        <input type="file" id="fileProfile" onchange="uploadProfile(this);" name="profile_pic" accept="image/*">
+                        <label for="fileProfile" id="uploadBtnProfile">Choose Photo</label>
+                    </div>
 
                         <div class="profileName">
                             <span class="profile-name font-weight-bold"><!--db-->
@@ -246,6 +246,52 @@ if ($this->session->userdata('UserLoginSession')){
     </div>
     <script type="text/javascript" src="<?php echo base_url("public/css/profile.js")?>"> </script>
     <script>
+        const uploadBanner = el => {
+            const files = el.files
+            if (files.length > 0) {
+                const file = files[0]
+                const formData = new FormData()
+                formData.append('file', file);
+                formData.append('user_id', '<?= $user->id ?>');
+                formData.append('file_type', 'cover')
+                fetch('<?= base_url() ?>OnlineFreelancingServices/upload_profile', {
+                    method: 'POST',
+                    body: formData
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                    console.log(data)
+                    })
+                    .catch(err => console.log(err))
+            }
+        }
+
+
+        const uploadProfile = el => {
+            const files = el.files
+            if (files.length > 0) {
+            const file = files[0]
+            const formData = new FormData()
+            formData.append('file', file);
+            formData.append('user_id', '<?= $user->id ?>')
+            formData.append('file_type', 'profile')
+            fetch('<?= base_url() ?>OnlineFreelancingServices/upload_profile', {
+                method: 'POST',
+                body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                console.log(data)
+                }).catch(err => console.log(err))
+            //     .then(res => res.json())
+            //     .then(data => {
+            //       console.log(data)
+            //       document.querySelector('#profile').src = data.secure_url
+            //     })
+            //     .catch(err => console.log(err))
+            }
+        }
+
         function hidebox(){
             document.getElementById("hiddenbox-nf").style.display="none";
             document.getElementById("report_p").style.display="none";
