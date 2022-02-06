@@ -163,4 +163,37 @@ class Post_model extends CI_Model{
       $q = $this->db->get('post')->result_array();
       return $q;
    }
+
+   public function get_jobs($poster_id)
+   {
+      return $this->db
+         ->select('post.*, profession.profession_type, profession.description as profession_description')
+         ->where('post.poster_ID', $poster_id)
+         // ->where('post.status', $status)
+         // ->group_start()
+         // ->where('accepted', 0)
+         // ->or_where('accepted', null)
+         // ->group_end()
+         ->join('profession', 'profession.ID = post.profession_ID')
+         ->get('post')->result();
+   }
+
+   public function accept_applicant($post_id, $applicant_id)
+   {
+      $post = $this->db->where('ID', $post_id)->get('post')->row();
+      if (!$post) {
+         return false;
+      }
+      $accepted = $post->accepted;
+      $accepted_value = "";
+      if ($accepted == null) {
+         $accepted_value = $applicant_id;
+      } else {
+         $accepted_value = $accepted . "," . $applicant_id;
+      }
+      $this->db->set('accepted', $accepted_value);
+      $this->db->set('status', 1);
+      $this->db->where('ID', $post_id);
+      return $this->db->update('post');
+   }
 }

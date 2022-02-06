@@ -9,6 +9,7 @@ if($this->session->userdata('UserLoginSession')){
                     <img class="img-fluid" src="<?php echo base_url();?>public/images/logo.png" alt="" width="120" 
                     class="d-inline-block align-text-top">
                 </a>
+                <button id='filter-btn'><i class="fas fa-filter"></i></button>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -18,6 +19,9 @@ if($this->session->userdata('UserLoginSession')){
                     </li>
                     <li class="nav-item">
                         <a href="Profilepage?id=<?php echo $udata['id']?>" class="nav-item nav-link">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="AppliedJob" class="nav-item nav-link">Notifications</a>
                     </li>
                 </ul>
                 <ul class="nav justify-content-end">

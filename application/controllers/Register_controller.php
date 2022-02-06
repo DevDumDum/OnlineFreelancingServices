@@ -70,7 +70,8 @@ class Register_controller extends CI_Controller {
                     'status' => $status,
                     'code' => $code,
                     'user_type' => $user_type,
-                    'profession_id' => $profession_id
+                    'profession_id' => $profession_id,
+                    "ValidId" => ''
                 );
 
                 //set up email
@@ -135,6 +136,28 @@ class Register_controller extends CI_Controller {
                        }
 
                 if ($this->Register_model->addUser($data)) {
+                    // get user id
+                    $uid = $this->db->insert_id();
+                    if (!empty($_FILES['valid_id']['name'])) {
+                        $config['upload_path'] = './uploads/users/' . $uid . '/';
+
+                        if (!is_dir($config['upload_path'])) {
+                            mkdir($config['upload_path'], 0777, true);
+                        }
+                        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                        $config['max_size'] = '15000';
+                        $config['overwrite'] = TRUE;
+                        $config['file_name'] = 'valid_id';
+                        // upload
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        $upload = $this->upload->do_upload('valid_id');
+                        if ($upload) {
+                            $file_name = $this->upload->data('file_name');
+                            $this->db->where('id', $uid);
+                            $this->db->update('users', array('ValidId' => $file_name));
+                        }
+                    }
 
                     $this->load->helper('url');
                     $this->load->model('Admin/Verification_model');
@@ -221,11 +244,14 @@ class Register_controller extends CI_Controller {
                 $email = $this->input->post('companyid');
                 $password = $this->input->post('password');
                 $status = 0;
+                $set = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $code = substr(str_shuffle($set), 0, 12);   
 
                 $data = array (
                     'email' => $email,
                     'password' => $password,
                     'status' => $status,
+                    'code' => $code,
                     'user_type' => 'moderator'
                 );
 
@@ -240,11 +266,12 @@ class Register_controller extends CI_Controller {
                     if($ver!=false){
                         $email = $ver->email;
                         $id = $ver->id;
-                        $user_type = $ver->user_type;                        
+                        $user_type = $ver->user_type;                     
                         
                         $session_data = array(
                             'email'=>$email,
                             'id'=>$id,
+                            'code' => $code,
                             'user_type'=>$user_type
                         );
 
