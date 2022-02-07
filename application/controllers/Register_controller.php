@@ -40,18 +40,19 @@ class Register_controller extends CI_Controller {
                 $profession_id = $this->input->post('profession_id');
                 $other_profession_id = $this->input->post('other_profession_id');
 
-                $temp_op = explode(",", $other_profession_id);
-
+                if($other_profession_id != ""){
+                    $temp_op = explode(",", $other_profession_id);
                 
-                for($x = 0; $x < count($temp_op); $x++){
-                    $temp_op[$x] = str_replace('"','' ,$temp_op[$x]);
-                }
-                
-                $r_op = $this->Register_model->addOtherProf($temp_op);
-                if($profession_id != null && $profession_id != 0) {
-                    $profession_id = $profession_id.",".$r_op;
-                } else {
-                    $profession_id = $r_op;
+                    for($x = 0; $x < count($temp_op); $x++){
+                        $temp_op[$x] = str_replace('"','' ,$temp_op[$x]);
+                    }
+                    
+                    $r_op = $this->Register_model->addOtherProf($temp_op);
+                    if($profession_id != null && $profession_id != 0) {
+                        $profession_id = $profession_id.",".$r_op;
+                    } else {
+                        $profession_id = $r_op;
+                    }
                 }
 
 
