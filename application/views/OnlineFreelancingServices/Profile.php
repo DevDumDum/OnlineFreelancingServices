@@ -7,7 +7,6 @@ if ($this->session->userdata('UserLoginSession')){
 <body class="profileBody">
     <div class="profileBody-container">
         <div class="row-profile">
-
             <div class="profilebanner d-flex col-12">
                 <div class="cover-pic-div">
                     <img src = "#" id="photoCover">
@@ -19,10 +18,10 @@ if ($this->session->userdata('UserLoginSession')){
                         </div>  
                     </label>           
                 </div>
-            </div>
+            </div>   
 
             <div class="profile-wrapper col-12">
-                <div class="profilecontent col-md-3 border-right py-2">
+                <div class="profilecontent col-3 border-right py-2">
                     <div class="profile-container d-flex flex-column align-items-center text-center py-5 ">
 
                         <div class="profile-pic-div">
@@ -106,10 +105,48 @@ if ($this->session->userdata('UserLoginSession')){
                                         </button>
                                     </div>
                                 </div>
-                                <?php } else {?>
-                                <div class="rightbutton">
-                                    <button type="button" class="messageprofilebtn btn btn-primary btn-sm">Message</button>
-                                </div>
+
+                                <!-- THIS IS FOR POP UP -->
+                                <?php } else {?> 
+                                    <div id="hiddenbox-profile">
+                                        <div id="bg_box-profile" style="display: none;">
+                                            <div class="modal-header-profile">
+                                                <div class="title">CONTACT ME</div>
+                                                <button type="button" class="btn btn-secondary btn-lg rounded-circle" class="close-button" onclick="hidebox()">&times;</button>
+                                            </div>
+                                            <div>
+                                                <p class="description-message-1"> <b>Email:</b> firstname.lastname@tup.edu.ph</p>
+                                                <p class="description-message-2">  lastname.firstname@yahoo.com </p>
+                                                <p class="description-message-3"> <b>Contact Number:</b> +639123456789 </p>
+                                                <p class="description-message-4">  8 2887704 </p>
+                                            </div>
+                                        </div>
+
+                                        <div id="report_p" style="display: none; margin-top:20rem; text-align:left;">
+                                            <div id="bg_box-nf">
+                                                <div class="modal-header-nf">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="p-2"><h1>Report Post</h1></div>
+                                                        <div class="p-2"><button type="button" class="btn btn-secondary btn-lg rounded-circle" class="close-button" onclick="hidebox()">&times;</button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="create-post">
+                                                    <br>
+                                                    Description:<br>
+                                                    <textarea id="r_desc" style="width:100%; height:150px;"></textarea><br>
+                                                    <button id="r_id" type="button" value="" onclick="report_p(this.value)">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    <div id="blackbox" onclick="hidebox()" style="padding: 0px;">
+                                    </div>
+                                    </div>
+
+                                    <div class="rightbutton">
+                                    <button type="button" class="messageprofilebtn btn btn-primary btn-sm" onclick="newDetails()">  Message </button>
+                                    <button type="button" class="messageprofilebtn btn btn-primary btn-sm" onclick="report_post(<?php echo $_GET['id'];?>)">  Report </button>
+                                    </div>
                                 <?php }?>
                             </div>
 
@@ -119,7 +156,7 @@ if ($this->session->userdata('UserLoginSession')){
 
                             <div class="profileProjwrapper col-9">
                                 <div class="profileProjContainer">
-                                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                                    <div class="row row-cols-1 row-cols-3 g-4">
                                         <div class="col">
                                             <div class="card">
                                                 <img src="./public/images/sample.png" class="card-img-top" alt="...">
@@ -170,18 +207,6 @@ if ($this->session->userdata('UserLoginSession')){
                                     EDUCATIONAL ATTAINMENT<input class="eduAttainment" type="text" id="" name="eduAttainment" placeholder="+" disabled value="">
                                     </div>
                                 </div>
-
-                                <div class="info-cont d-flex flex-column bd-highlight mb-3">
-                                    <div class="p-2 bd-highlight">
-                                    EXPERTISE<input class="expertise" type="text" id="" name="expertise" placeholder="+" disabled value="">
-                                    </div>
-                                </div>
-
-                                <div class="info-cont d-flex flex-column bd-highlight mb-3">
-                                    <div class="p-2 bd-highlight">
-                                    CONTACT INFORMATION<input class="contact-info" type="text" id="" name="contact-info" placeholder="+" disabled value="">
-                                    </div>
-                                </div>
                             </div>
                         </form>
                     </div>
@@ -190,5 +215,42 @@ if ($this->session->userdata('UserLoginSession')){
         </div>
     </div>
     <script type="text/javascript" src="<?php echo base_url("public/css/profile.js")?>"> </script>
+    <script>
+        function newDetails(){
+            document.getElementById("hiddenbox-profile").style.display="block";
+            document.getElementById("hiddenbox-profile").style.animation="fadebox .3s reverse linear";
+            document.getElementById("bg_box-profile").style.display="block";
+            document.getElementById("report_p").style.display="none";
+        }
+        
+        function hidebox(){
+            document.getElementById("hiddenbox-profile").style.display="none";
+            document.getElementById("bg_box-profile").style.display="none";
+            document.getElementById("report_p").style.display="none";
+        }
+        function report_post(id){
+            document.getElementById("hiddenbox-profile").style.display="block";
+            document.getElementById("bg_box-profile").style.display="none";
+            document.getElementById("report_p").style.display="block";
+            document.getElementById("r_id").value=id;
+        }
+
+        function report_p(id){
+        var desc = document.getElementById("r_desc").value;
+        var uid = <?php echo $udata["id"]; ?>;
+        $.ajax({
+            type: 'POST',
+            url:"<?=base_url('OnlineFreelancingServices/report');?>",
+            data: {r_id : id , desc : desc, type: "report-u"},
+            success: function(response) {
+                alert(response);
+                document.getElementById("r_desc").value="";
+                document.getElementById("r_id").value="";
+                document.getElementById("hiddenbox-profile").style.display="none";
+                document.getElementById("report_p").style.display="none";
+            }
+        });
+    }
+    </script>
 </body>
 </html>

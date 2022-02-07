@@ -192,6 +192,26 @@ class OnlineFreelancingServices extends CI_Controller{
         //else //return $this->db->insert('post.applicants', 0000);           
     }
 
+    public function report(){
+        header('content-type: text/json');
+        $this->load->model('OFS/Post_model');
+        $udata = $this->session->userdata('UserLoginSession');
+        $uid = $udata['id'];
+        $rid = $this->input->post('r_id');
+        $type = $this->input->post('type');
+        $desc = $this->input->post('desc');
+        
+        $data = array(
+            'type' => $type,
+            'id_reported' => $rid,
+            'user_id' => $uid,
+            'description' => $desc
+        );
+
+        $result = $this->Post_model->report_post($data, $type, $uid);
+        echo json_encode($result);
+    }
+
     public function checkE(){
         header('content-type: text/json');
         if (!isset($_POST['email'])) {
@@ -202,11 +222,20 @@ class OnlineFreelancingServices extends CI_Controller{
 
         echo json_encode(array('exists' => $result > 0));
     }
-
      public function Logout(){
         $array_items = array('id' => '', 'email' => '');
         $this->session->unset_userdata($array_items);
         $this->session->sess_destroy();
         redirect(base_url('Homepage'));
+    }
+    public function Post_page(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Profile Page');
+        $this->load->helper('url');
+        $this -> load -> view ('OnlineFreelancingServices/inc/header');
+        $this->load->model('OFS/Post_model');
+        $posts = $this->Post_model->fetch_a_post($_GET["p_id"]);
+
+        $this -> load -> view ('OnlineFreelancingServices/Post_page',$posts);
     }
 }
