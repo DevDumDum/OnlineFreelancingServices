@@ -239,6 +239,8 @@ class OnlineFreelancingServices extends CI_Controller{
                     $profession_id = $status->profession_id;
                     $jobs = $status->jobs;
                     $apply = $status->apply;
+                    $accepted = $status->accepted;
+                    $posts = $status->posts;
 
 					$session_data = array(
                         'id'=>$id,
@@ -246,7 +248,9 @@ class OnlineFreelancingServices extends CI_Controller{
 						'email'=>$email,
                         'profession_id'=>$profession_id,
                         'jobs'=>$jobs,
-                        'apply'=>$apply
+                        'apply'=>$apply,
+                        'accepted' => $accepted,
+                        'posts' => $posts
 					);
 
 					$this->session->set_userdata('UserLoginSession',$session_data);
