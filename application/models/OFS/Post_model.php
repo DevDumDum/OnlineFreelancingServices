@@ -6,14 +6,11 @@ class Post_model extends CI_Model{
       parent::__construct();
       $this->load->helper('url');
       $this->load->model('OFS/Post_model');
-  }
+   }
 
    public function get_table(){
-      $this->db->select('ID, poster_ID, profession_ID, 
-      worker_count, requirements, location, timestamp,
-      min_pay, max_pay, status, applicants, accepted');
-
-        return $table = $this->db->get('post')->result_array();
+      $this->db->select('*');
+      return $this->db->get('post')->result_array();
    }
 
    public function get_posts(){
@@ -56,28 +53,33 @@ class Post_model extends CI_Model{
       return $this->db->update('post');
    }
 
+   public function fetch_a_post($id){
+      $this->db->select('*');
+      $this->db->where("ID", $id);
+      return $this->db->get('post')->result_array();
+   }
 
    public function add_applicant($id,$uid,$ujob){
       $this->db->select('ID, worker_count, applicants');
       $this->db->where('ID', $id);
       $posts = $this->db->get('post')->row_array();
 
-      $totalApplicants=0;
+      $totalAccepted=0;
       #Checking applicants status
       $a_arr="";
       $n_a_arr="";
 
-      if(isset($posts['applicants'])) {
-         $a_arr = explode(",",$posts['applicants']);
+      if(isset($posts['accepted'])) {
+         $a_arr = explode(",",$posts['accepted']);
 
          while(True) {
-            if(isset($a_arr[$totalApplicants])) {
-               if($a_arr[$totalApplicants] == $uid) {
+            if(isset($a_arr[$totalAccepted])) {
+               if($a_arr[$totalAccepted] == $uid) {
                   return false;
                }
-               $totalApplicants++;
+               $totalAccepted++;
             } else {
-               $a_arr[$totalApplicants] = $uid;
+               $a_arr[$totalAccepted] = $uid;
                $n_a_arr=implode(",",$a_arr);
                break;
             }
@@ -88,7 +90,7 @@ class Post_model extends CI_Model{
       }
       
 
-      if($totalApplicants >= $posts['worker_count']) {
+      if($totalAccepted >= $posts['worker_count']) {
          $this->Post_model->close_posts($posts["ID"]);
       }else{
          $this->db->set('applicants',$n_a_arr);
@@ -140,15 +142,47 @@ class Post_model extends CI_Model{
       min_pay, max_pay, status');
 
       $this->db->where('status >', 0);
-      return $table = $this->db->get('post')->result_array();
- }
+      return $this->db->get('post')->result_array();
+   }
 
-   
+   public function report_post($data,$type,$uid) {
+      $this->db->select('ID');
+      $this->db->where('id_reported', $data['id_reported']);
+      $this->db->where('user_id', $uid);
+      $this->db->where('type', $type);
+      $cur_id = $this->db->get('report')->result_array();
+      if((int)$cur_id > 0){
+         $response = "Already reported";
+      }else{
+
+         if($this->db->insert('report', $data)) {
+
+            $this->db->select('ID');
+            $this->db->where('id_reported', $data['id_reported']);
+
+            $cur_id = $this->db->get('report')->result_array();
+
+            $data2 = array(
+               'verification_type' => $type,
+               'content_ID' => (int)$cur_id[0]["ID"]
+            );
+            $this->db->insert('verification', $data2);
+
+            $response = "Reported successfully";
+         } else {
+            $response = "Error";
+         }
+      }
+      return $response;
+   }
 
    public function add_post($data){
-      if($this->db->insert('post', $data))
-          return true;
-      else return false;
+      if($this->db->insert('post', $data)){
+         $response = true;
+      } else {
+         $response = false;
+      }
+      return $response;
    }
 
    public function get_from_offset($offset){
@@ -160,8 +194,7 @@ class Post_model extends CI_Model{
       $this->db->limit(1, $offset);
       $this->db->where('status >', 0);
       $this->db->order_by('timestamp', 'DESC');
-      $q = $this->db->get('post')->result_array();
-      return $q;
+      return $this->db->get('post')->result_array();
    }
 
    public function get_jobs($poster_id)
