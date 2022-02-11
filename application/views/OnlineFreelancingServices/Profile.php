@@ -22,7 +22,7 @@ if ($this->session->userdata('UserLoginSession')){
                 <div class="cover-pic-div">
                     <?php if (isset($ProfBanner)){
                     ?>
-                    <img src="<?= base_url() ?>uploads/users/<?= $user->id ?>/<?= $user->ProfBanner ?>" id="photoCover">
+                    <img src="<?= base_url() ?>uploads/users/<?php echo $_GET["id"];?>/<?= $ProfBanner ?>" id="photoCover">
                     <?php } else {?>
                         <img src="<?= base_url() ?>public/images/sample.png" id="photoCover">
                      <?php } ?>  
@@ -43,7 +43,7 @@ if ($this->session->userdata('UserLoginSession')){
                         <div class="profile-pic-div">
                         <?php if (isset($ProfPic)){
                             ?>
-                            <img src="<?= base_url() ?>uploads/users/<?= $user->id ?>/<?= $user->ProfPic ?>" id="photoProfile">
+                            <img src="<?= base_url() ?>uploads/users/<?php echo $_GET["id"];?>/<?= $ProfPic ?>" id="photoProfile">
                             <?php } else {?>
                                 <img src="<?= base_url() ?>public/images/sample.png" id="photoCover">
                             <?php } ?>  
@@ -258,7 +258,7 @@ if ($this->session->userdata('UserLoginSession')){
                 const file = files[0]
                 const formData = new FormData()
                 formData.append('file', file);
-                formData.append('user_id', '<?= $user->id ?>');
+                formData.append('user_id', '<?php echo $_GET["id"];?>');
                 formData.append('file_type', 'cover')
                 fetch('<?= base_url() ?>OnlineFreelancingServices/upload_profile', {
                     method: 'POST',
@@ -278,7 +278,7 @@ if ($this->session->userdata('UserLoginSession')){
             const file = files[0]
             const formData = new FormData()
             formData.append('file', file);
-            formData.append('user_id', '<?= $user->id ?>')
+            formData.append('user_id', '<?php echo $_GET["id"];?>')
             formData.append('file_type', 'profile')
             fetch('<?= base_url() ?>OnlineFreelancingServices/upload_profile', {
                 method: 'POST',

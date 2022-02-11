@@ -183,6 +183,8 @@ class OnlineFreelancingServices extends CI_Controller{
                 $data['location'] = $user_details['location'];
                 $data['summary'] = $user_details['summary'];
                 $data['education_id'] = $user_details['education_id'];
+                $data['ProfPic'] = $user_details['ProfPic'];
+                $data['ProfBanner'] = $user_details['ProfBanner'];
                 $this->load->model('OFS/Work_model');
                 $temp = array();
                 $x=0;
