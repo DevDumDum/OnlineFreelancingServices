@@ -252,17 +252,36 @@ if ($this->session->userdata('UserLoginSession')){
         </div>
     </div>
     <?php if($_GET['id'] == $udata['id']){?>
-    <script type="text/javascript" src="<?php echo base_url("public/css/profile.js")?>"> </script>
-    <script>
-    
-        const uploadBanner = el => {
-            const files = el.files
-            if (files.length > 0) {
+        <script type="text/javascript" src="<?php echo base_url("public/css/profile.js")?>"> </script>
+        <script>
+            const uploadBanner = el => {
+                const files = el.files
+                if (files.length > 0) {
+                    const file = files[0]
+                    const formData = new FormData()
+                    formData.append('file', file);
+                    formData.append('user_id', '<?php echo $_GET["id"];?>');
+                    formData.append('file_type', 'cover')
+                    fetch('<?= base_url() ?>OnlineFreelancingServices/upload_profile', {
+                        method: 'POST',
+                        body: formData
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                        console.log(data)
+                        })
+                        .catch(err => console.log(err))
+                }
+            }
+
+            const uploadProfile = el => {
+                const files = el.files
+                if (files.length > 0) {
                 const file = files[0]
                 const formData = new FormData()
                 formData.append('file', file);
-                formData.append('user_id', '<?php echo $_GET["id"];?>');
-                formData.append('file_type', 'cover')
+                formData.append('user_id', '<?php echo $_GET["id"];?>')
+                formData.append('file_type', 'profile')
                 fetch('<?= base_url() ?>OnlineFreelancingServices/upload_profile', {
                     method: 'POST',
                     body: formData
@@ -270,38 +289,17 @@ if ($this->session->userdata('UserLoginSession')){
                     .then(res => res.json())
                     .then(data => {
                     console.log(data)
-                    })
-                    .catch(err => console.log(err))
+                    }).catch(err => console.log(err))
+                //     .then(res => res.json())
+                //     .then(data => {
+                //       console.log(data)
+                //       document.querySelector('#profile').src = data.secure_url
+                //     })
+                //     .catch(err => console.log(err))
+                }
             }
-        }
-
-        const uploadProfile = el => {
-            const files = el.files
-            if (files.length > 0) {
-            const file = files[0]
-            const formData = new FormData()
-            formData.append('file', file);
-            formData.append('user_id', '<?php echo $_GET["id"];?>')
-            formData.append('file_type', 'profile')
-            fetch('<?= base_url() ?>OnlineFreelancingServices/upload_profile', {
-                method: 'POST',
-                body: formData
-                })
-                .then(res => res.json())
-                .then(data => {
-                console.log(data)
-                }).catch(err => console.log(err))
-            //     .then(res => res.json())
-            //     .then(data => {
-            //       console.log(data)
-            //       document.querySelector('#profile').src = data.secure_url
-            //     })
-            //     .catch(err => console.log(err))
-            }
-        }
-    </script>
+        </script>
     <?php }?>
-
     <script>
         function newDetails(){
             document.getElementById("hiddenbox-profile").style.display="block";

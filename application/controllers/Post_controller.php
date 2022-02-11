@@ -168,7 +168,7 @@ class Post_controller extends CI_Controller {
             $x++;
 
             $user_details = $this->OFS_model->get_user_details($p['poster_ID']);
-            
+            $n_post[13] = $user_details[0]['ProfPic'];
             // POSTER NAME
             $n_post[0] = $user_details[0]['first_name']." ".$user_details[0]['middle_name']." ".$user_details[0]['last_name'];
             $n_post[0] = (empty($n_post[0]))
@@ -205,6 +205,7 @@ class Post_controller extends CI_Controller {
 
             //date("M j Y", $p['timestamp'])." ".date("h:iA", $p['timestamp']);
             $n_post[12] = date("M j Y", $p['timestamp'])." ".date("h:i A", $p['timestamp']); //$p['timestamp'];
+            
         }
         
         if(empty($n_post)) echo " ";

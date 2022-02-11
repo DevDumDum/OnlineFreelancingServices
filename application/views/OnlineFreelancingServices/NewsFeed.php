@@ -378,6 +378,7 @@ else
                     postArray['min_pay'] = myArray[10];
                     postArray['max_pay'] = myArray[11];
                     postArray['timestamp'] = myArray[12];
+                    postArray['ProfPic'] = myArray[13];
                     initPost(postArray);
 
                     // BIGGER DIV BETTER DIV; BIGGER BETTER
@@ -407,6 +408,7 @@ else
                     postArray['min_pay'] = myArray[10];
                     postArray['max_pay'] = myArray[11];
                     postArray['timestamp'] = myArray[12];
+                    postArray['ProfPic'] = myArray[13];
                     initPost(postArray);
 
                     // BIGGER DIV BETTER DIV; BIGGER BETTER
@@ -428,6 +430,7 @@ else
         var max_p = postArray['max_pay'];
         var date = postArray['timestamp'];
         var apply_status = postArray['apply_status']; // if already applied
+        var ProfPic = postArray['ProfPic'];
 
         /*
         console.log(
@@ -520,6 +523,10 @@ else
         post["user_image_"+curID] = document.createElement("div");
         post["user_image_"+curID].id = "user_image"+curID;
         post["user_image_"+curID].className = "userImage";
+        if(ProfPic != ""){
+            var strrr = '<?= base_url() ?>uploads/users/'+owner+'/'+ProfPic;
+            post["user_image_"+curID].style.backgroundImage = "url("+strrr+")";
+        }
         document.getElementById(post["post_titlebar_"+curID].id).appendChild(post["user_image_"+curID]);
 
         post["name_"+curID] = document.createElement("p");
