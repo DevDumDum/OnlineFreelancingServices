@@ -15,7 +15,7 @@ if($this->session->userdata('UserLoginSession')){
     <div id="hiddenbox" style="top:0;">
         <div id="bg_box">
             <div class="modal-header">
-                <div class="title">User</div>
+                <div class="title"><?php if($page === 'Report-User') {?>User<?php } else {?>Post<?php }?></div>
                     <button class="close-button" onclick="hidebox()">&times;</button>
                 </div>
                 <iframe id="view_r" src="" style="width: 100%; height: 100%;"></iframe>
@@ -108,7 +108,7 @@ if($this->session->userdata('UserLoginSession')){
             if (type == "report-p") {
                 document.getElementById("view_r").src = "<?php echo  base_url('Postpage');?>?p_id="+id;
             } else {
-                document.getElementById("view_r").src = "<?php echo  base_url('Profilepage');?>?id="+id;
+                document.getElementById("view_r").src = "<?php echo  base_url('Profile_page');?>?id="+id;
             }
         }
         function hidebox(){

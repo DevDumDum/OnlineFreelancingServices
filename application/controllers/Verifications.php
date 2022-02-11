@@ -34,7 +34,6 @@ class Verifications extends CI_Controller{
         $this->session->set_userdata('page','Report-Post');
         redirect(base_url('Verifications/VerifyReports'));
     }
-
     public function VerifyUser(){
         //load AdminVerifications views
         $this -> load -> view ('Admin/inc/header');
@@ -93,6 +92,8 @@ class Verifications extends CI_Controller{
 
     public function VerifyRequest(){
         //load AdminVerifications views
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Deactivate-Request');
         $this -> load -> view ('Admin/inc/header');
         $this -> load -> view ('Admin/inc/navbar');
         $this -> load -> view ('Admin/Verifications/deactivateRequest');
@@ -106,12 +107,15 @@ class Verifications extends CI_Controller{
 
         $udata = $this->session->userdata('UserLoginSession');
         $page = $this->session->userdata('page');
+        if($page != 'Report-User' && $page != 'Report-Post'){
+            $page = $this->session->set_userdata('page','Report-Post');
+        }
         
         /*
             MAX NUMBER OF ROWS TO ASSIGN BASED ON UID OF THE CURRENT VIEWER TYPE
         */
         $max_count = 3;
-
+        
         if($page === 'Report-User'){
             $type = 'report-u';
         } else {
@@ -179,7 +183,6 @@ class Verifications extends CI_Controller{
             $this->Verification_model->set_mod_id($udata['id'], $max_count-$current, 'profession');
         }
         $table = $this->Verification_model->get_existing_row($udata['id'], 'profession');
-
         $ver_table = array();
         $ver_table['key_table'] = $table;
         
@@ -190,16 +193,15 @@ class Verifications extends CI_Controller{
         $x = 0;
         foreach($table as $t){
             $prof_details = $this->Work_model->get_prof($t['content_ID']);
-            
             $v_list[$x]['ID'] = $prof_details[0]['ID'];
             $v_list[$x]['profession_type'] = $prof_details[0]['profession_type'];
             $v_list[$x]['description'] = $prof_details[0]['description'];
+            #$v_list[$x]['user_id'] = $t['user_id'];
             $v_list[$x]['u_id'] = $t['content_ID'];
             $v_list[$x]['v_id'] = $t['ID'];
             $x++;
         }
         $v_list_x['key_v_list'] = $v_list;
-        
         $this -> load -> view ('Admin/Verifications/jobCategory',$v_list_x);
     }
     public function AdminLogout(){

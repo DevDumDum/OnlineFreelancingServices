@@ -65,6 +65,6 @@ $route['PostedJob'] = 'OnlineFreelancingServices/PostedJob';
 $route['AppliedJob'] = 'OnlineFreelancingServices/AppliedJob';
 $route['Logout'] = 'OnlineFreelancingServices/Logout';
 $route['Postpage'] = 'OnlineFreelancingServices/Post_page';
-
+$route['Profile_page'] = 'OnlineFreelancingServices/Profile_page';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

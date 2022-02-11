@@ -54,10 +54,18 @@ class Verification_model extends CI_Model{
             'content_id' => $id
         );
 
-        if($this->db->insert('verification', $data)) {
-            $r = true;
-        } else {
+        $this->db->select('ID');
+        $this->db->where('content_id', $id);
+        $this->db->where('verification_type', $user_type);
+        $cur_id = $this->db->get('verification')->result_array();
+        if((int)$cur_id > 0) {
             $r = false;
+        } else {
+            if($this->db->insert('verification', $data)) {
+                $r = true;
+            } else {
+                $r = false;
+            }
         }
         return $r;
     }
@@ -117,11 +125,9 @@ class Verification_model extends CI_Model{
         $this->db->set('status', '1');
         $this->db->where('ID', $u_id);
         $query = $this->db->update('profession');
-
         $this->db->set('viewer_id', 0);
         $this->db->where('ID',  $v_id);
         $query2 = $this->db->update('verification');
-        
         if($query && $query2){
             $r = json_encode(array('msg' => "Success"));
         }else{

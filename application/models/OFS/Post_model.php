@@ -8,6 +8,16 @@ class Post_model extends CI_Model{
       $this->load->model('OFS/Post_model');
    }
 
+   public function get_post_from_id($id){
+      $this->db->select('*');
+
+      $this->db->where('ID', $id);
+      $q = $this->db->get('post');
+
+      if($q->num_rows()>0) return $q->row_array();
+      else return false;
+   }
+
    public function get_table(){
       $this->db->select('*');
       return $this->db->get('post')->result_array();
@@ -151,9 +161,9 @@ class Post_model extends CI_Model{
       $this->db->where('user_id', $uid);
       $this->db->where('type', $type);
       $cur_id = $this->db->get('report')->result_array();
-      if((int)$cur_id > 0){
+      if((int)$cur_id > 0) {
          $response = "Already reported";
-      }else{
+      } else {
 
          if($this->db->insert('report', $data)) {
 
@@ -176,8 +186,8 @@ class Post_model extends CI_Model{
       return $response;
    }
 
-   public function add_post($data){
-      if($this->db->insert('post', $data)){
+   public function add_post($data) {
+      if($this->db->insert('post', $data)) {
          $response = true;
       } else {
          $response = false;
@@ -195,6 +205,72 @@ class Post_model extends CI_Model{
       $this->db->where('status >', 0);
       $this->db->order_by('timestamp', 'DESC');
       return $this->db->get('post')->result_array();
+   }
+
+   public function get_from_offset_l($offset, $location){
+      $offset -=1;
+      
+      $this->db->select('ID, poster_ID, profession_ID, 
+      worker_count, requirements, location, timestamp,
+      min_pay, max_pay, status, applicants, accepted');
+      $this->db->limit(1, $offset);
+      $this->db->where('status >', 0);
+      $this->db->like('location', $location, "after");
+      $this->db->order_by('timestamp', 'DESC');
+      $q = $this->db->get('post')->result_array();
+      return $q;
+   }
+   
+   public function get_from_offset_w($offset, $work_ID){
+      $offset -=1;
+      
+      $this->db->select('ID, poster_ID, profession_ID, 
+      worker_count, requirements, location, timestamp,
+      min_pay, max_pay, status, applicants, accepted');
+      $this->db->limit(1, $offset);
+      $this->db->where('status >', 0);
+      $this->db->where('profession_ID', $work_ID);
+      $this->db->order_by('timestamp', 'DESC');
+      $q = $this->db->get('post')->result_array();
+      return $q;
+   }
+   
+   public function get_from_offset_lw($offset, $location, $work_ID){
+      $offset -=1;
+      
+      $this->db->select('ID, poster_ID, profession_ID, 
+      worker_count, requirements, location, timestamp,
+      min_pay, max_pay, status, applicants, accepted');
+      $this->db->limit(1, $offset);
+      $this->db->where('status >', 0);
+      $this->db->like('location', $location, "after");
+      $this->db->where('profession_ID', $work_ID);
+      $this->db->order_by('timestamp', 'DESC');
+      $q = $this->db->get('post')->result_array();
+      return $q;
+   }
+   
+   public function update_post($id, $data){
+      
+      $this->db->set($data);
+      $this->db->where('ID', $id);
+      $this->db->update('post');
+
+      if($this->db->affected_rows() > 0) return true;
+      else return false;
+      
+   }
+
+   public function count_work_id($work_ID){
+      $this->db->where('profession_ID', $work_ID);
+      $this->db->from('post');
+      return $this->db->count_all_results();
+   }
+
+   public function count_work_location($location){
+      $this->db->like('location', $location);
+      $this->db->from('post');
+      return $this->db->count_all_results();
    }
 
    public function get_jobs($poster_id)
