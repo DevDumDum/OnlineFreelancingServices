@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') || exit('No direct script access allowed');
 
 class OnlineFreelancingServices extends CI_Controller{
     public function __construct()
@@ -19,6 +19,7 @@ class OnlineFreelancingServices extends CI_Controller{
         }
         redirect(base_url('Homepage'));
 	}
+
     public function Homepage(){
         $this->session->userdata('page');
         $this->session->set_userdata('page','HomePage');
@@ -46,6 +47,7 @@ class OnlineFreelancingServices extends CI_Controller{
 
         $this->load->model('OFS/OFS_model');
         $this->load->model('OFS/Work_model');
+        
         $works = $this->Work_model->get_table();
         $table = array();
         $table['key_works'] = $works;
@@ -427,7 +429,6 @@ class OnlineFreelancingServices extends CI_Controller{
             redirect(base_url('NewsFeed'));
         }
     }
-
     public function add_applicant(){
         header('Content-type: application/json');
         $udata = $this->session->userdata('UserLoginSession');
