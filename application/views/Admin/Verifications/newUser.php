@@ -15,7 +15,7 @@ if($this->session->userdata('UserLoginSession')){
                 <div class="title">User</div>
                 <button class="close-button" onclick="hidebox()">&times;</button>
             </div>
-            <iframe src="<?php echo base_url('Profilepage');?>" style="height: 100%; width: 100%;"></iframe>
+            <iframe id="view_r" src="" style="height: 100%; width: 100%;"></iframe>
         </div>
         <div id="blackbox" onclick="hidebox()"></div>
     </div>
@@ -63,7 +63,7 @@ if($this->session->userdata('UserLoginSession')){
                     <?php if(!empty($key_v_list)) { foreach($key_v_list as $v){?>
 
                         <tr id="theTr_<?php echo $v['v_id'];?>">
-                            <td onclick="newDetails()">
+                            <td onclick="newDetails(<?php echo $v['u_id'];?>)">
                                 <span class="user_details"><?php echo $v['name']?></span>
                             </td>
                             
@@ -120,7 +120,9 @@ if($this->session->userdata('UserLoginSession')){
         function newDetails(id){
             document.getElementById("hiddenbox").style.display="block";
             document.getElementById("hiddenbox").style.animation="fadebox .3s reverse linear";
+            document.getElementById("view_r").src = "<?php echo  base_url('Postpage');?>?p_id="+id+"&admin="+<?= $udata['id']?>;
         }
+
         function hidebox(){
             document.getElementById("hiddenbox").style.display="none";
         }

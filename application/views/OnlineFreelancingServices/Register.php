@@ -3,7 +3,7 @@
 <body class="registerBody">
 
     <div class="registerContainer container-fluid">    
-        <form method="post" onsubmit="return check_fill();" autocomplete="off" action="<?=base_url('Register_controller/adduser')?>" style="height:100%;">
+        <form method="post" onsubmit="return check_fill();" enctype="multipart/form-data" autocomplete="off" action="<?=base_url('Register_controller/adduser')?>" style="height:100%;">
             <div class="row register-row_custom">
                 <div class="col-md-6 no-gutters registerLeftSide">
                     <div class="justify-content-center align-items-center">
@@ -133,7 +133,7 @@
                             <br>
                             <label for="id" class="fs-5 text-uppercase fst-italic fw-bold text-center" style="color: #1e4e70">kindly provide a photo of your id</label>
                             <br>
-                            <input type="file" class="registerfilebtn btn-basic btn-sm btn-block"  style="color: #1e4e70" value="Browse">
+                            <input name="valid_id" type="file" class="registerfilebtn btn-basic btn-sm btn-block"  style="color: #1e4e70" value="Browse">
                             <br>
 
                         </div>

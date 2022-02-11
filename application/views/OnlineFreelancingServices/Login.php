@@ -48,7 +48,8 @@
 			</div>
 		</form>
 	</div>
-
+	
+</body>
 </body>
 <?php if($this->session->flashdata('error')) {	?>
 	<script>

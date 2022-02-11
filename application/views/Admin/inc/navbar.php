@@ -21,7 +21,7 @@ if($this->session->userdata('UserLoginSession')){
                 <ul class="nav justify-content-end collapse navbar-collapse nav" id="navbarCollapse">
                     <li class="nav-item">
                     <i class="fas fa-unlock-alt">
-                        <a href="#" class="nav-link-custom-admin" id = "changepass">Change Password</a>
+                        <a href="AdminFP" class="nav-link-custom-admin" id = "changepass">Change Password</a>
                     </li></i>
                     <li class="nav-item">
                         <i class="fas fa-sign-out-alt">

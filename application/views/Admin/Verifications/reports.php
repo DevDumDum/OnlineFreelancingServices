@@ -108,7 +108,7 @@ if($this->session->userdata('UserLoginSession')){
             if (type == "report-p") {
                 document.getElementById("view_r").src = "<?php echo  base_url('Postpage');?>?p_id="+id;
             } else {
-                document.getElementById("view_r").src = "<?php echo  base_url('Profile_page');?>?id="+id;
+                document.getElementById("view_r").src = "<?php echo  base_url('Profile_page');?>?id="+id+"&admin="+$udata['id'];
             }
         }
         function hidebox(){

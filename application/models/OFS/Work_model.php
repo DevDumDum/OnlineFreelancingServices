@@ -8,13 +8,13 @@ class Work_model extends CI_Model{
           $this->db->where('status', 1);
           $this->db->order_by("profession_type", "ASC");
 
-          return $table = $this->db->get('profession')->result_array();
+          return $this->db->get('profession')->result_array();
      }
 
      public function get_work($id){
           $this->db->select('ID, profession_type, description');
           $this->db->where('ID', $id);
-          return $table = $this->db->get('profession')->result_array();
+          return $this->db->get('profession')->result_array();
      }
 
      public function get_table_all(){

@@ -19,13 +19,17 @@ if ($this->session->userdata('UserLoginSession')){
     <div class="profileBody-container">
         <div class="row-profile">
             <div class="profilebanner d-flex col-12">
-                <div class="cover-pic-div">
-                    <img src = "#" id="photoCover">
-                    <input type="file" id="file">
+                <div class="cover-pic-div" <?php if(isset($_GET['admin'])) { ?> style="margin-top:0px !important;" <?php } ?>>
+                    <?php if ($ProfBanner != ""){?>
+                        <img src="<?= base_url() ?>uploads/users/<?php echo $_GET["id"];?>/<?= $ProfBanner ?>" id="photoCover">
+                    <?php } else {?>
+                        <img src="<?= base_url() ?>public/images/sample.png" id="photoCover">
+                     <?php } ?>  
+                    <input type="file" id="file" onchange="uploadBanner(this);" name="cover_pic" accept="image/*">
                     <label for="file" id="uploadBtn">
                         <div class="uploadingofcover">
-                            <i class="fal fa-upload"></i><br>
-                            <h3>Add banner image<h3>
+                        <i class="fal fa-upload"></i><br>
+                        <h3>Add banner image<h3>
                         </div>  
                     </label>           
                 </div>
@@ -36,9 +40,14 @@ if ($this->session->userdata('UserLoginSession')){
                     <div class="profile-container d-flex flex-column align-items-center text-center py-5 ">
 
                         <div class="profile-pic-div">
-                            <img src = "#" id="photoProfile">
-                            <input type="file" id="fileProfile">
-                            <label for="file" id="uploadBtnProfile">Choose Photo</label>
+                        <?php if ($ProfPic != ""){
+                            ?>
+                            <img src="<?= base_url() ?>uploads/users/<?php echo $_GET["id"];?>/<?= $ProfPic ?>" id="photoProfile">
+                            <?php } else {?>
+                                <img src="<?= base_url() ?>public/images/sample.png" id="photoCover">
+                            <?php } ?>  
+                            <input type="file" id="fileProfile" onchange="uploadProfile(this);" name="profile_pic" accept="image/*">
+                            <label for="fileProfile" id="uploadBtnProfile">Choose Photo</label>
                         </div>
 
                         <div class="profileName">
@@ -98,7 +107,7 @@ if ($this->session->userdata('UserLoginSession')){
                     <div class="buttons-container d-flex flex-column text-center py-3">
                         <form method="POST" action="">
                             <div class="profile-button d-flex align-items-center justify-content-between">
-                                <?php if(isset($_GET['id']) && $_GET['id'] == $udata['id']){?>
+                                <?php if(isset($_GET['id']) && ($_GET['id'] == $udata['id'] ) && (!(isset($_GET['admin'])))){?>
                                 <div class="mx-2"  id="editDiv" style="display: block;">
                                     <button class="editprofilebutton btn btn-primary btn-sm" type="button" id ="editProfile" onclick="switchEdit()">
                                         <i class="editprofilebtnicon fal fa-pencil"></i>Edit Profile
@@ -158,13 +167,15 @@ if ($this->session->userdata('UserLoginSession')){
 
                                     <div class="rightbutton">
                                     <button type="button" class="messageprofilebtn btn btn-primary btn-sm" onclick="newDetails()">  Message </button>
-                                    <button type="button" class="messageprofilebtn btn btn-primary btn-sm" onclick="report_post(<?php echo $_GET['id'];?>)">  Report </button>
+                                    <?php if(!(isset($_GET['admin']))) { ?>
+                                        <button type="button" class="messageprofilebtn btn btn-primary btn-sm" onclick="report_post(<?php echo $_GET['id'];?>)">  Report </button>
+                                    <?php } ?>
                                     </div>
                                 <?php }?>
                             </div>
 
                             <div class="form-group">
-                                <textarea class="inputCont" type="text" id="" name="description" placeholder="Add description" value="<?php echo $summary; ?>" disabled></textarea>
+                            <textarea class="inputCont" type="text" id="" name="description" placeholder="Add description" value="<?php echo $summary; ?>" disabled></textarea>
                             </div>
 
                             <div class="profileProjwrapper col-9">
@@ -240,7 +251,57 @@ if ($this->session->userdata('UserLoginSession')){
             </div>
         </div>
     </div>
+    <?php if($_GET['id'] == $udata['id']){?>
     <script type="text/javascript" src="<?php echo base_url("public/css/profile.js")?>"> </script>
+    <script>
+    
+        const uploadBanner = el => {
+            const files = el.files
+            if (files.length > 0) {
+                const file = files[0]
+                const formData = new FormData()
+                formData.append('file', file);
+                formData.append('user_id', '<?php echo $_GET["id"];?>');
+                formData.append('file_type', 'cover')
+                fetch('<?= base_url() ?>OnlineFreelancingServices/upload_profile', {
+                    method: 'POST',
+                    body: formData
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                    console.log(data)
+                    })
+                    .catch(err => console.log(err))
+            }
+        }
+
+        const uploadProfile = el => {
+            const files = el.files
+            if (files.length > 0) {
+            const file = files[0]
+            const formData = new FormData()
+            formData.append('file', file);
+            formData.append('user_id', '<?php echo $_GET["id"];?>')
+            formData.append('file_type', 'profile')
+            fetch('<?= base_url() ?>OnlineFreelancingServices/upload_profile', {
+                method: 'POST',
+                body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                console.log(data)
+                }).catch(err => console.log(err))
+            //     .then(res => res.json())
+            //     .then(data => {
+            //       console.log(data)
+            //       document.querySelector('#profile').src = data.secure_url
+            //     })
+            //     .catch(err => console.log(err))
+            }
+        }
+    </script>
+    <?php }?>
+
     <script>
         function newDetails(){
             document.getElementById("hiddenbox-profile").style.display="block";
