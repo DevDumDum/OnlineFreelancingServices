@@ -1,13 +1,14 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') || exit('No direct script access allowed');
 
-class OnlineFreelancingServices extends CI_Controller{
+class OnlineFreelancingServices extends CI_Controller {
     public function index(){
         if($this->session->userdata('UserLoginSession')){
             redirect(base_url('NewsFeed'));
         }
         redirect(base_url('Homepage'));
 	}
+
     public function Homepage(){
         $this->session->userdata('page');
         $this->session->set_userdata('page','HomePage');
@@ -28,11 +29,9 @@ class OnlineFreelancingServices extends CI_Controller{
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
 
-        $this->load->model('OFS/Post_model');
-        $posts = $this->Post_model->get_posts();
         $this->load->model('OFS/OFS_model');
-
         $this->load->model('OFS/Work_model');
+        
         $works = $this->Work_model->get_table();
         $table = array();
         $table['key_works'] = $works;
@@ -189,6 +188,7 @@ class OnlineFreelancingServices extends CI_Controller{
             //redirect(base_url('Profilepage'));
         //else //return $this->db->insert('post.applicants', 0000);           
     }
+
     public function report(){
         header('content-type: text/json');
         $this->load->model('OFS/Post_model');
@@ -199,6 +199,7 @@ class OnlineFreelancingServices extends CI_Controller{
         $desc = $this->input->post('desc');
         
         $data = array(
+            'type' => $type,
             'id_reported' => $rid,
             'user_id' => $uid,
             'description' => $desc
@@ -218,14 +219,12 @@ class OnlineFreelancingServices extends CI_Controller{
 
         echo json_encode(array('exists' => $result > 0));
     }
-
-     public function Logout(){
+    public function Logout(){
         $array_items = array('id' => '', 'email' => '');
         $this->session->unset_userdata($array_items);
         $this->session->sess_destroy();
         redirect(base_url('Homepage'));
     }
-
     public function Post_page(){
         $this->session->userdata('page');
         $this->session->set_userdata('page','Profile Page');

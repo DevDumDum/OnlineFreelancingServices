@@ -10,7 +10,6 @@ class Post_model extends CI_Model{
 
    public function get_table(){
       $this->db->select('*');
-
       return $this->db->get('post')->result_array();
    }
 
@@ -57,32 +56,30 @@ class Post_model extends CI_Model{
    public function fetch_a_post($id){
       $this->db->select('*');
       $this->db->where("ID", $id);
-      $result = $this->db->get('post')->result_array();
-      return $result;
+      return $this->db->get('post')->result_array();
    }
-
 
    public function add_applicant($id,$uid,$ujob){
       $this->db->select('ID, worker_count, applicants');
       $this->db->where('ID', $id);
       $posts = $this->db->get('post')->row_array();
 
-      $totalApplicants=0;
+      $totalAccepted=0;
       #Checking applicants status
       $a_arr="";
       $n_a_arr="";
 
-      if(isset($posts['applicants'])) {
-         $a_arr = explode(",",$posts['applicants']);
+      if(isset($posts['accepted'])) {
+         $a_arr = explode(",",$posts['accepted']);
 
          while(True) {
-            if(isset($a_arr[$totalApplicants])) {
-               if($a_arr[$totalApplicants] == $uid) {
+            if(isset($a_arr[$totalAccepted])) {
+               if($a_arr[$totalAccepted] == $uid) {
                   return false;
                }
-               $totalApplicants++;
+               $totalAccepted++;
             } else {
-               $a_arr[$totalApplicants] = $uid;
+               $a_arr[$totalAccepted] = $uid;
                $n_a_arr=implode(",",$a_arr);
                break;
             }
@@ -93,7 +90,7 @@ class Post_model extends CI_Model{
       }
       
 
-      if($totalApplicants >= $posts['worker_count']) {
+      if($totalAccepted >= $posts['worker_count']) {
          $this->Post_model->close_posts($posts["ID"]);
       }else{
          $this->db->set('applicants',$n_a_arr);
@@ -152,6 +149,7 @@ class Post_model extends CI_Model{
       $this->db->select('ID');
       $this->db->where('id_reported', $data['id_reported']);
       $this->db->where('user_id', $uid);
+      $this->db->where('type', $type);
       $cur_id = $this->db->get('report')->result_array();
       if((int)$cur_id > 0){
          $response = "Already reported";
@@ -178,8 +176,8 @@ class Post_model extends CI_Model{
       return $response;
    }
 
-   public function add_post($data) {
-      if($this->db->insert('post', $data)) {
+   public function add_post($data){
+      if($this->db->insert('post', $data)){
          $response = true;
       } else {
          $response = false;
@@ -196,7 +194,6 @@ class Post_model extends CI_Model{
       $this->db->limit(1, $offset);
       $this->db->where('status >', 0);
       $this->db->order_by('timestamp', 'DESC');
-      $q = $this->db->get('post')->result_array();
-      return $q;
+      return $this->db->get('post')->result_array();
    }
 }

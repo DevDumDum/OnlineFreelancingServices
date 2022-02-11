@@ -55,21 +55,19 @@ class Verification_controller extends CI_Controller{
 
     public function accept_ver_rep(){
         header('content-type: text/json');
-        if (!isset($_POST['v_id']) || !isset($_POST['u_id']) ) {
-            exit;
+        if (isset($_POST['v_id']) && isset($_POST['u_id'])) {
+            $this->load->model('Admin/Verification_model');
+            $result = $this->Verification_model->a_ver_rep($_POST['v_id'],$_POST['u_id'], $_POST['type']);
+            echo $result;
         }
-        $this->load->model('Admin/Verification_model');
-        $result = $this->Verification_model->a_ver_rep($_POST['v_id'],$_POST['u_id'], $_POST['type']);
-        echo $result;
     }
     
     public function reject_ver_rep(){
         header('content-type: text/json');
-        if (!isset($_POST['v_id']) || !isset($_POST['u_id']) ) {
-            exit;
+        if (isset($_POST['v_id']) && isset($_POST['u_id'])) {
+            $this->load->model('Admin/Verification_model');
+            $result = $this->Verification_model->d_ver_rep($_POST['v_id'],$_POST['u_id']);
+            echo $result;
         }
-        $this->load->model('Admin/Verification_model');
-        $result = $this->Verification_model->d_ver_rep($_POST['v_id'],$_POST['u_id']);
-        echo $result;
     }
 }

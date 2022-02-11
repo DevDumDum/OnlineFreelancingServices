@@ -63,6 +63,5 @@ $route['NewPassword'] = 'OnlineFreelancingServices/NewPassword';
 $route['Logout'] = 'OnlineFreelancingServices/Logout';
 $route['Postpage'] = 'OnlineFreelancingServices/Post_page';
 
-
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

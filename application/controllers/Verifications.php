@@ -24,25 +24,16 @@ class Verifications extends CI_Controller{
     }
 
     public function r_user(){
-        //$udata = $this->session->userdata('UserLoginSession');
-        //$newUdata = $udata;
-        //$newUdata['page']="Verification-Moderator";
-        //$this->session->set_userdata('UserLoginSession', $newUdata);
         $this->session->userdata('page');
         $this->session->set_userdata('page','Report-User');
         redirect(base_url('Verifications/VerifyReports'));
     }
 
     public function Report(){
-        //$udata = $this->session->userdata('UserLoginSession');
-        //$newUdata = $udata;
-        //$newUdata['page']="Verification-Moderator";
-        //$this->session->set_userdata('UserLoginSession', $newUdata);
         $this->session->userdata('page');
         $this->session->set_userdata('page','Report-Post');
         redirect(base_url('Verifications/VerifyReports'));
     }
-    
     public function VerifyUser(){
         //load AdminVerifications views
         $this -> load -> view ('Admin/inc/header');
@@ -107,15 +98,13 @@ class Verifications extends CI_Controller{
         $this -> load -> view ('Admin/inc/navbar');
         $this -> load -> view ('Admin/Verifications/deactivateRequest');
     }
-    public function VerifyReports(){
+    public function VerifyReports() {
         //load AdminVerifications views
         $this->load->model('Admin/Verification_model');
         $this->load->model('OFS/Work_model');
         $this->load->model('OFS/Post_model');
         $this->load->model('OFS/OFS_model');
 
-        $this -> load -> view ('Admin/inc/header');
-        $this -> load -> view ('Admin/inc/navbar');
         $udata = $this->session->userdata('UserLoginSession');
         $page = $this->session->userdata('page');
         
@@ -164,8 +153,12 @@ class Verifications extends CI_Controller{
 
         }
         $v_list_x['key_v_list'] = $v_list;
+
+        $this -> load -> view ('Admin/inc/header');
+        $this -> load -> view ('Admin/inc/navbar');
         $this -> load -> view ('Admin/Verifications/reports',$v_list_x);
     }
+
     public function VerifyJobCategory(){
         //load AdminVerifications views
         $this->load->model('Admin/Verification_model');

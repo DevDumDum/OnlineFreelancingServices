@@ -438,7 +438,6 @@ input:checked + .slider:before {
     background-color: rgb(255, 255, 255);
     height: 300px;
     width: 40%;
-    margin-left: 1rem;
     margin-top: 20rem;
     border-radius: 5px;
 }

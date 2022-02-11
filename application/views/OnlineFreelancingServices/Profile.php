@@ -18,26 +18,6 @@ if ($this->session->userdata('UserLoginSession')){
 <body class="profileBody">
     <div class="profileBody-container">
         <div class="row-profile">
-            <!--PopUp reportPost-->
-            <div id="hiddenbox-nf">
-                    <div id="report_p" style="display: none;">
-                        <div id="bg_box-nf">
-                            <div class="modal-header-nf">
-                                <div class="d-flex justify-content-between">
-                                    <div class="p-2"><h1>Report Post</h1></div>
-                                    <div class="p-2"><button type="button" class="btn btn-secondary btn-lg rounded-circle" class="close-button" onclick="hidebox()">&times;</button></div>
-                                </div>
-                            </div>
-                            <div class="create-post">
-                                <br>
-                                Description:<br>
-                                <textarea id="r_desc" style="width:100%; height:150px;"></textarea><br>
-                                <button id="r_id" type="button" value="" onclick="report_p(this.value)">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="blackbox-nf" onclick="hidebox()"></div>
-                </div>
             <div class="profilebanner d-flex col-12">
                 <div class="cover-pic-div">
                     <img src = "#" id="photoCover">
@@ -140,10 +120,10 @@ if ($this->session->userdata('UserLoginSession')){
                                 <!-- THIS IS FOR POP UP -->
                                 <?php } else {?> 
                                     <div id="hiddenbox-profile">
-                                        <div id="bg_box-profile">
+                                        <div id="bg_box-profile" style="display: none;">
                                             <div class="modal-header-profile">
                                                 <div class="title">CONTACT ME</div>
-                                                <button class="close-button" onclick="hidebox()">&times;</button>
+                                                <button type="button" class="btn btn-secondary btn-lg rounded-circle" class="close-button" onclick="hidebox()">&times;</button>
                                             </div>
                                             <div>
                                                 <p class="description-message-1"> <b>Email:</b> firstname.lastname@tup.edu.ph</p>
@@ -152,8 +132,25 @@ if ($this->session->userdata('UserLoginSession')){
                                                 <p class="description-message-4">  8 2887704 </p>
                                             </div>
                                         </div>
+
+                                        <div id="report_p" style="display: none; margin-top:20rem; text-align:left;">
+                                            <div id="bg_box-nf">
+                                                <div class="modal-header-nf">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="p-2"><h1>Report Post</h1></div>
+                                                        <div class="p-2"><button type="button" class="btn btn-secondary btn-lg rounded-circle" class="close-button" onclick="hidebox()">&times;</button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="create-post">
+                                                    <br>
+                                                    Description:<br>
+                                                    <textarea id="r_desc" style="width:100%; height:150px;"></textarea><br>
+                                                    <button id="r_id" type="button" value="" onclick="report_p(this.value)">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         
-                                    <div id="blackbox" onclick="hidebox()">
+                                    <div id="blackbox" onclick="hidebox()" style="padding: 0px;">
                                     </div>
                                     </div>
 
@@ -221,7 +218,6 @@ if ($this->session->userdata('UserLoginSession')){
                                     EDUCATIONAL ATTAINMENT<input class="eduAttainment" type="text" id="" name="eduAttainment" placeholder="+" disabled value="">
                                     </div>
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -231,12 +227,21 @@ if ($this->session->userdata('UserLoginSession')){
     </div>
     <script type="text/javascript" src="<?php echo base_url("public/css/profile.js")?>"> </script>
     <script>
+        function newDetails(){
+            document.getElementById("hiddenbox-profile").style.display="block";
+            document.getElementById("hiddenbox-profile").style.animation="fadebox .3s reverse linear";
+            document.getElementById("bg_box-profile").style.display="block";
+            document.getElementById("report_p").style.display="none";
+        }
+        
         function hidebox(){
-            document.getElementById("hiddenbox-nf").style.display="none";
+            document.getElementById("hiddenbox-profile").style.display="none";
+            document.getElementById("bg_box-profile").style.display="none";
             document.getElementById("report_p").style.display="none";
         }
         function report_post(id){
-            document.getElementById("hiddenbox-nf").style.display="block";
+            document.getElementById("hiddenbox-profile").style.display="block";
+            document.getElementById("bg_box-profile").style.display="none";
             document.getElementById("report_p").style.display="block";
             document.getElementById("r_id").value=id;
         }
@@ -252,7 +257,7 @@ if ($this->session->userdata('UserLoginSession')){
                 alert(response);
                 document.getElementById("r_desc").value="";
                 document.getElementById("r_id").value="";
-                document.getElementById("hiddenbox-nf").style.display="none";
+                document.getElementById("hiddenbox-profile").style.display="none";
                 document.getElementById("report_p").style.display="none";
             }
         });
