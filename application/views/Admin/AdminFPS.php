@@ -2,7 +2,7 @@
 
 <body class="adminloginpageBody">
 
-	<form method="post" autocomplete="off" action="<?=base_url('AdminAuth/AdminLogin')?>" style="height:100%;">
+	<form method="post" autocomplete="off" action="<?=base_url('AdminAuth/AdminFP')?>" style="height:100%;">
 
 	<div class="row modregister-row_custom">
         <div class="col-md-6 no-gutters modloginLeftSide">
