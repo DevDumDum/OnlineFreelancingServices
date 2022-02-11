@@ -2,6 +2,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class OnlineFreelancingServices extends CI_Controller{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->helper('url');
+        $this->load->model('OFS/Register_model');
+        $this->load->model('OFS/OFS_model');
+
+        //get all users
+        $this->data['users'] = $this->OFS_model->getAllUsers();
+    } 
+
     public function index(){
         if($this->session->userdata('UserLoginSession')){
             redirect(base_url('NewsFeed'));
@@ -247,7 +258,7 @@ class OnlineFreelancingServices extends CI_Controller{
 
             if ($this->form_validation->run() == TRUE) {
                 $email = $this->input->post('email');
-
+                
 
                 $this->load->model('OFS/OFS_model');
                 $status = $this->OFS_model->getEmail($email);
@@ -347,7 +358,7 @@ class OnlineFreelancingServices extends CI_Controller{
                     if ($query) {
                         $this->session->set_flashdata('message', 'Password changed!');
                         $this->session->sess_destroy();
-                        redirect(base_url('LoginPage'));
+                        redirect(base_url('OnlineFreelancingServices/LoginPage'));
                     } else {
                         $this->session->set_flashdata('message', 'Something went wrong in changing account password');
                     }
