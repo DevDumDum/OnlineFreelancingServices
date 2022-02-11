@@ -57,7 +57,7 @@ class Register_controller extends CI_Controller {
                 }
 
                 $uid = $this->db->insert_id();
-                if (!empty($_FILES['valid_id']['name'])) {
+                if (isset($_FILES['valid_id']['name'])) {
                     $config['upload_path'] = './uploads/users/' . $uid . '/';
 
                     if (!is_dir($config['upload_path'])) {
@@ -199,6 +199,8 @@ class Register_controller extends CI_Controller {
                     } else {
                         echo "sdfssdfsf";
                     }
+                } else {
+                    echo $_FILES['valid_id']['name'];
                 }
    
             } else {

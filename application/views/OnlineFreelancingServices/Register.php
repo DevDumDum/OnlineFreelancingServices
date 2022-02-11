@@ -3,7 +3,7 @@
 <body class="registerBody">
 
     <div class="registerContainer container-fluid">    
-        <form method="post" onsubmit="return check_fill();" autocomplete="off" action="<?=base_url('Register_controller/adduser')?>" style="height:100%;">
+        <form method="post" onsubmit="return check_fill();" enctype="multipart/form-data" autocomplete="off" action="<?=base_url('Register_controller/adduser')?>" style="height:100%;">
             <div class="row register-row_custom">
                 <div class="col-md-6 no-gutters registerLeftSide">
                     <div class="justify-content-center align-items-center">
