@@ -575,22 +575,22 @@ else
         
         if(searchContent){            
             $.post("<?=base_url('User_controller/search_user')?>", {theInput: searchContent}, function(data){
-                
-                var searchObj = jQuery.parseJSON(data);
-                $(searchList).empty();
-                
-                for(var i=0; i<searchObj.length;i++){
-                    var tempName = searchObj[i].full_name;
-                    var tempID = searchObj[i].ID;
-
-                    var li = document.createElement('li');
-                    $(li).attr('id', tempID);
-                    $(li).attr('class', 'searchValues');
-                    $(li).text(tempName);
-                    $(li).attr('onclick')
+                if(data) {    
+                    var searchObj = jQuery.parseJSON(data);
+                    $(searchList).empty();
                     
-                    $(searchList).append(li);
-                }
+                    for(var i=0; i<searchObj.length;i++){
+                        var tempName = searchObj[i].full_name;
+                        var tempID = searchObj[i].ID;
+
+                        var li = document.createElement('li');
+                        $(li).attr('id', tempID);
+                        $(li).attr('class', 'searchValues');
+                        $(li).text(tempName);
+                        $(li).attr('onclick')
+                        
+                        $(searchList).append(li);
+                    }}
             })
         }else {
             searchList.empty();

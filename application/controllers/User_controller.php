@@ -18,8 +18,7 @@ class User_controller extends CI_Controller {
             $nameHolder = $_POST['theInput'];
             
             $queryHolder = $this->OFS_model->search_user($nameHolder);
-            if(!$queryHolder) echo 'No results';
-            else echo json_encode($queryHolder);
+            if($queryHolder) { echo json_encode($queryHolder);}
                 
         }
         
