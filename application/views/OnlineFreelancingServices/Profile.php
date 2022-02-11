@@ -20,7 +20,12 @@ if ($this->session->userdata('UserLoginSession')){
         <div class="row-profile">
             <div class="profilebanner d-flex col-12">
                 <div class="cover-pic-div">
+                    <?php if (isset($ProfBanner)){
+                    ?>
                     <img src="<?= base_url() ?>uploads/users/<?= $user->id ?>/<?= $user->ProfBanner ?>" id="photoCover">
+                    <?php } else {?>
+                        <img src="<?= base_url() ?>public/images/sample.png" id="photoCover">
+                     <?php } ?>  
                     <input type="file" id="file" onchange="uploadBanner(this);" name="cover_pic" accept="image/*">
                     <label for="file" id="uploadBtn">
                         <div class="uploadingofcover">
@@ -36,7 +41,12 @@ if ($this->session->userdata('UserLoginSession')){
                     <div class="profile-container d-flex flex-column align-items-center text-center py-5 ">
 
                         <div class="profile-pic-div">
+                        <?php if (isset($ProfPic)){
+                            ?>
                             <img src="<?= base_url() ?>uploads/users/<?= $user->id ?>/<?= $user->ProfPic ?>" id="photoProfile">
+                            <?php } else {?>
+                                <img src="<?= base_url() ?>public/images/sample.png" id="photoCover">
+                            <?php } ?>  
                             <input type="file" id="fileProfile" onchange="uploadProfile(this);" name="profile_pic" accept="image/*">
                             <label for="fileProfile" id="uploadBtnProfile">Choose Photo</label>
                         </div>
@@ -164,7 +174,7 @@ if ($this->session->userdata('UserLoginSession')){
                             </div>
 
                             <div class="form-group">
-                                <textarea class="inputCont" type="text" id="" name="description" placeholder="Add description" disabled value=""></textarea>
+                            <textarea class="inputCont" type="text" id="" name="description" placeholder="Add description" value="<?php echo $summary; ?>" disabled></textarea>
                             </div>
 
                             <div class="profileProjwrapper col-9">
