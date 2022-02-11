@@ -233,30 +233,40 @@ class OnlineFreelancingServices extends CI_Controller{
 				$this->load->model('OFS/OFS_model');
 				$status = $this->OFS_model->checkPassword($password,$email);
 				if($status!=false){
-                    $id = $status->id;
-                    $user_type = $status->user_type;
-                    $email = $status->email;
-                    $profession_id = $status->profession_id;
-                    $jobs = $status->jobs;
-                    $apply = $status->apply;
-                    $accepted = $status->accepted;
-                    $posts = $status->posts;
+                    if($status->status != "0" && $status->status != "") {
+                        $id = $status->id;
+                        $user_type = $status->user_type;
+                        $email = $status->email;
+                        $profession_id = $status->profession_id;
+                        $jobs = $status->jobs;
+                        $apply = $status->apply;
+                        $accepted = $status->accepted;
+                        $posts = $status->posts;
 
-					$session_data = array(
-                        'id'=>$id,
-                        'user_type'=>$user_type,
-						'email'=>$email,
-                        'profession_id'=>$profession_id,
-                        'jobs'=>$jobs,
-                        'apply'=>$apply,
-                        'accepted' => $accepted,
-                        'posts' => $posts
-					);
+                        $session_data = array(
+                            'id'=>$id,
+                            'user_type'=>$user_type,
+                            'email'=>$email,
+                            'profession_id'=>$profession_id,
+                            'jobs'=>$jobs,
+                            'apply'=>$apply,
+                            'accepted' => $accepted,
+                            'posts' => $posts
+                        );
 
-					$this->session->set_userdata('UserLoginSession',$session_data);
+                        $this->session->set_userdata('UserLoginSession',$session_data);
 
-					$this->load->helper('url');
-                    redirect(base_url('NewsFeed'));
+                        $this->load->helper('url');
+                        redirect(base_url('NewsFeed'));
+                    } else if($status->status == ""){
+                        echo "<script>alert('Please verify your user email first!');</script>";
+                    } else if($status->status == "0"){
+                        echo "<script>alert('Please wait for the admin to accept your account');</script>";
+                    } else {
+                        echo "<script>alert('Sending Request Login Error');</script>";
+                        redirect(base_url('Loginpage'));
+                    }
+                    
 				}else{
 					$this->session->set_flashdata('error','Unverified Account or Email / Password is Wrong');
                     $this->load->helper('url');

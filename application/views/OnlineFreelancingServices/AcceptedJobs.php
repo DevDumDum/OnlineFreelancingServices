@@ -81,9 +81,9 @@ if ($this->session->userdata('UserLoginSession')) {
           </td>
 
           <td class="status" style="text-align: right">
-          <?php if ($post->email_client == 0): ?>
-            <button class="editbtn1 editbtn1-responsiveness" style="cursor: pointer;" id="email" onclick="sendEmail('<?=$post->ID?>', '<?=$post->email?>')">Email Client</button>
-            <?php endif ?>
+            <?php if ($post->email_client == 0): ?>
+              <button class="editbtn1 editbtn1-responsiveness" style="cursor: pointer;" id="email" onclick="sendEmail('<?=$post->ID?>', '<?=$post->email?>')">Email Client</button>
+              <?php endif ?>
           </td>
         </tr><?php endforeach ?>
         <?php if (count($posts) == 0) : ?>

@@ -165,26 +165,8 @@ class Register_controller extends CI_Controller {
                             $status = $this->OFS_model->checkPassword($password,$email);
                             
                             //login
-                            if($status!=false){
-                                $id = $status->id;
-                                $user_type = $status->user_type;
-                                $email = $status->email;
-                                $profession_id = $status->profession_id;
-                                $jobs = $status->jobs;
-                                $apply = $status->apply;
-
-                                $session_data = array(
-                                    'id'=>$id,
-                                    'user_type'=>$user_type,
-                                    'email'=>$email,
-                                    'profession_id'=>$profession_id,
-                                    'jobs'=>$jobs,
-                                    'apply'=>$apply
-                                );
-                                
-                                $this->Verification_model->new_ver($status->id, $user_type);
-                                $this->session->set_userdata('UserLoginSession',$session_data);
-                                redirect(base_url('NewsFeed'));
+                            if($status==true){
+                                redirect(base_url('Loginpage'));
 
                             }else{
                                 $this->load->helper('url');
