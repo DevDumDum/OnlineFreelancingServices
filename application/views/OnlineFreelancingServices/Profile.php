@@ -19,10 +19,9 @@ if ($this->session->userdata('UserLoginSession')){
     <div class="profileBody-container">
         <div class="row-profile">
             <div class="profilebanner d-flex col-12">
-                <div class="cover-pic-div">
-                    <?php if (isset($ProfBanner)){
-                    ?>
-                    <img src="<?= base_url() ?>uploads/users/<?php echo $_GET["id"];?>/<?= $ProfBanner ?>" id="photoCover">
+                <div class="cover-pic-div" <?php if(isset($_GET['admin'])) { ?> style="margin-top:0px !important;" <?php } ?>>
+                    <?php if ($ProfBanner != ""){?>
+                        <img src="<?= base_url() ?>uploads/users/<?php echo $_GET["id"];?>/<?= $ProfBanner ?>" id="photoCover">
                     <?php } else {?>
                         <img src="<?= base_url() ?>public/images/sample.png" id="photoCover">
                      <?php } ?>  
@@ -41,7 +40,7 @@ if ($this->session->userdata('UserLoginSession')){
                     <div class="profile-container d-flex flex-column align-items-center text-center py-5 ">
 
                         <div class="profile-pic-div">
-                        <?php if (isset($ProfPic)){
+                        <?php if ($ProfPic != ""){
                             ?>
                             <img src="<?= base_url() ?>uploads/users/<?php echo $_GET["id"];?>/<?= $ProfPic ?>" id="photoProfile">
                             <?php } else {?>
@@ -108,7 +107,7 @@ if ($this->session->userdata('UserLoginSession')){
                     <div class="buttons-container d-flex flex-column text-center py-3">
                         <form method="POST" action="">
                             <div class="profile-button d-flex align-items-center justify-content-between">
-                                <?php if(isset($_GET['id']) && $_GET['id'] == $udata['id']){?>
+                                <?php if(isset($_GET['id']) && ($_GET['id'] == $udata['id'] ) && (!(isset($_GET['admin'])))){?>
                                 <div class="mx-2"  id="editDiv" style="display: block;">
                                     <button class="editprofilebutton btn btn-primary btn-sm" type="button" id ="editProfile" onclick="switchEdit()">
                                         <i class="editprofilebtnicon fal fa-pencil"></i>Edit Profile
@@ -168,7 +167,9 @@ if ($this->session->userdata('UserLoginSession')){
 
                                     <div class="rightbutton">
                                     <button type="button" class="messageprofilebtn btn btn-primary btn-sm" onclick="newDetails()">  Message </button>
-                                    <button type="button" class="messageprofilebtn btn btn-primary btn-sm" onclick="report_post(<?php echo $_GET['id'];?>)">  Report </button>
+                                    <?php if(!(isset($_GET['admin']))) { ?>
+                                        <button type="button" class="messageprofilebtn btn btn-primary btn-sm" onclick="report_post(<?php echo $_GET['id'];?>)">  Report </button>
+                                    <?php } ?>
                                     </div>
                                 <?php }?>
                             </div>
@@ -250,8 +251,10 @@ if ($this->session->userdata('UserLoginSession')){
             </div>
         </div>
     </div>
+    <?php if($_GET['id'] == $udata['id']){?>
     <script type="text/javascript" src="<?php echo base_url("public/css/profile.js")?>"> </script>
     <script>
+    
         const uploadBanner = el => {
             const files = el.files
             if (files.length > 0) {
@@ -296,7 +299,10 @@ if ($this->session->userdata('UserLoginSession')){
             //     .catch(err => console.log(err))
             }
         }
+    </script>
+    <?php }?>
 
+    <script>
         function newDetails(){
             document.getElementById("hiddenbox-profile").style.display="block";
             document.getElementById("hiddenbox-profile").style.animation="fadebox .3s reverse linear";

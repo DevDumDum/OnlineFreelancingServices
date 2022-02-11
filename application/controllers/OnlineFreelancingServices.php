@@ -174,7 +174,6 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->session->set_userdata('page','Profile Page');
         $this->load->helper('url');
         if(isset($_GET['id']) || $udata = $this->session->userdata('UserLoginSession')){
-            echo $_GET['id'];
             $this->load->model('OFS/OFS_model');
 
             $user_details = $this->OFS_model->get_user_from_search($_GET['id']);
@@ -235,7 +234,7 @@ class OnlineFreelancingServices extends CI_Controller{
 				$this->load->model('OFS/OFS_model');
 				$status = $this->OFS_model->checkPassword($password,$email);
 				if($status!=false){
-                    if($status->status != "0" && $status->status != "") {
+                    if($status->status != "0" && $status->status != "" && $status->status != "-1") {
                         $id = $status->id;
                         $user_type = $status->user_type;
                         $email = $status->email;
@@ -264,6 +263,8 @@ class OnlineFreelancingServices extends CI_Controller{
                         echo "<script>alert('Please verify your user email first!');</script>";
                     } else if($status->status == "0"){
                         echo "<script>alert('Please wait for the admin to accept your account');</script>";
+                    } else if($status->status == "-1"){
+                        echo "<script>alert('Admin prohibits access to your Account!');</script>";
                     } else {
                         echo "<script>alert('Sending Request Login Error');</script>";
                         redirect(base_url('Loginpage'));
@@ -601,7 +602,6 @@ class OnlineFreelancingServices extends CI_Controller{
         $this->session->set_userdata('page','Profile Page');
         $this->load->helper('url');
         if(isset($_GET['id'])){
-            echo $_GET['id'];
             $this->load->model('OFS/OFS_model');
 
             $user_details = $this->OFS_model->get_user_from_search($_GET['id']);

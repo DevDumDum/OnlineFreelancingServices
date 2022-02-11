@@ -120,8 +120,9 @@ if($this->session->userdata('UserLoginSession')){
         function newDetails(id){
             document.getElementById("hiddenbox").style.display="block";
             document.getElementById("hiddenbox").style.animation="fadebox .3s reverse linear";
-            document.getElementById("view_r").src = "<?php echo  base_url('Profile_page');?>?id="+id;
+            document.getElementById("view_r").src = "<?php echo  base_url('Postpage');?>?p_id="+id+"&admin="+<?= $udata['id']?>;
         }
+
         function hidebox(){
             document.getElementById("hiddenbox").style.display="none";
         }
