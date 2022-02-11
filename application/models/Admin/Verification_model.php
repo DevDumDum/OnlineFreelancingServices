@@ -54,10 +54,18 @@ class Verification_model extends CI_Model{
             'content_id' => $id
         );
 
-        if($this->db->insert('verification', $data)) {
-            $r = true;
-        } else {
+        $this->db->select('ID');
+        $this->db->where('content_id', $id);
+        $this->db->where('verification_type', $user_type);
+        $cur_id = $this->db->get('verification')->result_array();
+        if((int)$cur_id > 0) {
             $r = false;
+        } else {
+            if($this->db->insert('verification', $data)) {
+                $r = true;
+            } else {
+                $r = false;
+            }
         }
         return $r;
     }
@@ -186,45 +194,5 @@ class Verification_model extends CI_Model{
             $r = json_encode(array('msg' => "Error"));
         }
         return $r;
-    }
-
-    public function a_ver_rep($v_id,$u_id, $type){
-        header('content-type: text/json');
-        if($type == "report-p"){
-            $this->db->set('status', -1);
-            $this->db->where('ID', $u_id);
-            $query = $this->db->update('post');
-        }else{
-            $this->db->select('*');
-            $this->db->where('id', $u_id);
-            $q = $this->db->get('report')->result_array();
-            $this->db->set('status', -1);
-            $this->db->where('id', $q[0]["id_reported"]);
-            $query = $this->db->update('users');
-        }
-
-        $this->db->set('viewer_id', 0);
-        $this->db->where('ID',  $v_id);
-        $query2 = $this->db->update('verification');
-        
-        if($query && $query2){
-            return json_encode(array('msg' => "Success"));
-        }else{
-            return json_encode(array('msg' => "Error"));
-        }
-    }
-
-    public function d_ver_rep($v_id,$u_id){
-        header('content-type: text/json');
-        
-        $this->db->set('viewer_id', 0);
-        $this->db->where('ID',  $v_id);
-        $query2 = $this->db->update('verification');
-        
-        if($query2){
-            return json_encode(array('msg' => "Success"));
-        }else{
-            return json_encode(array('msg' => "Error"));
-        }
     }
 }

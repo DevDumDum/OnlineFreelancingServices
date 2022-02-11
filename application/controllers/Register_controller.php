@@ -29,10 +29,11 @@ class Register_controller extends CI_Controller {
             $this->form_validation->set_rules('profession_id','profession_id','trim');
             $this->form_validation->set_rules('other_profession_id','other_profession_id','trim');
             
-            if($this->form_validation->run()==TRUE){
+            if($this->form_validation->run()==TRUE) {
                 $fn = $this->input->post('first-name');
                 $sn = $this->input->post('last-name');
                 $mn = $this->input->post('middle-name');
+                $full = $fn." ".$mn." ".$sn;
                 $contact = $this->input->post('contact');
                 $email = $this->input->post('email');
                 $password = $this->input->post('password');
@@ -65,6 +66,7 @@ class Register_controller extends CI_Controller {
                     'first_name' => $fn,
                     'last_name' => $sn,
                     'middle_name' => $mn,
+                    'full_name' => $full,
                     'contact' => $contact,
                     'email' => $email,
                     'password' => $password,
@@ -181,7 +183,7 @@ class Register_controller extends CI_Controller {
         }        
     }
 
-    public function activate(){
+    public function activate() {
         $code =  $this->uri->segment(3);
 	
 
@@ -194,10 +196,9 @@ class Register_controller extends CI_Controller {
 			$data['status'] = 0;
 			$query = $this->OFS_model->activate($data, $code);
 
-			if($query){
+			if($query) {
 				$this->session->set_flashdata('message', 'User activated successfully');
-			}
-			else{
+			} else {
 				$this->session->set_flashdata('message', 'Something went wrong in activating account');
 			}
 		}
@@ -212,7 +213,7 @@ class Register_controller extends CI_Controller {
     public function addMod() {
     
 
-        if($_SERVER['REQUEST_METHOD']=='POST'){
+        if($_SERVER['REQUEST_METHOD']=='POST') {
 
             $this->form_validation->set_rules('companyid','CompanyID','trim|required|is_unique[users.email],');
             $this->form_validation->set_rules('password','Password','trim|required');
@@ -256,17 +257,17 @@ class Register_controller extends CI_Controller {
                         $this->session->set_userdata('UserLoginSession',$session_data);
                         redirect(base_url('AdminAuth/Dashboard'));
 
-                    }else{
+                    } else {
                         $this->load->helper('url');
                         $this->session->set_flashdata('error','Session Error.');
                         redirect(base_url('AdminAuth/AdminRegister'));
                     }
 
-                }else{
+                } else {
                     $this->load->helper('url');
                     $this->session->set_flashdata('error','Error query.');
                 }
-            }else {
+            } else {
                 $this->session->set_flashdata('error','Error Input data');
                 redirect(base_url('AdminAuth/AdminRegister'));
             }

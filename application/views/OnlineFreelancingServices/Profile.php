@@ -42,7 +42,9 @@ if ($this->session->userdata('UserLoginSession')){
                         </div>
 
                         <div class="profileName">
-                            <span class="profile-name font-weight-bold"><!--db-->Name</span>
+                            <span class="profile-name font-weight-bold"><!--db-->
+                                <?php echo $full_name; ?>
+                            </span>
                         </div>
 
                         <div class="switchBox">
@@ -162,7 +164,7 @@ if ($this->session->userdata('UserLoginSession')){
                             </div>
 
                             <div class="form-group">
-                                <textarea class="inputCont" type="text" id="" name="description" placeholder="Add description" disabled value=""></textarea>
+                                <textarea class="inputCont" type="text" id="" name="description" placeholder="Add description" value="<?php echo $summary; ?>" disabled></textarea>
                             </div>
 
                             <div class="profileProjwrapper col-9">
@@ -215,7 +217,20 @@ if ($this->session->userdata('UserLoginSession')){
 
                                 <div class="info-cont d-flex flex-column bd-highlight mb-4">
                                     <div class="p-2 bd-highlight">
-                                    EDUCATIONAL ATTAINMENT<input class="eduAttainment" type="text" id="" name="eduAttainment" placeholder="+" disabled value="">
+                                        EDUCATIONAL ATTAINMENT
+                                        <input class="eduAttainment" type="text" id="" name="eduAttainment" placeholder="Currently not set." value="<?php echo $education_id ?>" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="info-cont d-flex flex-column bd-highlight mb-3">
+                                    <div class="p-2 bd-highlight">
+                                    EXPERTISE<input class="expertise" type="text" id="" name="expertise" placeholder="Currently not set." value="<?php echo $work ?>" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="info-cont d-flex flex-column bd-highlight mb-3">
+                                    <div class="p-2 bd-highlight">
+                                    CONTACT INFORMATION<input class="contact-info" type="text" id="" name="contact-info" placeholder="Currently not set." value="<?php echo $contact ?>" disabled>
                                     </div>
                                 </div>
                             </div>

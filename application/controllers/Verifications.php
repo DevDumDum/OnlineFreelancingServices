@@ -107,12 +107,15 @@ class Verifications extends CI_Controller{
 
         $udata = $this->session->userdata('UserLoginSession');
         $page = $this->session->userdata('page');
+        if($page != 'Report-User' && $page != 'Report-Post'){
+            $page = $this->session->set_userdata('page','Report-Post');
+        }
         
         /*
             MAX NUMBER OF ROWS TO ASSIGN BASED ON UID OF THE CURRENT VIEWER TYPE
         */
         $max_count = 3;
-
+        
         if($page === 'Report-User'){
             $type = 'report-u';
         } else {
@@ -194,11 +197,11 @@ class Verifications extends CI_Controller{
             $v_list[$x]['profession_type'] = $prof_details[0]['profession_type'];
             $v_list[$x]['description'] = $prof_details[0]['description'];
             #$v_list[$x]['user_id'] = $t['user_id'];
+            $v_list[$x]['u_id'] = $t['content_ID'];
             $v_list[$x]['v_id'] = $t['ID'];
             $x++;
         }
         $v_list_x['key_v_list'] = $v_list;
-        
         $this -> load -> view ('Admin/Verifications/jobCategory',$v_list_x);
     }
     public function AdminLogout(){

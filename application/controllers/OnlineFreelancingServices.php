@@ -16,7 +16,12 @@ class OnlineFreelancingServices extends CI_Controller {
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
-        $this -> load -> view ('OnlineFreelancingServices/Homepage');
+        $this->load->model('OFS/Work_model');
+        $works = $this->Work_model->get_table();
+        $table = array();
+        $table['key_works'] = $works;
+        
+        $this -> load -> view ('OnlineFreelancingServices/Homepage', $table);
         if($this->session->userdata('UserLoginSession')){
             redirect(base_url('NewsFeed'));
         }
@@ -82,15 +87,38 @@ class OnlineFreelancingServices extends CI_Controller {
         $this->session->userdata('page');
         $this->session->set_userdata('page','Profile Page');
         $this->load->helper('url');
-        $udata = $this->session->userdata('UserLoginSession');
-        if(isset($_GET['id']) || $this->session->userdata('UserLoginSession')){
-            #echo "Welcome to userspage!";
+        if(isset($_GET['id']) || $udata = $this->session->userdata('UserLoginSession')){
+            echo $_GET['id'];
+            $this->load->model('OFS/OFS_model');
+
+            $user_details = $this->OFS_model->get_user_from_search($_GET['id']);
+            if(isset($user_details)){
+                $data['full_name'] = $user_details['full_name'];
+                $data['contact'] = $user_details['contact'];
+                $data['email'] = $user_details['email'];
+                $data['location'] = $user_details['location'];
+                $data['summary'] = $user_details['summary'];
+                $data['education_id'] = $user_details['education_id'];
+                $this->load->model('OFS/Work_model');
+                $temp = array();
+                $x=0;
+                if($user_details['profession_id']!="") {
+                    foreach(explode(',', $user_details['profession_id']) as $t){
+                        $holder = $this->Work_model->get_prof($t);
+                        $temp[$x++] = $holder['profession_type'];
+                    }
+                }
+                $data['work'] = implode(', ', $temp);
+                $x=null;            
+
+                #print_r($data);
+                $this -> load -> view ('OnlineFreelancingServices/inc/header');
+                $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
+                $this -> load -> view ('OnlineFreelancingServices/Profile',$data);
+            }
         }else{
             redirect(base_url('NewsFeed'));
         }
-        $this -> load -> view ('OnlineFreelancingServices/inc/header');
-        $this -> load -> view ('OnlineFreelancingServices/inc/navbar');
-        $this -> load -> view ('OnlineFreelancingServices/Profile');
     }
     public function Loginpage(){
         if($this->session->userdata('UserLoginSession')){
@@ -227,12 +255,47 @@ class OnlineFreelancingServices extends CI_Controller {
     }
     public function Post_page(){
         $this->session->userdata('page');
-        $this->session->set_userdata('page','Profile Page');
+        $this->session->set_userdata('page','Post Page');
         $this->load->helper('url');
         $this -> load -> view ('OnlineFreelancingServices/inc/header');
         $this->load->model('OFS/Post_model');
         $posts = $this->Post_model->fetch_a_post($_GET["p_id"]);
-
         $this -> load -> view ('OnlineFreelancingServices/Post_page',$posts);
+    }
+    public function Profile_page(){
+        $this->session->userdata('page');
+        $this->session->set_userdata('page','Profile Page');
+        $this->load->helper('url');
+        if(isset($_GET['id'])){
+            echo $_GET['id'];
+            $this->load->model('OFS/OFS_model');
+
+            $user_details = $this->OFS_model->get_user_from_search($_GET['id']);
+            if(isset($user_details)){
+                $data['full_name'] = $user_details['full_name'];
+                $data['contact'] = $user_details['contact'];
+                $data['email'] = $user_details['email'];
+                $data['location'] = $user_details['location'];
+                $data['summary'] = $user_details['summary'];
+                $data['education_id'] = $user_details['education_id'];
+                $this->load->model('OFS/Work_model');
+                $temp = array();
+                $x=0;
+                if($user_details['profession_id']!="") {
+                    foreach(explode(',', $user_details['profession_id']) as $t){
+                        $holder = $this->Work_model->get_prof($t);
+                        $temp[$x++] = $holder['profession_type'];
+                    }
+                }
+                $data['work'] = implode(', ', $temp);
+                $x=null;            
+
+                #print_r($data);
+                $this -> load -> view ('OnlineFreelancingServices/inc/header');
+                $this -> load -> view ('OnlineFreelancingServices/Profile',$data);
+            }
+        }else{
+            redirect(base_url('NewsFeed'));
+        }
     }
 }
