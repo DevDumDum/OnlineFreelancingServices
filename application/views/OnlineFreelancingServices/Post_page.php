@@ -27,35 +27,26 @@ if(!(isset($_GET['p_id']))) {
         const theFunction = "<?=base_url('Post_controller/get_a_post'); ?>";
         $.post(theFunction, {id : <?php echo $_GET['p_id'];?>}, function(data, status){
             if(status=='success'){
-                 
-                let text = data;
-                text = text.replace('[', '');
-                text = text.replace(']', '');
+                const myArray = JSON.parse(data);
+                var postArray = [];
+                postArray["name"] = myArray[0];
+                postArray["work"] = myArray[1];
+                postArray["id"] = myArray[2];
+                postArray["name_id"] = myArray[3];
+                
+                postArray['requirements'] = myArray[4];
+                postArray['worker_count'] = myArray[5];
+                postArray['applicants'] = myArray[6];
+                postArray['accepted'] = myArray[7];
 
-                if(data != " "){
-                    for(var x = 0; x<8; x++) text = text.replace('"', '');
+                postArray['location'] = myArray[8];
+                postArray['min_pay'] = myArray[9];
+                postArray['max_pay'] = myArray[10];
+                postArray['timestamp'] = myArray[11];
+                initPost(postArray);
 
-                    const myArray = text.split(",");
-                    var postArray = [];
-                    postArray["name"] = myArray[0];
-                    postArray["work"] = myArray[1];
-                    postArray["id"] = myArray[2];
-                    postArray["name_id"] = myArray[3];
-                    
-                    postArray['requirements'] = myArray[4];
-                    postArray['worker_count'] = myArray[5];
-                    postArray['applicants'] = myArray[6];
-                    postArray['accepted'] = myArray[7];
-
-                    postArray['location'] = myArray[8];
-                    postArray['min_pay'] = myArray[9];
-                    postArray['max_pay'] = myArray[10];
-                    postArray['timestamp'] = myArray[11];
-                    initPost(postArray);
-
-                    // BIGGER DIV BETTER DIV; BIGGER BETTER
-                    scrollLimit = Math.max($(document).height(), $(window).height());
-                }
+                // BIGGER DIV BETTER DIV; BIGGER BETTER
+                scrollLimit = Math.max($(document).height(), $(window).height());
             }
         })
     }

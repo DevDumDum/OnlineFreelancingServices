@@ -33,9 +33,9 @@ if($this->session->userdata('UserLoginSession')){
 
         <!--VERIFICATION BUTTONS-->
         <div class="btn_category">
-            <button class="btn" onclick="window.location.href='VerifyUser';" disabled>New User</button>
+            <button class="btn" onclick="window.location.href='.';" disabled>New User</button>
             <button class="btn" onclick="window.location.href='VerifyRequest';">Deactivate Requests</button>
-            <button class="btn" onclick="window.location.href='VerifyReports';">Reports</button>
+            <button class="btn" onclick="window.location.href='Report';">Reports</button>
             <button class="btn" onclick="window.location.href='VerifyJobCategory';">Job Category</button>
         </div>
 
@@ -88,7 +88,7 @@ if($this->session->userdata('UserLoginSession')){
             var id = "theTr_" + verify_id.toString();
             $.post('<?=base_url('Verification_controller/accept_ver');?>', {v_id: verify_id, u_id: user_id}, function(data){
                 alert(data.msg);
-                document.getElementById(id).style.display="none";
+                document.getElementById(id).remove();
             }, 'JSON');
         }
         
@@ -96,7 +96,7 @@ if($this->session->userdata('UserLoginSession')){
             var id = "theTr_" + verify_id.toString();
             $.post('<?=base_url('Verification_controller/reject_ver');?>', {v_id: verify_id, u_id: user_id}, function(data){
                 alert(data.msg);
-                document.getElementById(id).style.display="none";
+                document.getElementById(id).remove();
             }, 'JSON');
         }
 
