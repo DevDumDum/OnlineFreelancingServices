@@ -59,11 +59,10 @@ class OFS_model extends CI_Model{
 	}
 
 	public function get_user_details_from_email($email){
-		$this->db->select('id, last_name, 
-				first_name, middle_name, 
-				contact, profession_id, 
-				location, summary, 
-				calendarlist_id, code, status');
+		$this->db->select('last_name, first_name, 
+				middle_name, full_name, contact, email, 
+				profession_id, education_id, location, summary, 
+				calendarlist_id,code,status, ProfPic, ProfBanner');
 				
 		$this->db->where('email', $email);
 		
@@ -73,13 +72,43 @@ class OFS_model extends CI_Model{
 	public function get_user_details($id){
 		$this->db->select('last_name, first_name, 
 				middle_name, full_name, contact, email, 
-				profession_id, location, summary, 
-				calendarlist_id,code,status');
+				profession_id, education_id, location, summary, 
+				calendarlist_id,code,status, ProfPic, ProfBanner');
 
 		$this->db->where('id', $id);
 		
 		return $this->db->get('users')->result_array();
 	}
+
+	public function get_user_from_search($id){
+		$this->db->select('last_name, first_name, 
+				middle_name, full_name, contact, email, 
+				profession_id, education_id, location, summary, 
+				calendarlist_id,code,status, ProfPic, ProfBanner');
+
+		$this->db->where('id', $id);
+		$q = $this->db->get('users');
+		
+		if($q->num_rows()>0) return $q->row_array();
+		else return false;
+	}
+
+	public function search_user($nameHolder){
+		$this->db->select('ID, full_name');
+		$this->db->like('full_name', $nameHolder);
+		$this->db->limit(5);
+
+		$q = $this->db->get('users');
+
+		if($q->num_rows()>0) return $q->result_array();
+		else return false;
+	}
+
+	public function get_report($id) {
+		$this->db->select('*');
+		$this->db->where('ID', $id);
+		return $this->db->get('report')->result_array();
+	 }
 
 	//sira ka muna
 	public function get_username($id){

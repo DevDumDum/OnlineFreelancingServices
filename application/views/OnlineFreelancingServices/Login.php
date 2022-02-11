@@ -48,13 +48,11 @@
 			</div>
 		</form>
 	</div>
-	<!-- JavaScript Bundle with Popper -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	
 </body>
-		<?php
-			if($this->session->flashdata('error')) {	?>
-			<p class="text-danger text-center"> <?=$this->session->flashdata('error')?></p>
-		<?php } ?>
-						
-	</form>
-</script>
+</body>
+<?php if($this->session->flashdata('error')) {	?>
+	<script>
+		<p class="text-danger text-center"> <?=$this->session->flashdata('error')?></p>
+	</script>
+<?php } ?>

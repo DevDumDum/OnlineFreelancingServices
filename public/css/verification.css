@@ -123,10 +123,10 @@ td span:hover{
     float: left;
     z-index: 0;
     background-color: rgb(255, 255, 255);
-    height: 500px;
-    width: 60%;
-    margin-left: 20%;
-    margin-top: 30px;
+    height: 80%;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 5%;
     border-radius: 5px;
 }
 #blackbox{

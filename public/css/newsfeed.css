@@ -119,8 +119,9 @@
     width: 80px;
     /* testing lang to kung ano magiging itsura ng picture sa post, may function naman ata kayong gagamitin sa js 
     na mag ddisplay ng picture ng nag-post diba? kaya pede to iremove 'tong background-image anytime pag working na yon*/
-    background-image: url("../images/franco-in-80px.jpg"); 
+    background-image: url("../images/sample.png"); 
     background-color: #ffffff;
+    background-size: contain;
 }
 #result{
     margin-left: 8%;
