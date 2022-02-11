@@ -229,4 +229,14 @@ class Post_model extends CI_Model{
       $this->db->where('ID', $post_id);
       return $this->db->update('post');
    }
+
+   public function get_job_details($post_id)
+   {
+      return $this->db
+         ->select('post.*, profession.profession_type, profession.description as profession_description')
+         ->where('post.ID', $post_id)
+         ->where('post.status', 0)
+         ->join('profession', 'profession.ID = post.profession_ID')
+         ->get('post')->row();
+   }
 }

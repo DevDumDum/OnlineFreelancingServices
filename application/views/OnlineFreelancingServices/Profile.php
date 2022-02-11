@@ -4,17 +4,6 @@ if ($this->session->userdata('UserLoginSession')){
 }
 ?>
 
-<!-- THIS IS FOR POP UP -->
-<script>
-        function newDetails(){
-            document.getElementById("hiddenbox-profile").style.display="block";
-            document.getElementById("hiddenbox-profile").style.animation="fadebox .3s reverse linear";
-        }
-        function hidebox(){
-            document.getElementById("hiddenbox-profile").style.display="none";
-        }
-</script>
-
 <body class="profileBody">
     <div class="profileBody-container">
         <div class="row-profile">
@@ -26,7 +15,7 @@ if ($this->session->userdata('UserLoginSession')){
                         <div class="uploadingofcover">
                         <i class="fal fa-upload"></i><br>
                         <h3>Add banner image<h3>
-                        </div>
+                        </div>  
                     </label>           
                 </div>
             </div>   
@@ -35,16 +24,14 @@ if ($this->session->userdata('UserLoginSession')){
                 <div class="profilecontent col-3 border-right py-2">
                     <div class="profile-container d-flex flex-column align-items-center text-center py-5 ">
 
-                    <div class="profile-pic-div">
-                        <img src="<?= base_url() ?>uploads/users/<?= $user->id ?>/<?= $user->ProfPic ?>" id="photoProfile">
-                        <input type="file" id="fileProfile" onchange="uploadProfile(this);" name="profile_pic" accept="image/*">
-                        <label for="fileProfile" id="uploadBtnProfile">Choose Photo</label>
-                    </div>
+                        <div class="profile-pic-div">
+                            <img src="<?= base_url() ?>uploads/users/<?= $user->id ?>/<?= $user->ProfPic ?>" id="photoProfile">
+                            <input type="file" id="fileProfile" onchange="uploadProfile(this);" name="profile_pic" accept="image/*">
+                            <label for="fileProfile" id="uploadBtnProfile">Choose Photo</label>
+                        </div>
 
                         <div class="profileName">
-                            <span class="profile-name font-weight-bold"><!--db-->
-                                <?php echo $full_name; ?>
-                            </span>
+                            <span class="profile-name font-weight-bold"><!--db-->Name</span>
                         </div>
 
                         <div class="switchBox">
@@ -87,7 +74,6 @@ if ($this->session->userdata('UserLoginSession')){
 
                     <div class="location">
                         <p id = location-profile> 
-
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.200523654514!2d120.97700491449882!3d14.644555779924874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b5c7b9e0893d%3A0x5a409de362168821!2sC-3%2C%20Grace%20Park%20West%2C%20Caloocan%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1642690241288!5m2!1sen!2sph" 
                                 width="300" height="200" style="border: 1rem;" allowfullscreen="" loading="lazy">
                             </iframe>
@@ -165,7 +151,7 @@ if ($this->session->userdata('UserLoginSession')){
                             </div>
 
                             <div class="form-group">
-                                <textarea class="inputCont" type="text" id="" name="description" placeholder="Add description" value="<?php echo $summary; ?>" disabled></textarea>
+                                <textarea class="inputCont" type="text" id="" name="description" placeholder="Add description" disabled value=""></textarea>
                             </div>
 
                             <div class="profileProjwrapper col-9">
@@ -218,8 +204,7 @@ if ($this->session->userdata('UserLoginSession')){
 
                                 <div class="info-cont d-flex flex-column bd-highlight mb-4">
                                     <div class="p-2 bd-highlight">
-                                        EDUCATIONAL ATTAINMENT
-                                        <input class="eduAttainment" type="text" id="" name="eduAttainment" placeholder="Currently not set." value="<?php echo $education_id ?>" disabled>
+                                    EDUCATIONAL ATTAINMENT<input class="eduAttainment" type="text" id="" name="eduAttainment" placeholder="+" disabled value="">
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +236,6 @@ if ($this->session->userdata('UserLoginSession')){
             }
         }
 
-
         const uploadProfile = el => {
             const files = el.files
             if (files.length > 0) {
@@ -277,12 +261,6 @@ if ($this->session->userdata('UserLoginSession')){
             }
         }
 
-        function hidebox(){
-            document.getElementById("hiddenbox-nf").style.display="none";
-            document.getElementById("report_p").style.display="none";
-        }
-        function report_post(id){
-            document.getElementById("hiddenbox-nf").style.display="block";
         function newDetails(){
             document.getElementById("hiddenbox-profile").style.display="block";
             document.getElementById("hiddenbox-profile").style.animation="fadebox .3s reverse linear";
