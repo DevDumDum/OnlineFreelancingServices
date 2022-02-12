@@ -45,7 +45,7 @@ class Post_controller extends CI_Controller {
             $post = $this->input->post("post_ID");
 
             $this->load->model('Admin/Verification_model');
-            $q = $this->Verification_model->new_ver($post, 'post');
+            $q = $this->Post_model->close_posts($post);
             return $q;
         }
     }

@@ -193,9 +193,9 @@ class Verifications extends CI_Controller{
         $x = 0;
         foreach($table as $t){
             $prof_details = $this->Work_model->get_prof($t['content_ID']);
-            $v_list[$x]['ID'] = $prof_details[0]['ID'];
-            $v_list[$x]['profession_type'] = $prof_details[0]['profession_type'];
-            $v_list[$x]['description'] = $prof_details[0]['description'];
+            $v_list[$x]['ID'] = $prof_details['ID'];
+            $v_list[$x]['profession_type'] = $prof_details['profession_type'];
+            $v_list[$x]['description'] = $prof_details['description'];
             #$v_list[$x]['user_id'] = $t['user_id'];
             $v_list[$x]['u_id'] = $t['content_ID'];
             $v_list[$x]['v_id'] = $t['ID'];

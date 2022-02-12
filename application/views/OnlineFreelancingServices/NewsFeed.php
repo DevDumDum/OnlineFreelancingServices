@@ -147,9 +147,10 @@ else
     $(window).scroll(function(){
         if(newsfeed.scrollable){
             var current = window.scrollY;
-            var pos = current + window.innerHeight; 
+            var pos = current + 400 + window.innerHeight; 
 
             if(pos >= scrollLimit) display_post_batch();
+            console.log(pos+":"+scrollLimit);
         }
     });
     function display_post_batch(){
@@ -289,11 +290,7 @@ else
     }
     function delete_post(id){
         $.post("<?=base_url('Post_controller/deactivate_post')?>", {post_ID: id}, function(data){
-            if(data) {
-                alert("Delete requested.");
-            } else {
-                alert("Request to delete post already exist!");
-            }
+            alert("Post deactivated.");
         });
 
         window.location.reload();
