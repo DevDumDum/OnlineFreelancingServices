@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2022 at 04:37 PM
+-- Generation Time: Feb 12, 2022 at 02:54 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -61,7 +61,6 @@ CREATE TABLE `profession` (
 --
 
 INSERT INTO `profession` (`ID`, `profession_type`, `description`, `status`) VALUES
-(0, 'Select', 'none', '1'),
 (1, 'Carpenter', '', '1'),
 (2, 'Accountant', '', '1'),
 (3, 'Architect', '', '1'),
@@ -116,11 +115,18 @@ CREATE TABLE `users` (
   `posts` varchar(255) DEFAULT NULL,
   `apply` varchar(255) DEFAULT NULL,
   `ratings` varchar(255) DEFAULT NULL,
-  `accepted` tinyint(1) NOT NULL DEFAULT 1,
+  `accepted` varchar(255) DEFAULT NULL,
   `ValidId` text NOT NULL,
   `ProfPic` text NOT NULL,
   `ProfBanner` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `user_type`, `last_name`, `first_name`, `middle_name`, `full_name`, `password`, `contact`, `email`, `profession_id`, `feature_list_id`, `education_id`, `location`, `summary`, `calendarlist_id`, `status`, `code`, `jobs`, `posts`, `apply`, `ratings`, `accepted`, `ValidId`, `ProfPic`, `ProfBanner`) VALUES
+(1, 'admin', 'Minon', 'Alex', 'Benedict', '', 'qwe', 2147483647, 'me@me.me', '', NULL, NULL, '', NULL, NULL, '1', '0', NULL, NULL, NULL, NULL, '1', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -184,7 +190,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `profession`
 --
 ALTER TABLE `profession`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `report`
@@ -196,7 +202,7 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `verification`
