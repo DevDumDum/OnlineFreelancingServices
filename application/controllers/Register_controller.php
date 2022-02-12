@@ -28,8 +28,10 @@ class Register_controller extends CI_Controller {
 
             $this->form_validation->set_rules('profession_id','profession_id','trim');
             $this->form_validation->set_rules('other_profession_id','other_profession_id','trim');
+
             
             if($this->form_validation->run()==TRUE) {
+                
                 $fn = $this->input->post('first-name');
                 $sn = $this->input->post('last-name');
                 $mn = $this->input->post('middle-name');
@@ -177,7 +179,7 @@ class Register_controller extends CI_Controller {
             }
         }
         $this->session->set_flashdata('error','Error Input data');
-        redirect(base_url('Registerpage'));       
+        redirect(base_url('Registerpage'));  
     }
 
     public function activate() {
@@ -217,6 +219,8 @@ class Register_controller extends CI_Controller {
             $this->form_validation->set_rules('password2','Confirm Password','trim|required|matches[password]');
 
             if($this->form_validation->run()==TRUE){
+                
+                
                 $email = $this->input->post('companyid');
                 $password = $this->input->post('password');
                 $status = 0;
@@ -233,12 +237,14 @@ class Register_controller extends CI_Controller {
 
                 // insert to db
                 if ($this->Register_model->addUser($data)) {
+                    
 
                     $this->load->helper('url');                
                     $this->load->model('Admin/AdminAuth_model');
                     $this->load->model('Admin/Verification_model');
 
                     $ver = $this->AdminAuth_model->verifyUser($password,$email);
+                    
                     if($ver!=false){
                         $email = $ver->email;
                         $id = $ver->id;

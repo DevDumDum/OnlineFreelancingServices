@@ -311,6 +311,7 @@ class Post_controller extends CI_Controller {
             $n_post[9] = $p['location'];
             $n_post[10] = $p['min_pay'];
             $n_post[11] = $p['max_pay'];
+            $n_post[13] = $user_details[0]['ProfPic'];
 
             //date("M j Y", $p['timestamp'])." ".date("h:iA", $p['timestamp']);
             $n_post[12] = date("M j Y", $p['timestamp'])." ".date("h:i A", $p['timestamp']); //$p['timestamp'];

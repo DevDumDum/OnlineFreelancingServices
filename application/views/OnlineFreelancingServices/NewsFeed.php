@@ -223,10 +223,12 @@ else
                 if(post['min_pay']){
                     $('#min-checker').attr("checked", false);
                     $('#min_pay').attr("value", post['min_pay']);
+                    $("#min_pay").attr("disabled", false);
                     $('max-pay-l').text("Maximum Pay: ")
                 }else {
                     $('#min-checker').attr("checked", true);
                     $('#min_pay').attr("value", "");
+                    $("#min_pay").attr("disabled", true);
                     $('max-pay-l').text("Exact payment: ");
                 }
                 $('#max_pay').attr("value", post['max_pay']);
@@ -341,7 +343,6 @@ else
                     alert("Request Timeout: User already Applied");
                     document.getElementById('apply_'+id).disabled=true;
                 }
-                alert("<?php echo $udata['jobs'];?>");
             }
         });
         console.log("Applied.");
@@ -630,7 +631,6 @@ else
         
         $(tb).click(function(){
             //$('#search-id').attr('value', $(this).attr('id'));
-            alert();
         });
 
         $("#work-filter").change(function(){
