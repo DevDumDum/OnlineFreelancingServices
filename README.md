@@ -1,10 +1,10 @@
 # Online Freelancing Services
 
-<img src="./Documentation/Screenshot%202023-11-05%20170658.png" width=80%>
-
 Website Demo -> https://youtu.be/bMciayOo2f8?si=1bZ3WfGuswnKaPzG
 
 Documentation -> https://github.com/DevDumDum/Group01/tree/master/Documentation
+
+<img src="./Documentation/Screenshot%202023-11-05%20170658.png" width=80%>
 
 ## Objective
 Behind this project were the inspirational experiences of low-wage Filipino earners across the country. The project aims to help these people find a job contract easily amidst the pandemic. Since the application of the internet and technology in today's time is developing gradually, the completion of this project has become more feasible. 
